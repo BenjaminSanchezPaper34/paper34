@@ -14,17 +14,20 @@ type PortfolioItem = {
 };
 
 const PORTFOLIO_ITEMS: PortfolioItem[] = [
+  // Row 1-2 : featured (2x2) + 2 small (1x1) empilés + 1 tall (1x2)
   { id: 1, title: "Pampa Restaurant", category: "Design", type: "image", src: "/images/portfolio/placeholder.jpg", size: "featured" },
   { id: 2, title: "Villa Margot", category: "Print", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
   { id: 3, title: "Spot vidéo surf", category: "Vidéo", type: "video", src: "/videos/videosd-paper34.mp4", size: "small" },
-  { id: 4, title: "Site vitrine restaurant", category: "Web", type: "image", src: "/images/portfolio/placeholder.jpg", size: "wide" },
+  { id: 4, title: "Site vitrine restaurant", category: "Web", type: "image", src: "/images/portfolio/placeholder.jpg", size: "tall" },
+  // Row 3 : 4 small
   { id: 5, title: "Domaine viticole", category: "Photo", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
   { id: 6, title: "Community management", category: "Réseaux sociaux", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
   { id: 7, title: "Brasserie du port", category: "Design", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
-  { id: 8, title: "Clip promotionnel", category: "Vidéo", type: "video", src: "/videos/videosd-paper34.mp4", size: "featured" },
-  { id: 9, title: "Festival Agde", category: "Print", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
-  { id: 10, title: "E-commerce mode", category: "Web", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
-  { id: 11, title: "Campagne Instagram", category: "Réseaux sociaux", type: "image", src: "/images/portfolio/placeholder.jpg", size: "wide" },
+  { id: 8, title: "Festival Agde", category: "Print", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
+  // Row 4-5 : 1 tall + 2 small empilés + featured vidéo (2x2)
+  { id: 9, title: "E-commerce mode", category: "Web", type: "image", src: "/images/portfolio/placeholder.jpg", size: "tall" },
+  { id: 10, title: "Campagne Instagram", category: "Réseaux sociaux", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
+  { id: 11, title: "Clip promotionnel", category: "Vidéo", type: "video", src: "/videos/videosd-paper34.mp4", size: "featured" },
   { id: 12, title: "Landing page événement", category: "Web", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
 ];
 
@@ -212,6 +215,7 @@ export default function PortfolioPage() {
         <div
           ref={gridRef}
           className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[200px] gap-[10px]"
+          style={{ gridAutoFlow: "dense" }}
         >
           {filtered.map((item, index) => (
             <BentoCard
