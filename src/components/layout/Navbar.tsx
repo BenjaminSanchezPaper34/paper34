@@ -6,15 +6,8 @@ import { usePathname } from "next/navigation";
 import { NAV_LINKS } from "@/lib/constants";
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -22,13 +15,11 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-bg-primary/80 backdrop-blur-2xl"
-          : "bg-transparent"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50"
     >
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      {/* Gradient fade : noir en haut → transparent en bas */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-black/60 to-transparent pointer-events-none" />
+      <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
