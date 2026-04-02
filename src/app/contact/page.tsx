@@ -14,10 +14,30 @@ export default function ContactPage() {
     if (infoRef.current) fadeInUp(infoRef.current, { y: 30, delay: 0.2 });
   }, []);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [sending, setSending] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Integration avec Formspree/EmailJS a configurer
-    setSubmitted(true);
+    setSending(true);
+
+    try {
+      const form = e.currentTarget;
+      const res = await fetch("https://formspree.io/f/mbdpawon", {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        alert("Erreur lors de l\u2019envoi. Veuillez r\u00e9essayer.");
+      }
+    } catch {
+      alert("Erreur de connexion. Veuillez r\u00e9essayer.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -139,9 +159,10 @@ export default function ContactPage() {
 
                 <button
                   type="submit"
-                  className="w-full rounded-xl bg-accent px-8 py-4 text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow"
+                  disabled={sending}
+                  className="w-full rounded-xl bg-accent px-8 py-4 text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Envoyer le message
+                  {sending ? "Envoi en cours..." : "Envoyer le message"}
                 </button>
               </form>
             )}
