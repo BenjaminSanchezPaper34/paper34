@@ -11,6 +11,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "**.fbcdn.net",
       },
+      {
+        protocol: "https",
+        hostname: "**.behold.so",
+      },
+      {
+        protocol: "https",
+        hostname: "**.beholdcontent.com",
+      },
     ],
   },
 };

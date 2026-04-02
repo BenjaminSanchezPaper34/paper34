@@ -4,74 +4,80 @@ export type PortfolioItem = {
   category: string;
   type: "image" | "video";
   src: string;
+  thumbnail?: string;
   size: "small" | "wide" | "tall" | "featured";
   permalink?: string;
 };
 
 // Mapping hashtags → catégories
 const HASHTAG_MAP: Record<string, string> = {
-  "#paper34design": "Design",
-  "#paper34print": "Print",
-  "#paper34web": "Web",
-  "#paper34social": "R\u00e9seaux sociaux",
-  "#paper34video": "Vid\u00e9o",
-  "#paper34photo": "Photo",
-  // Fallbacks courants
-  "#design": "Design",
-  "#logo": "Design",
-  "#identitevisuelle": "Design",
-  "#print": "Print",
-  "#flyer": "Print",
-  "#impression": "Print",
-  "#website": "Web",
-  "#siteweb": "Web",
-  "#webdesign": "Web",
-  "#reseauxsociaux": "R\u00e9seaux sociaux",
-  "#socialmedia": "R\u00e9seaux sociaux",
-  "#communitymanagement": "R\u00e9seaux sociaux",
-  "#video": "Vid\u00e9o",
-  "#motion": "Vid\u00e9o",
-  "#motiondesign": "Vid\u00e9o",
-  "#drone": "Vid\u00e9o",
-  "#photo": "Photo",
-  "#photographie": "Photo",
-  "#shooting": "Photo",
+  "paper34design": "Design",
+  "paper34print": "Print",
+  "paper34web": "Web",
+  "paper34social": "Réseaux sociaux",
+  "paper34video": "Vidéo",
+  "paper34photo": "Photo",
+  "design": "Design",
+  "logo": "Design",
+  "identitevisuelle": "Design",
+  "branding": "Design",
+  "chartegraphique": "Design",
+  "print": "Print",
+  "flyer": "Print",
+  "impression": "Print",
+  "cartesdevisite": "Print",
+  "website": "Web",
+  "siteweb": "Web",
+  "webdesign": "Web",
+  "ecommerce": "Web",
+  "reseauxsociaux": "Réseaux sociaux",
+  "socialmedia": "Réseaux sociaux",
+  "communitymanagement": "Réseaux sociaux",
+  "instagram": "Réseaux sociaux",
+  "video": "Vidéo",
+  "motion": "Vidéo",
+  "motiondesign": "Vidéo",
+  "drone": "Vidéo",
+  "reel": "Vidéo",
+  "photo": "Photo",
+  "photographie": "Photo",
+  "shooting": "Photo",
+  "packshot": "Photo",
 };
 
 // Pattern de tailles bento cyclique
 const SIZE_PATTERN: PortfolioItem["size"][] = [
-  "featured", // 1
-  "small",    // 2
-  "small",    // 3
-  "tall",     // 4
-  "small",    // 5
-  "small",    // 6
-  "small",    // 7
-  "small",    // 8
-  "tall",     // 9
-  "small",    // 10
-  "featured", // 11
-  "small",    // 12
+  "featured",
+  "small",
+  "small",
+  "tall",
+  "small",
+  "small",
+  "small",
+  "small",
+  "tall",
+  "small",
+  "featured",
+  "small",
 ];
 
-function extractCategory(caption: string | null): string {
-  if (!caption) return "Design";
+function extractCategory(hashtags: string[]): string {
+  if (!hashtags || hashtags.length === 0) return "Design";
 
-  const lower = caption.toLowerCase();
-  for (const [hashtag, category] of Object.entries(HASHTAG_MAP)) {
-    if (lower.includes(hashtag)) return category;
+  for (const tag of hashtags) {
+    const lower = tag.toLowerCase().replace("#", "");
+    if (HASHTAG_MAP[lower]) return HASHTAG_MAP[lower];
   }
 
-  return "Design"; // D\u00e9faut
+  return "Design";
 }
 
 function extractTitle(caption: string | null): string {
   if (!caption) return "Projet";
 
-  // Prend la premi\u00e8re ligne avant les hashtags
+  // Prend la première ligne avant les hashtags
   const firstLine = caption.split("\n")[0].trim();
-  // Retire les hashtags de la premi\u00e8re ligne
-  const cleaned = firstLine.replace(/#\S+/g, "").trim();
+  const cleaned = firstLine.replace(/#\S+/g, "").replace(/📸|🎨|🎬|📷|🖨️|💻|📱/g, "").trim();
 
   if (cleaned.length > 0 && cleaned.length <= 60) return cleaned;
   if (cleaned.length > 60) return cleaned.substring(0, 57) + "...";
@@ -79,74 +85,90 @@ function extractTitle(caption: string | null): string {
   return "Projet";
 }
 
-type InstagramMedia = {
+type BeholdPost = {
   id: string;
-  media_type: "IMAGE" | "VIDEO" | "CAROUSEL_ALBUM";
-  media_url: string;
-  thumbnail_url?: string;
-  caption?: string;
   timestamp: string;
   permalink: string;
+  mediaType: "IMAGE" | "VIDEO" | "CAROUSEL_ALBUM";
+  mediaUrl: string;
+  thumbnailUrl?: string;
+  caption?: string;
+  prunedCaption?: string;
+  hashtags?: string[];
+  isReel?: boolean;
+  sizes?: {
+    small?: { mediaUrl: string };
+    medium?: { mediaUrl: string };
+    large?: { mediaUrl: string };
+    full?: { mediaUrl: string };
+  };
+  children?: { mediaUrl: string; mediaType: string; sizes?: { medium?: { mediaUrl: string } } }[];
 };
 
-// Items statiques fallback (quand l'API n'est pas configur\u00e9e)
+// Items statiques fallback
 const FALLBACK_ITEMS: PortfolioItem[] = [
   { id: 1, title: "Pampa Restaurant", category: "Design", type: "image", src: "/images/portfolio/placeholder.jpg", size: "featured" },
   { id: 2, title: "Villa Margot", category: "Print", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
-  { id: 3, title: "Spot vid\u00e9o surf", category: "Vid\u00e9o", type: "video", src: "/videos/videosd-paper34.mp4", size: "small" },
+  { id: 3, title: "Spot vidéo surf", category: "Vidéo", type: "video", src: "/videos/videosd-paper34.mp4", size: "small" },
   { id: 4, title: "Site vitrine restaurant", category: "Web", type: "image", src: "/images/portfolio/placeholder.jpg", size: "tall" },
   { id: 5, title: "Domaine viticole", category: "Photo", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
-  { id: 6, title: "Community management", category: "R\u00e9seaux sociaux", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
+  { id: 6, title: "Community management", category: "Réseaux sociaux", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
   { id: 7, title: "Brasserie du port", category: "Design", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
   { id: 8, title: "Festival Agde", category: "Print", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
   { id: 9, title: "E-commerce mode", category: "Web", type: "image", src: "/images/portfolio/placeholder.jpg", size: "tall" },
-  { id: 10, title: "Campagne Instagram", category: "R\u00e9seaux sociaux", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
-  { id: 11, title: "Clip promotionnel", category: "Vid\u00e9o", type: "video", src: "/videos/videosd-paper34.mp4", size: "featured" },
+  { id: 10, title: "Campagne Instagram", category: "Réseaux sociaux", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
+  { id: 11, title: "Clip promotionnel", category: "Vidéo", type: "video", src: "/videos/videosd-paper34.mp4", size: "featured" },
   { id: 12, title: "Landing page", category: "Web", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
 ];
 
+const BEHOLD_FEED_URL = "https://feeds.behold.so/bzM9Xy3v2nDyimNXOoy9";
+
 export async function fetchInstagramFeed(): Promise<PortfolioItem[]> {
-  const token = process.env.INSTAGRAM_ACCESS_TOKEN;
-
-  if (!token) {
-    console.log("[Instagram] Pas de token configur\u00e9, utilisation du fallback statique");
-    return FALLBACK_ITEMS;
-  }
-
   try {
-    const url = `https://graph.instagram.com/v22.0/me/media?fields=id,media_type,media_url,thumbnail_url,caption,timestamp,permalink&limit=30&access_token=${token}`;
-
-    const res = await fetch(url, {
+    const res = await fetch(BEHOLD_FEED_URL, {
       next: { revalidate: 3600 }, // Cache 1 heure
     });
 
     if (!res.ok) {
-      console.error(`[Instagram] Erreur API: ${res.status} ${res.statusText}`);
+      console.error(`[Instagram/Behold] Erreur: ${res.status}`);
       return FALLBACK_ITEMS;
     }
 
     const data = await res.json();
-    const media: InstagramMedia[] = data.data || [];
+    const posts: BeholdPost[] = data.posts || [];
 
-    if (media.length === 0) {
-      return FALLBACK_ITEMS;
-    }
+    if (posts.length === 0) return FALLBACK_ITEMS;
 
-    const items: PortfolioItem[] = media.map((post, index) => ({
-      id: index + 1,
-      title: extractTitle(post.caption || null),
-      category: extractCategory(post.caption || null),
-      type: post.media_type === "VIDEO" ? "video" as const : "image" as const,
-      src: post.media_type === "VIDEO"
-        ? post.media_url
-        : post.media_url,
-      size: SIZE_PATTERN[index % SIZE_PATTERN.length],
-      permalink: post.permalink,
-    }));
+    const items: PortfolioItem[] = posts.map((post, index) => {
+      const isVideo = post.mediaType === "VIDEO" || post.isReel === true;
+
+      // Pour les images, prendre la meilleure résolution dispo
+      let imageSrc = post.mediaUrl;
+      if (!isVideo && post.sizes) {
+        imageSrc = post.sizes.large?.mediaUrl || post.sizes.medium?.mediaUrl || post.mediaUrl;
+      }
+
+      // Pour les carrousels, prendre la première image
+      if (post.mediaType === "CAROUSEL_ALBUM" && post.children && post.children.length > 0) {
+        const firstChild = post.children[0];
+        imageSrc = firstChild.sizes?.medium?.mediaUrl || firstChild.mediaUrl || imageSrc;
+      }
+
+      return {
+        id: index + 1,
+        title: extractTitle(post.caption || post.prunedCaption || null),
+        category: extractCategory(post.hashtags || []),
+        type: isVideo ? "video" as const : "image" as const,
+        src: isVideo ? post.mediaUrl : imageSrc,
+        thumbnail: isVideo ? (post.thumbnailUrl || post.sizes?.medium?.mediaUrl) : undefined,
+        size: SIZE_PATTERN[index % SIZE_PATTERN.length],
+        permalink: post.permalink,
+      };
+    });
 
     return items;
   } catch (error) {
-    console.error("[Instagram] Erreur de fetch:", error);
+    console.error("[Instagram/Behold] Erreur de fetch:", error);
     return FALLBACK_ITEMS;
   }
 }

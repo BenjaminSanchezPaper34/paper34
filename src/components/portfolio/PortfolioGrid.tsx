@@ -48,6 +48,7 @@ function BentoCard({
         <video
           ref={videoRef}
           src={item.src}
+          poster={item.thumbnail}
           muted
           loop
           playsInline
