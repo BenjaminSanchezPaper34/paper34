@@ -149,19 +149,42 @@ export default function PortfolioPage() {
     );
   }, [filter]);
 
-  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+  const [slideDir, setSlideDir] = useState<"left" | "right" | null>(null);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const touchStartX = useRef(0);
+  const touchDeltaX = useRef(0);
+  const lightboxContentRef = useRef<HTMLDivElement>(null);
+
+  const closeLightbox = useCallback(() => {
+    setSlideDir(null);
+    setLightboxIndex(null);
+  }, []);
 
   const navigateLightbox = useCallback(
     (direction: -1 | 1) => {
-      if (lightboxIndex === null) return;
+      if (lightboxIndex === null || isAnimating) return;
       const newIndex = lightboxIndex + direction;
-      if (newIndex >= 0 && newIndex < filtered.length) {
+      if (newIndex < 0 || newIndex >= filtered.length) return;
+
+      setIsAnimating(true);
+      setSlideDir(direction === 1 ? "left" : "right");
+
+      setTimeout(() => {
         setLightboxIndex(newIndex);
-      }
+        setSlideDir(direction === 1 ? "right" : "left");
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            setSlideDir(null);
+            setTimeout(() => setIsAnimating(false), 350);
+          });
+        });
+      }, 300);
     },
-    [lightboxIndex, filtered.length]
+    [lightboxIndex, filtered.length, isAnimating]
   );
 
+  // Keyboard navigation
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeLightbox();
@@ -171,6 +194,65 @@ export default function PortfolioPage() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [closeLightbox, navigateLightbox]);
+
+  // Swipe / trackpad navigation
+  useEffect(() => {
+    if (lightboxIndex === null) return;
+    const el = lightboxContentRef.current;
+    if (!el) return;
+
+    let accumulated = 0;
+    let swipeTimeout: ReturnType<typeof setTimeout>;
+
+    const onWheel = (e: WheelEvent) => {
+      if (isAnimating) return;
+      // Horizontal scroll (trackpad swipe)
+      if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+        e.preventDefault();
+        accumulated += e.deltaX;
+
+        clearTimeout(swipeTimeout);
+        swipeTimeout = setTimeout(() => { accumulated = 0; }, 200);
+
+        if (accumulated > 80) {
+          accumulated = 0;
+          navigateLightbox(1);
+        } else if (accumulated < -80) {
+          accumulated = 0;
+          navigateLightbox(-1);
+        }
+      }
+    };
+
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartX.current = e.touches[0].clientX;
+      touchDeltaX.current = 0;
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      touchDeltaX.current = e.touches[0].clientX - touchStartX.current;
+    };
+
+    const onTouchEnd = () => {
+      if (isAnimating) return;
+      if (touchDeltaX.current > 60) navigateLightbox(-1);
+      if (touchDeltaX.current < -60) navigateLightbox(1);
+      touchDeltaX.current = 0;
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchmove", onTouchMove, { passive: true });
+    el.addEventListener("touchend", onTouchEnd, { passive: true });
+
+    return () => {
+      el.removeEventListener("wheel", onWheel);
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchmove", onTouchMove);
+      el.removeEventListener("touchend", onTouchEnd);
+      clearTimeout(swipeTimeout);
+    };
+  }, [lightboxIndex, navigateLightbox, isAnimating]);
 
   return (
     <>
@@ -280,13 +362,21 @@ export default function PortfolioPage() {
             </button>
           )}
 
-          {/* Content */}
+          {/* Content with slide animation */}
           <div
-            className="max-w-5xl w-full mx-6 md:mx-16"
+            ref={lightboxContentRef}
+            className={`max-w-5xl w-full mx-6 md:mx-16 transition-all duration-300 ease-out ${
+              slideDir === "left"
+                ? "-translate-x-16 opacity-0"
+                : slideDir === "right"
+                ? "translate-x-16 opacity-0"
+                : "translate-x-0 opacity-100"
+            }`}
             onClick={(e) => e.stopPropagation()}
           >
             {lightboxItem.type === "video" ? (
               <video
+                key={lightboxItem.id}
                 src={lightboxItem.src}
                 controls
                 autoPlay
