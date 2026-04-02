@@ -122,7 +122,7 @@ export async function fetchInstagramFeed(): Promise<PortfolioItem[]> {
   }
 
   try {
-    const url = `https://graph.instagram.com/v22.0/me/media?fields=id,media_type,media_url,thumbnail_url,caption,timestamp,permalink&limit=30&access_token=${token}`;
+    const url = `https://graph.instagram.com/v22.0/me/media?fields=id,media_type,media_url,thumbnail_url,caption,timestamp,permalink&limit=50&access_token=${token}`;
 
     const res = await fetch(url, {
       next: { revalidate: 3600 }, // Cache 1 heure
