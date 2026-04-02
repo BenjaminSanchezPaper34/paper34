@@ -120,8 +120,16 @@ function BentoCard({
   );
 }
 
+const GRID_SIZES = [
+  { cols: "grid-cols-2 md:grid-cols-3 lg:grid-cols-5", rows: "auto-rows-[150px]", label: 5 },
+  { cols: "grid-cols-2 md:grid-cols-3 lg:grid-cols-4", rows: "auto-rows-[200px]", label: 4 },
+  { cols: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3", rows: "auto-rows-[260px]", label: 3 },
+  { cols: "grid-cols-1 md:grid-cols-2", rows: "auto-rows-[350px]", label: 2 },
+];
+
 export default function PortfolioPage() {
   const [filter, setFilter] = useState("Tous");
+  const [gridSize, setGridSize] = useState(1); // default = 4 columns
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
@@ -289,6 +297,41 @@ export default function PortfolioPage() {
               </button>
             ))}
           </div>
+          {/* Size control */}
+          <div className="flex items-center justify-center gap-3 mt-6">
+            <button
+              onClick={() => setGridSize(Math.min(gridSize + 1, GRID_SIZES.length - 1))}
+              disabled={gridSize >= GRID_SIZES.length - 1}
+              className="w-8 h-8 rounded-full bg-bg-card border border-border flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-border-hover transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+              aria-label="Agrandir"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+              </svg>
+            </button>
+            <div className="flex gap-1">
+              {GRID_SIZES.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setGridSize(i)}
+                  className={`w-1.5 h-1.5 rounded-full transition-all ${
+                    gridSize === i ? "bg-accent w-4" : "bg-text-tertiary/40"
+                  }`}
+                  aria-label={`Taille ${i + 1}`}
+                />
+              ))}
+            </div>
+            <button
+              onClick={() => setGridSize(Math.max(gridSize - 1, 0))}
+              disabled={gridSize <= 0}
+              className="w-8 h-8 rounded-full bg-bg-card border border-border flex items-center justify-center text-text-secondary hover:text-text-primary hover:border-border-hover transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+              aria-label="Réduire"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM13 10H7" />
+              </svg>
+            </button>
+          </div>
         </div>
       </section>
 
@@ -296,7 +339,7 @@ export default function PortfolioPage() {
       <section className="pb-24 md:pb-32 bg-bg-primary">
         <div
           ref={gridRef}
-          className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[200px] gap-[10px]"
+          className={`mx-auto max-w-7xl px-6 lg:px-8 grid ${GRID_SIZES[gridSize].cols} ${GRID_SIZES[gridSize].rows} gap-[10px] transition-all duration-500`}
           style={{ gridAutoFlow: "dense" }}
         >
           {filtered.map((item, index) => (
