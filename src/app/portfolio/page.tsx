@@ -218,7 +218,7 @@ export default function PortfolioPage() {
       <section className="pb-24 md:pb-32 bg-bg-primary">
         <div
           ref={gridRef}
-          className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[minmax(180px,1fr)] gap-3 md:gap-4"
+          className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[minmax(180px,1fr)] gap-[10px]"
         >
           {filtered.map((item, index) => (
             <BentoCard
