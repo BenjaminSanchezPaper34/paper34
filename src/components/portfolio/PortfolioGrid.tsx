@@ -104,13 +104,17 @@ const GRID_SIZES = [
 
 /* ─── Main component ─── */
 
+const ITEMS_PER_PAGE = 15;
+
 export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
   const [filter, setFilter] = useState("Tous");
   const [gridSize, setGridSize] = useState(1);
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const [slideDir, setSlideDir] = useState<"left" | "right" | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
+  const loadMoreRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef(0);
   const touchDeltaX = useRef(0);
   const lightboxContentRef = useRef<HTMLDivElement>(null);
@@ -120,9 +124,35 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
       ? items
       : items.filter((item) => item.category === filter);
 
-  const lightboxItem = lightboxIndex !== null ? filtered[lightboxIndex] : null;
+  const visible = filtered.slice(0, visibleCount);
+  const hasMore = visibleCount < filtered.length;
 
-  // Animate grid on filter change
+  const lightboxItem = lightboxIndex !== null ? visible[lightboxIndex] : null;
+
+  // Reset visible count when filter changes
+  useEffect(() => {
+    setVisibleCount(ITEMS_PER_PAGE);
+  }, [filter]);
+
+  // Infinite scroll : charge 15 de plus quand on approche du bas
+  useEffect(() => {
+    const el = loadMoreRef.current;
+    if (!el || !hasMore) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisibleCount((prev) => prev + ITEMS_PER_PAGE);
+        }
+      },
+      { rootMargin: "400px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [hasMore, visibleCount]);
+
+  // Animate new cards appearing
   useEffect(() => {
     if (!gridRef.current) return;
     const cards = gridRef.current.querySelectorAll(".portfolio-card");
@@ -142,7 +172,7 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
     (direction: -1 | 1) => {
       if (lightboxIndex === null || isAnimating) return;
       const newIndex = lightboxIndex + direction;
-      if (newIndex < 0 || newIndex >= filtered.length) return;
+      if (newIndex < 0 || newIndex >= visible.length) return;
       setIsAnimating(true);
       setSlideDir(direction === 1 ? "left" : "right");
       setTimeout(() => {
@@ -156,7 +186,7 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
         });
       }, 300);
     },
-    [lightboxIndex, filtered.length, isAnimating]
+    [lightboxIndex, visible.length, isAnimating]
   );
 
   // Keyboard
@@ -273,13 +303,27 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
           className={`mx-auto max-w-7xl px-6 lg:px-8 grid ${GRID_SIZES[gridSize].cols} ${GRID_SIZES[gridSize].rows} gap-[10px] transition-all duration-500`}
           style={{ gridAutoFlow: "dense" }}
         >
-          {filtered.map((item, index) => (
+          {visible.map((item, index) => (
             <BentoCard key={item.id} item={item} onClick={() => setLightboxIndex(index)} />
           ))}
         </div>
+
+        {/* Sentinel pour infinite scroll */}
+        {hasMore && (
+          <div ref={loadMoreRef} className="flex justify-center py-12">
+            <div className="w-6 h-6 border-2 border-accent/30 border-t-accent rounded-full animate-spin" />
+          </div>
+        )}
+
+        {!hasMore && filtered.length > ITEMS_PER_PAGE && (
+          <p className="text-center text-text-tertiary text-sm py-8">
+            {filtered.length} projets
+          </p>
+        )}
+
         {filtered.length === 0 && (
           <p className="text-center text-text-secondary mt-12">
-            Aucun projet dans cette cat\u00e9gorie pour le moment.
+            Aucun projet dans cette catégorie pour le moment.
           </p>
         )}
       </section>
@@ -311,7 +355,7 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
               </svg>
             </button>
           )}
-          {lightboxIndex !== null && lightboxIndex < filtered.length - 1 && (
+          {lightboxIndex !== null && lightboxIndex < visible.length - 1 && (
             <button
               onClick={(e) => { e.stopPropagation(); navigateLightbox(1); }}
               className="absolute right-4 md:right-8 z-20 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white/60 hover:text-white hover:bg-white/20 transition-all"
@@ -354,7 +398,7 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
               <p className="text-xs text-accent font-semibold uppercase tracking-wider mb-1">{lightboxItem.category}</p>
               <h2 className="text-xl font-bold">{lightboxItem.title}</h2>
               <p className="text-sm text-text-tertiary mt-1">
-                {lightboxIndex !== null ? lightboxIndex + 1 : 0} / {filtered.length}
+                {lightboxIndex !== null ? lightboxIndex + 1 : 0} / {visible.length}
               </p>
               {lightboxItem.permalink && (
                 <a
