@@ -17,8 +17,8 @@ export default function Navbar() {
     <nav
       className="fixed top-0 left-0 right-0 z-50"
     >
-      {/* Gradient fade : noir en haut → transparent en bas */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-black/60 to-transparent pointer-events-none" />
+      {/* Gradient fade : noir en haut → transparent en bas, déborde au-dessus pour la status bar mobile */}
+      <div className="absolute -top-12 left-0 right-0 bottom-0 bg-gradient-to-b from-black via-black/60 to-transparent pointer-events-none" style={{ paddingBottom: "2rem", bottom: "-2rem" }} />
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
