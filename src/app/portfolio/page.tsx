@@ -65,18 +65,11 @@ function BentoCard({
     featured: "col-span-2 row-span-2",
   };
 
-  const aspectClasses = {
-    small: "aspect-square",
-    wide: "aspect-[2/1]",
-    tall: "aspect-[1/2]",
-    featured: "aspect-square",
-  };
-
   return (
     <button
       ref={cardRef}
       onClick={onClick}
-      className={`portfolio-card group relative rounded-2xl overflow-hidden bg-bg-card border border-border transition-all duration-500 hover:border-border-hover hover:shadow-2xl hover:shadow-black/40 ${sizeClasses[item.size]} ${aspectClasses[item.size]}`}
+      className={`portfolio-card group relative rounded-2xl overflow-hidden bg-bg-card border border-border transition-all duration-500 hover:border-border-hover hover:shadow-2xl hover:shadow-black/40 ${sizeClasses[item.size]}`}
     >
       {/* Media */}
       {item.type === "video" ? (
@@ -218,7 +211,7 @@ export default function PortfolioPage() {
       <section className="pb-24 md:pb-32 bg-bg-primary">
         <div
           ref={gridRef}
-          className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[minmax(180px,1fr)] gap-[10px]"
+          className="mx-auto max-w-7xl px-6 lg:px-8 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[200px] gap-[10px]"
         >
           {filtered.map((item, index) => (
             <BentoCard
