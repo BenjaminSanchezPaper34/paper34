@@ -123,25 +123,30 @@ export async function fetchInstagramFeed(): Promise<PortfolioItem[]> {
 
   try {
     const allPosts: InstagramPost[] = [];
-    let url: string | null = `https://graph.instagram.com/v22.0/me/media?fields=id,media_type,media_url,thumbnail_url,caption,timestamp,permalink&limit=100&access_token=${token}`;
+    let nextUrl = `https://graph.instagram.com/v22.0/me/media?fields=id,media_type,media_url,thumbnail_url,caption,timestamp,permalink&limit=100&access_token=${token}`;
+    let hasMore = true;
 
     // Pagination : récupère toutes les pages (max 400 posts)
-    while (url && allPosts.length < 400) {
-      const res = await fetch(url, {
+    while (hasMore && allPosts.length < 400) {
+      const response = await fetch(nextUrl, {
         next: { revalidate: 3600 },
       });
 
-      if (!res.ok) {
-        console.error(`[Instagram] Erreur API: ${res.status}`);
+      if (!response.ok) {
+        console.error(`[Instagram] Erreur API: ${response.status}`);
         break;
       }
 
-      const data = await res.json();
-      const posts: InstagramPost[] = data.data || [];
-      allPosts.push(...posts);
+      const data = await response.json();
+      const pagePosts: InstagramPost[] = data.data || [];
+      allPosts.push(...pagePosts);
 
       // Page suivante
-      url = data.paging?.next || null;
+      if (data.paging?.next) {
+        nextUrl = data.paging.next;
+      } else {
+        hasMore = false;
+      }
     }
 
     console.log(`[Instagram] ${allPosts.length} posts récupérés`);
