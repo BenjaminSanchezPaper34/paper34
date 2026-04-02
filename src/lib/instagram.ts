@@ -122,21 +122,33 @@ export async function fetchInstagramFeed(): Promise<PortfolioItem[]> {
   }
 
   try {
-    const url = `https://graph.instagram.com/v22.0/me/media?fields=id,media_type,media_url,thumbnail_url,caption,timestamp,permalink&limit=50&access_token=${token}`;
+    const allPosts: InstagramPost[] = [];
+    let url: string | null = `https://graph.instagram.com/v22.0/me/media?fields=id,media_type,media_url,thumbnail_url,caption,timestamp,permalink&limit=100&access_token=${token}`;
 
-    const res = await fetch(url, {
-      next: { revalidate: 3600 }, // Cache 1 heure
-    });
+    // Pagination : récupère toutes les pages (max 400 posts)
+    while (url && allPosts.length < 400) {
+      const res = await fetch(url, {
+        next: { revalidate: 3600 },
+      });
 
-    if (!res.ok) {
-      console.error(`[Instagram] Erreur API: ${res.status}`);
-      return FALLBACK_ITEMS;
+      if (!res.ok) {
+        console.error(`[Instagram] Erreur API: ${res.status}`);
+        break;
+      }
+
+      const data = await res.json();
+      const posts: InstagramPost[] = data.data || [];
+      allPosts.push(...posts);
+
+      // Page suivante
+      url = data.paging?.next || null;
     }
 
-    const data = await res.json();
-    const posts: InstagramPost[] = data.data || [];
+    console.log(`[Instagram] ${allPosts.length} posts récupérés`);
 
-    if (posts.length === 0) return FALLBACK_ITEMS;
+    if (allPosts.length === 0) return FALLBACK_ITEMS;
+
+    const posts = allPosts;
 
     const items: PortfolioItem[] = posts
       .filter((post) => post.media_url) // Exclure les posts sans media
