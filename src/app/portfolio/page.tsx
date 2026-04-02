@@ -362,10 +362,10 @@ export default function PortfolioPage() {
             </button>
           )}
 
-          {/* Content with slide animation */}
+          {/* Content with slide animation — adapts to media proportions */}
           <div
             ref={lightboxContentRef}
-            className={`max-w-5xl w-full mx-6 md:mx-16 transition-all duration-300 ease-out ${
+            className={`flex flex-col items-center justify-center max-h-[92vh] px-4 md:px-16 transition-all duration-300 ease-out ${
               slideDir === "left"
                 ? "-translate-x-16 opacity-0"
                 : slideDir === "right"
@@ -381,14 +381,26 @@ export default function PortfolioPage() {
                 controls
                 autoPlay
                 loop
-                className="w-full max-h-[80vh] rounded-2xl object-contain bg-black"
+                className="max-w-[90vw] max-h-[80vh] rounded-2xl object-contain"
               />
             ) : (
-              <div className="w-full aspect-video rounded-2xl bg-bg-card flex items-center justify-center text-text-tertiary">
-                {lightboxItem.title}
-              </div>
+              <img
+                key={lightboxItem.id}
+                src={lightboxItem.src}
+                alt={lightboxItem.title}
+                className="max-w-[90vw] max-h-[80vh] rounded-2xl object-contain"
+                onError={(e) => {
+                  // Fallback placeholder si pas d'image
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = "none";
+                  target.parentElement!.insertAdjacentHTML(
+                    "beforeend",
+                    `<div class="w-[60vw] max-w-3xl aspect-video rounded-2xl bg-[#111] flex items-center justify-center text-[#6e6e73]">${lightboxItem.title}</div>`
+                  );
+                }}
+              />
             )}
-            <div className="mt-4 text-center">
+            <div className="mt-4 text-center shrink-0">
               <p className="text-xs text-accent font-semibold uppercase tracking-wider mb-1">
                 {lightboxItem.category}
               </p>
