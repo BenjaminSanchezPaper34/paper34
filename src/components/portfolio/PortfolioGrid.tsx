@@ -152,7 +152,7 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
     return () => observer.disconnect();
   }, [hasMore, visibleCount]);
 
-  // Animate new cards appearing
+  // Animate cards on filter change
   useEffect(() => {
     if (!gridRef.current) return;
     const cards = gridRef.current.querySelectorAll(".portfolio-card");
@@ -162,6 +162,17 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
       { opacity: 1, y: 0, scale: 1, duration: 0.6, stagger: 0.06, ease: "power3.out" }
     );
   }, [filter]);
+
+  // Animate cards on grid size change
+  useEffect(() => {
+    if (!gridRef.current) return;
+    const cards = gridRef.current.querySelectorAll(".portfolio-card");
+    gsap.fromTo(
+      Array.from(cards),
+      { opacity: 0.5, scale: 0.92 },
+      { opacity: 1, scale: 1, duration: 0.4, stagger: 0.02, ease: "power2.out" }
+    );
+  }, [gridSize]);
 
   const closeLightbox = useCallback(() => {
     setSlideDir(null);

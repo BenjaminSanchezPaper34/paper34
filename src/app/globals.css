@@ -33,9 +33,28 @@ body {
 }
 
 
-/* Glow effect */
+/* Glow effect — halo persistant */
 .glow {
   box-shadow: 0 0 60px var(--color-accent-glow), 0 0 120px rgba(0, 113, 227, 0.15);
+}
+
+/* CTA glow — halo qui pulse au hover */
+.bg-accent {
+  position: relative;
+}
+.bg-accent::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: inherit;
+  background: radial-gradient(circle, rgba(0, 113, 227, 0.35) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+.bg-accent:hover::before {
+  opacity: 1;
 }
 
 /* Gradient text */
