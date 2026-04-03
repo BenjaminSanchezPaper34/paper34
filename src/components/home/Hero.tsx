@@ -21,26 +21,11 @@ export default function Hero() {
 
     if (!section || !title || !subtitle || !cta || !scroll) return;
 
-    // Initial reveal animation — démarre vite, enchaîne fluide
-    const tl = gsap.timeline({ delay: 0.1 });
-    tl.fromTo(
-      title,
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
-    )
-      .fromTo(
-        subtitle,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
-        "-=0.4"
-      )
-      .fromTo(
-        cta,
-        { opacity: 0, y: 15 },
-        { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
-        "-=0.3"
-      )
-      .fromTo(scroll, { opacity: 0 }, { opacity: 1, duration: 0.5 }, "-=0.2");
+    // Reveal immédiat — pas de delay, les éléments apparaissent dès le mount
+    gsap.to(title, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" });
+    gsap.to(subtitle, { opacity: 1, y: 0, duration: 0.7, delay: 0.15, ease: "power3.out" });
+    gsap.to(cta, { opacity: 1, y: 0, duration: 0.6, delay: 0.3, ease: "power3.out" });
+    gsap.to(scroll, { opacity: 1, duration: 0.5, delay: 0.5 });
 
     // Scroll parallax — use fromTo so reverse (scroll up) works perfectly
     gsap.fromTo(
@@ -139,7 +124,7 @@ export default function Hero() {
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
         <h1
           ref={titleRef}
-          className="text-[clamp(32px,6vw,72px)] font-bold leading-[1] tracking-[-2px] mb-6 opacity-0"
+          className="text-[clamp(32px,6vw,72px)] font-bold leading-[1] tracking-[-2px] mb-6 opacity-0 translate-y-5"
         >
           Du contenu
           <br />
@@ -147,7 +132,7 @@ export default function Hero() {
         </h1>
         <p
           ref={subtitleRef}
-          className="text-[clamp(15px,2.2vw,20px)] text-text-secondary max-w-xl mx-auto mb-10 opacity-0"
+          className="text-[clamp(15px,2.2vw,20px)] text-text-secondary max-w-xl mx-auto mb-10 opacity-0 translate-y-4"
         >
           Design, vid&eacute;o, photo, web, impression.
           <br />
@@ -155,7 +140,7 @@ export default function Hero() {
         </p>
         <div
           ref={ctaRef}
-          className="flex flex-col sm:flex-row gap-4 justify-center opacity-0"
+          className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 translate-y-3"
         >
           <Link
             href="/portfolio"
