@@ -105,7 +105,7 @@ export default function Navbar() {
           ))}
           <Link
             href="/contact"
-            className="mt-2 rounded-full bg-accent px-5 py-3 text-center text-sm font-semibold text-white"
+            className="mt-2 rounded-full bg-accent px-5 py-3 text-center text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow"
           >
             Parlons-en
           </Link>

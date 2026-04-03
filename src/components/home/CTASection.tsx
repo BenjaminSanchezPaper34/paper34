@@ -40,13 +40,13 @@ export default function CTASection() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="rounded-full bg-accent px-10 py-4 text-base font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-xl hover:shadow-accent-glow hover:scale-[1.02] glow"
+              className="rounded-full bg-accent px-8 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow hover:scale-[1.02]"
             >
               Démarrer un projet
             </Link>
             <a
               href="mailto:contact@paper34.fr"
-              className="rounded-full border border-border px-10 py-4 text-base font-semibold text-text-primary transition-all duration-300 hover:bg-white/5 hover:border-border-hover"
+              className="rounded-full border border-border px-8 py-3.5 text-sm font-semibold text-text-primary transition-all duration-300 hover:bg-white/5 hover:border-border-hover"
             >
               contact@paper34.fr
             </a>

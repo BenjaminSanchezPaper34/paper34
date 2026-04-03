@@ -160,7 +160,7 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={sending}
-                  className="w-full rounded-xl bg-accent px-8 py-4 text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="w-full rounded-full bg-accent px-8 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {sending ? "Envoi en cours..." : "Envoyer le message"}
                 </button>
