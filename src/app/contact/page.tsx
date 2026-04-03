@@ -172,7 +172,7 @@ export default function ContactPage() {
           <div ref={infoRef} className="lg:col-span-2 space-y-8">
             {/* Contact details */}
             <div className="rounded-3xl border border-border bg-bg-card p-8">
-              <h3 className="text-lg font-semibold mb-6">Coordonnées</h3>
+              <h3 className="text-lg font-semibold mb-6">Me joindre</h3>
               <ul className="space-y-5">
                 <li className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
