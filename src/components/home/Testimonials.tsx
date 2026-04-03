@@ -51,7 +51,7 @@ export default function Testimonials() {
               T&eacute;moignages
             </p>
             <h2 className="text-[clamp(28px,5vw,48px)] font-bold tracking-[-2px]">
-              Ce qu&apos;ils en disent
+              Ce qu&apos;ils en <span className="gradient-text">disent</span>
             </h2>
           </div>
 

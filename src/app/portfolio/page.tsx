@@ -13,7 +13,7 @@ export default async function PortfolioPage() {
             Portfolio
           </p>
           <h1 className="text-[clamp(36px,7vw,72px)] font-bold tracking-[-2px] leading-tight mb-6">
-            Mes r&eacute;alisations
+            Mes <span className="gradient-text">r&eacute;alisations</span>
           </h1>
           <p className="text-lg text-text-secondary max-w-xl mx-auto">
             D&eacute;couvrez une s&eacute;lection de projets r&eacute;alis&eacute;s pour des clients vari&eacute;s.

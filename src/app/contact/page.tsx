@@ -71,7 +71,7 @@ export default function ContactPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h2 className="text-2xl font-bold mb-3">Message envoyé !</h2>
+                <h2 className="text-2xl font-bold mb-3">Message <span className="gradient-text">envoyé !</span></h2>
                 <p className="text-text-secondary">
                   Merci pour votre message. Je vous recontacte très vite.
                 </p>

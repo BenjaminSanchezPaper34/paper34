@@ -29,7 +29,7 @@ export default function ServicesPage() {
           </p>
           <h1 className="text-[clamp(36px,7vw,72px)] font-bold tracking-[-2px] leading-tight mb-6">
             Tout ce dont vous avez besoin,{" "}
-            <span className="text-text-secondary">rien de superflu.</span>
+            <span className="gradient-text">rien de superflu.</span>
           </h1>
           <p className="text-lg text-text-secondary max-w-xl mx-auto">
             Du concept à la réalisation, je prends en charge l&apos;ensemble de votre

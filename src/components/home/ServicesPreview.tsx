@@ -30,7 +30,7 @@ export default function ServicesPreview() {
           <h2 className="text-[clamp(28px,5vw,56px)] font-bold tracking-[-2px] leading-tight">
             Tous vos besoins,
             <br />
-            <span className="text-text-secondary">un seul interlocuteur.</span>
+            <span className="gradient-text">un seul interlocuteur.</span>
           </h2>
         </div>
 

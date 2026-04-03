@@ -8,7 +8,7 @@ export default function NotFound() {
           Erreur 404
         </p>
         <h1 className="text-[clamp(48px,10vw,96px)] font-bold tracking-[-2px] leading-none mb-6">
-          Page introuvable
+          Page <span className="gradient-text">introuvable</span>
         </h1>
         <p className="text-text-secondary text-lg mb-10">
           La page que vous cherchez n&apos;existe pas ou a \u00e9t\u00e9 d\u00e9plac\u00e9e.
