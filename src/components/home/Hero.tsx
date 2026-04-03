@@ -152,7 +152,7 @@ export default function Hero() {
             href="/contact"
             className="rounded-full border border-border px-8 py-3.5 text-sm font-semibold text-text-primary transition-all duration-300 hover:bg-white/5 hover:border-border-hover"
           >
-            Discutons de votre projet
+            Me contacter
           </Link>
         </div>
       </div>

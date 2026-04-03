@@ -52,9 +52,11 @@ export default function Navbar() {
             ))}
             <Link
               href="/contact"
-              className="ml-2 rounded-full bg-accent px-5 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow"
+              className={`ml-2 rounded-full bg-accent px-5 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow ${
+                pathname === "/contact" ? "ring-2 ring-accent/50" : ""
+              }`}
             >
-              Parlons-en
+              Contact
             </Link>
           </div>
 
@@ -107,7 +109,7 @@ export default function Navbar() {
             href="/contact"
             className="mt-2 rounded-full bg-accent px-5 py-3 text-center text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow"
           >
-            Parlons-en
+            Contact
           </Link>
         </div>
       </div>
