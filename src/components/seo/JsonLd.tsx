@@ -23,7 +23,7 @@ export default function JsonLd() {
 
   const localBusinessSchema = {
     "@context": "https://schema.org",
-    "@type": "GraphicDesign",
+    "@type": "LocalBusiness",
     name: "PAPER34",
     image: "https://paper34.fr/og-image.jpg",
     url: "https://paper34.fr",
