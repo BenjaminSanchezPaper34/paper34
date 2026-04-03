@@ -123,7 +123,7 @@ export const STATS = [
   { value: 12, suffix: "+", label: "Ann\u00e9es d\u2019exp\u00e9rience" },
   { value: 500, suffix: "+", label: "Projets r\u00e9alis\u00e9s" },
   { value: 300, suffix: "+", label: "Clients satisfaits" },
-  { value: 100, suffix: "%", label: "Passion" },
+  { value: 100, suffix: "%", label: "d\u2019avis 5 \u00e9toiles" },
 ] as const;
 
 export const TESTIMONIALS = [
