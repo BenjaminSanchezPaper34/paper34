@@ -41,6 +41,38 @@ export default function Testimonials() {
     goTo((active + 1) % TESTIMONIALS.length);
   }, [active, goTo]);
 
+  // Swipe touch sur mobile
+  const touchStartX = useRef(0);
+  const touchDeltaX = useRef(0);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartX.current = e.touches[0].clientX;
+      touchDeltaX.current = 0;
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      touchDeltaX.current = e.touches[0].clientX - touchStartX.current;
+    };
+    const onTouchEnd = () => {
+      if (touchDeltaX.current > 50) prev();
+      else if (touchDeltaX.current < -50) next();
+      touchDeltaX.current = 0;
+    };
+
+    el.addEventListener("touchstart", onTouchStart, { passive: true });
+    el.addEventListener("touchmove", onTouchMove, { passive: true });
+    el.addEventListener("touchend", onTouchEnd, { passive: true });
+    return () => {
+      el.removeEventListener("touchstart", onTouchStart);
+      el.removeEventListener("touchmove", onTouchMove);
+      el.removeEventListener("touchend", onTouchEnd);
+    };
+  }, [prev, next]);
+
   return (
     <section ref={sectionRef} className="relative py-24 md:py-32 bg-bg-primary">
       <div className="mx-auto max-w-4xl px-6 lg:px-8">
@@ -79,8 +111,8 @@ export default function Testimonials() {
               </svg>
             </button>
 
-            {/* Card — hauteur auto, s'adapte au contenu */}
-            <div className="relative bg-bg-card rounded-3xl border border-border p-8 md:p-12 overflow-hidden">
+            {/* Card — hauteur auto, swipe touch */}
+            <div ref={cardRef} className="relative bg-bg-card rounded-3xl border border-border p-8 md:p-12 overflow-hidden">
               {/* Quote icon */}
               <svg
                 className="absolute top-6 left-8 w-10 h-10 text-accent/20"

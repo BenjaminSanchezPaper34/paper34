@@ -49,7 +49,7 @@ export default function Footer() {
           {/* Contact */}
           <div>
             <h3 className="text-sm font-semibold text-text-primary mb-4 uppercase tracking-wider">
-              Contact
+              Me joindre
             </h3>
             <ul className="space-y-3 text-sm text-text-secondary">
               <li>
