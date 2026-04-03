@@ -21,26 +21,26 @@ export default function Hero() {
 
     if (!section || !title || !subtitle || !cta || !scroll) return;
 
-    // Initial reveal animation
-    const tl = gsap.timeline({ delay: 0.3 });
+    // Initial reveal animation — démarre vite, enchaîne fluide
+    const tl = gsap.timeline({ delay: 0.1 });
     tl.fromTo(
       title,
-      { opacity: 0, y: 40, scale: 1 },
-      { opacity: 1, y: 0, scale: 1, duration: 1, ease: "power3.out" }
+      { opacity: 0, y: 30 },
+      { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
     )
       .fromTo(
         subtitle,
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" },
-        "-=0.5"
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" },
+        "-=0.4"
       )
       .fromTo(
         cta,
-        { opacity: 0, y: 20 },
+        { opacity: 0, y: 15 },
         { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" },
-        "-=0.4"
+        "-=0.3"
       )
-      .fromTo(scroll, { opacity: 0 }, { opacity: 1, duration: 0.6 }, "-=0.2");
+      .fromTo(scroll, { opacity: 0 }, { opacity: 1, duration: 0.5 }, "-=0.2");
 
     // Scroll parallax — use fromTo so reverse (scroll up) works perfectly
     gsap.fromTo(

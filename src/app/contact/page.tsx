@@ -48,7 +48,7 @@ export default function ContactPage() {
           <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-4">
             Contact
           </p>
-          <h1 className="text-[clamp(36px,7vw,72px)] font-bold tracking-[-3px] leading-tight mb-6">
+          <h1 className="text-[clamp(36px,7vw,72px)] font-bold tracking-[-2px] leading-tight mb-6">
             Parlons de votre{" "}
             <span className="gradient-text">projet.</span>
           </h1>

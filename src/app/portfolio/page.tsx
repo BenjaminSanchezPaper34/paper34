@@ -12,7 +12,7 @@ export default async function PortfolioPage() {
           <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-4">
             Portfolio
           </p>
-          <h1 className="text-[clamp(36px,7vw,72px)] font-bold tracking-[-3px] leading-tight mb-6">
+          <h1 className="text-[clamp(36px,7vw,72px)] font-bold tracking-[-2px] leading-tight mb-6">
             Mes r&eacute;alisations
           </h1>
           <p className="text-lg text-text-secondary max-w-xl mx-auto">
