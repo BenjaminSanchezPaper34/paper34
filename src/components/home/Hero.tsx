@@ -139,18 +139,18 @@ export default function Hero() {
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
         <h1
           ref={titleRef}
-          className="text-[clamp(40px,8vw,96px)] font-bold leading-[0.95] tracking-[-3px] mb-6 opacity-0"
+          className="text-[clamp(32px,6vw,72px)] font-bold leading-[1] tracking-[-2px] mb-6 opacity-0"
         >
-          Votre communication
+          Du contenu
           <br />
-          <span className="gradient-text">au même endroit.</span>
+          <span className="gradient-text">qui se remarque.</span>
         </h1>
         <p
           ref={subtitleRef}
-          className="text-[clamp(16px,2.5vw,22px)] text-text-secondary max-w-2xl mx-auto mb-10 opacity-0"
+          className="text-[clamp(15px,2.2vw,20px)] text-text-secondary max-w-xl mx-auto mb-10 opacity-0"
         >
-          Identité visuelle, print, digital, vidéo, photo &mdash; un studio
-          graphique complet à Agde pour donner vie à vos projets.
+          Design, vid&eacute;o, photo, web, impression &mdash; un studio
+          graphique complet pour donner de la visibilit&eacute; &agrave; votre activit&eacute;.
         </p>
         <div
           ref={ctaRef}
