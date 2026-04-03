@@ -9,44 +9,6 @@ export type PortfolioItem = {
   permalink?: string;
 };
 
-// Mapping hashtags → catégories
-const HASHTAG_MAP: Record<string, string> = {
-  "paper34design": "Design",
-  "paper34print": "Print",
-  "paper34web": "Web",
-  "paper34social": "Réseaux sociaux",
-  "paper34video": "Vidéo",
-  "paper34photo": "Photo",
-  "design": "Design",
-  "logo": "Design",
-  "identitevisuelle": "Design",
-  "branding": "Design",
-  "chartegraphique": "Design",
-  "print": "Print",
-  "flyer": "Print",
-  "impression": "Print",
-  "cartesdevisite": "Print",
-  "website": "Web",
-  "siteweb": "Web",
-  "webdesign": "Web",
-  "ecommerce": "Web",
-  "reseauxsociaux": "Réseaux sociaux",
-  "socialmedia": "Réseaux sociaux",
-  "communitymanagement": "Réseaux sociaux",
-  "video": "Vidéo",
-  "motion": "Vidéo",
-  "motiondesign": "Vidéo",
-  "drone": "Vidéo",
-  "reel": "Vidéo",
-  "photo": "Photo",
-  "photographie": "Photo",
-  "shooting": "Photo",
-  "packshot": "Photo",
-  "reportage": "Photo",
-  "carnaval": "Photo",
-  "evenement": "Photo",
-};
-
 // Pattern de tailles bento cyclique
 const SIZE_PATTERN: PortfolioItem["size"][] = [
   "featured",
@@ -63,18 +25,69 @@ const SIZE_PATTERN: PortfolioItem["size"][] = [
   "small",
 ];
 
-function extractCategory(caption: string | null): string {
-  if (!caption) return "Photo";
+// Mots-clés dans les légendes pour chaque catégorie
+const CATEGORY_KEYWORDS: { category: string; keywords: string[] }[] = [
+  {
+    category: "Design",
+    keywords: [
+      "charte graphique", "logo", "identit\u00e9 visuelle", "branding",
+    ],
+  },
+  {
+    category: "Web",
+    keywords: [
+      "site web", "site internet", "landing page", "e-commerce",
+      "🖥️", "📱| ", "application",
+    ],
+  },
+  {
+    category: "Impressions",
+    keywords: [
+      "flyer", "d\u00e9pliant", "carte de visite", "cartes de visite",
+      "affichage", "affiche", "kakemono", "set de table", "menu de restaurant",
+      "porte-menu", "magazine", "brochure", "catalogue", "calendrier",
+      "carte de fid\u00e9lit\u00e9", "chemises \u00e0 rabat", "packaging", "sticker",
+      "✉️", "🪧", "🍽️", "📔", "📖", "📆", "🪪",
+    ],
+  },
+  {
+    category: "Vid\u00e9os",
+    keywords: [
+      "prestation vid\u00e9o", "cr\u00e9ation vid\u00e9o", "cr\u00e9ation de contenu vid\u00e9o",
+      "drone", "tournage", "montage",
+      "📼", "🚁", "🎥",
+    ],
+  },
+  {
+    category: "Photos",
+    keywords: [
+      "shooting photo", "shooting", "reportage photo", "photo",
+      "📸",
+    ],
+  },
+];
 
-  const lower = caption.toLowerCase();
-  // Cherche les hashtags dans la légende
-  const hashtags = lower.match(/#(\w+)/g) || [];
-  for (const tag of hashtags) {
-    const clean = tag.replace("#", "");
-    if (HASHTAG_MAP[clean]) return HASHTAG_MAP[clean];
+function extractCategory(caption: string | null, mediaType: string): string {
+  if (!caption) {
+    return mediaType === "VIDEO" ? "Vid\u00e9os" : "Photos";
   }
 
-  return "Photo"; // Défaut
+  const lower = caption.toLowerCase();
+
+  // Parcourt les catégories dans l'ordre de priorité
+  for (const { category, keywords } of CATEGORY_KEYWORDS) {
+    for (const kw of keywords) {
+      if (lower.includes(kw.toLowerCase())) return category;
+    }
+  }
+
+  // Fallback basé sur le type de media
+  if (mediaType === "VIDEO") return "Vid\u00e9os";
+
+  // Si "création de contenu" sans précision → Photos
+  if (lower.includes("cr\u00e9ation de contenu")) return "Photos";
+
+  return "Photos";
 }
 
 function extractTitle(caption: string | null): string {
@@ -163,7 +176,7 @@ export async function fetchInstagramFeed(): Promise<PortfolioItem[]> {
         return {
           id: index + 1,
           title: extractTitle(post.caption || null),
-          category: extractCategory(post.caption || null),
+          category: extractCategory(post.caption || null, post.media_type),
           type: isVideo ? ("video" as const) : ("image" as const),
           src: post.media_url!,
           thumbnail: isVideo ? post.thumbnail_url : undefined,

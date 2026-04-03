@@ -179,10 +179,9 @@ export const CONTACT_INFO = {
 
 export const PORTFOLIO_CATEGORIES = [
   "Tous",
+  "Photos",
+  "Vid\u00e9os",
   "Design",
-  "Print",
   "Web",
-  "R\u00e9seaux sociaux",
-  "Vid\u00e9o",
-  "Photo",
+  "Impressions",
 ] as const;
