@@ -129,9 +129,15 @@ export const STATS = [
 
 export const TESTIMONIALS = [
   {
+    name: "Jean-Marc Zenon",
+    role: "Client",
+    text: "Ce que j\u2019admire dans ton travail, ce n\u2019est pas seulement la qualit\u00e9 irr\u00e9prochable de tes prises de vues \u2014 c\u2019est ce regard que tu poses sur les gens.",
+    rating: 5,
+  },
+  {
     name: "Kevin Naert",
     role: "Client",
-    text: "Vous pouvez faire confiance \u00e0 Benjamin pour son professionnalisme et sa compr\u00e9hension de vos projets. Je recommande vivement cette entreprise. \u00c0 bient\u00f4t pour de nouvelles aventures\u00a0!",
+    text: "Vous pouvez faire confiance \u00e0 Benjamin pour son professionnalisme et sa compr\u00e9hension de vos projets. Je recommande vivement cette entreprise.",
     rating: 5,
   },
   {
@@ -147,9 +153,33 @@ export const TESTIMONIALS = [
     rating: 5,
   },
   {
+    name: "Languedoc D\u00e9barras",
+    role: "Client",
+    text: "Je recommande fortement ce professionnel tr\u00e8s \u00e0 l\u2019\u00e9coute qui m\u2019a fait un super travail et qui continue de le faire. Cr\u00e9ation du logo, du site internet, des cartes de visite.",
+    rating: 5,
+  },
+  {
+    name: "Laurent Sauterel",
+    role: "Client",
+    text: "Je te suis tr\u00e8s reconnaissant pour ton travail. Au nom de l\u2019\u00e9quipe, je te remercie pour tout ce que tu fais et ce depuis le d\u00e9but.",
+    rating: 5,
+  },
+  {
     name: "Alain Francine",
     role: "Client",
     text: "Cette entreprise a \u00e9t\u00e9 pour nous un excellent renfort marketing\u00a0! Extr\u00eamement r\u00e9actif, Paper34 nous a permis de d\u00e9velopper imm\u00e9diatement notre chiffre d\u2019affaires.",
+    rating: 5,
+  },
+  {
+    name: "Virginie Surribas",
+    role: "Cliente",
+    text: "J\u2019ai fait appel \u00e0 Benjamin pour un changement d\u2019enseigne qui manquait de visibilit\u00e9. J\u2019ai beaucoup appr\u00e9ci\u00e9 l\u2019\u00e9coute, le professionnalisme et les conseils.",
+    rating: 5,
+  },
+  {
+    name: "Kr\u00e9a\u2019 Telier",
+    role: "Client",
+    text: "Benjamin est tr\u00e8s professionnel et r\u00e9actif. Tant pour les vid\u00e9os pro que les visuels. Vous pouvez bosser avec lui les yeux ferm\u00e9s.",
     rating: 5,
   },
   {
@@ -159,9 +189,27 @@ export const TESTIMONIALS = [
     rating: 5,
   },
   {
+    name: "Thibault Monteiro",
+    role: "Client",
+    text: "En plus d\u2019\u00eatre r\u00e9actif et performant, les d\u00e9lais sont toujours respect\u00e9s, rien que \u00e7a \u00e7a fait la diff\u00e9rence. Tr\u00e8s professionnel\u00a0!",
+    rating: 5,
+  },
+  {
     name: "Nicolas A.",
     role: "Client",
     text: "Un professionnel qui propose des prix tr\u00e8s attractifs pour des prestations de qualit\u00e9. Je recommande.",
+    rating: 5,
+  },
+  {
+    name: "Guinguette Bessan",
+    role: "Client",
+    text: "Voil\u00e0 maintenant 6 ans que nous travaillons ensemble, \u00e9t\u00e9 comme hiver, r\u00e9actif et \u00e0 l\u2019\u00e9coute suivant nos besoins. N\u2019h\u00e9sitez pas\u00a0!",
+    rating: 5,
+  },
+  {
+    name: "No\u00e9mie Sebastiani",
+    role: "Cliente",
+    text: "De tr\u00e8s bon conseil, investi dans le projet. Cr\u00e9ation de tr\u00e8s beaux sites internet. Je recommande.",
     rating: 5,
   },
 ] as const;
