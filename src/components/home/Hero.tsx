@@ -149,8 +149,9 @@ export default function Hero() {
           ref={subtitleRef}
           className="text-[clamp(15px,2.2vw,20px)] text-text-secondary max-w-xl mx-auto mb-10 opacity-0"
         >
-          Design, vid&eacute;o, photo, web, impression &mdash; un studio
-          graphique complet pour donner de la visibilit&eacute; &agrave; votre activit&eacute;.
+          Design, vid&eacute;o, photo, web, impression.
+          <br />
+          Un studio graphique complet pour donner de la visibilit&eacute; &agrave; votre activit&eacute;.
         </p>
         <div
           ref={ctaRef}
