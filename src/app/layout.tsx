@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
@@ -12,6 +12,13 @@ const inter = Inter({
   display: "swap",
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://paper34.fr"),
   title: {
@@ -19,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s | PAPER34 Studio graphique",
   },
   description:
-    "Studio graphique à Agde (34300, Hérault). Création d'identité visuelle, communication print, présence digitale, vidéos promotionnelles, photographie et illustrations. Devis gratuit.",
+    "Studio graphique à Agde (34300, Hérault). Identité visuelle, communication print et impression, création de sites web, gestion des réseaux sociaux, vidéos, photographie. Devis gratuit.",
   keywords: [
     "studio graphique Agde",
     "graphiste Agde",
@@ -110,7 +117,6 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="theme-color" content="#000000" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
       </head>
       <body className={`grain font-[family-name:var(--font-inter),sans-serif]`}>
         <JsonLd />
