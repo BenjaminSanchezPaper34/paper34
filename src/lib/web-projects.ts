@@ -9,16 +9,16 @@ export type WebProject = {
 // 3 projets visibles dans tes propri\u00e9t\u00e9s Search Console + commentaire de l'utilisateur.
 export const WEB_PROJECTS: WebProject[] = [
   {
-    name: "Chiringuito Vias",
+    name: "Chiringuito",
     url: "https://www.chiringuito-vias.fr",
     category: "Plage privée",
-    description: "Plage privée à Vias",
+    description: "Plage privée",
   },
   {
     name: "Les Délices de Farinette",
     url: "https://www.lesdelicesdefarinette.fr",
     category: "Boulangerie pâtisserie",
-    description: "Boulangerie pâtisserie à Vias plage",
+    description: "Boulangerie pâtisserie",
   },
   {
     name: "Espace Ongles",
@@ -39,10 +39,10 @@ export const WEB_PROJECTS: WebProject[] = [
     description: "Restaurant gastronomique",
   },
   {
-    name: "Safran Vias",
+    name: "Safran",
     url: "https://www.safran-vias.fr",
     category: "Traiteur",
-    description: "Traiteur à Vias",
+    description: "Traiteur",
   },
 ];
 
