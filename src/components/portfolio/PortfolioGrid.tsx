@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import Link from "next/link";
 import { PORTFOLIO_CATEGORIES } from "@/lib/constants";
 import { gsap } from "@/lib/animations";
 import type { PortfolioItem } from "@/lib/instagram";
@@ -271,6 +272,15 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
                 {cat}
               </button>
             ))}
+            <Link
+              href="/services/creation-site-web#realisations"
+              className="inline-flex items-center gap-1.5 rounded-full px-5 py-2 text-sm font-medium bg-bg-card text-text-secondary hover:text-accent hover:bg-bg-card-hover border border-border transition-all duration-300"
+            >
+              Sites web
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </Link>
           </div>
           <div className="flex items-center justify-center gap-3 mt-6">
             <button

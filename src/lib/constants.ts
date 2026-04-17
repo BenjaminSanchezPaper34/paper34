@@ -229,6 +229,5 @@ export const PORTFOLIO_CATEGORIES = [
   "Photos",
   "Vid\u00e9os",
   "Design",
-  "Web",
   "Impressions",
 ] as const;
