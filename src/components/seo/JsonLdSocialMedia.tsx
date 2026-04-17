@@ -1,38 +1,38 @@
 export const SOCIAL_FAQ = [
   {
-    question: "Quels réseaux sociaux gères-tu ?",
+    question: "Quels réseaux sociaux gérez-vous ?",
     answer:
-      "Principalement Instagram, Facebook, TikTok et LinkedIn. Le choix dépend de ta cible : Instagram et TikTok pour le grand public, Facebook pour le local et les communautés, LinkedIn pour le B2B.",
+      "Principalement Instagram, Facebook, TikTok et LinkedIn. Le choix dépend de votre cible : Instagram et TikTok pour le grand public, Facebook pour le local et les communautés, LinkedIn pour le B2B.",
   },
   {
-    question: "Combien coûte la gestion de mes réseaux sociaux ?",
+    question: "Combien coûte la gestion des réseaux sociaux ?",
     answer:
-      "L'offre est sur-mesure selon le nombre de réseaux gérés, la fréquence des publications, le type de contenu (photo, vidéo, reels) et l'inclusion ou non de la création de contenu sur place. Contacte-moi pour un devis personnalisé.",
+      "L'offre est sur-mesure selon le nombre de réseaux gérés, la fréquence des publications, le type de contenu (photo, vidéo, reels) et l'inclusion ou non de la création de contenu sur place. Contactez-moi pour un devis personnalisé.",
   },
   {
-    question: "Tu te déplaces pour créer du contenu ?",
+    question: "Vous déplacez-vous pour créer du contenu ?",
     answer:
       "Oui, je me déplace régulièrement chez mes clients pour shooter photo et vidéo : ambiances, produits, équipe, événements. C'est ce qui rend les feeds authentiques et reconnaissables.",
   },
   {
     question: "Combien de publications par mois ?",
     answer:
-      "Le rythme idéal dépend de ton secteur. Pour un commerce ou un restaurant, je recommande 3 à 5 publications par semaine plus quelques stories quotidiennes. On adapte ensemble selon ta stratégie.",
+      "Le rythme idéal dépend de votre secteur. Pour un commerce ou un restaurant, je recommande 3 à 5 publications par semaine plus quelques stories quotidiennes. Nous adaptons ensemble selon votre stratégie.",
   },
   {
-    question: "Tu créés aussi les reels et vidéos ?",
+    question: "Créez-vous aussi les reels et les vidéos ?",
     answer:
       "Oui, le contenu vidéo (reels Instagram, TikTok) fait partie intégrante de l'offre. Tournage, montage, motion design, sous-titres — tout est inclus.",
   },
   {
     question: "Je garde la main sur mes comptes ?",
     answer:
-      "Évidemment. Tu restes propriétaire de tes comptes et tu valides chaque publication avant mise en ligne. Tu peux à tout moment publier toi-même en parallèle.",
+      "Évidemment. Vous restez propriétaire de vos comptes et vous validez chaque publication avant mise en ligne. Vous pouvez à tout moment publier vous-même en parallèle.",
   },
   {
-    question: "Tu fais de la publicité sponsorisée (Meta Ads, TikTok Ads) ?",
+    question: "Faites-vous de la publicité sponsorisée (Meta Ads, TikTok Ads) ?",
     answer:
-      "Oui, je peux créer et gérer tes campagnes publicitaires sur Meta (Instagram + Facebook) et TikTok : ciblage, créatives, suivi des performances, optimisation du budget.",
+      "Oui, je peux créer et gérer vos campagnes publicitaires sur Meta (Instagram + Facebook) et TikTok : ciblage, créatives, suivi des performances, optimisation du budget.",
   },
   {
     question: "Combien de temps avant de voir des résultats ?",

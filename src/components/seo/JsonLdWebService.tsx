@@ -26,17 +26,17 @@ export const FAQ_ITEMS = [
       "Oui, j'optimise tous mes sites pour le SEO (r\u00e9f\u00e9rencement naturel) : structure HTML s\u00e9mantique, meta-donn\u00e9es, vitesse de chargement, donn\u00e9es structur\u00e9es Schema.org, sitemap, robots.txt. J'inscris \u00e9galement votre site sur Google Search Console.",
   },
   {
-    question: "Quelles technologies utilises-tu ?",
+    question: "Quelles technologies utilisez-vous ?",
     answer:
       "J'utilise les frameworks modernes les plus performants : Next.js (React) pour les sites sur-mesure rapides, WordPress pour les sites \u00e0 g\u00e9rer en autonomie, et des solutions e-commerce comme Shopify ou WooCommerce. Le choix d\u00e9pend de vos besoins.",
   },
   {
-    question: "Tu g\u00e8res aussi l'h\u00e9bergement et le nom de domaine ?",
+    question: "Gérez-vous aussi l'hébergement et le nom de domaine ?",
     answer:
       "Oui, je peux prendre en charge l'achat du nom de domaine, la configuration de l'h\u00e9bergement (Vercel, Hostinger, OVH selon le projet) et la mise en ligne. Vous restez propri\u00e9taire de tout.",
   },
   {
-    question: "Tu travailles avec des clients partout en France ?",
+    question: "Travaillez-vous avec des clients partout en France ?",
     answer:
       "Oui, j'interviens partout en France \u00e0 distance. Le studio est bas\u00e9 \u00e0 Agde mais la totalit\u00e9 des \u00e9changes (brief, validation, mise en ligne, formation) peut se faire en visio et par email. Pour les clients de l'H\u00e9rault et alentours, un d\u00e9placement pour le brief initial est possible si besoin.",
   },

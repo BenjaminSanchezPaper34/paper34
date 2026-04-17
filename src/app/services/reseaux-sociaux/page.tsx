@@ -5,27 +5,27 @@ const PROCESS_STEPS = [
   {
     n: "01",
     title: "Audit & stratégie",
-    text: "On commence par analyser ton compte actuel, tes concurrents et ta cible. On définit ensemble la ligne éditoriale, le ton, les piliers de contenu et les objectifs.",
+    text: "Analyse de votre compte actuel, de vos concurrents et de votre cible. Nous définissons ensemble la ligne éditoriale, le ton, les piliers de contenu et les objectifs.",
   },
   {
     n: "02",
     title: "Charte visuelle",
-    text: "Création d'une identité visuelle cohérente pour le feed : palette, typographies, templates de stories, gabarits de posts. Ton compte devient instantanément reconnaissable.",
+    text: "Création d'une identité visuelle cohérente pour le feed : palette, typographies, templates de stories, gabarits de posts. Votre compte devient instantanément reconnaissable.",
   },
   {
     n: "03",
     title: "Création de contenu",
-    text: "Shootings réguliers chez toi : photo, vidéo, reels. Je capture l'authentique de ton activité — produits, équipe, ambiance, événements. Le contenu local et vrai performe toujours mieux.",
+    text: "Shootings réguliers sur place : photo, vidéo, reels. Je capture l'authentique de votre activité — produits, équipe, ambiance, événements. Le contenu local et vrai performe toujours mieux.",
   },
   {
     n: "04",
     title: "Publication & animation",
-    text: "Planning éditorial mensuel, publication aux meilleurs créneaux, réponses aux commentaires et messages. Tu valides chaque post avant publication si tu le souhaites.",
+    text: "Planning éditorial mensuel, publication aux meilleurs créneaux, réponses aux commentaires et messages. Vous validez chaque publication avant mise en ligne si vous le souhaitez.",
   },
   {
     n: "05",
     title: "Suivi & optimisation",
-    text: "Reporting mensuel des performances (croissance, engagement, portée). On ajuste la stratégie en continu en fonction de ce qui fonctionne le mieux.",
+    text: "Reporting mensuel des performances (croissance, engagement, portée). Nous ajustons la stratégie en continu en fonction de ce qui fonctionne le mieux.",
   },
 ];
 
