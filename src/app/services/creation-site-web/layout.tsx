@@ -1,23 +1,33 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Cr\u00e9ation de site web \u00e0 Agde \u2014 Site vitrine, e-commerce & SEO",
+  title: "Création de site web sur-mesure — Site vitrine, e-commerce & SEO",
   description:
-    "Cr\u00e9ation de sites web sur-mesure \u00e0 Agde (34300, H\u00e9rault). Sites vitrines, e-commerce, landing pages \u2014 design moderne, responsive, optimis\u00e9 SEO. Devis gratuit pour Agde, B\u00e9ziers, S\u00e8te et Montpellier.",
+    "Création de sites web sur-mesure partout en France. Sites vitrines, e-commerce, landing pages — design moderne, responsive, optimisé SEO. Studio basé à Agde, intervention 100 % à distance. Devis gratuit.",
   keywords: [
-    "cr\u00e9ation site web Agde",
-    "cr\u00e9ation site internet Agde",
-    "cr\u00e9ateur site web H\u00e9rault",
-    "site vitrine Agde",
-    "site e-commerce Agde",
-    "agence web Agde",
-    "agence web H\u00e9rault",
-    "d\u00e9veloppeur web 34",
+    // National
+    "création site web",
+    "création site internet",
+    "créateur de sites web",
+    "agence web France",
+    "site vitrine sur-mesure",
+    "site e-commerce sur-mesure",
+    "freelance web France",
+    "développeur web freelance",
+    "refonte site web",
+    "site responsive",
+    "site web SEO",
+    "landing page",
+    "création site WordPress",
+    "site Next.js",
+    // Local (pour rester visible localement aussi)
+    "création site web Agde",
+    "agence web Hérault",
     "site internet Cap d'Agde",
-    "cr\u00e9ation site web B\u00e9ziers",
-    "cr\u00e9ation site web S\u00e8te",
-    "site responsive Agde",
-    "refonte site web Agde",
+    "création site web Béziers",
+    "création site web Sète",
+    "création site web Montpellier",
+    // Marque
     "Paper34",
     "Benjamin Sanchez web",
   ],
@@ -25,9 +35,9 @@ export const metadata: Metadata = {
     canonical: "https://paper34.fr/services/creation-site-web",
   },
   openGraph: {
-    title: "Cr\u00e9ation de site web \u00e0 Agde | PAPER34",
+    title: "Création de site web sur-mesure | PAPER34",
     description:
-      "Sites vitrines, e-commerce, landing pages. Design moderne, responsive, optimis\u00e9 SEO. D\u00e9couvrez mes r\u00e9alisations.",
+      "Sites vitrines, e-commerce, landing pages. Design moderne, responsive, optimisé SEO. Intervention partout en France.",
     url: "https://paper34.fr/services/creation-site-web",
   },
 };

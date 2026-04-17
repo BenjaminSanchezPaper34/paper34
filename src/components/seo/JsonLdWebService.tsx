@@ -36,9 +36,9 @@ export const FAQ_ITEMS = [
       "Oui, je peux prendre en charge l'achat du nom de domaine, la configuration de l'h\u00e9bergement (Vercel, Hostinger, OVH selon le projet) et la mise en ligne. Vous restez propri\u00e9taire de tout.",
   },
   {
-    question: "Tu interviens uniquement \u00e0 Agde ?",
+    question: "Tu travailles avec des clients partout en France ?",
     answer:
-      "Je suis bas\u00e9 \u00e0 Agde mais je travaille avec des clients dans tout l'H\u00e9rault (B\u00e9ziers, S\u00e8te, Montpellier, Cap d'Agde, Vias, Marseillan) et m\u00eame au-del\u00e0. La majorit\u00e9 des \u00e9changes se font \u00e0 distance, et je me d\u00e9place pour le brief initial si besoin.",
+      "Oui, j'interviens partout en France \u00e0 distance. Le studio est bas\u00e9 \u00e0 Agde mais la totalit\u00e9 des \u00e9changes (brief, validation, mise en ligne, formation) peut se faire en visio et par email. Pour les clients de l'H\u00e9rault et alentours, un d\u00e9placement pour le brief initial est possible si besoin.",
   },
   {
     question: "Que se passe-t-il apr\u00e8s la mise en ligne du site ?",
@@ -66,18 +66,9 @@ export default function JsonLdWebService() {
         addressCountry: "FR",
       },
     },
-    areaServed: [
-      { "@type": "City", name: "Agde" },
-      { "@type": "City", name: "Cap d'Agde" },
-      { "@type": "City", name: "B\u00e9ziers" },
-      { "@type": "City", name: "S\u00e8te" },
-      { "@type": "City", name: "Montpellier" },
-      { "@type": "City", name: "Vias" },
-      { "@type": "City", name: "Marseillan" },
-      { "@type": "AdministrativeArea", name: "H\u00e9rault" },
-    ],
+    areaServed: { "@type": "Country", name: "France" },
     description:
-      "Cr\u00e9ation de sites web sur-mesure : sites vitrines, e-commerce, landing pages. Design moderne, responsive, optimis\u00e9 SEO. Bas\u00e9 \u00e0 Agde dans l'H\u00e9rault.",
+      "Cr\u00e9ation de sites web sur-mesure : sites vitrines, e-commerce, landing pages. Design moderne, responsive, optimis\u00e9 SEO. Studio bas\u00e9 \u00e0 Agde, intervention partout en France \u00e0 distance.",
     offers: {
       "@type": "Offer",
       priceCurrency: "EUR",

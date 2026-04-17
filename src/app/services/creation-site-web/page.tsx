@@ -43,13 +43,13 @@ export default function CreationSiteWebPage() {
             Création de site web
           </p>
           <h1 className="text-[clamp(36px,7vw,72px)] font-bold tracking-[-2px] leading-tight mb-6">
-            Création de site web{" "}
-            <span className="gradient-text">à Agde.</span>
+            Création de sites web{" "}
+            <span className="gradient-text">sur-mesure.</span>
           </h1>
           <p className="text-lg text-text-secondary max-w-2xl mx-auto mb-8">
-            Sites vitrines, e-commerce, landing pages — conçus sur-mesure pour
-            les commerces, restaurants et entreprises de l&apos;Hérault. Design moderne,
-            performance, référencement Google.
+            Sites vitrines, e-commerce, landing pages — conçus pour les
+            commerces, restaurants et entreprises partout en France. Design
+            moderne, performance, référencement Google.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -80,7 +80,7 @@ export default function CreationSiteWebPage() {
             </h2>
             <p className="text-text-secondary max-w-xl mx-auto">
               Une sélection de sites web livrés pour des restaurants, commerces
-              et entreprises de la région. Cliquez sur un site pour le visiter.
+              et entreprises. Cliquez sur un site pour le visiter.
             </p>
           </div>
 
