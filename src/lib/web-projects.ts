@@ -11,14 +11,14 @@ export const WEB_PROJECTS: WebProject[] = [
   {
     name: "Chiringuito Vias",
     url: "https://www.chiringuito-vias.fr",
-    category: "Restaurant",
-    description: "Bar de plage à Vias",
+    category: "Plage privée",
+    description: "Plage privée à Vias",
   },
   {
     name: "Les Délices de Farinette",
     url: "https://www.lesdelicesdefarinette.fr",
-    category: "Restaurant",
-    description: "Restaurant à Vias plage",
+    category: "Boulangerie pâtisserie",
+    description: "Boulangerie pâtisserie à Vias plage",
   },
   {
     name: "Espace Ongles",
@@ -29,8 +29,8 @@ export const WEB_PROJECTS: WebProject[] = [
   {
     name: "Le Komptoir 45",
     url: "https://www.lekomptoir45.fr",
-    category: "Restaurant",
-    description: "Bar restaurant",
+    category: "Bar à vin",
+    description: "Bar à vin",
   },
   {
     name: "Le Dix9",
@@ -41,8 +41,8 @@ export const WEB_PROJECTS: WebProject[] = [
   {
     name: "Safran Vias",
     url: "https://www.safran-vias.fr",
-    category: "Restaurant",
-    description: "Restaurant à Vias",
+    category: "Traiteur",
+    description: "Traiteur à Vias",
   },
 ];
 
