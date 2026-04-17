@@ -109,8 +109,12 @@ export default function JsonLd() {
         itemOffered: {
           "@type": "Service",
           name: "Gestion des r\u00e9seaux sociaux",
-          description: "Strat\u00e9gie social media, cr\u00e9ation de contenu, animation de communaut\u00e9, publicit\u00e9 sponsoris\u00e9e",
+          serviceType: "Social media management",
+          url: "https://paper34.fr/services/reseaux-sociaux",
+          description: "Strat\u00e9gie social media, cr\u00e9ation de contenu photo et vid\u00e9o, animation de communaut\u00e9, publicit\u00e9 sponsoris\u00e9e Meta et TikTok.",
+          areaServed: { "@type": "Country", name: "France" },
         },
+        url: "https://paper34.fr/services/reseaux-sociaux",
       },
       {
         "@type": "Offer",
