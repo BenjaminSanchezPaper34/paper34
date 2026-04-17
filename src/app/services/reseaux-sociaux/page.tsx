@@ -1,7 +1,4 @@
 import Link from "next/link";
-import { MANAGED_ACCOUNTS } from "@/lib/instagram-accounts";
-import HeroPhones from "@/components/social-portfolio/HeroPhones";
-import SocialShowcase from "@/components/social-portfolio/SocialShowcase";
 import JsonLdSocialMedia, { SOCIAL_FAQ } from "@/components/seo/JsonLdSocialMedia";
 
 const PROCESS_STEPS = [
@@ -52,47 +49,14 @@ export default function ReseauxSociauxPage() {
             de communauté. Je m&apos;occupe de votre présence sociale pour que vous
             puissiez vous concentrer sur votre métier.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <Link
               href="/contact"
               className="rounded-full bg-accent px-8 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow hover:scale-[1.02]"
             >
               Discuter de mon projet
             </Link>
-            <a
-              href="#comptes"
-              className="rounded-full border border-border px-8 py-3.5 text-sm font-semibold text-text-primary transition-all duration-300 hover:bg-white/5 hover:border-border-hover"
-            >
-              Voir les comptes que je gère
-            </a>
           </div>
-
-          {/* 3 iPhones featured */}
-          <HeroPhones accounts={[...MANAGED_ACCOUNTS]} />
-        </div>
-      </section>
-
-      {/* Showcase complet */}
-      <section
-        id="comptes"
-        className="py-20 md:py-28 bg-bg-primary scroll-mt-24"
-      >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="text-center mb-20">
-            <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
-              Comptes gérés
-            </p>
-            <h2 className="text-[clamp(28px,5vw,48px)] font-bold tracking-[-2px] mb-4">
-              Ils me confient leurs{" "}
-              <span className="gradient-text">réseaux.</span>
-            </h2>
-            <p className="text-text-secondary max-w-xl mx-auto">
-              Une sélection de comptes Instagram que je gère pour mes clients.
-              Cliquez sur un profil pour le découvrir en direct.
-            </p>
-          </div>
-
-          <SocialShowcase accounts={[...MANAGED_ACCOUNTS]} />
         </div>
       </section>
 
