@@ -94,10 +94,19 @@ export default function JsonLd() {
       },
       {
         "@type": "Offer",
+        url: "https://paper34.fr/services/creation-site-web",
         itemOffered: {
           "@type": "Service",
-          name: "Cr\u00e9ation de sites web",
-          description: "Sites vitrines responsive, e-commerce, landing pages, refonte et optimisation SEO",
+          name: "Cr\u00e9ation de site web",
+          serviceType: "Web design et d\u00e9veloppement",
+          url: "https://paper34.fr/services/creation-site-web",
+          description: "Sites vitrines responsive, e-commerce, landing pages, refonte et optimisation SEO. Cr\u00e9ation sur-mesure pour les commerces et entreprises de l'H\u00e9rault.",
+          areaServed: [
+            { "@type": "City", name: "Agde" },
+            { "@type": "City", name: "B\u00e9ziers" },
+            { "@type": "City", name: "S\u00e8te" },
+            { "@type": "City", name: "Montpellier" },
+          ],
         },
       },
       {
