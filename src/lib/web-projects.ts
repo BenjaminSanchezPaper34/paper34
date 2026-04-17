@@ -10,21 +10,39 @@ export type WebProject = {
 export const WEB_PROJECTS: WebProject[] = [
   {
     name: "Chiringuito Vias",
-    url: "https://chiringuito-vias.fr",
+    url: "https://www.chiringuito-vias.fr",
     category: "Restaurant",
-    description: "Site vitrine pour le bar de plage \u00e0 Vias",
+    description: "Bar de plage à Vias",
   },
   {
-    name: "O Soleil",
-    url: "https://osoleil-marseillan.fr",
+    name: "Les Délices de Farinette",
+    url: "https://www.lesdelicesdefarinette.fr",
     category: "Restaurant",
-    description: "Brasserie traditionnelle \u00e0 Marseillan",
+    description: "Restaurant à Vias plage",
   },
   {
-    name: "uPost",
-    url: "https://upost.fr",
-    category: "Service",
-    description: "Plateforme de publication de contenu",
+    name: "Espace Ongles",
+    url: "https://www.espace-ongles.fr/index.html",
+    category: "Beauté",
+    description: "Institut de prothésie ongulaire",
+  },
+  {
+    name: "Le Komptoir 45",
+    url: "https://www.lekomptoir45.fr",
+    category: "Restaurant",
+    description: "Bar restaurant",
+  },
+  {
+    name: "Le Dix9",
+    url: "https://www.ledix9.com",
+    category: "Restaurant",
+    description: "Restaurant gastronomique",
+  },
+  {
+    name: "Safran Vias",
+    url: "https://www.safran-vias.fr",
+    category: "Restaurant",
+    description: "Restaurant à Vias",
   },
 ];
 
