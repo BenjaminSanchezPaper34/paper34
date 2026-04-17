@@ -6,6 +6,21 @@ export const NAV_LINKS = [
 
 export const SERVICES = [
   {
+    id: "web",
+    title: "Cr\u00e9ation de sites web",
+    description:
+      "Conception et d\u00e9veloppement de sites web modernes, rapides et optimis\u00e9s pour le r\u00e9f\u00e9rencement. Du site vitrine au e-commerce, je cr\u00e9e votre pr\u00e9sence en ligne sur-mesure.",
+    icon: "/images/services/phone-paper34.svg",
+    features: [
+      "Sites vitrines responsive",
+      "Sites e-commerce",
+      "Landing pages",
+      "Refonte & optimisation SEO",
+      "Maintenance & mises \u00e0 jour",
+      "H\u00e9bergement & nom de domaine",
+    ],
+  },
+  {
     id: "design",
     title: "Identit\u00e9 visuelle",
     description:
@@ -31,21 +46,6 @@ export const SERVICES = [
       "Cartes de visite",
       "Impression & livraison",
       "Packaging & stickers",
-    ],
-  },
-  {
-    id: "web",
-    title: "Cr\u00e9ation de sites web",
-    description:
-      "Conception et d\u00e9veloppement de sites web modernes, rapides et optimis\u00e9s pour le r\u00e9f\u00e9rencement. Du site vitrine au e-commerce, je cr\u00e9e votre pr\u00e9sence en ligne sur-mesure.",
-    icon: "/images/services/phone-paper34.svg",
-    features: [
-      "Sites vitrines responsive",
-      "Sites e-commerce",
-      "Landing pages",
-      "Refonte & optimisation SEO",
-      "Maintenance & mises \u00e0 jour",
-      "H\u00e9bergement & nom de domaine",
     ],
   },
   {
