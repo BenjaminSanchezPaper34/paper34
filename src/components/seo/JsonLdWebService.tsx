@@ -21,11 +21,6 @@ export const FAQ_ITEMS = [
       "Oui, j'optimise tous mes sites pour le SEO (r\u00e9f\u00e9rencement naturel) : structure HTML s\u00e9mantique, meta-donn\u00e9es, vitesse de chargement, donn\u00e9es structur\u00e9es Schema.org, sitemap, robots.txt. J'inscris \u00e9galement votre site sur Google Search Console.",
   },
   {
-    question: "Quelles technologies utilisez-vous ?",
-    answer:
-      "J'utilise les frameworks modernes les plus performants : Next.js (React) pour les sites sur-mesure rapides, WordPress pour les sites \u00e0 g\u00e9rer en autonomie, et des solutions e-commerce comme Shopify ou WooCommerce. Le choix d\u00e9pend de vos besoins.",
-  },
-  {
     question: "Gérez-vous aussi l'hébergement et le nom de domaine ?",
     answer:
       "Oui, je peux prendre en charge l'achat du nom de domaine, la configuration de l'h\u00e9bergement (Vercel, Hostinger, OVH selon le projet) et la mise en ligne. Vous restez propri\u00e9taire de tout.",
