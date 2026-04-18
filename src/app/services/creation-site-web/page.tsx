@@ -7,27 +7,27 @@ const PROCESS_STEPS = [
   {
     n: "01",
     title: "Brief & stratégie",
-    text: "On définit ensemble vos objectifs, votre cible et les fonctionnalités nécessaires. Devis détaillé et planning livrés sous 48h.",
+    text: "Nous définissons ensemble vos objectifs, votre cible et les fonctionnalités nécessaires. Un devis détaillé personnalisé vous est remis.",
   },
   {
     n: "02",
     title: "Conception & design",
-    text: "Création des maquettes sur Figma. Design moderne, responsive, aligné sur votre identité visuelle. Allers-retours jusqu'à validation.",
+    text: "Conception d'un design moderne, responsive et aligné sur votre identité visuelle. Allers-retours sur les maquettes jusqu'à validation complète.",
   },
   {
     n: "03",
     title: "Développement",
-    text: "Codage du site avec les technologies les plus performantes (Next.js, WordPress selon le projet). Optimisation SEO et vitesse intégrées.",
+    text: "Codage du site avec les technologies les plus performantes (Next.js, WordPress selon le projet). Optimisation SEO et vitesse intégrées dès le départ.",
   },
   {
     n: "04",
     title: "Mise en ligne",
-    text: "Achat du nom de domaine, configuration de l'hébergement, déploiement. Inscription Google Search Console et soumission du sitemap.",
+    text: "Achat du nom de domaine, configuration de l'hébergement, déploiement. Inscription à Google Search Console et soumission du sitemap.",
   },
   {
     n: "05",
-    title: "Suivi & maintenance",
-    text: "Formation pour gérer votre site, garantie 30 jours. Maintenance optionnelle pour mises à jour, sauvegardes et évolutions.",
+    title: "Maintenance & évolution",
+    text: "Maintenance optionnelle pour les mises à jour de sécurité, sauvegardes régulières et évolutions du site dans le temps.",
   },
 ];
 
@@ -171,7 +171,7 @@ export default function CreationSiteWebPage() {
             <span className="gradient-text">votre site&nbsp;?</span>
           </h2>
           <p className="text-lg text-text-secondary mb-10">
-            Discutons de votre projet — devis gratuit sous 48h.
+            Discutons de votre projet — devis gratuit personnalisé.
           </p>
           <Link
             href="/contact"

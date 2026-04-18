@@ -11,11 +11,6 @@ export const FAQ_ITEMS = [
       "Le tarif d\u00e9pend de la complexit\u00e9 du projet : un site vitrine d\u00e9marre \u00e0 partir de 800\u00a0\u20ac, un site e-commerce \u00e0 partir de 2500\u00a0\u20ac. Chaque devis est personnalis\u00e9 selon vos besoins (nombre de pages, fonctionnalit\u00e9s, h\u00e9bergement). Contactez-moi pour un devis gratuit.",
   },
   {
-    question: "Combien de temps pour cr\u00e9er un site internet ?",
-    answer:
-      "Comptez 2 \u00e0 4 semaines pour un site vitrine et 6 \u00e0 12 semaines pour un site e-commerce. Le d\u00e9lai d\u00e9pend de la r\u00e9activit\u00e9 dans la validation des maquettes et de la mise \u00e0 disposition des contenus (textes, photos).",
-  },
-  {
     question: "Mon site sera-t-il responsive (adapt\u00e9 aux mobiles) ?",
     answer:
       "Oui, tous les sites que je cr\u00e9e sont responsive par d\u00e9faut. Plus de 70 % du trafic web vient des mobiles, donc l'exp\u00e9rience sur smartphone et tablette est trait\u00e9e avec autant de soin que sur ordinateur.",
@@ -38,12 +33,12 @@ export const FAQ_ITEMS = [
   {
     question: "Travaillez-vous avec des clients partout en France ?",
     answer:
-      "Oui, j'interviens partout en France \u00e0 distance. Le studio est bas\u00e9 \u00e0 Agde mais la totalit\u00e9 des \u00e9changes (brief, validation, mise en ligne, formation) peut se faire en visio et par email. Pour les clients de l'H\u00e9rault et alentours, un d\u00e9placement pour le brief initial est possible si besoin.",
+      "Oui, j'interviens partout en France \u00e0 distance. Le studio est bas\u00e9 \u00e0 Agde mais la totalit\u00e9 des \u00e9changes (brief, validation, mise en ligne) peut se faire en visio et par email. Pour les clients de l'H\u00e9rault et alentours, un d\u00e9placement pour le brief initial est possible si besoin.",
   },
   {
     question: "Que se passe-t-il apr\u00e8s la mise en ligne du site ?",
     answer:
-      "Vous b\u00e9n\u00e9ficiez d'une formation pour g\u00e9rer votre site (si CMS) et d'une garantie de 30 jours pour les corrections. Je propose ensuite un contrat de maintenance optionnel pour les mises \u00e0 jour, sauvegardes et \u00e9volutions.",
+      "Je propose un contrat de maintenance optionnel pour les mises \u00e0 jour de s\u00e9curit\u00e9, les sauvegardes r\u00e9guli\u00e8res et les \u00e9volutions futures de votre site. Vous restez libre d'arr\u00eater \u00e0 tout moment.",
   },
 ];
 
