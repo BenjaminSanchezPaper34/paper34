@@ -17,7 +17,7 @@ const PROCESS_STEPS = [
   {
     n: "03",
     title: "Développement",
-    text: "Codage du site avec les technologies les plus performantes (Next.js, WordPress selon le projet). Optimisation SEO et vitesse intégrées dès le départ.",
+    text: "Codage du site avec les technologies les plus performantes. Optimisation SEO et vitesse intégrées dès le départ.",
   },
   {
     n: "04",
