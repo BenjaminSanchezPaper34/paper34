@@ -46,15 +46,31 @@ function BentoCard({
       className={`portfolio-card group relative rounded-2xl overflow-hidden bg-bg-card border border-border transition-all duration-500 hover:border-border-hover hover:shadow-2xl hover:shadow-black/40 ${sizeClasses[item.size]}`}
     >
       {item.type === "video" ? (
-        <video
-          ref={videoRef}
-          src={item.src}
-          poster={item.thumbnail}
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
+        <>
+          {/* Thumbnail visible toujours — la vidéo se charge par-dessus en lazy */}
+          {item.thumbnail && (
+            <img
+              src={item.thumbnail}
+              alt={item.title}
+              loading="lazy"
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          )}
+          <video
+            ref={videoRef}
+            src={item.src}
+            poster={item.thumbnail}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            onError={(e) => {
+              // Si la vidéo échoue, on cache le tag <video> et on garde la thumbnail
+              (e.target as HTMLVideoElement).style.display = "none";
+            }}
+          />
+        </>
       ) : isRealImage ? (
         <img
           src={item.src}
