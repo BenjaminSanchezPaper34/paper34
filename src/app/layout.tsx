@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import FooterGate from "@/components/layout/FooterGate";
 import LenisProvider from "@/components/layout/LenisProvider";
 import JsonLd from "@/components/seo/JsonLd";
 
@@ -123,7 +124,9 @@ export default function RootLayout({
         <LenisProvider>
           <Navbar />
           <main>{children}</main>
-          <Footer />
+          <FooterGate>
+            <Footer />
+          </FooterGate>
         </LenisProvider>
       </body>
     </html>

@@ -13,6 +13,9 @@ export default function Navbar() {
     setMobileOpen(false);
   }, [pathname]);
 
+  // Pas de navbar sur les pages internes
+  if (pathname?.startsWith("/studio")) return null;
+
   return (
     <nav
       className="fixed top-0 left-0 right-0 z-50"
