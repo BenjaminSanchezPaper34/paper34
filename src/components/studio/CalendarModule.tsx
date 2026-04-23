@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   type SocialAccount,
   type StudioData,
@@ -8,7 +8,8 @@ import {
   alertLevel,
   daysSince,
   formatDateFr,
-  todayIso,
+  nowIso,
+  parseDateInput,
 } from "@/lib/studio-storage";
 
 type Props = {
@@ -39,7 +40,6 @@ const ALERT_DOT: Record<AlertLevel, string> = {
 /** Score d'alerte global d'un compte (max sur les 3 colonnes) — sert au tri. */
 function accountScore(account: SocialAccount): number {
   const days = COLUMNS.map((c) => daysSince(account[c.key]));
-  // Pas de date → priorité max
   const max = days.reduce<number>((acc, d) => {
     if (d === null) return Math.max(acc, 9999);
     return Math.max(acc, d);
@@ -47,9 +47,123 @@ function accountScore(account: SocialAccount): number {
   return max;
 }
 
+/* ─── Cellule date ─── */
+
+type CellProps = {
+  value: string | undefined;
+  onChange: (next: string | undefined) => void;
+  onSetNow: () => void;
+};
+
+function DateCell({ value, onChange, onSetNow }: CellProps) {
+  const [editing, setEditing] = useState(false);
+  const [input, setInput] = useState("");
+  const [error, setError] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const days = daysSince(value);
+  const level = alertLevel(days);
+
+  useEffect(() => {
+    if (editing && inputRef.current) {
+      inputRef.current.focus();
+      inputRef.current.select();
+    }
+  }, [editing]);
+
+  function commit() {
+    const trimmed = input.trim();
+    if (!trimmed) {
+      onChange(undefined);
+      setEditing(false);
+      setError(false);
+      return;
+    }
+    const parsed = parseDateInput(trimmed);
+    if (!parsed) {
+      setError(true);
+      // Reset après 1.5s
+      setTimeout(() => setError(false), 1500);
+      return;
+    }
+    onChange(parsed);
+    setEditing(false);
+    setError(false);
+  }
+
+  function startEdit() {
+    // Pré-remplit avec la date actuelle au format JJ/MM/AA pour faciliter l'édition
+    if (value) {
+      const d = new Date(value);
+      const dd = String(d.getDate()).padStart(2, "0");
+      const mm = String(d.getMonth() + 1).padStart(2, "0");
+      const yy = String(d.getFullYear()).slice(-2);
+      setInput(`${dd}/${mm}/${yy}`);
+    } else {
+      setInput("");
+    }
+    setEditing(true);
+  }
+
+  return (
+    <div className="flex items-center justify-center gap-1.5">
+      {editing ? (
+        <input
+          ref={inputRef}
+          type="text"
+          value={input}
+          onChange={(e) => {
+            setInput(e.target.value);
+            setError(false);
+          }}
+          onBlur={commit}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") commit();
+            if (e.key === "Escape") {
+              setEditing(false);
+              setError(false);
+            }
+          }}
+          placeholder="ex: 22 ou 22/04"
+          className={`w-28 bg-bg-secondary border rounded-md px-2 py-1.5 text-xs text-center focus:outline-none ${
+            error
+              ? "border-red-500 text-red-400 animate-pulse"
+              : "border-accent text-text-primary"
+          }`}
+        />
+      ) : (
+        <button
+          onClick={startEdit}
+          className={`inline-flex items-center gap-2 rounded-md px-2.5 py-1.5 text-xs border ${ALERT_STYLES[level]} hover:scale-105 transition-transform`}
+          title={
+            days === null
+              ? "Pas encore renseigné — cliquer pour saisir"
+              : `Il y a ${days} jour${days > 1 ? "s" : ""} — cliquer pour modifier`
+          }
+        >
+          <span className={`w-1.5 h-1.5 rounded-full ${ALERT_DOT[level]}`} />
+          {formatDateFr(value)}
+        </button>
+      )}
+
+      {/* Bouton check : marquer maintenant */}
+      <button
+        onClick={onSetNow}
+        className="w-6 h-6 rounded-md bg-bg-secondary border border-border text-text-tertiary hover:text-emerald-400 hover:border-emerald-500/40 hover:bg-emerald-500/10 transition-colors flex items-center justify-center"
+        title="Marquer maintenant"
+        aria-label="Marquer maintenant"
+      >
+        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+      </button>
+    </div>
+  );
+}
+
+/* ─── Module principal ─── */
+
 export default function CalendarModule({ data, onChange }: Props) {
-  const [editingId, setEditingId] = useState<string | null>(null);
-  const [editingField, setEditingField] = useState<"post" | "story" | "reel" | null>(null);
   const [showAddRow, setShowAddRow] = useState(false);
   const [newName, setNewName] = useState("");
   const [newEmoji, setNewEmoji] = useState("");
@@ -59,18 +173,18 @@ export default function CalendarModule({ data, onChange }: Props) {
     ? [...data.accounts].sort((a, b) => accountScore(b) - accountScore(a))
     : data.accounts;
 
-  function updateField(id: string, field: "post" | "story" | "reel", value: string) {
+  function updateField(id: string, field: "post" | "story" | "reel", value: string | undefined) {
     const next: StudioData = {
       ...data,
       accounts: data.accounts.map((a) =>
-        a.id === id ? { ...a, [field]: value || undefined } : a
+        a.id === id ? { ...a, [field]: value } : a
       ),
     };
     onChange(next);
   }
 
-  function setToday(id: string, field: "post" | "story" | "reel") {
-    updateField(id, field, todayIso());
+  function setNow(id: string, field: "post" | "story" | "reel") {
+    updateField(id, field, nowIso());
   }
 
   function removeAccount(id: string) {
@@ -102,7 +216,7 @@ export default function CalendarModule({ data, onChange }: Props) {
         <div>
           <h2 className="text-lg font-semibold">Calendrier social</h2>
           <p className="text-xs text-text-tertiary mt-0.5">
-            Vert &lt;3j · Jaune 3-4j · Rouge 5j+
+            Vert &lt;3j · Jaune 3-4j · Rouge 5j+ · Saisie rapide : tape juste le jour
           </p>
         </div>
         <div className="flex gap-2">
@@ -183,70 +297,20 @@ export default function CalendarModule({ data, onChange }: Props) {
                     <span className="font-medium">{account.name}</span>
                   </div>
                 </td>
-                {COLUMNS.map((c) => {
-                  const value = account[c.key];
-                  const days = daysSince(value);
-                  const level = alertLevel(days);
-                  const isEditing = editingId === account.id && editingField === c.key;
-                  return (
-                    <td key={c.key} className="px-2 py-2 text-center">
-                      {isEditing ? (
-                        <input
-                          type="date"
-                          autoFocus
-                          defaultValue={value ?? ""}
-                          onBlur={(e) => {
-                            updateField(account.id, c.key, e.target.value);
-                            setEditingId(null);
-                            setEditingField(null);
-                          }}
-                          onKeyDown={(e) => {
-                            if (e.key === "Enter") {
-                              updateField(account.id, c.key, (e.target as HTMLInputElement).value);
-                              setEditingId(null);
-                              setEditingField(null);
-                            }
-                            if (e.key === "Escape") {
-                              setEditingId(null);
-                              setEditingField(null);
-                            }
-                          }}
-                          className="bg-bg-secondary border border-accent rounded-md px-2 py-1 text-xs"
-                        />
-                      ) : (
-                        <button
-                          onClick={() => {
-                            setEditingId(account.id);
-                            setEditingField(c.key);
-                          }}
-                          className={`inline-flex items-center gap-2 rounded-md px-2.5 py-1 text-xs border ${ALERT_STYLES[level]} hover:scale-105 transition-transform`}
-                          title={
-                            days === null
-                              ? "Pas encore renseigné"
-                              : `Il y a ${days} jour${days > 1 ? "s" : ""}`
-                          }
-                        >
-                          <span className={`w-1.5 h-1.5 rounded-full ${ALERT_DOT[level]}`} />
-                          {formatDateFr(value)}
-                        </button>
-                      )}
-                      {!isEditing && (
-                        <button
-                          onClick={() => setToday(account.id, c.key)}
-                          className="ml-1 text-[10px] text-text-tertiary hover:text-accent transition-colors"
-                          title="Marquer aujourd'hui"
-                        >
-                          •
-                        </button>
-                      )}
-                    </td>
-                  );
-                })}
+                {COLUMNS.map((c) => (
+                  <td key={c.key} className="px-2 py-2 text-center">
+                    <DateCell
+                      value={account[c.key]}
+                      onChange={(v) => updateField(account.id, c.key, v)}
+                      onSetNow={() => setNow(account.id, c.key)}
+                    />
+                  </td>
+                ))}
                 <td className="px-2 py-2 text-right">
                   <button
                     onClick={() => removeAccount(account.id)}
                     className="text-text-tertiary/40 hover:text-red-400 text-sm transition-colors"
-                    title="Supprimer"
+                    title="Supprimer le compte"
                   >
                     ×
                   </button>
@@ -258,8 +322,15 @@ export default function CalendarModule({ data, onChange }: Props) {
       </div>
 
       {/* Footer */}
-      <div className="px-5 py-3 text-xs text-text-tertiary border-t border-border">
-        Cliquez sur une date pour la modifier · Cliquez sur le point pour marquer aujourd&apos;hui
+      <div className="px-5 py-3 text-xs text-text-tertiary border-t border-border space-y-1">
+        <p>
+          <strong className="text-text-secondary">Saisie rapide</strong> : « 22 » →
+          22 du mois en cours · « 22/04 » → 22 avril · « 22/04/26 » → 22 avril 2026
+        </p>
+        <p>
+          <strong className="text-text-secondary">Bouton ✓</strong> : marque la
+          date et l&apos;heure du moment où vous postez.
+        </p>
       </div>
     </div>
   );
