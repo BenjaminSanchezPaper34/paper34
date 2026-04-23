@@ -92,21 +92,31 @@ function DateCell({ value, onChange, onSetNow }: CellProps) {
   }
 
   function startEdit() {
-    // Pré-remplit avec la date actuelle au format JJ/MM/AA pour faciliter l'édition
+    // Pré-remplit avec la date actuelle au format JJ/MM/AA + heure si renseignée
     if (value) {
       const d = new Date(value);
       const dd = String(d.getDate()).padStart(2, "0");
       const mm = String(d.getMonth() + 1).padStart(2, "0");
       const yy = String(d.getFullYear()).slice(-2);
-      setInput(`${dd}/${mm}/${yy}`);
+      const hh = d.getHours();
+      const min = d.getMinutes();
+      const hasTime = hh !== 12 || min !== 0; // 12h00 = heure neutre par défaut
+      const time = hasTime
+        ? ` ${String(hh).padStart(2, "0")}h${String(min).padStart(2, "0")}`
+        : "";
+      setInput(`${dd}/${mm}/${yy}${time}`);
     } else {
       setInput("");
     }
     setEditing(true);
   }
 
+  function clear() {
+    onChange(undefined);
+  }
+
   return (
-    <div className="flex items-center justify-center gap-1.5">
+    <div className="flex items-center justify-center gap-1.5 group/cell">
       {editing ? (
         <input
           ref={inputRef}
@@ -124,8 +134,8 @@ function DateCell({ value, onChange, onSetNow }: CellProps) {
               setError(false);
             }
           }}
-          placeholder="ex: 22 ou 22/04"
-          className={`w-28 bg-bg-secondary border rounded-md px-2 py-1.5 text-xs text-center focus:outline-none ${
+          placeholder="22 ou 22/04 14h30"
+          className={`w-36 bg-bg-secondary border rounded-md px-2 py-1.5 text-xs text-center focus:outline-none ${
             error
               ? "border-red-500 text-red-400 animate-pulse"
               : "border-accent text-text-primary"
@@ -149,14 +159,28 @@ function DateCell({ value, onChange, onSetNow }: CellProps) {
       {/* Bouton check : marquer maintenant */}
       <button
         onClick={onSetNow}
-        className="w-6 h-6 rounded-md bg-bg-secondary border border-border text-text-tertiary hover:text-emerald-400 hover:border-emerald-500/40 hover:bg-emerald-500/10 transition-colors flex items-center justify-center"
-        title="Marquer maintenant"
+        className="w-6 h-6 rounded-md bg-bg-secondary border border-border text-text-tertiary hover:text-emerald-400 hover:border-emerald-500/40 hover:bg-emerald-500/10 transition-colors flex items-center justify-center shrink-0"
+        title="Marquer maintenant (date + heure)"
         aria-label="Marquer maintenant"
       >
         <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
         </svg>
       </button>
+
+      {/* Bouton effacer (visible si une date est définie) */}
+      {value && !editing && (
+        <button
+          onClick={clear}
+          className="w-6 h-6 rounded-md bg-bg-secondary border border-border text-text-tertiary hover:text-red-400 hover:border-red-500/40 hover:bg-red-500/10 transition-all flex items-center justify-center shrink-0 opacity-0 group-hover/cell:opacity-100"
+          title="Effacer la date"
+          aria-label="Effacer la date"
+        >
+          <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      )}
     </div>
   );
 }
@@ -324,12 +348,12 @@ export default function CalendarModule({ data, onChange }: Props) {
       {/* Footer */}
       <div className="px-5 py-3 text-xs text-text-tertiary border-t border-border space-y-1">
         <p>
-          <strong className="text-text-secondary">Saisie rapide</strong> : « 22 » →
-          22 du mois en cours · « 22/04 » → 22 avril · « 22/04/26 » → 22 avril 2026
+          <strong className="text-text-secondary">Saisie</strong> : « 22 » →
+          22 du mois en cours · « 22/04 14h30 » → date + heure · « 22/04/26 » → année précise
         </p>
         <p>
-          <strong className="text-text-secondary">Bouton ✓</strong> : marque la
-          date et l&apos;heure du moment où vous postez.
+          <strong className="text-text-secondary">Bouton ✓</strong> marque
+          maintenant · <strong className="text-text-secondary">×</strong> efface la date
         </p>
       </div>
     </div>

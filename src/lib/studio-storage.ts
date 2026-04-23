@@ -127,7 +127,8 @@ export function formatDateFr(iso: string | undefined): string {
 
 /**
  * Parser intelligent pour saisie rapide.
- * Accepte :
+ *
+ * Date :
  *   "5"        → jour 5, mois et année actuels
  *   "5 10"     → 5 octobre, année actuelle
  *   "5/10"     → idem
@@ -135,37 +136,51 @@ export function formatDateFr(iso: string | undefined): string {
  *   "5/10/26"  → 5 oct 2026
  *   "5/10/2026"→ idem
  *   "051026"   → idem
- * Retourne ISO string (avec heure 12h00 par défaut pour ne pas avoir l'air "à la minute")
- * ou null si parse impossible.
+ *
+ * Heure (optionnelle, séparée par espace de la date) :
+ *   "5 14h30"        → 5 du mois en cours à 14h30
+ *   "5/10 9h"        → 5 octobre à 9h00
+ *   "5/10/26 14:30"  → 5 oct 2026 à 14h30
+ *   "5/10 1430"      → 5 octobre à 14h30 (4 chiffres compacts)
+ *
+ * Retourne ISO string ou null si parse impossible.
  */
 export function parseDateInput(input: string): string | null {
   const cleaned = input.trim();
   if (!cleaned) return null;
 
-  // Sépare par espaces, slashes, tirets, points
-  const parts = cleaned.split(/[\s/\-.]+/).filter(Boolean);
+  // Détecte si une partie heure est présente (h, : ou simplement digits 3-4 isolés à la fin)
+  // Stratégie : on coupe la chaîne en "datePart" et "timePart" sur le dernier espace
+  // si le segment contient un séparateur d'heure, sinon tout est date.
+  let datePart = cleaned;
+  let timePart: string | null = null;
+
+  // Cas 1 : présence explicite de "h" ou ":" → on découpe avant
+  const timeMatch = cleaned.match(/(.+?)\s+([\d]{1,2}[h:][\d]{0,2}|[\d]{3,4})\s*$/);
+  if (timeMatch) {
+    datePart = timeMatch[1].trim();
+    timePart = timeMatch[2].trim();
+  }
+
+  // Parse date
+  const parts = datePart.split(/[\s/\-.]+/).filter(Boolean);
   let day: number, month: number, year: number;
 
   if (parts.length === 1) {
     const digits = parts[0].replace(/\D/g, "");
-    // Concat number type
     if (digits.length <= 2) {
-      // Seulement jour
       day = parseInt(digits, 10);
       month = new Date().getMonth() + 1;
       year = new Date().getFullYear();
     } else if (digits.length === 4) {
-      // JJMM
       day = parseInt(digits.slice(0, 2), 10);
       month = parseInt(digits.slice(2, 4), 10);
       year = new Date().getFullYear();
     } else if (digits.length === 6) {
-      // JJMMAA
       day = parseInt(digits.slice(0, 2), 10);
       month = parseInt(digits.slice(2, 4), 10);
       year = 2000 + parseInt(digits.slice(4, 6), 10);
     } else if (digits.length === 8) {
-      // JJMMAAAA
       day = parseInt(digits.slice(0, 2), 10);
       month = parseInt(digits.slice(2, 4), 10);
       year = parseInt(digits.slice(4, 8), 10);
@@ -186,7 +201,6 @@ export function parseDateInput(input: string): string | null {
     return null;
   }
 
-  // Validation
   if (
     isNaN(day) || isNaN(month) || isNaN(year) ||
     day < 1 || day > 31 || month < 1 || month > 12 ||
@@ -195,10 +209,41 @@ export function parseDateInput(input: string): string | null {
     return null;
   }
 
-  // Construit la date à 12h00 locale (pas 00h00 pour ne pas afficher d'heure parasite)
-  const d = new Date(year, month - 1, day, 12, 0, 0);
+  // Parse heure
+  let hour = 12;
+  let minute = 0;
+  if (timePart) {
+    let hStr = "0", mStr = "0";
+    if (/[h:]/.test(timePart)) {
+      const [hh, mm = "0"] = timePart.split(/[h:]/);
+      hStr = hh;
+      mStr = mm || "0";
+    } else {
+      // Compact : "1430" ou "930"
+      const digits = timePart.replace(/\D/g, "");
+      if (digits.length === 3) {
+        hStr = digits.slice(0, 1);
+        mStr = digits.slice(1, 3);
+      } else if (digits.length === 4) {
+        hStr = digits.slice(0, 2);
+        mStr = digits.slice(2, 4);
+      } else if (digits.length <= 2) {
+        hStr = digits;
+        mStr = "0";
+      } else {
+        return null;
+      }
+    }
+    hour = parseInt(hStr, 10);
+    minute = parseInt(mStr, 10);
+    if (isNaN(hour) || isNaN(minute) || hour < 0 || hour > 23 || minute < 0 || minute > 59) {
+      return null;
+    }
+  }
+
+  const d = new Date(year, month - 1, day, hour, minute, 0);
   if (d.getMonth() !== month - 1 || d.getDate() !== day) {
-    return null; // jour invalide pour le mois (ex: 31 février)
+    return null;
   }
   return d.toISOString();
 }
