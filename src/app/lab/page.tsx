@@ -2,11 +2,36 @@ import Link from "next/link";
 
 const EXPERIMENTS = [
   {
-    slug: "splash-cursor",
-    title: "Splash cursor + ASCII orbs",
+    slug: "splash-cmyk",
+    title: "Encre CMJN — graphiste",
     description:
-      "Simulation de fluide WebGL réactive à la souris, avec orbes ASCII en arrière-plan. Inspiration Hitem3D.",
-    status: "En test",
+      "Splash cyan/magenta/jaune/noir sur fond crème, comme une presse offset. La signature 4 couleurs du print.",
+    status: "À tester",
+    accent: "from-cyan-400 via-fuchsia-500 to-amber-300",
+  },
+  {
+    slug: "splash-light-painting",
+    title: "Light painting — photographe",
+    description:
+      "Pose longue : traînées blanches/dorées qui persistent. Inspiration feux d'artifice et photo nuit.",
+    status: "À tester",
+    accent: "from-amber-200 via-orange-400 to-amber-500",
+  },
+  {
+    slug: "splash-cinema",
+    title: "Color grading — vidéaste",
+    description:
+      "Teal & orange, la palette cinéma. Volutes turbulentes, ambiance étalonnage film.",
+    status: "À tester",
+    accent: "from-teal-400 via-cyan-500 to-orange-400",
+  },
+  {
+    slug: "splash-cursor",
+    title: "Splash bleu — base Hitem3D",
+    description:
+      "Version d'origine, palette bleus accent + orbes ASCII. Référence neutre pour comparer.",
+    status: "Référence",
+    accent: "from-blue-500 via-indigo-500 to-purple-500",
   },
 ];
 
@@ -23,7 +48,9 @@ export default function LabIndexPage() {
           </h1>
           <p className="text-text-secondary max-w-2xl">
             Bac à sable pour tester des effets, animations et morceaux de design
-            système avant de les intégrer au site principal.
+            système avant de les intégrer au site principal. Chaque expérience
+            décline le splash WebGL avec une palette et des paramètres alignés
+            à un métier du studio.
           </p>
         </header>
 
@@ -32,8 +59,12 @@ export default function LabIndexPage() {
             <li key={exp.slug}>
               <Link
                 href={`/lab/${exp.slug}`}
-                className="block rounded-2xl border border-border bg-bg-card p-6 hover:border-accent/50 transition-colors group"
+                className="block rounded-2xl border border-border bg-bg-card p-6 hover:border-accent/50 transition-colors group relative overflow-hidden"
               >
+                {/* Bandeau couleur fin pour situer la palette */}
+                <div
+                  className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${exp.accent}`}
+                />
                 <div className="flex items-center justify-between gap-4">
                   <div>
                     <h2 className="text-lg font-semibold mb-1 group-hover:text-accent transition-colors">
