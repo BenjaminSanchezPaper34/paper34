@@ -34,6 +34,14 @@ const SIGNATURE: Experiment[] = [
     status: "Vidéaste",
     accent: "from-rose-500 via-violet-500 to-cyan-400",
   },
+  {
+    slug: "water-ripples",
+    title: "Surface aquatique + ondulations",
+    description:
+      "Shader WebGL : surface d'eau animée, caustiques, ondes radiales au curseur. Idéal jet ski / nautique.",
+    status: "Client jet ski",
+    accent: "from-cyan-400 via-sky-500 to-blue-700",
+  },
 ];
 
 /** Variantes couleur du splash WebGL — même moteur, palette différente */
