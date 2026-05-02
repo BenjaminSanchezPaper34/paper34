@@ -14,7 +14,7 @@ export default function Navbar() {
   }, [pathname]);
 
   // Pas de navbar sur les pages internes
-  if (pathname?.startsWith("/studio")) return null;
+  if (pathname?.startsWith("/studio") || pathname?.startsWith("/lab")) return null;
 
   return (
     <nav

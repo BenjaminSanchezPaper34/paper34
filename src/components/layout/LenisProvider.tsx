@@ -8,7 +8,7 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
   const lenisRef = useRef<Lenis | null>(null);
   const pathname = usePathname();
   // Désactivé sur les pages internes (dashboard) — scroll natif plus adapté
-  const disabled = pathname?.startsWith("/studio") ?? false;
+  const disabled = (pathname?.startsWith("/studio") || pathname?.startsWith("/lab")) ?? false;
 
   useEffect(() => {
     if (disabled) return;

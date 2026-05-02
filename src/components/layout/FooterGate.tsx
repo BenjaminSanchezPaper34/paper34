@@ -8,6 +8,6 @@ import { usePathname } from "next/navigation";
  */
 export default function FooterGate({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  if (pathname?.startsWith("/studio")) return null;
+  if (pathname?.startsWith("/studio") || pathname?.startsWith("/lab")) return null;
   return <>{children}</>;
 }
