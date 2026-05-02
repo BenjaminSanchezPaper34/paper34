@@ -7,35 +7,38 @@ import WaterCalm from "@/components/lab/WaterCalm";
 /**
  * Eau calme + typographie qui réagit aux ondulations du curseur.
  *
- * Architecture clé : un canvas 2D caché ("disp map") est mis à jour à
- * chaque frame avec les ripples actifs du curseur, encodés en R/G
- * (déplacement X / Y). Ce canvas est la source d'un <feImage> qui
- * alimente le <feDisplacementMap> appliqué au bloc texte.
- *
- * Comme WaterCalm écoute les MÊMES événements pointermove que ce
- * système, l'eau et la typo voient passer les mêmes ondes — quand un
- * ripple traverse une lettre, elle ondule réellement (pas une animation
- * indépendante).
+ * Architecture (v3, fix perf + reactivité) :
+ *   - Un VRAI <canvas> dans le DOM (positionné hors-écran) contient la
+ *     displacement map. Mis à jour en JS chaque frame.
+ *   - <feImage href="#disp-source"> y fait référence. Plus de toDataURL
+ *     (qui bloquait le main thread à 60fps).
+ *   - Un attribut "data-t" est tickté sur le <filter> chaque frame
+ *     pour forcer Chrome à re-évaluer le filtre (sinon il snapshot la
+ *     première frame du canvas).
+ *   - WaterCalm écoute pointermove en parallèle → mêmes ripples sync.
+ *   - Halo radial continu autour du curseur dans la disp map → la typo
+ *     réagit au survol même immobile.
  */
 
 type Ripple = { x: number; y: number; t: number; angle: number };
 
-const DISP_W = 320;
-const DISP_H = 160;
+const DISP_W = 240;
+const DISP_H = 120;
+const DISP_ID = "ripple-disp-source";
 
 export default function WaterTypographyPage() {
-  const dispImageRef = useRef<SVGFEImageElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const filterRef = useRef<SVGFilterElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // ─── Setup canvas displacement (mémoire seulement, jamais affiché) ─
-    const dispCanvas = document.createElement("canvas");
-    dispCanvas.width = DISP_W;
-    dispCanvas.height = DISP_H;
-    const dispCtx = dispCanvas.getContext("2d", { willReadFrequently: true });
-    if (!dispCtx) return;
+    const canvas = canvasRef.current;
+    const filter = filterRef.current;
+    if (!canvas || !filter) return;
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    if (!ctx) return;
 
-    // ─── État ripples partagé avec WaterCalm (sync via events identiques) ─
+    // ─── Ripples partagés (logique identique à WaterCalm) ─────────
     const ripples: Ripple[] = [];
     let lastSpawnX = -1,
       lastSpawnY = -1,
@@ -49,7 +52,7 @@ export default function WaterTypographyPage() {
     const start = performance.now();
     const nowSec = () => (performance.now() - start) / 1000;
 
-    function addRipple(nx: number, ny: number, vel: number, screenX: number, screenY: number) {
+    function addRipple(nx: number, ny: number, vel: number, sx: number, sy: number) {
       const t = nowSec();
       const dx = nx - lastSpawnX;
       const dy = ny - lastSpawnY;
@@ -61,8 +64,7 @@ export default function WaterTypographyPage() {
       const vx = nx - prevX;
       const vy = ny - prevY;
       const angle = vx * vx + vy * vy > 1e-7 ? Math.atan2(vy, vx) : 0;
-      ripples.push({ x: screenX, y: screenY, t, angle });
-      // Cap
+      ripples.push({ x: sx, y: sy, t, angle });
       if (ripples.length > 60) ripples.splice(0, ripples.length - 60);
     }
 
@@ -80,48 +82,33 @@ export default function WaterTypographyPage() {
       prevT = now;
     }
     function onClick(e: PointerEvent) {
+      const cx = e.clientX,
+        cy = e.clientY;
+      const nx = cx / window.innerWidth;
+      const ny = 1 - cy / window.innerHeight;
       lastSpawnTime = -1;
-      addRipple(
-        e.clientX / window.innerWidth,
-        1 - e.clientY / window.innerHeight,
-        99,
-        e.clientX,
-        e.clientY
-      );
+      addRipple(nx, ny, 99, cx, cy);
       lastSpawnTime = -1;
-      addRipple(
-        e.clientX / window.innerWidth + 0.005,
-        1 - e.clientY / window.innerHeight,
-        99,
-        e.clientX + 5,
-        e.clientY
-      );
+      addRipple(nx + 0.005, ny, 99, cx + 5, cy);
       lastSpawnTime = -1;
-      addRipple(
-        e.clientX / window.innerWidth - 0.005,
-        1 - e.clientY / window.innerHeight,
-        99,
-        e.clientX - 5,
-        e.clientY
-      );
+      addRipple(nx - 0.005, ny, 99, cx - 5, cy);
     }
-
     window.addEventListener("pointermove", onMove);
     window.addEventListener("pointerdown", onClick);
 
-    // ─── Render disp map + push to <feImage> ─────────────────────────
+    // ─── Render disp map dans le canvas DOM ─────────────────────
+    const img = ctx.createImageData(DISP_W, DISP_H);
+
     function renderDispMap(t: number) {
-      if (!textRef.current || !dispCtx) return;
+      if (!ctx || !textRef.current) return;
       const bbox = textRef.current.getBoundingClientRect();
       if (bbox.width <= 0 || bbox.height <= 0) return;
 
-      // Mapping pixel canvas → coords écran (relative à bbox text)
       const scaleX = DISP_W / bbox.width;
       const scaleY = DISP_H / bbox.height;
-
-      // Image neutre (128, 128, 0, 255) = pas de déplacement
-      const img = dispCtx.createImageData(DISP_W, DISP_H);
       const data = img.data;
+
+      // Reset à neutre (128, 128, 0, 255) = pas de déplacement
       for (let i = 0; i < DISP_W * DISP_H; i++) {
         data[i * 4] = 128;
         data[i * 4 + 1] = 128;
@@ -129,23 +116,21 @@ export default function WaterTypographyPage() {
         data[i * 4 + 3] = 255;
       }
 
-      // Élague les ripples morts pour éviter la fuite
+      // Élague les ripples morts
       while (ripples.length > 0 && t - ripples[0].t > 4.5) ripples.shift();
 
-      // Vitesse propagation onde dans l'espace canvas (en pixels/sec)
       const speed = 0.34 * Math.max(DISP_W, DISP_H);
 
-      for (const r of ripples) {
-        const age = t - r.t;
+      // ─── Couche 1 : ripples actifs (paquets d'ondes) ────────
+      for (let r = 0; r < ripples.length; r++) {
+        const rip = ripples[r];
+        const age = t - rip.t;
         if (age > 4.0) continue;
-        // Position du ripple dans l'espace canvas
-        const cx = (r.x - bbox.left) * scaleX;
-        const cy = (r.y - bbox.top) * scaleY;
+        const cx = (rip.x - bbox.left) * scaleX;
+        const cy = (rip.y - bbox.top) * scaleY;
         const front = age * speed;
         const decay = Math.exp(-age * 0.85);
-        // Bbox d'influence : on n'itère que là où l'onde peut être visible
-        // (front ± fenêtre gaussienne)
-        const ringHalf = 60; // demi-largeur de l'enveloppe gaussienne en px canvas
+        const ringHalf = 60;
         const minR = Math.max(0, front - ringHalf);
         const maxR = front + ringHalf;
         const x0 = Math.max(0, Math.floor(cx - maxR));
@@ -154,32 +139,26 @@ export default function WaterTypographyPage() {
         const y1 = Math.min(DISP_H, Math.ceil(cy + maxR));
         if (x1 <= x0 || y1 <= y0) continue;
 
-        // Anisotropie : matrice de rotation pour le squash directionnel
-        const c = Math.cos(r.angle);
-        const s = Math.sin(r.angle);
+        const c = Math.cos(rip.angle);
+        const s = Math.sin(rip.angle);
 
         for (let y = y0; y < y1; y++) {
           for (let x = x0; x < x1; x++) {
             const dx = x - cx;
             const dy = y - cy;
-            // Repère local (rotation), squash X dans la direction de motion
             const localX = (c * dx + s * dy) * 0.6;
             const localY = -s * dx + c * dy;
             const d = Math.hypot(localX, localY);
             if (d < minR || d > maxR) continue;
             const diff = d - front;
-            const wave =
-              Math.sin(diff * 0.18) *
-              Math.exp(-(diff * diff) / 4500) *
-              decay;
-            // Direction du déplacement = radiale sortante
+            // Approximation gaussienne quadratique — bcp + rapide qu'exp
+            const env = Math.max(0, 1 - (diff * diff) / 3600);
+            const wave = Math.sin(diff * 0.18) * env * decay;
+            if (Math.abs(wave) < 0.01) continue;
             const inv = d > 0.001 ? 1 / d : 0;
-            const ux = dx * inv;
-            const uy = dy * inv;
-            const dispX = ux * wave * 0.95;
-            const dispY = uy * wave * 0.95;
+            const dispX = dx * inv * wave * 0.95;
+            const dispY = dy * inv * wave * 0.95;
             const idx = (y * DISP_W + x) * 4;
-            // Additionne aux 128 existants (multi-ripples se cumulent)
             const newR = data[idx] + dispX * 127;
             const newG = data[idx + 1] + dispY * 127;
             data[idx] = newR < 0 ? 0 : newR > 255 ? 255 : newR;
@@ -188,31 +167,30 @@ export default function WaterTypographyPage() {
         }
       }
 
-      // ─── Halo continu du curseur (réactivité au survol) ─────────
-      // Donne un déplacement radial centré sur le curseur, indépendant des
-      // ripples. Permet de "voir" la typo réagir même quand le curseur
-      // est immobile au-dessus d'une lettre.
+      // ─── Couche 2 : halo continu du curseur (effet loupe) ────
       if (mouseX > -9000) {
         const cxh = (mouseX - bbox.left) * scaleX;
         const cyh = (mouseY - bbox.top) * scaleY;
-        const haloR = 60; // canvas pixels
+        const haloR = 50;
         const xh0 = Math.max(0, Math.floor(cxh - haloR));
         const yh0 = Math.max(0, Math.floor(cyh - haloR));
         const xh1 = Math.min(DISP_W, Math.ceil(cxh + haloR));
         const yh1 = Math.min(DISP_H, Math.ceil(cyh + haloR));
         if (xh1 > xh0 && yh1 > yh0) {
+          const haloR2 = haloR * haloR;
           for (let y = yh0; y < yh1; y++) {
             for (let x = xh0; x < xh1; x++) {
               const dx = x - cxh;
               const dy = y - cyh;
-              const d = Math.hypot(dx, dy);
-              if (d > haloR) continue;
-              // Falloff gaussien serré
-              const falloff = Math.exp(-(d * d) / 900);
+              const d2 = dx * dx + dy * dy;
+              if (d2 > haloR2) continue;
+              // Falloff quadratique au lieu d'exp (rapide)
+              const norm = 1 - d2 / haloR2;
+              const falloff = norm * norm;
+              const d = Math.sqrt(d2);
               const inv = d > 0.001 ? 1 / d : 0;
-              // Bulge radial vers l'extérieur (effet "loupe d'eau")
-              const dispX = dx * inv * falloff * 0.85;
-              const dispY = dy * inv * falloff * 0.85;
+              const dispX = dx * inv * falloff * 0.9;
+              const dispY = dy * inv * falloff * 0.9;
               const idx = (y * DISP_W + x) * 4;
               const newR = data[idx] + dispX * 127;
               const newG = data[idx + 1] + dispY * 127;
@@ -223,18 +201,16 @@ export default function WaterTypographyPage() {
         }
       }
 
-      dispCtx.putImageData(img, 0, 0);
-      // Push vers <feImage>
-      const url = dispCanvas.toDataURL("image/png");
-      if (dispImageRef.current) {
-        dispImageRef.current.setAttribute("href", url);
-      }
+      ctx.putImageData(img, 0, 0);
     }
 
-    // 60fps : on assume que toDataURL sur 320×160 reste sub-frame
+    let tickCount = 0;
     let raf = 0;
     function tick() {
       renderDispMap(nowSec());
+      // Kick le filtre : Chrome cache la première frame du canvas source
+      // tant qu'aucun attribut du <filter> ne change. On change un noop.
+      filter!.setAttribute("data-t", String(tickCount++ & 0xffff));
       raf = requestAnimationFrame(tick);
     }
     raf = requestAnimationFrame(tick);
@@ -251,7 +227,23 @@ export default function WaterTypographyPage() {
       {/* Fond : eau calme — écoute pointermove indépendamment, mêmes ripples */}
       <WaterCalm />
 
-      {/* Filtre SVG : feImage = canvas disp map mis à jour en JS */}
+      {/* Canvas DOM réel : la disp map. Hors-écran mais rendue par le navigateur. */}
+      <canvas
+        ref={canvasRef}
+        id={DISP_ID}
+        width={DISP_W}
+        height={DISP_H}
+        style={{
+          position: "fixed",
+          left: "-10000px",
+          top: 0,
+          opacity: 0,
+          pointerEvents: "none",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Filtre SVG qui pointe vers le canvas DOM via #id */}
       <svg
         className="absolute pointer-events-none"
         style={{ width: 0, height: 0, position: "absolute" }}
@@ -259,6 +251,7 @@ export default function WaterTypographyPage() {
       >
         <defs>
           <filter
+            ref={filterRef}
             id="ripple-typo"
             x="-15%"
             y="-15%"
@@ -266,9 +259,9 @@ export default function WaterTypographyPage() {
             height="130%"
             colorInterpolationFilters="sRGB"
           >
-            {/* Source : displacement map dynamique (canvas R/G) */}
             <feImage
-              ref={dispImageRef}
+              href={`#${DISP_ID}`}
+              xlinkHref={`#${DISP_ID}`}
               x="0%"
               y="0%"
               width="100%"
@@ -279,7 +272,7 @@ export default function WaterTypographyPage() {
             <feDisplacementMap
               in="SourceGraphic"
               in2="dispMap"
-              scale="70"
+              scale="80"
               xChannelSelector="R"
               yChannelSelector="G"
             />
@@ -307,7 +300,7 @@ export default function WaterTypographyPage() {
             style={{ filter: "url(#ripple-typo)" }}
           >
             <p className="text-xs uppercase tracking-[0.3em] text-white/55 mb-6">
-              Bougez la souris à travers le texte
+              Survolez ou bougez à travers le texte
             </p>
             <h1
               className="font-bold tracking-[-2px] leading-[0.95] mb-8"
@@ -322,15 +315,15 @@ export default function WaterTypographyPage() {
               <span className="gradient-text">28 millions d&apos;habitants.</span>
             </h1>
             <p className="text-base md:text-lg text-white/75 max-w-xl mx-auto">
-              Les mêmes ripples qui parcourent l&apos;eau en fond
-              déforment la typographie au-dessus. Quand une vague traverse une
-              lettre, elle ondule pour de vrai.
+              Les ondes qui parcourent l&apos;eau en fond déforment réellement
+              la typographie au-dessus. Survol = loupe d&apos;eau. Mouvement
+              franc = vague qui passe.
             </p>
           </div>
         </section>
 
         <footer className="px-6 py-5 text-center text-[11px] text-white/40">
-          Mer calme : aucune ondulation au repos · clic = splash partagé.
+          Mer calme · clic = splash partagé · sync eau ↔ texte.
         </footer>
       </div>
     </main>
