@@ -42,6 +42,14 @@ const SIGNATURE: Experiment[] = [
     status: "Client jet ski",
     accent: "from-cyan-400 via-sky-500 to-blue-700",
   },
+  {
+    slug: "liquid-glass",
+    title: "Liquid Glass — réfraction du DOM",
+    description:
+      "Lentille qui refracte VRAIMENT le contenu réel de la page (titre, dégradé, boutons) via backdrop-filter SVG. Inspiration Apple iOS 26.",
+    status: "Apple-style",
+    accent: "from-white via-cyan-200 to-violet-400",
+  },
 ];
 
 /** Variantes couleur du splash WebGL — même moteur, palette différente */
