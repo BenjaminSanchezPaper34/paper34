@@ -50,6 +50,22 @@ const SIGNATURE: Experiment[] = [
     status: "Apple-style",
     accent: "from-white via-cyan-200 to-violet-400",
   },
+  {
+    slug: "wake-trail",
+    title: "Wake trail — sillage curseur",
+    description:
+      "Vraie trace de jet ski : Catmull-Rom + polygone à largeur variable + crête d'écume + blur soyeux. Moteur réutilisable.",
+    status: "Wake",
+    accent: "from-cyan-200 via-sky-400 to-blue-700",
+  },
+  {
+    slug: "wake-signature",
+    title: "Wake signature — texte manuscrit",
+    description:
+      "Même moteur, mais le sillage suit un chemin SVG (signature, logo, écriture) au lieu du curseur. Inspiration Igaratipo.",
+    status: "Wake",
+    accent: "from-cyan-200 via-sky-400 to-blue-700",
+  },
 ];
 
 /** Variantes couleur du splash WebGL — même moteur, palette différente */
