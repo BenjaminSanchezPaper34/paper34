@@ -129,11 +129,11 @@ const FRAG = /* glsl */ `
     vec3 R = reflect(-V, N);
     vec3 reflection = skyColor(R);
 
-    // Spéculaire doux
+    // Spéculaire très doux
     vec3 sunDirN = normalize(SUN_DIR);
     vec3 H = normalize(sunDirN + V);
     float NdotH = max(0.0, dot(N, H));
-    float spec = pow(NdotH, 200.0) * 2.5;
+    float spec = pow(NdotH, 220.0) * 1.4;
     reflection += SUN_COLOR * spec;
 
     // Couleur sous l'eau (sans caustiques pour rester sobre)
@@ -142,9 +142,9 @@ const FRAG = /* glsl */ `
 
     vec3 col = mix(underwater, reflection, fresnel);
 
-    // Mousse rare : seulement sur ripples très récents
+    // Mousse très discrète : juste un soupçon sur les ripples
     float rip = ripples(p);
-    col = mix(col, vec3(0.92, 0.97, 1.0), max(rip, 0.0) * 0.35);
+    col = mix(col, vec3(0.85, 0.93, 1.0), max(rip, 0.0) * 0.12);
 
     // Vignette
     float vig = smoothstep(1.25, 0.45, distance(uv, vec2(0.5)));
