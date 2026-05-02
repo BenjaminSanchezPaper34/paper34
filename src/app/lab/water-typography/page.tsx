@@ -20,8 +20,8 @@ import WaterCalm from "@/components/lab/WaterCalm";
 
 type Ripple = { x: number; y: number; t: number; angle: number };
 
-const DISP_W = 240;
-const DISP_H = 120;
+const DISP_W = 320;
+const DISP_H = 160;
 
 export default function WaterTypographyPage() {
   const dispImageRef = useRef<SVGFEImageElement>(null);
@@ -188,27 +188,53 @@ export default function WaterTypographyPage() {
         }
       }
 
+      // ─── Halo continu du curseur (réactivité au survol) ─────────
+      // Donne un déplacement radial centré sur le curseur, indépendant des
+      // ripples. Permet de "voir" la typo réagir même quand le curseur
+      // est immobile au-dessus d'une lettre.
+      if (mouseX > -9000) {
+        const cxh = (mouseX - bbox.left) * scaleX;
+        const cyh = (mouseY - bbox.top) * scaleY;
+        const haloR = 60; // canvas pixels
+        const xh0 = Math.max(0, Math.floor(cxh - haloR));
+        const yh0 = Math.max(0, Math.floor(cyh - haloR));
+        const xh1 = Math.min(DISP_W, Math.ceil(cxh + haloR));
+        const yh1 = Math.min(DISP_H, Math.ceil(cyh + haloR));
+        if (xh1 > xh0 && yh1 > yh0) {
+          for (let y = yh0; y < yh1; y++) {
+            for (let x = xh0; x < xh1; x++) {
+              const dx = x - cxh;
+              const dy = y - cyh;
+              const d = Math.hypot(dx, dy);
+              if (d > haloR) continue;
+              // Falloff gaussien serré
+              const falloff = Math.exp(-(d * d) / 900);
+              const inv = d > 0.001 ? 1 / d : 0;
+              // Bulge radial vers l'extérieur (effet "loupe d'eau")
+              const dispX = dx * inv * falloff * 0.85;
+              const dispY = dy * inv * falloff * 0.85;
+              const idx = (y * DISP_W + x) * 4;
+              const newR = data[idx] + dispX * 127;
+              const newG = data[idx + 1] + dispY * 127;
+              data[idx] = newR < 0 ? 0 : newR > 255 ? 255 : newR;
+              data[idx + 1] = newG < 0 ? 0 : newG > 255 ? 255 : newG;
+            }
+          }
+        }
+      }
+
       dispCtx.putImageData(img, 0, 0);
       // Push vers <feImage>
       const url = dispCanvas.toDataURL("image/png");
       if (dispImageRef.current) {
         dispImageRef.current.setAttribute("href", url);
-        dispImageRef.current.setAttribute(
-          "http://www.w3.org/1999/xlink",
-          url
-        );
       }
     }
 
-    // Throttle disp map updates à ~30fps (toDataURL est cher)
-    let lastDispUpdate = 0;
+    // 60fps : on assume que toDataURL sur 320×160 reste sub-frame
     let raf = 0;
     function tick() {
-      const now = performance.now();
-      if (now - lastDispUpdate > 33) {
-        renderDispMap(nowSec());
-        lastDispUpdate = now;
-      }
+      renderDispMap(nowSec());
       raf = requestAnimationFrame(tick);
     }
     raf = requestAnimationFrame(tick);

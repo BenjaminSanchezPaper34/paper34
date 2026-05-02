@@ -96,6 +96,15 @@ const FRAG = /* glsl */ `
     return waveHeight(p) + ripples(p) * 0.32;
   }
 
+  // Caustiques très discrètes pour donner du grain à la surface
+  float caustics(vec2 p) {
+    float t = uTime * 0.18;
+    vec2 q = p * 2.5;
+    q += vec2(fbm3(q + t), fbm3(q + 4.0 - t)) * 0.3;
+    float c = abs(fbm3(q + t * 0.6) - 0.5) * 2.0;
+    return pow(1.0 - c, 8.0);
+  }
+
   vec3 surfaceNormal(vec2 p) {
     float eps = 0.004;
     float hL = surface(p - vec2(eps, 0.0));
@@ -136,9 +145,11 @@ const FRAG = /* glsl */ `
     float spec = pow(NdotH, 220.0) * 1.4;
     reflection += SUN_COLOR * spec;
 
-    // Couleur sous l'eau (sans caustiques pour rester sobre)
+    // Couleur sous l'eau + caustiques très discrètes (texture / grain)
     float depth = clamp(uv.y * 0.85 + 0.1, 0.0, 1.0);
     vec3 underwater = mix(SHALLOW_WATER, DEEP_WATER, depth);
+    float caust = caustics(p);
+    underwater += vec3(0.4, 0.75, 1.0) * caust * 0.22 * (1.0 - depth * 0.65);
 
     vec3 col = mix(underwater, reflection, fresnel);
 
