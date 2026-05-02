@@ -66,6 +66,14 @@ const SIGNATURE: Experiment[] = [
     status: "Wake",
     accent: "from-cyan-200 via-sky-400 to-blue-700",
   },
+  {
+    slug: "water-typography",
+    title: "Eau calme + typo qui ondule",
+    description:
+      "Mer calme en fond + filtre SVG sur la typo qui ondule en continu. Amplitude réagit à la proximité du curseur. Mix Paper34 × visiteamazonia.",
+    status: "Hybride",
+    accent: "from-sky-300 via-blue-500 to-indigo-600",
+  },
 ];
 
 /** Variantes couleur du splash WebGL — même moteur, palette différente */
