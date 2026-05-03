@@ -2,11 +2,11 @@
   "restaurant": "Le Galion",
   "subtitle": "Brasserie · Crêperie · Glacier",
   "facebook_url": "https://www.facebook.com/pages/category/Cr%C3%AAperie/Le-Galion-Cr%C3%AAperie-Brasserie-Glacier-715208795196513",
-  "boissons_pdf": "assets/menunumerique-legalion2.pdf",
   "footer_notices": [
     "Prix nets - Service compris",
     "Tout changement dans les formules sera facturé",
-    "Photos non contractuelles - Les chèques ne sont pas acceptés"
+    "Photos non contractuelles - Les chèques ne sont pas acceptés",
+    "L'abus d'alcool est dangereux pour la santé"
   ],
   "sections": [
     {
@@ -196,6 +196,175 @@
         "ice_creams": "Vanille, chocolat, café, praliné, caramel fleur de sel, pistache, coco, Nutella, rhum-raisin, menthe-chocolat, cookies.",
         "sorbets": "Cassis, citron, fraise, framboise, mangue, banane, passion, mojito, poire, orange, melon, abricot."
       }
+    },
+    {
+      "id": "boissons",
+      "title": "Boissons",
+      "nav_label": "Boissons",
+      "type": "drinks",
+      "groups": [
+        {
+          "title": "Boissons fraîches",
+          "items": [
+            {"name": "Sirop à l'eau 25cl", "price": "3,00€"},
+            {"name": "Limonade pression 25cl", "price": "3,80€"},
+            {"name": "Diabolo 25cl", "price": "4,00€"},
+            {"name": "Ice Tea 25cl", "price": "4,20€"},
+            {"name": "Orangina 25cl", "price": "4,20€"},
+            {"name": "Pepsi-Cola 33cl", "price": "4,20€"},
+            {"name": "Pepsi Max 33cl", "price": "4,20€"},
+            {"name": "Perrier 33cl", "price": "4,20€"},
+            {"name": "Schweppes agrumes 25cl, tonic 25cl", "price": "4,20€"},
+            {"name": "San Bitter 10cl", "price": "4,30€"},
+            {"name": "Fruits pressés (orange, citron)", "price": "5,00€"},
+            {"name": "Ginger beer 20cl", "price": "4,20€"},
+            {"name": "Jus de fruits Granini 25cl", "description": "Orange, ananas, pomme, abricot.", "price": "4,20€"},
+            {"name": "Jus de tomates 25cl", "price": "4,50€"}
+          ]
+        },
+        {
+          "title": "Boissons chaudes",
+          "items": [
+            {"name": "Café express Giovanni Pietrini", "price": "2,00€"},
+            {"name": "Décaféiné", "price": "2,00€"},
+            {"name": "Noisette", "price": "2,00€"},
+            {"name": "Double café", "price": "3,80€"},
+            {"name": "Grand crème", "price": "3,80€"},
+            {"name": "Chocolat", "price": "3,80€"},
+            {"name": "Cappuccino", "price": "4,70€"},
+            {"name": "Irish Coffee", "description": "Whisky 4cl, sirop de sucre de canne, café brûlant, chantilly.", "price": "12,50€"}
+          ]
+        },
+        {
+          "title": "Thés & infusions Dammann",
+          "items": [
+            {"name": "Thé noir Earl Grey", "price": "3,90€"},
+            {"name": "Thé noir Ceylan", "price": "3,90€"},
+            {"name": "Thé vert menthe", "price": "3,90€"},
+            {"name": "Thé vert jasmin", "price": "3,90€"},
+            {"name": "Tisane du berger", "price": "3,90€"},
+            {"name": "Infusion tilleul", "price": "3,90€"}
+          ]
+        },
+        {
+          "title": "Eaux",
+          "items": [
+            {"name": "San Pellegrino", "sizes": [{"label": "50cl", "price": "4,50€"}, {"label": "1L", "price": "5,20€"}]},
+            {"name": "Vittel", "sizes": [{"label": "50cl", "price": "4,50€"}, {"label": "1L", "price": "5,20€"}]}
+          ]
+        },
+        {
+          "title": "Bières pression",
+          "items": [
+            {"name": "Fada blonde", "sizes": [{"label": "25cl", "price": "4,00€"}, {"label": "50cl", "price": "8,00€"}]},
+            {"name": "Panaché", "sizes": [{"label": "25cl", "price": "4,00€"}, {"label": "50cl", "price": "8,00€"}]},
+            {"name": "Tango, Monaco", "sizes": [{"label": "25cl", "price": "4,20€"}, {"label": "50cl", "price": "8,40€"}]},
+            {"name": "Fada blanche", "sizes": [{"label": "25cl", "price": "4,20€"}, {"label": "50cl", "price": "8,40€"}]}
+          ]
+        },
+        {
+          "title": "Bières bouteilles",
+          "items": [
+            {"name": "Leffe blonde 33cl", "price": "6,00€"},
+            {"name": "Chimay Dorée 33cl", "price": "6,00€"},
+            {"name": "Chimay Rouge 33cl", "price": "6,00€"},
+            {"name": "Desperados 33cl", "price": "5,90€"},
+            {"name": "Heineken 0%", "price": "4,20€"}
+          ]
+        },
+        {
+          "title": "Cidres bretons Kérisac",
+          "items": [
+            {"name": "La bolée 20cl", "price": "4,50€"},
+            {"name": "Le pichet 50cl", "price": "8,50€"},
+            {"name": "La bouteille 75cl", "price": "13,00€"}
+          ]
+        },
+        {
+          "title": "Vins · Côtes de Provence AOP",
+          "subtitle": "Château Réal d'Or",
+          "items": [
+            {"name": "Au verre rouge, rosé ou blanc 12cl", "price": "7,00€"},
+            {"name": "Rouge 75cl", "price": "37,00€"},
+            {"name": "Rosé 75cl", "price": "31,00€"},
+            {"name": "Blanc 75cl", "price": "33,00€"}
+          ]
+        },
+        {
+          "title": "Vins · Bandol AOP",
+          "subtitle": "Domaine Bunan Moulin des Costes",
+          "items": [
+            {"name": "Rouge 75cl", "price": "41,00€"},
+            {"name": "Rosé, blanc 75cl", "price": "37,00€"}
+          ]
+        },
+        {
+          "title": "Vins · Mont Caume IGP",
+          "subtitle": "Domaine Bunan",
+          "items": [
+            {"name": "Rouge", "sizes": [{"label": "50cl", "price": "22,00€"}, {"label": "75cl", "price": "27,00€"}]},
+            {"name": "Rosé", "sizes": [{"label": "50cl", "price": "20,00€"}, {"label": "75cl", "price": "26,00€"}]}
+          ]
+        },
+        {
+          "title": "Vins · Var IGP",
+          "subtitle": "Bunan Sélection",
+          "items": [
+            {"name": "Blanc", "sizes": [{"label": "50cl", "price": "20,00€"}, {"label": "75cl", "price": "26,00€"}]}
+          ]
+        },
+        {
+          "title": "Champagne",
+          "items": [
+            {"name": "Rœderer Brut Premier 75cl", "price": "95,00€"}
+          ]
+        },
+        {
+          "title": "Apéritifs",
+          "items": [
+            {"name": "Martini rouge 6cl, Martini blanc 6cl", "price": "4,70€"},
+            {"name": "Campari 6cl, Suze 6cl", "price": "4,70€"},
+            {"name": "Américano 6cl", "price": "4,70€"},
+            {"name": "Américano maison (15cl d'alcool)", "price": "11,00€"},
+            {"name": "Pastis 51 4cl, Ricard 4cl", "price": "3,80€"},
+            {"name": "Kir mûre, pêche, cassis (Côtes de Provence) 11cl", "price": "5,00€"},
+            {"name": "Kir Breton mûre, pêche, cassis 11cl", "price": "4,00€"}
+          ]
+        },
+        {
+          "title": "Cocktails maison",
+          "items": [
+            {"name": "Apérol Spritz 25cl", "price": "10,50€"},
+            {"name": "Spritz passion 25cl", "price": "12,00€"},
+            {"name": "Hugo Spritz 25cl", "price": "12,00€"},
+            {"name": "Mojito (6cl d'alcool)", "price": "11,50€"},
+            {"name": "Mojito passion", "price": "12,50€"},
+            {"name": "Caïpirinha (6cl d'alcool)", "price": "10,50€"},
+            {"name": "Tequila Sunrise (6cl d'alcool)", "price": "12,50€"},
+            {"name": "Moscow Mule (6cl d'alcool)", "price": "12,50€"},
+            {"name": "London Mule (6cl d'alcool)", "price": "12,50€"},
+            {"name": "Jamaïcan Mule (6cl d'alcool)", "price": "12,50€"},
+            {"name": "Pink Gin (6cl d'alcool)", "price": "12,50€"},
+            {"name": "Maï Taï (6cl d'alcool)", "price": "12,50€"},
+            {"name": "Gin Fizz (6cl d'alcool)", "price": "12,50€"}
+          ]
+        },
+        {
+          "title": "Alcools",
+          "items": [
+            {"name": "Jack Daniels 6cl", "price": "11,00€"},
+            {"name": "Whisky, Rhum, Vodka, Gin, Get 6cl", "price": "10,00€"},
+            {"name": "Supplément soda", "price": "2,00€"}
+          ]
+        },
+        {
+          "title": "Alcools premium",
+          "items": [
+            {"name": "Whiskies, Rhum, Vodka 6cl", "price": "12,00€"},
+            {"name": "Digestifs 6cl", "price": "10,00€"}
+          ]
+        }
+      ]
     }
   ]
 }

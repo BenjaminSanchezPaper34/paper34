@@ -99,8 +99,42 @@
       </section>`;
   };
 
-  const renderSection = (s) =>
-    s.type === "formula" ? renderFormula(s) : renderList(s);
+  // Rend une ligne boisson : nom + prix unique, OU nom + prix multi-tailles (ex: 25cl/50cl)
+  const renderDrink = (it) => {
+    if (Array.isArray(it.sizes)) {
+      const sizes = it.sizes
+        .map((s) => `<span class="drink__size">${esc(s.label)} <strong>${fmtPrice(s.price)}</strong></span>`)
+        .join("");
+      return `
+        <div class="drink drink--multi">
+          <span class="drink__name">${esc(it.name)}</span>
+          <span class="drink__sizes">${sizes}</span>
+        </div>`;
+    }
+    return `
+      <div class="drink">
+        <span class="drink__name">${esc(it.name)}</span>
+        <span class="drink__price">${fmtPrice(it.price)}</span>
+        ${it.description ? `<p class="drink__desc">${esc(it.description)}</p>` : ""}
+      </div>`;
+  };
+
+  const renderDrinks = (s) => `
+    <section class="section section--drinks" id="${esc(s.id)}">
+      <h2 class="section__title">${esc(s.title)}</h2>
+      ${(s.groups || []).map((g) => `
+        <div class="drinks-group">
+          <h3 class="drinks-group__title">${esc(g.title)}</h3>
+          ${g.subtitle ? `<p class="drinks-group__subtitle">${esc(g.subtitle)}</p>` : ""}
+          ${(g.items || []).map(renderDrink).join("")}
+        </div>`).join("")}
+    </section>`;
+
+  const renderSection = (s) => {
+    if (s.type === "formula") return renderFormula(s);
+    if (s.type === "drinks") return renderDrinks(s);
+    return renderList(s);
+  };
 
   // Render menu sections
   root.innerHTML = data.sections.map(renderSection).join("");
@@ -170,15 +204,16 @@
     }
   }
 
-  // Render boissons button + footer
+  // Render footer (le bouton PDF boissons a disparu : la section Boissons est désormais dans la carte)
   const tail = document.getElementById("tail");
-  if (tail && data.boissons_pdf) {
+  if (tail) {
     tail.innerHTML = `
-      <a class="boissons" href="${esc(data.boissons_pdf)}" target="_blank" rel="noopener">
-        Les boissons (PDF)
-      </a>
       <footer class="footer">
         ${(data.footer_notices || []).map((n) => `<p>${esc(n)}</p>`).join("")}
+        ${data.boissons_pdf ? `
+          <p class="footer__pdf">
+            <a href="${esc(data.boissons_pdf)}" target="_blank" rel="noopener">Carte imprimable (PDF)</a>
+          </p>` : ""}
         <p class="footer__credit">
           Conçu par <a href="https://paper34.com" target="_blank" rel="noopener">Paper34</a>
         </p>
