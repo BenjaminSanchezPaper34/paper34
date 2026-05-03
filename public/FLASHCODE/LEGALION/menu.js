@@ -112,6 +112,55 @@
     fb.hidden = false;
   }
 
+  // Navigation par section : chips sticky avec état actif synchronisé au scroll
+  const navEl = document.getElementById("section-nav");
+  if (navEl) {
+    navEl.innerHTML = `
+      <ul class="section-nav__list">
+        ${data.sections.map((s) => `
+          <li class="section-nav__item">
+            <a class="section-nav__link" href="#${esc(s.id)}" data-target="${esc(s.id)}">
+              ${esc(s.nav_label || s.title)}
+            </a>
+          </li>`).join("")}
+      </ul>`;
+    navEl.hidden = false;
+
+    const links = new Map();
+    navEl.querySelectorAll("a[data-target]").forEach((a) => {
+      links.set(a.dataset.target, a);
+      // Au clic : scroll fluide vers la section + recentrage de la pastille active
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        const target = document.getElementById(a.dataset.target);
+        if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+        a.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+        history.replaceState(null, "", "#" + a.dataset.target);
+      });
+    });
+
+    // Met à jour la pastille active selon la section visible en haut du viewport.
+    // rootMargin : on cible une fine bande sous le nav sticky (~80px en haut).
+    const setActive = (id) => {
+      links.forEach((link, key) => link.classList.toggle("is-active", key === id));
+      const active = links.get(id);
+      if (active) active.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    };
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          const visible = entries
+            .filter((e) => e.isIntersecting)
+            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+          if (visible.length) setActive(visible[0].target.id);
+        },
+        { rootMargin: "-80px 0px -65% 0px", threshold: 0 }
+      );
+      document.querySelectorAll("main .section").forEach((s) => observer.observe(s));
+    }
+  }
+
   // Render boissons button + footer
   const tail = document.getElementById("tail");
   if (tail && data.boissons_pdf) {
