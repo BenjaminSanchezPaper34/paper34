@@ -119,7 +119,7 @@ main {
 }
 
 .section {
-  scroll-margin-top: 76px; /* compense la hauteur du nav sticky */
+  scroll-margin-top: 84px; /* compense la hauteur du nav sticky */
   padding: 48px 24px;
   /* étend le fond au-delà du padding du main pour pouvoir alterner les couleurs */
   margin: 0 -24px;
@@ -171,12 +171,12 @@ main {
 
 .section-nav__link {
   display: inline-block;
-  padding: 8px 16px;
+  padding: 11px 20px;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 999px;
   font-family: "Rift Soft", "Impact", sans-serif;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: var(--muted);
@@ -197,7 +197,7 @@ main {
 }
 
 @media (min-width: 720px) {
-  .section-nav__link { font-size: 14px; padding: 10px 20px; }
+  .section-nav__link { font-size: 16px; padding: 13px 24px; }
   /* Sur écrans larges, les pastilles tiennent toutes : on les centre.
      Sur mobile on garde flex-start pour préserver le scroll horizontal. */
   .section-nav__list { justify-content: center; }
