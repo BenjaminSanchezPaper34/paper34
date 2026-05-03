@@ -4,5 +4,9 @@
       "path": "/api/refresh-token?secret=${CRON_SECRET}",
       "schedule": "0 9 1,15 * *"
     }
+  ],
+  "rewrites": [
+    { "source": "/FLASHCODE/LEGALION", "destination": "/FLASHCODE/LEGALION/index.html" },
+    { "source": "/FLASHCODE/LEGALION/", "destination": "/FLASHCODE/LEGALION/index.html" }
   ]
 }
