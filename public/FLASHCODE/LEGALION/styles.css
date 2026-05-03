@@ -104,11 +104,55 @@ a { color: inherit; }
 }
 
 .hero__lang {
-  margin-top: 18px;
-  opacity: 0.85;
-  font-size: 13px;
+  margin-top: 22px;
 }
-.hero__lang select { font-family: inherit; }
+
+/* ---------- Sélecteur de langue (chips compacts) ---------- */
+
+.lang-switcher {
+  display: inline-flex;
+  gap: 2px;
+  padding: 4px;
+  border: 1px solid rgba(212, 168, 90, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.lang-switcher__btn {
+  appearance: none;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-family: "Rift Soft", "Impact", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+  min-width: 32px;
+}
+
+.lang-switcher__btn:hover { color: var(--fg); }
+
+.lang-switcher__btn.is-active {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.lang-switcher__btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Cache toute l'UI native Google Translate (bandeau, popup, sélecteur).
+   On garde le <select> caché : le clic des chips déclenche son change. */
+#google_translate_element { display: none !important; }
+.skiptranslate, .goog-te-banner-frame { display: none !important; }
+.goog-te-gadget { height: 0 !important; }
+body { top: 0 !important; }
+font[style*="background-color"] { background-color: transparent !important; box-shadow: none !important; }
 
 /* ---------- LAYOUT ---------- */
 

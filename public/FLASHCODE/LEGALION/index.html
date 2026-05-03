@@ -35,9 +35,18 @@
       <img class="hero__logo" src="images/logo-legalion.svg" alt="Le Galion · Brasserie · Crêperie · Glacier">
     </div>
 
-    <!-- Sélecteur Google Translate, conservé pour la clientèle touristique -->
+    <!-- Sélecteur de langue maison, pilote Google Translate en coulisse -->
     <div class="hero__lang">
-      <div id="google_translate_element"></div>
+      <div class="lang-switcher" role="group" aria-label="Langue">
+        <button type="button" class="lang-switcher__btn is-active" data-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" class="lang-switcher__btn" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" class="lang-switcher__btn" data-lang="es" aria-pressed="false">ES</button>
+        <button type="button" class="lang-switcher__btn" data-lang="de" aria-pressed="false">DE</button>
+        <button type="button" class="lang-switcher__btn" data-lang="it" aria-pressed="false">IT</button>
+        <button type="button" class="lang-switcher__btn" data-lang="nl" aria-pressed="false">NL</button>
+      </div>
+      <!-- Widget Google Translate caché, on intercepte son <select> via JS -->
+      <div id="google_translate_element" aria-hidden="true"></div>
     </div>
   </header>
 
@@ -54,18 +63,58 @@
 
   <script src="menu.js" defer></script>
 
-  <!-- Google Translate (chargé en async, ne bloque pas le rendu) -->
+  <!-- Google Translate (chargé en async, UI cachée, on pilote le <select> nous-même) -->
   <script type="text/javascript">
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
         pageLanguage: 'fr',
-        includedLanguages: 'en,es,nl,zh-CN,da,fr,it,ja,pt,ru,de',
+        includedLanguages: 'en,es,de,it,nl,fr',
         layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
         autoDisplay: false
       }, 'google_translate_element');
     }
   </script>
   <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+
+  <!-- Sélecteur de langue : déclenche le <select> Google caché -->
+  <script>
+    (function () {
+      const buttons = document.querySelectorAll('.lang-switcher__btn');
+
+      // Restaure la langue active depuis le cookie googtrans (ex: "/fr/en")
+      const cookieMatch = document.cookie.match(/googtrans=\/(?:auto|fr)\/([a-zA-Z-]+)/);
+      const initialLang = cookieMatch ? cookieMatch[1] : 'fr';
+      buttons.forEach((b) => {
+        const on = b.dataset.lang === initialLang;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+
+      function applyLang(lang) {
+        // Cherche le <select> injecté par Google Translate (peut être en cours de chargement)
+        const select = document.querySelector('select.goog-te-combo');
+        if (!select) {
+          // Réessaye dès que possible
+          return setTimeout(() => applyLang(lang), 200);
+        }
+        // En français (langue d'origine), Google attend une valeur vide
+        select.value = lang === 'fr' ? '' : lang;
+        select.dispatchEvent(new Event('change'));
+      }
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const lang = btn.dataset.lang;
+          buttons.forEach((b) => {
+            const on = b === btn;
+            b.classList.toggle('is-active', on);
+            b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          });
+          applyLang(lang);
+        });
+      });
+    })();
+  </script>
 
 </body>
 </html>
