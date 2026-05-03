@@ -50,10 +50,10 @@
     </div>`;
 
   const renderFormula = (s) => `
-    <section class="section" id="${esc(s.id)}">
-      <h2 class="section__title">${esc(s.title)}</h2>
-      ${s.note ? `<p class="section__note">${esc(s.note)}</p>` : ""}
+    <section class="section section--formula" id="${esc(s.id)}">
       <div class="formula">
+        <h2 class="formula__title">${esc(s.title)}</h2>
+        ${s.note ? `<p class="formula__note">${esc(s.note)}</p>` : ""}
         <span class="formula__price">${fmtPrice(s.price)}</span>
         <div class="formula__group">
           <p class="formula__starter">${esc(s.formula.starter)}</p>
@@ -126,15 +126,24 @@
       </ul>`;
     navEl.hidden = false;
 
+    // Centre une pastille horizontalement DANS le conteneur nav,
+    // sans toucher au scroll du document (sinon ça annule le scroll vers la section).
+    const centerChipInNav = (chip) => {
+      const list = chip.closest(".section-nav__list");
+      if (!list) return;
+      const target = chip.offsetLeft + chip.offsetWidth / 2 - list.clientWidth / 2;
+      list.scrollTo({ left: target, behavior: "smooth" });
+    };
+
     const links = new Map();
     navEl.querySelectorAll("a[data-target]").forEach((a) => {
       links.set(a.dataset.target, a);
-      // Au clic : scroll fluide vers la section + recentrage de la pastille active
+      // Au clic : scroll fluide vers la section + recentrage horizontal de la pastille
       a.addEventListener("click", (e) => {
         e.preventDefault();
         const target = document.getElementById(a.dataset.target);
         if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
-        a.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+        centerChipInNav(a);
         history.replaceState(null, "", "#" + a.dataset.target);
       });
     });
@@ -144,7 +153,7 @@
     const setActive = (id) => {
       links.forEach((link, key) => link.classList.toggle("is-active", key === id));
       const active = links.get(id);
-      if (active) active.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+      if (active) centerChipInNav(active);
     };
 
     if ("IntersectionObserver" in window) {
