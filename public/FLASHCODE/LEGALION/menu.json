@@ -5,19 +5,32 @@
   "boissons_pdf": "assets/menunumerique-legalion2.pdf",
   "footer_notices": [
     "Prix nets - Service compris",
-    "Tout changement dans les formules sera facturé"
+    "Tout changement dans les formules sera facturé",
+    "Photos non contractuelles - Les chèques ne sont pas acceptés"
   ],
   "sections": [
     {
+      "id": "petits-dejeuners",
+      "title": "Petits-déjeuners",
+      "nav_label": "Petit-déj",
+      "type": "list",
+      "note": "Jusqu'à 11h00.",
+      "items": [
+        {"name": "Le salé", "description": "Saucisses grillées, tranches de lard grillées, œufs brouillés ou au plat, pain toasté, beurre, fruits de saison, boisson chaude, jus de fruit frais.", "price": "15,00€"},
+        {"name": "Le classique", "description": "Demie baguette, beurre, confitures, Nutella, viennoiseries, fruits de saison, boisson chaude, jus de fruit frais.", "price": "15,00€"}
+      ]
+    },
+    {
       "id": "menu-enfant",
       "title": "Menu Enfant",
+      "nav_label": "Enfant",
       "note": "Uniquement moins de 12 ans.",
-      "price": "12,50€",
+      "price": "13,00€",
       "type": "formula",
       "formula": {
-        "starter": "Sirop à l’eau",
+        "starter": "Sirop à l'eau",
         "mains": [
-          "Steak haché, frites",
+          "Steak haché Origine (voir tableau), frites",
           "Crêpe jambon/fromage",
           "Bol de moules marinières"
         ],
@@ -26,554 +39,163 @@
           "Crêpe au sucre",
           "Crêpe au Nutella"
         ]
-      },
-      "nav_label": "Enfant"
+      }
     },
     {
       "id": "moules",
-      "title": "MOULES",
+      "title": "Moules",
+      "nav_label": "Moules",
       "type": "list",
       "items": [
-        {
-          "name": "Moules marinières",
-          "description": "Sauce légèrement crémée, oignons, persil, vin blanc.",
-          "price": "19,00€"
-        },
-        {
-          "name": "Moules sétoises",
-          "description": "Rouille, crème, persil, épices, croûtons.",
-          "price": "19,00€"
-        },
-        {
-          "name": "Moules à la crème d’ail doux",
-          "description": "Sauce crémée, ail.",
-          "price": "19,00€"
-        },
-        {
-          "name": "Moules takamaka",
-          "description": "Oignons, échalotes, huile de tournesol, combava, gingembre, ciboulette.",
-          "price": "19,00€"
-        },
-        {
-          "name": "roquefort",
-          "description": "Crème, Roquefort.",
-          "price": "19,00€"
-        }
-      ],
-      "nav_label": "Moules"
+        {"name": "Moules marinières façon du Chef", "description": "Sauce légèrement crémée, oignons, persil, vin blanc.", "price": "19,50€"},
+        {"name": "Moules sétoises", "description": "Rouille, crème, persil, épices, croûtons.", "price": "19,50€"},
+        {"name": "Moules au curry rouge", "description": "Curry rouge, lait de coco, miel.", "price": "19,50€"},
+        {"name": "Moules Takamaka", "description": "Oignons, échalottes, huile de tournesol, combava, gingembre, ciboulette.", "price": "19,50€"},
+        {"name": "Roquefort", "description": "Crème, Roquefort.", "price": "19,50€"}
+      ]
     },
     {
       "id": "incontournables",
-      "title": "les incontournables",
+      "title": "Les Incontournables",
+      "nav_label": "Plats",
       "type": "list",
       "items": [
-        {
-          "name": "Salade paysanne",
-          "description": "Salade verte, Tomates cerises, oignons rouges, lardons cuisinés, pomme de terre, vinaigrette, chèvre pané, olives noires.",
-          "price": "20,00€"
-        },
-        {
-          "name": "Salade océane",
-          "description": "Salade verte, petits supions et anneaux d'encornets en rouille, pomme de terre, oignons, moules, crevettes roses,poivrons, croûtons de rouille, salade.",
-          "price": "20,00€"
-        },
-        {
-          "name": "entrecôte",
-          "description": "Frites, légumes.",
-          "price": "28,00€"
-        },
-        {
-          "name": "Andouillette",
-          "description": "Frites, légumes.",
-          "price": "20,00€"
-        },
-        {
-          "name": "Souris d'agneau",
-          "description": "Rôti dans son jus d’ail, écrasé de pomme de terre, aromatisé à la truffe.",
-          "price": "26,00€"
-        },
-        {
-          "name": "Daube de poulpe",
-          "description": "Vin rouge, carottes, oignons, poulpe servi avec du riz.",
-          "price": "26,00€"
-        }
-      ],
-      "nav_label": "Plats"
+        {"name": "Salade paysanne", "description": "Salade verte, tomates cerises, oignons rouges, lardons cuisinés, pomme de terre, vinaigrette, chèvre pané, olives noires.", "price": "20,00€"},
+        {"name": "Salade César", "description": "Filet de poulet Corn Flakes, sauce César maison au parmesan et anchois, salade verte, croûtons, oignons rouges, copeaux de parmesan, œuf mollet.", "price": "20,00€"},
+        {"name": "Salade de poulpe", "description": "Poulpe, oignons, ail, ciboulette, huile d'olive, jus de citron, sel et poivre, vinaigre, salade verte.", "price": "20,00€"},
+        {"name": "Tartare de saumon avocat", "description": "Salade verte, filet de saumon, avocats, assaisonnement maison.", "price": "24,00€"},
+        {"name": "Entrecôte (environ 300 g)", "description": "Race à viande française Charolaise, frites, légumes.", "price": "29,00€"},
+        {"name": "Andouillette Provençale", "description": "Frites, légumes.", "price": "21,00€"},
+        {"name": "Carpaccio de bœuf (140 g)", "description": "Bœuf, salade verte, copeaux de parmesan, vinaigrette au pesto, frites.", "price": "20,00€"},
+        {"name": "Souris d'agneau", "description": "Rôtie dans son jus d'ail, écrasé de pomme de terre aux olives.", "price": "28,00€"},
+        {"name": "Daube de poulpe", "description": "Vin rouge, carottes, oignons, poulpe, ail, servi avec du riz.", "price": "28,00€"}
+      ]
     },
     {
       "id": "crepes-sarrasin",
       "title": "Crêpes au sarrasin",
+      "nav_label": "Sarrasin",
       "type": "list",
       "items": [
-        {
-          "name": "La savoyarde",
-          "description": "Emmental.",
-          "price": "5,80€"
-        },
-        {
-          "name": "La Beurre salé",
-          "description": "Beurre demi sel.",
-          "price": "5,50€"
-        },
-        {
-          "name": "La Pâques",
-          "description": "Œufs sur le plat.",
-          "price": "5,80€"
-        },
-        {
-          "name": "La Mixte",
-          "description": "Jambon supérieur, Emmental râpé.",
-          "price": "7,80€"
-        },
-        {
-          "name": "La Complète",
-          "description": "Œuf, jambon supérieur, Emmental râpé.",
-          "price": "10,00€"
-        },
-        {
-          "name": "La Joëlle",
-          "description": "Champignons en persillade, œuf, Emmental râpé.",
-          "price": "10,00€"
-        },
-        {
-          "name": "La Blaya",
-          "description": "Chèvre, noix, miel.",
-          "price": "10,00€"
-        },
-        {
-          "name": "La Patou",
-          "description": "Roquefort, Cognac 2cl, cerneaux de noix, beurre.",
-          "price": "10,20€"
-        },
-        {
-          "name": "La Flammekueche",
-          "description": "Lardons, oignons, crème fraîche.",
-          "price": "10,00€"
-        },
-        {
-          "name": "La 4 Fromages",
-          "description": "Mozzarella, Roquefort, chèvre, Emmental.",
-          "price": "11,50€"
-        },
-        {
-          "name": "La Seguin",
-          "description": "Jambon supérieur, œuf, fromage de chèvre.",
-          "price": "10,50€"
-        },
-        {
-          "name": "La Picarde",
-          "description": "Jambon supérieur, champignons, Emmental râpé, sauce béchamel.",
-          "price": "10,80€"
-        },
-        {
-          "name": "LES Alpilles",
-          "description": "Jambon cru, fromage de chèvre, huile d’olive basilic.",
-          "price": "11,00€"
-        },
-        {
-          "name": "La Guéméné",
-          "description": "Andouille de Guéméné, œuf, crème fraîche.",
-          "price": "11,20€"
-        },
-        {
-          "name": "La Réunionnaise",
-          "description": "Sauté de poulet, tomates, oignons, curry, lait de coco, pousses de bambou, gingembre.",
-          "price": "12,00€"
-        },
-        {
-          "name": "La Calypso",
-          "description": "Viande hachée façon bolognaise, œuf, Emmental, persillade, herbes de Provence.",
-          "price": "12,00€"
-        },
-        {
-          "name": "La PiquantE",
-          "description": "Viande hachée façon bolognaise, oignons, poivrons, herbes de Provence, persillade, piments.",
-          "price": "12,00€"
-        },
-        {
-          "name": "La Mozzarella",
-          "description": "Mozzarella, jambon cru, huile d’olive basilic.",
-          "price": "11,00€"
-        },
-        {
-          "name": "RATATOUILLE hivernale",
-          "description": "Butternut, carottes, champignons, oignons rouges, ail, concentré de tomate, herbes de Provence, vinaigre balsamique.",
-          "price": "13,00€"
-        },
-        {
-          "name": "La Texane",
-          "description": "Bœuf mijoté, cheddar, pommes Darphin, oignons.",
-          "price": "15,00€"
-        },
-        {
-          "name": "La Castelleto",
-          "description": "Mozzarella, jambon cru, salade verte, huile d’olive basilic, copeaux de Parmesan.",
-          "price": "13,80€"
-        },
-        {
-          "name": "L’Irlandaise",
-          "description": "Saumon fumé, crème fraîche, ciboulette, citron.",
-          "price": "16,50€"
-        },
-        {
-          "name": "La Tarentaise",
-          "description": "Pommes de terre, lardons, Reblochon, oignons, crème fraîche.",
-          "price": "13,20€"
-        },
-        {
-          "name": "La Carbo",
-          "description": "Lard, oignons, crème fraîche, œuf, Parmesan.",
-          "price": "13,20€"
-        },
-        {
-          "name": "L’Anglaise",
-          "description": "Œuf, filets de poulet grillé, bacon, Cheddar, sauce barbecue.",
-          "price": "13,20€"
-        },
-        {
-          "name": "la bressoise",
-          "description": "Œuf , poulet cuisiné aux champignons et vin blanc, emmental râpé, persillade.",
-          "price": "13,50€"
-        },
-        {
-          "name": "La castillane",
-          "description": "Sauté de poulet cuisiné au paprika, oignons, chorizo, poivrons, concentré de tomate, ail et crème fraîche.",
-          "price": "13,20€"
-        },
-        {
-          "name": "La Sanaryenne",
-          "description": "Poulpe en daube.",
-          "price": "16,00€"
-        },
-        {
-          "name": "accompagnement",
-          "description": "Salade verte.",
-          "price": "3,00€"
-        }
+        {"name": "La Savoyarde", "description": "Emmental râpé.", "price": "6,50€"},
+        {"name": "La Beurre salé", "description": "Beurre demi sel.", "price": "5,50€"},
+        {"name": "La Pâques", "description": "Œufs sur le plat.", "price": "6,50€"},
+        {"name": "La Mixte", "description": "Jambon supérieur, Emmental râpé.", "price": "8,80€"},
+        {"name": "La Complète", "description": "Œuf, jambon supérieur, Emmental râpé.", "price": "11,00€"},
+        {"name": "La Joëlle", "description": "Champignons en persillade, œuf, Emmental râpé.", "price": "11,00€"},
+        {"name": "La Blaya", "description": "Chèvre, noix, miel.", "price": "11,00€"},
+        {"name": "La Patou", "description": "Roquefort, Cognac 2cl, cerneaux de noix, beurre.", "price": "11,50€"},
+        {"name": "La Flammekueche", "description": "Lardons, oignons, crème fraîche.", "price": "11,00€"},
+        {"name": "La 4 Fromages", "description": "Mozzarella, Roquefort, chèvre, Emmental.", "price": "12,50€"},
+        {"name": "La Seguin", "description": "Jambon supérieur, œuf, fromage de chèvre.", "price": "11,50€"},
+        {"name": "La Picarde", "description": "Jambon supérieur, champignons en persillade, Emmental râpé, sauce béchamel.", "price": "11,50€"},
+        {"name": "Les Alpilles", "description": "Jambon cru, fromage de chèvre, huile d'olive basilic.", "price": "12,30€"},
+        {"name": "La Guéméné", "description": "Andouille de Guéméné, œuf, crème fraîche, oignons confits.", "price": "12,30€"},
+        {"name": "La Réunionnaise", "description": "Sauté de poulet, tomates, oignons, curry, lait de coco, pousses de bambou, gingembre.", "price": "13,50€"},
+        {"name": "La Calypso", "description": "Viande hachée façon bolognaise, œuf, Emmental, persillade, herbes de Provence.", "price": "13,00€"},
+        {"name": "La Piquante", "description": "Viande hachée façon bolognaise, poivrons, herbes de Provence, persillade, piments.", "price": "13,00€"},
+        {"name": "La Mozzarella", "description": "Mozzarella, jambon cru, huile d'olive basilic.", "price": "12,50€"},
+        {"name": "La Castillane", "description": "Sauté de poulet cuisiné au paprika, oignons, chorizo, poivrons, concentré de tomate, ail et crème fraîche.", "price": "14,00€"},
+        {"name": "La Ratatouille", "description": "Courgettes, aubergines, poivrons, oignons, ail, cuisinés aux herbes de Provence et sauce tomate, œuf.", "price": "13,00€"},
+        {"name": "La Texane", "description": "Bœuf mijoté, cheddar, pommes darphin, oignons.", "price": "16,00€"},
+        {"name": "La Castelleto", "description": "Mozzarella, jambon cru, salade verte, huile d'olive basilic, copeaux de Parmesan.", "price": "14,50€"},
+        {"name": "L'Irlandaise", "description": "Saumon fumé, crème fraîche, ciboulette, citron, salade verte.", "price": "16,50€"},
+        {"name": "La Tarentaise", "description": "Pommes de terre, lardons, Reblochon, oignons, crème fraîche.", "price": "14,50€"},
+        {"name": "La Carbo", "description": "Lard, oignons, crème fraîche, œuf, Parmesan.", "price": "14,00€"},
+        {"name": "L'Anglaise", "description": "Œuf, sauté de poulet, bacon, cheddar, sauce barbecue.", "price": "14,50€"},
+        {"name": "La Bressoise", "description": "Œuf, poulet cuisiné aux champignons et vin blanc, persillade, emmental râpé.", "price": "14,50€"},
+        {"name": "La Sanaryenne", "description": "Poulpe en daube, salade verte, croûtons de rouille.", "price": "16,50€"}
       ],
       "addons": [
-        {
-          "name": "assiette de frites",
-          "price": "5,00€"
-        }
-      ],
-      "nav_label": "Sarrasin"
+        {"name": "Accompagnement salade verte", "description": null, "price": "3,80€"},
+        {"name": "Assiette de frites", "description": null, "price": "5,00€"}
+      ]
     },
     {
       "id": "crepes-froment",
       "title": "Crêpes au Froment",
+      "nav_label": "Froment",
       "type": "list",
       "items": [
-        {
-          "name": "La Canne",
-          "description": "Sucre.",
-          "price": "5,00€"
-        },
-        {
-          "name": "La Lilloise",
-          "description": "Cassonade (sucre roux).",
-          "price": "5,80€"
-        },
-        {
-          "name": "La chantilly",
-          "description": "Sucre, chantilly.",
-          "price": "6,90€"
-        },
-        {
-          "name": "La Lemon",
-          "description": "Sucre, citron pressé.",
-          "price": "5,90€"
-        },
-        {
-          "name": "La charentaise",
-          "description": "Beurre, sucre.",
-          "price": "5,90€"
-        },
-        {
-          "name": "La Cannelle",
-          "description": "Beurre, cassonade (sucre roux), cannelle.",
-          "price": "6,90€"
-        },
-        {
-          "name": "La Bois d’ébène",
-          "description": "Chocolat maison fondu.",
-          "price": "6,90€"
-        },
-        {
-          "name": "L’Antillaise",
-          "description": "Banane, sucre.",
-          "price": "7,50€"
-        },
-        {
-          "name": "La Nutella",
-          "description": "Nutella.",
-          "price": "7,00€"
-        },
-        {
-          "name": "L’Aptésienne",
-          "description": "(au choix) confiture de : Myrtilles, fraises, framboises, groseilles, abricots, caramel au beurre salé, crème de marron, miel.",
-          "price": "6,60€"
-        },
-        {
-          "name": "La Revestoise",
-          "description": "Amandes grillées, miel.",
-          "price": "7,30€"
-        },
-        {
-          "name": "La Canadienne",
-          "description": "Sirop d’érable canadien.",
-          "price": "7,00€"
-        },
-        {
-          "name": "La Pic-noir",
-          "description": "Chocolat maison fondu, chantilly.",
-          "price": "8,30€"
-        },
-        {
-          "name": "La Parisienne",
-          "description": "2 boules glace vanille, chocolat maison fondu.",
-          "price": "9,00€"
-        },
-        {
-          "name": "La Tahitienne",
-          "description": "Noix de coco râpée, chocolat maison fondu.",
-          "price": "8,30€"
-        },
-        {
-          "name": "La Brasero",
-          "description": "Crêpe flambée au Grand-Marnier cordon rouge 4cl, sucre.",
-          "price": "9,10€"
-        },
-        {
-          "name": "La Golden",
-          "description": "Pommes caramélisées, beurre, sucre.",
-          "price": "9,00€"
-        },
-        {
-          "name": "La Mont-Blanc",
-          "description": "Crème de marron Clément Faugier, chantilly.",
-          "price": "8,60€"
-        },
-        {
-          "name": "La Joséphine",
-          "description": "Banane, chocolat maison fondu.",
-          "price": "9,00€"
-        },
-        {
-          "name": "L’Angevine",
-          "description": "Poire au sirop, chocolat maison fondu, chantilly.",
-          "price": "9,50€"
-        },
-        {
-          "name": "La Martiniquaise",
-          "description": "Banane, noisettes, amandes grillées, Rhum des îles 2cl.",
-          "price": "10,00€"
-        },
-        {
-          "name": "La Paris-Brest",
-          "description": "Pâte pralinée, amandes grillées, chantilly.",
-          "price": "9,90€"
-        },
-        {
-          "name": "La Bretonne",
-          "description": "2 boules de glace caramel fleur de sel, caramel beurre salé, éclats de sablé breton.",
-          "price": "10,50€"
-        },
-        {
-          "name": "La Tiramisu",
-          "description": "Mascarpone préparé, boule de glace café, sauce café, cacao en poudre.",
-          "price": "10,00€"
-        },
-        {
-          "name": "La Créole",
-          "description": "Ananas au sirop, sucre, Rhum des îles 2cl, chantilly.",
-          "price": "10,00€"
-        },
-        {
-          "name": "L’Everest",
-          "description": "Crème de marron Clément Faugier, chocolat maison fondu, noix, amandes grillées.",
-          "price": "10,00€"
-        },
-        {
-          "name": "La Suzon",
-          "description": "Confit d’orange, Grand-Marnier cordon rouge 2cl.",
-          "price": "9,90€"
-        },
-        {
-          "name": "La Bounty",
-          "description": "2 boules glace coco, chocolat maison fondu, noix de coco râpée.",
-          "price": "9,70€"
-        },
-        {
-          "name": "Little Boy",
-          "description": "Chocolat chaud, 2 boules de glace Nutella, copeaux de chocolat blanc, Praligrain.",
-          "price": "10,80€"
-        },
-        {
-          "name": "La Banofee",
-          "description": "Banane, caramel beurre salé, chantilly, brisures de biscuit.",
-          "price": "10,20€"
-        },
-        {
-          "name": "La Spéculoos",
-          "description": "Pommes caramélisées, beurre, sucre, brisures de Palets Bretons, façon crumble, boule de glace vanille, topping caramel.",
-          "price": "11,00€"
-        },
-        {
-          "name": "La Ventoux",
-          "description": "2 boules glace vanille, crème de marron Clément Faugier, Rhum des îles 2cl, chantilly..",
-          "price": "11,50€"
-        },
-        {
-          "name": "La Jamaïque",
-          "description": "Ananas au sirop, boule glace coco, banane, Rhum des îles 2cl.",
-          "price": "11,00€"
-        },
-        {
-          "name": "L’Impériale",
-          "description": "Glace vanille, chocolat maison fondu, miel, banane, Rhum des îles 2cl, amandes grillées, ananas au sirop.",
-          "price": "12,50€"
-        },
-        {
-          "name": "la peanut butter",
-          "description": "2 boules de glaces chocolat et caramel, beurre de cacahuètes, cacahuètes grillées.",
-          "price": "10,60€"
-        }
+        {"name": "La Canne", "description": "Sucre.", "price": "4,40€"},
+        {"name": "La Lilloise", "description": "Cassonade (sucre roux).", "price": "5,80€"},
+        {"name": "La Chantilly", "description": "Sucre, chantilly.", "price": "6,90€"},
+        {"name": "La Cannelle", "description": "Beurre, cassonade (sucre roux), cannelle.", "price": "6,90€"},
+        {"name": "La Charentaise", "description": "Beurre, sucre.", "price": "6,00€"},
+        {"name": "La Lemon", "description": "Sucre, citron.", "price": "6,00€"},
+        {"name": "La Bois d'ébène", "description": "Chocolat maison fondu.", "price": "7,20€"},
+        {"name": "L'Antillaise", "description": "Banane, sucre.", "price": "7,80€"},
+        {"name": "La Nutella", "description": "Nutella.", "price": "7,20€"},
+        {"name": "L'Aptésienne", "description": "(au choix) confiture de : Myrtilles, fraises, framboises, groseilles, abricots, caramel au beurre salé, crème de marron, miel.", "price": "7,00€"},
+        {"name": "La Revestoise", "description": "Amandes grillées, miel.", "price": "8,00€"},
+        {"name": "La Canadienne", "description": "Sirop d'érable canadien.", "price": "7,00€"},
+        {"name": "La Pic-noir", "description": "Chocolat maison fondu, chantilly.", "price": "8,80€"},
+        {"name": "La Parisienne", "description": "2 boules glace vanille, chocolat maison fondu.", "price": "9,50€"},
+        {"name": "La Tahitienne", "description": "Noix de coco râpée, chocolat maison fondu.", "price": "9,00€"},
+        {"name": "La Brasero", "description": "Crêpe flambée au Grand-Marnier cordon rouge 4cl, sucre.", "price": "9,90€"},
+        {"name": "La Golden", "description": "Pommes caramélisées, beurre, sucre.", "price": "9,90€"},
+        {"name": "La Mont-Blanc", "description": "Crème de marron Clément Faugier, chantilly.", "price": "9,50€"},
+        {"name": "La Joséphine", "description": "Banane, chocolat maison fondu.", "price": "9,00€"},
+        {"name": "L'Angevine", "description": "Poire au sirop, chocolat maison fondu, chantilly.", "price": "9,50€"},
+        {"name": "La Martiniquaise", "description": "Banane, noisettes, amandes grillées, Rhum des îles 2cl.", "price": "11,00€"},
+        {"name": "La Paris-Brest", "description": "Pâte pralinée, amandes grillées, chantilly.", "price": "10,50€"},
+        {"name": "La Bretonne", "description": "2 boules de glace caramel fleur de sel, caramel beurre salé, éclats de sablé breton.", "price": "11,50€"},
+        {"name": "La Tiramisu", "description": "Mascarpone préparé, boule de glace café, sauce café, cacao en poudre.", "price": "12,00€"},
+        {"name": "La Créole", "description": "Ananas au sirop, sucre, Rhum des îles 2cl, chantilly.", "price": "11,00€"},
+        {"name": "L'Everest", "description": "Crème de marron Clément Faugier, chocolat maison fondu, noix, amandes grillées.", "price": "11,50€"},
+        {"name": "La Suzon", "description": "Confit d'orange, Grand-Marnier cordon rouge 2cl.", "price": "10,90€"},
+        {"name": "La Bounty", "description": "2 boules glace coco, chocolat maison fondu, noix de coco râpée.", "price": "10,70€"},
+        {"name": "La Banofee", "description": "Banane, caramel beurre salé, chantilly, brisures de palets bretons.", "price": "12,00€"},
+        {"name": "Little boy", "description": "Chocolat maison fondu, 2 boules glace Nutella, copeaux de chocolat blanc, Praligrain.", "price": "12,00€"},
+        {"name": "La Spéculoos", "description": "Pommes caramélisées, beurre, sucre, brisures de Spéculoos façon crumble, boule de glace vanille, topping caramel.", "price": "12,50€"},
+        {"name": "La Ventoux", "description": "2 boules glace vanille, crème de marron Clément Faugier, Rhum des îles 2cl, chantilly.", "price": "12,50€"},
+        {"name": "La Jamaïque", "description": "Ananas au sirop, boule glace coco, banane, sucre, Rhum des îles 2cl.", "price": "12,00€"},
+        {"name": "L'Impériale", "description": "Glace vanille, chocolat maison fondu, miel, banane, Rhum des îles 2cl, amandes grillées, ananas au sirop.", "price": "13,00€"}
       ],
       "addons": [
-        {
-          "name": "Supplément Chantilly",
-          "price": "2,80€"
-        }
-      ],
-      "nav_label": "Froment"
+        {"name": "Supplément Chantilly", "description": null, "price": "3,20€"}
+      ]
     },
     {
       "id": "glaces",
-      "title": "glaces",
+      "title": "Glaces",
+      "nav_label": "Glaces",
       "type": "list",
+      "note": "Fabrication artisanale Il Monello, Sanary.",
       "subsections": [
-        {
-          "title": "Coupe 1 boule",
-          "price": "3,40€"
-        },
-        {
-          "title": "Coupe 2 boules",
-          "price": "5,50€"
-        },
-        {
-          "title": "Coupe 3 boules",
-          "price": "7,00€"
-        }
+        {"title": "Coupe 1 boule", "price": "3,60€"},
+        {"title": "Coupe 2 boules", "price": "6,00€"},
+        {"title": "Coupe 3 boules", "price": "7,50€"}
       ],
       "items": [
-        {
-          "name": "La bambino",
-          "description": "1 boule vanille, 1 boule Nutella, chantilly, confiseries, M&M's.",
-          "price": "8,00€"
-        },
-        {
-          "name": "La Dame blanche",
-          "description": "3 boules vanille, chocolat maison fondu, chantilly, amandes grillées, nappage chocolat.",
-          "price": "10,00€"
-        },
-        {
-          "name": "La Café Liégeois",
-          "description": "3 boules café, café froid, biscuit, amandes grillées, chantilly, nappage café.",
-          "price": "11,00€"
-        },
-        {
-          "name": "La Chocolat Liégeois",
-          "description": "3 boules chocolat, chocolat maison fondu, amandes grillées, biscuit, chantilly.",
-          "price": "11,00€"
-        },
-        {
-          "name": "La limoncello",
-          "description": "Sorbet citron, Limocello 6cl, biscuit.",
-          "price": "13,50€"
-        },
-        {
-          "name": "La Poire Belle-Hélène",
-          "description": "3 boules vanille, poire au sirop, chocolat maison fondu, biscuit, amandes grillées, chantilly.",
-          "price": "9,50€"
-        },
-        {
-          "name": "La Banana Split",
-          "description": "1 boule vanille, 1 boule fraise, 1 boule chocolat, biscuit, chocolat maison fondu, banane, amandes grillées, chantilly.",
-          "price": "10,50€"
-        },
-        {
-          "name": "Le Délice d’Auteuil",
-          "description": "2 boules caramel fleur de sel, 2 boules sorbet orange, sauce caramel, Praligrain, oranges confites, chantilly, biscuit.",
-          "price": "11,00€"
-        },
-        {
-          "name": "L’Ardéchoise",
-          "description": "3 boules vanille, chocolat maison fondu, noisettes, crème de marron Clément Faugier, nappage chocolat, biscuit, chantilly.",
-          "price": "11,00€"
-        },
-        {
-          "name": "La Lune Noire",
-          "description": "2 boules chocolat, 1 boule café, chocolat maison fondu, Brownies, copeaux de chocolat, biscuit, chantilly.",
-          "price": "11,00€"
-        },
-        {
-          "name": "Le Désir du Roi",
-          "description": "Profiteroles glace vanille, chocolat maison fondu, amandes grillées, chantilly, biscuit, nappage chocolat.",
-          "price": "11,00€"
-        },
-        {
-          "name": "L’Écureuil",
-          "description": "2 boules café, 2 boules praliné, noisettes, nappage caramel, chantilly, biscuit, Pralins.",
-          "price": "11,00€"
-        },
-        {
-          "name": "L’Américaine",
-          "description": "2 boules cookies, 1 boule vanille, noix de pécan, caramel fondu, cookie, biscuit, chantilly.",
-          "price": "12,00€"
-        },
-        {
-          "name": "Le Colonel",
-          "description": "Sorbet citron, Vodka 6cl, biscuit.",
-          "price": "12,50€"
-        },
-        {
-          "name": "L'amoretti",
-          "description": "Macaron, 1 boule fraise, 1 boule framboise, 1 boule cassis, mélange de fruits rouges, chantilly, biscuit.",
-          "price": "13,00€"
-        },
-        {
-          "name": "Le Mojito",
-          "description": "Sorbet Mojito, citron vert, menthe fraîche, Rhum des îles 6cl, biscuit.",
-          "price": "12,50€"
-        },
-        {
-          "name": "La Dulce de leche",
-          "description": "2 boules café, 1 boule coco, confiture de lait, chantilly, poudre de cacao.",
-          "price": "11,00€"
-        },
-        {
-          "name": "Le Galion",
-          "description": "1 boule cookie, 1 boule caramel, 1 boule chocolat, 1 boule praliné, 1 boule vanille, oranges confites, cookie, brownies, topping caramel beurre salé, praligrain, chantilly.",
-          "price": "16,00€"
-        },
-        {
-          "name": "café gourmand",
-          "description": null,
-          "price": "9,50€"
-        }
+        {"name": "La Bambino", "description": "1 boule vanille, 1 boule Nutella, chantilly, M&M's.", "price": "9,00€"},
+        {"name": "La Dame blanche", "description": "3 boules vanille, chocolat maison fondu, chantilly, amandes grillées, nappage chocolat.", "price": "11,00€"},
+        {"name": "La Café Liégeois", "description": "3 boules café, café froid, biscuit, amandes grillées, nappage café, chantilly.", "price": "11,50€"},
+        {"name": "La Chocolat Liégeois", "description": "3 boules chocolat, chocolat maison fondu, amandes grillées, biscuit, chantilly.", "price": "11,50€"},
+        {"name": "La Limoncello", "description": "Sorbet citron, Limoncello 6cl, biscuit.", "price": "14,00€"},
+        {"name": "La Pêche Melba", "description": "3 boules vanille, pêche au sirop, gelée de groseilles, amandes grillées, biscuit, coulis de fruits rouges, chantilly.", "price": "11,00€"},
+        {"name": "La Poire Belle-Hélène", "description": "3 boules vanille, poire au sirop, chocolat maison fondu, biscuit, amandes grillées, chantilly.", "price": "10,50€"},
+        {"name": "La Banana Split", "description": "1 boule vanille, 1 boule fraise, 1 boule chocolat, biscuit, chocolat maison fondu, banane, amandes grillées, chantilly.", "price": "11,00€"},
+        {"name": "Le Délice d'Auteuil", "description": "2 boules caramel fleur de sel, 2 boules sorbet orange, sauce caramel, Praligrain, oranges confites, chantilly, biscuit.", "price": "12,00€"},
+        {"name": "L'Ardéchoise", "description": "3 boules vanille, chocolat maison fondu, noisettes, crème de marron Clément Faugier, nappage chocolat, biscuit, chantilly.", "price": "12,00€"},
+        {"name": "La Lune Noire", "description": "2 boules chocolat, 1 boule café, chocolat maison fondu, brownies, copeaux de chocolat, biscuit, nappage chocolat, chantilly.", "price": "12,00€"},
+        {"name": "Le Désir du Roi", "description": "Profiteroles glace vanille, chocolat maison fondu, amandes grillées, chantilly, biscuit, nappage chocolat.", "price": "12,00€"},
+        {"name": "L'Écureuil", "description": "2 boules café, 2 boules praliné, noisettes, nappage caramel, chantilly, biscuit, Pralins.", "price": "12,00€"},
+        {"name": "La Ruché", "description": "2 boules vanille, 1 boule framboise, miel, graines de pollen, framboises fraîches, amandes grillées.", "price": "12,00€"},
+        {"name": "L'Américaine", "description": "2 boules cookies, 1 boule vanille, noix de pécan, caramel fondu, cookie, biscuit, chantilly.", "price": "13,00€"},
+        {"name": "Le Colonel", "description": "Sorbet citron, Vodka 6cl, biscuit.", "price": "14,00€"},
+        {"name": "Le Galion", "description": "1 boule passion, 1 boule mangue, 1 boule coco, 1 boule fraise, 1 boule banane, oranges confites, chantilly, fruits de saison.", "price": "16,00€"},
+        {"name": "Le Mojito", "description": "Sorbet Mojito, citron vert, menthe fraîche, Rhum 6cl, biscuit.", "price": "14,00€"},
+        {"name": "L'Amoretti", "description": "Macaron, 1 boule fraise, 1 boule framboise, 1 boule cassis, mélange de fruits rouges, chantilly, biscuit.", "price": "14,00€"},
+        {"name": "Café Gourmand", "description": null, "price": "10,00€"}
       ],
       "addons": [
-        {
-          "name": "Supplément chantilly",
-          "price": "2,80€"
-        }
+        {"name": "Supplément chantilly", "description": null, "price": "3,20€"}
       ],
       "flavors": {
         "ice_creams": "Vanille, chocolat, café, praliné, caramel fleur de sel, pistache, coco, Nutella, rhum-raisin, menthe-chocolat, cookies.",
-        "sorbets": "Cassis, citron, fraise, framboise, mangue, banane, passion, mojito, poire, orange, pomme, abricot."
-      },
-      "nav_label": "Glaces"
+        "sorbets": "Cassis, citron, fraise, framboise, mangue, banane, passion, mojito, poire, orange, melon, abricot."
+      }
     }
   ]
 }
