@@ -69,7 +69,9 @@
       new google.translate.TranslateElement({
         pageLanguage: 'fr',
         includedLanguages: 'en,es,de,it,nl,fr',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        // VERTICAL produit un <select> que nos chips pilotent.
+        // SIMPLE/HORIZONTAL ne créent pas de <select> exploitable.
+        layout: google.translate.TranslateElement.InlineLayout.VERTICAL,
         autoDisplay: false
       }, 'google_translate_element');
     }
