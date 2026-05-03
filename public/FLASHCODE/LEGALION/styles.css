@@ -146,13 +146,33 @@ a { color: inherit; }
   outline-offset: 2px;
 }
 
-/* Cache toute l'UI native Google Translate (bandeau, popup, sélecteur).
-   On garde le <select> caché : le clic des chips déclenche son change. */
-#google_translate_element { display: none !important; }
-.skiptranslate, .goog-te-banner-frame { display: none !important; }
-.goog-te-gadget { height: 0 !important; }
-body { top: 0 !important; }
-font[style*="background-color"] { background-color: transparent !important; box-shadow: none !important; }
+/* Le widget Google Translate doit RESTER dans le flux pour s'initialiser
+   (display: none l'empêche d'injecter son <select>). On le sort hors viewport. */
+#google_translate_element {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Bandeau Google "Cette page a été traduite par..." en haut */
+.skiptranslate iframe.goog-te-banner-frame,
+.goog-te-banner-frame { display: none !important; visibility: hidden !important; }
+
+/* Empêche Google de pousser le body de 40px à cause du bandeau */
+body { top: 0 !important; position: static !important; }
+
+/* Surlignage jaune des mots traduits au survol */
+.goog-tooltip,
+.goog-tooltip:hover,
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
 
 /* ---------- LAYOUT ---------- */
 
