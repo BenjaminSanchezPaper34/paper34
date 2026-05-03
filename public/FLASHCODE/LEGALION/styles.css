@@ -185,6 +185,9 @@ main {
 
 @media (min-width: 720px) {
   .section-nav__link { font-size: 14px; padding: 10px 20px; }
+  /* Sur écrans larges, les pastilles tiennent toutes : on les centre.
+     Sur mobile on garde flex-start pour préserver le scroll horizontal. */
+  .section-nav__list { justify-content: center; }
 }
 
 .section__title {
