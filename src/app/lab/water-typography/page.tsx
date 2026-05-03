@@ -46,8 +46,12 @@ export default function WaterTypographyPage() {
     let prevX = 0.5,
       prevY = 0.5;
     let prevT = performance.now();
+    // mouseX/Y = cible (mise à jour par pointermove).
+    // haloX/Y = position lissée affichée (lerp chaque frame).
     let mouseX = -9999,
       mouseY = -9999;
+    let haloX = -9999,
+      haloY = -9999;
 
     const start = performance.now();
     const nowSec = () => (performance.now() - start) / 1000;
@@ -76,6 +80,12 @@ export default function WaterTypographyPage() {
       const v = (Math.hypot(nx - prevX, ny - prevY) / dt) * 1000;
       mouseX = e.clientX;
       mouseY = e.clientY;
+      // Premier event : initialise le halo sur la position pour éviter
+      // un slide depuis -9999 lors du premier hover.
+      if (haloX < -9000) {
+        haloX = mouseX;
+        haloY = mouseY;
+      }
       addRipple(nx, ny, v, e.clientX, e.clientY);
       prevX = nx;
       prevY = ny;
@@ -168,9 +178,11 @@ export default function WaterTypographyPage() {
       }
 
       // ─── Couche 2 : halo continu du curseur (effet loupe) ────
-      if (mouseX > -9000) {
-        const cxh = (mouseX - bbox.left) * scaleX;
-        const cyh = (mouseY - bbox.top) * scaleY;
+      // Position lissée (lerp) pour gommer la sparseness des
+      // pointermove à vitesse lente — sinon le halo saute.
+      if (haloX > -9000) {
+        const cxh = (haloX - bbox.left) * scaleX;
+        const cyh = (haloY - bbox.top) * scaleY;
         const haloR = 50;
         const xh0 = Math.max(0, Math.floor(cxh - haloR));
         const yh0 = Math.max(0, Math.floor(cyh - haloR));
@@ -207,6 +219,11 @@ export default function WaterTypographyPage() {
     let tickCount = 0;
     let raf = 0;
     function tick() {
+      // Lissage halo vers cible (gomme les saccades à vitesse lente)
+      if (haloX > -9000) {
+        haloX += (mouseX - haloX) * 0.22;
+        haloY += (mouseY - haloY) * 0.22;
+      }
       renderDispMap(nowSec());
       // Kick le filtre : Chrome cache la première frame du canvas source
       // tant qu'aucun attribut du <filter> ne change. On change un noop.
