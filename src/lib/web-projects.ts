@@ -27,10 +27,10 @@ export const WEB_PROJECTS: WebProject[] = [
     description: "Institut de prothésie ongulaire",
   },
   {
-    name: "Le Komptoir 45",
-    url: "https://www.lekomptoir45.fr",
-    category: "Bar à vin",
-    description: "Bar à vin",
+    name: "O Soleil",
+    url: "https://www.osoleil-marseillan.fr",
+    category: "Restaurant",
+    description: "Restaurant à Marseillan",
   },
   {
     name: "Le Dix9",
