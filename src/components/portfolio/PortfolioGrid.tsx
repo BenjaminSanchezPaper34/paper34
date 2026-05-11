@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
-import { PORTFOLIO_CATEGORIES } from "@/lib/constants";
+import { PORTFOLIO_CATEGORIES, CONTACT_INFO } from "@/lib/constants";
 import { gsap } from "@/lib/animations";
 import type { PortfolioItem } from "@/lib/instagram";
 
@@ -332,6 +332,50 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
           </div>
         </div>
       </section>
+
+      {/* CTA Pixieset : visible uniquement en filtre Photos */}
+      {filter === "Photos" && (
+        <section className="bg-bg-primary pb-8">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <a
+              href={CONTACT_INFO.portfolio}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block rounded-2xl border border-accent/30 bg-gradient-to-br from-accent/15 via-accent/5 to-transparent hover:border-accent/60 hover:from-accent/20 transition-all duration-300 overflow-hidden"
+            >
+              <div className="flex items-center gap-5 p-5 md:p-6">
+                {/* Pictogramme appareil photo */}
+                <div className="shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-accent/15 border border-accent/30 flex items-center justify-center text-accent group-hover:scale-105 transition-transform">
+                  <svg className="w-6 h-6 md:w-7 md:h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-[11px] uppercase tracking-[0.2em] text-accent/80 mb-1">
+                    Galerie photos compl&egrave;te
+                  </p>
+                  <h3 className="text-base md:text-lg font-semibold text-text-primary mb-0.5">
+                    Voir toutes mes photos sur Pixieset
+                  </h3>
+                  <p className="text-sm text-text-secondary hidden md:block">
+                    Reportages &eacute;v&eacute;nements, portraits, immobilier, gastronomie &mdash; tri&eacute;s par projet, en haute d&eacute;finition.
+                  </p>
+                </div>
+                <div className="shrink-0 hidden sm:flex items-center gap-2 text-sm font-semibold text-accent group-hover:gap-3 transition-all">
+                  <span>Ouvrir</span>
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </div>
+                <svg className="w-5 h-5 text-accent shrink-0 sm:hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </div>
+            </a>
+          </div>
+        </section>
+      )}
 
       {/* Bento Grid */}
       <section className="pb-24 md:pb-32 bg-bg-primary">
