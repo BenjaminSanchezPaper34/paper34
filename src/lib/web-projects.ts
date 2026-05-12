@@ -44,6 +44,12 @@ export const WEB_PROJECTS: WebProject[] = [
     category: "Traiteur",
     description: "Traiteur",
   },
+  {
+    name: "La Guinguette",
+    url: "https://www.guinguette-bessan.fr",
+    category: "Restaurant",
+    description: "Guinguette à Bessan",
+  },
 ];
 
 /**
