@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# dossier de travail source des galeries photo (non déployé).
+# Seul public/galeries/ (traité par scripts/build-gallery.mjs) est versionné.
+Partage photos/
+.env*.local
+
+# Galeries : binaires hébergés sur Vercel Blob, pas dans git (seul manifest.json versionné)
+public/galeries/*/display/
+public/galeries/*/originals/

@@ -1,0 +1,47 @@
+{
+  "slug": "chiringuito-opening",
+  "title": "Opening",
+  "client": "Chiringuito Vias",
+  "date": "2026-06-06",
+  "count": 3,
+  "totalOriginalBytes": 2671588,
+  "photos": [
+    {
+      "id": "A7506241-DxO_DeepPRIME XD3",
+      "display": "https://eoqecoejoejelbxu.public.blob.vercel-storage.com/galeries/chiringuito-opening/display/A7506241-DxO_DeepPRIME%20XD3.jpg",
+      "original": "https://eoqecoejoejelbxu.public.blob.vercel-storage.com/galeries/chiringuito-opening/originals/A7506241-DxO_DeepPRIME%20XD3.heic",
+      "downloadName": "A7506241-DxO_DeepPRIME XD3.heic",
+      "width": 1440,
+      "height": 2160,
+      "originalBytes": 908660,
+      "originalExt": "heic",
+      "_relDisplay": "display/A7506241-DxO_DeepPRIME XD3.jpg",
+      "_relOriginal": "originals/A7506241-DxO_DeepPRIME XD3.heic"
+    },
+    {
+      "id": "A7506246-DxO_DeepPRIME XD3",
+      "display": "https://eoqecoejoejelbxu.public.blob.vercel-storage.com/galeries/chiringuito-opening/display/A7506246-DxO_DeepPRIME%20XD3.jpg",
+      "original": "https://eoqecoejoejelbxu.public.blob.vercel-storage.com/galeries/chiringuito-opening/originals/A7506246-DxO_DeepPRIME%20XD3.heic",
+      "downloadName": "A7506246-DxO_DeepPRIME XD3.heic",
+      "width": 1440,
+      "height": 1800,
+      "originalBytes": 915922,
+      "originalExt": "heic",
+      "_relDisplay": "display/A7506246-DxO_DeepPRIME XD3.jpg",
+      "_relOriginal": "originals/A7506246-DxO_DeepPRIME XD3.heic"
+    },
+    {
+      "id": "A7506248-DxO_DeepPRIME XD3",
+      "display": "https://eoqecoejoejelbxu.public.blob.vercel-storage.com/galeries/chiringuito-opening/display/A7506248-DxO_DeepPRIME%20XD3.jpg",
+      "original": "https://eoqecoejoejelbxu.public.blob.vercel-storage.com/galeries/chiringuito-opening/originals/A7506248-DxO_DeepPRIME%20XD3.heic",
+      "downloadName": "A7506248-DxO_DeepPRIME XD3.heic",
+      "width": 1440,
+      "height": 1800,
+      "originalBytes": 847006,
+      "originalExt": "heic",
+      "_relDisplay": "display/A7506248-DxO_DeepPRIME XD3.jpg",
+      "_relOriginal": "originals/A7506248-DxO_DeepPRIME XD3.heic"
+    }
+  ],
+  "storage": "blob"
+}
