@@ -98,6 +98,18 @@ body {
   }
 }
 
+/* Lightbox galerie : apparition fondu + léger zoom (premium) */
+@keyframes lightboxIn {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;

@@ -13,7 +13,7 @@
  * Usage : node --env-file=.env.local scripts/upload-gallery-blob.mjs
  */
 
-import { put } from "@vercel/blob";
+import { put, list, del } from "@vercel/blob";
 import { readFileSync, writeFileSync, existsSync } from "fs";
 import { join } from "path";
 
@@ -36,7 +36,23 @@ async function uploadGallery(slug) {
   }
 
   const manifest = JSON.parse(readFileSync(manifestPath, "utf-8"));
-  console.log(`\n☁️  ${slug} — ${manifest.photos.length} photos vers Blob`);
+
+  // Nettoyage : supprime tous les anciens fichiers Blob de cette galerie
+  // (sinon des photos retirées/renommées resteraient orphelines sur Blob).
+  const prefix = `galeries/${slug}/`;
+  let deleted = 0;
+  let cursor;
+  do {
+    const res = await list({ token: TOKEN, prefix, cursor, limit: 1000 });
+    if (res.blobs.length > 0) {
+      await del(res.blobs.map((b) => b.url), { token: TOKEN });
+      deleted += res.blobs.length;
+    }
+    cursor = res.cursor;
+  } while (cursor);
+  if (deleted > 0) console.log(`\n🧹 ${slug} — ${deleted} ancien(s) fichier(s) Blob supprimé(s)`);
+
+  console.log(`☁️  ${slug} — ${manifest.photos.length} photos vers Blob`);
 
   for (let i = 0; i < manifest.photos.length; i++) {
     const p = manifest.photos[i];
