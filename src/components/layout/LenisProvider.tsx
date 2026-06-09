@@ -9,9 +9,7 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
   const pathname = usePathname();
   // Désactivé sur les pages internes (dashboard) — scroll natif plus adapté
   const disabled =
-    (pathname?.startsWith("/studio") ||
-      pathname?.startsWith("/lab") ||
-      pathname?.startsWith("/galerie")) ??
+    (pathname?.startsWith("/lab") || pathname?.startsWith("/galerie/")) ??
     false;
 
   useEffect(() => {
