@@ -7,6 +7,7 @@ import {
   type Gallery,
 } from "@/lib/galleries";
 import ClientGallery from "@/components/gallery/ClientGallery";
+import GalleryIntro from "@/components/gallery/GalleryIntro";
 
 // Génère une page statique par galerie au build.
 export function generateStaticParams() {
@@ -68,11 +69,15 @@ export default async function GaleriePage({
         <p className="text-text-secondary">
           {formatDateFr(gallery.date)} · {gallery.count} photos
         </p>
-        <p className="text-sm text-text-tertiary mt-4 max-w-xl">
-          Cliquez sur une photo pour l&apos;agrandir. Téléchargez vos photos
-          individuellement ou en une fois — les fichiers sont fournis en
-          qualité originale.
-        </p>
+        {gallery.intro ? (
+          <GalleryIntro text={gallery.intro} />
+        ) : (
+          <p className="text-sm text-text-tertiary mt-4 max-w-xl">
+            Cliquez sur une photo pour l&apos;agrandir. Téléchargez vos photos
+            individuellement ou en une fois — les fichiers sont fournis en
+            qualité originale.
+          </p>
+        )}
       </header>
 
       <ClientGallery gallery={gallery} />

@@ -25,6 +25,8 @@ export type Gallery = {
   date: string;
   count: number;
   totalOriginalBytes: number;
+  /** Texte d'intro personnalisé (avec retours ligne et @mentions). Optionnel. */
+  intro?: string;
   photos: GalleryPhoto[];
 };
 

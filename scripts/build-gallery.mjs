@@ -76,6 +76,12 @@ const GALLERIES = [
     client: "Chiringuito Vias",
     date: "2026-06-06",
     src: "Partage photos/CHIRINGUITO - VIAS/1-06I06I26-OPENING",
+    intro:
+      "👇 Tap sur une photo pour la télécharger\n" +
+      "❤️ N'hésitez pas à nous mentionner sur vos réseaux ❤️\n\n" +
+      "🌴 @chiringuitovias\n" +
+      "🎧 @bon_entendeur @demsko2.1 @maxxbaty @morezan.music\n" +
+      "📸 @benjaminsanchez_paper34",
   },
 ];
 
@@ -186,6 +192,7 @@ async function buildGallery(g) {
     title: g.title,
     client: g.client,
     date: g.date,
+    ...(g.intro ? { intro: g.intro } : {}),
     count: photos.length,
     totalOriginalBytes: photos.reduce((s, p) => s + p.originalBytes, 0),
     photos,
