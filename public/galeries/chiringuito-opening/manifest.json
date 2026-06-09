@@ -3,8 +3,8 @@
   "title": "Opening",
   "client": "Chiringuito Vias",
   "date": "2026-06-06",
-  "count": 209,
-  "totalOriginalBytes": 160633841,
+  "count": 210,
+  "totalOriginalBytes": 161072215,
   "photos": [
     {
       "id": "A7V-1",
@@ -917,6 +917,18 @@
       "originalExt": "heic",
       "_relDisplay": "display/A7V-79.jpg",
       "_relOriginal": "originals/A7V-79.heic"
+    },
+    {
+      "id": "A7V-80",
+      "display": "https://eoqecoejoejelbxu.public.blob.vercel-storage.com/galeries/chiringuito-opening/display/A7V-80.jpg",
+      "original": "https://eoqecoejoejelbxu.public.blob.vercel-storage.com/galeries/chiringuito-opening/originals/A7V-80.heic",
+      "downloadName": "A7V-80.heic",
+      "width": 1365,
+      "height": 2048,
+      "originalBytes": 438374,
+      "originalExt": "heic",
+      "_relDisplay": "display/A7V-80.jpg",
+      "_relOriginal": "originals/A7V-80.heic"
     },
     {
       "id": "A7V-81",
