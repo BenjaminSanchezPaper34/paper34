@@ -10,6 +10,7 @@ export default function JsonLd() {
       "https://www.instagram.com/benjaminsanchez_paper34",
       "https://www.facebook.com/Paper34",
       "https://www.linkedin.com/in/benjamin-sanchez-2395a4288",
+      "https://www.tiktok.com/@benjaminsanchez_paper34",
       "https://benjaminsanchez-paper34.pixieset.com",
     ],
     contactPoint: {

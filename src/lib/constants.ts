@@ -221,6 +221,7 @@ export const CONTACT_INFO = {
   instagram: "https://www.instagram.com/benjaminsanchez_paper34",
   facebook: "https://www.facebook.com/Paper34",
   linkedin: "https://www.linkedin.com/in/benjamin-sanchez-2395a4288",
+  tiktok: "https://www.tiktok.com/@benjaminsanchez_paper34",
   portfolio: "https://benjaminsanchez-paper34.pixieset.com",
   googleReview: "https://g.page/r/CYYVSpDMpiAZEB0/review",
 } as const;
