@@ -280,13 +280,13 @@ export default function ClientGallery({ gallery }: Props) {
         </div>
       </div>
 
-      {/* Grille masonry */}
+      {/* Grille uniforme : ordre de lecture gauche→droite puis ligne suivante */}
       <div className="mx-auto max-w-7xl px-6 py-8">
-        <div className="columns-2 md:columns-3 gap-3 [&>*]:mb-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3">
           {photos.map((p, i) => (
             <div
               key={p.id}
-              className="group relative break-inside-avoid rounded-xl overflow-hidden bg-bg-card cursor-pointer [transform:translateZ(0)] [will-change:transform]"
+              className="group relative aspect-square rounded-xl overflow-hidden bg-bg-card cursor-pointer [transform:translateZ(0)] [will-change:transform]"
               onClick={() => setLightbox(i)}
             >
               <img
@@ -296,7 +296,7 @@ export default function ClientGallery({ gallery }: Props) {
                 height={p.height}
                 loading="lazy"
                 draggable={false}
-                className="w-full h-auto block rounded-xl transition-transform duration-500 group-hover:scale-[1.03] select-none pointer-events-none [-webkit-touch-callout:none]"
+                className="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-[1.05] select-none pointer-events-none [-webkit-touch-callout:none]"
               />
               {/* Overlay download au hover */}
               <button
