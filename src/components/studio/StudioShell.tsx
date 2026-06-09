@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import {
   type StudioData,
   loadStudioData,
@@ -191,6 +192,15 @@ export default function StudioShell() {
                 {syncMeta[syncState].label}
               </span>
             )}
+            <Link
+              href="/studio/galeries"
+              className="inline-flex items-center gap-1.5 text-xs rounded-full px-3 py-1.5 bg-accent/10 border border-accent/30 text-accent hover:bg-accent/20 transition-colors"
+            >
+              <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              Galeries
+            </Link>
             <button
               onClick={() => fileInputRef.current?.click()}
               className="text-xs rounded-full px-3 py-1.5 bg-bg-card border border-border text-text-secondary hover:text-text-primary hover:border-border-hover transition-colors"
