@@ -43,14 +43,6 @@ export default function Footer() {
                   Contact
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/galeries"
-                  className="text-sm text-text-secondary hover:text-text-primary transition-colors"
-                >
-                  Galeries
-                </Link>
-              </li>
             </ul>
           </div>
 

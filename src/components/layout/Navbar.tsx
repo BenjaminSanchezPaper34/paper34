@@ -92,7 +92,7 @@ export default function Navbar() {
       {/* Mobile menu */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-500 ${
-          mobileOpen ? "max-h-80" : "max-h-0"
+          mobileOpen ? "max-h-96" : "max-h-0"
         }`}
       >
         <div className="bg-bg-primary/95 backdrop-blur-2xl border-t border-border px-6 py-6 flex flex-col gap-4">
