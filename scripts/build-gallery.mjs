@@ -48,6 +48,26 @@ function heicToDisplayJpeg(srcPath, outPath, maxEdge, longEdge) {
   execFileSync("sips", args, { stdio: ["ignore", "ignore", "pipe"] });
 }
 
+/** Date de prise de vue (EXIF via Spotlight macOS), ISO triable ou "". */
+function captureDate(path) {
+  try {
+    const out = execFileSync(
+      "mdls",
+      ["-raw", "-name", "kMDItemContentCreationDate", path],
+      { encoding: "utf8" }
+    ).trim();
+    return out === "(null)" ? "" : out;
+  } catch {
+    return "";
+  }
+}
+
+/** Premier nombre dans un nom (fallback de tri). */
+function numIn(name) {
+  const m = name.match(/(\d+)/);
+  return m ? parseInt(m[1], 10) : 0;
+}
+
 // ─── Config des galeries à construire ──────────────────────────────
 const GALLERIES = [
   {
@@ -76,9 +96,21 @@ async function buildGallery(g) {
   mkdirSync(displayDir, { recursive: true });
   mkdirSync(originalsDir, { recursive: true });
 
-  const files = readdirSync(g.src)
-    .filter((f) => SOURCE_EXT.has(extname(f).toLowerCase()))
-    .sort();
+  // Tri par DATE DE PRISE DE VUE (EXIF via mdls), pas par nom de fichier
+  // (A7V-100 viendrait avant A7V-2). Fallback : numéro dans le nom.
+  const rawFiles = readdirSync(g.src).filter((f) =>
+    SOURCE_EXT.has(extname(f).toLowerCase())
+  );
+  const captureDates = {};
+  for (const f of rawFiles) captureDates[f] = captureDate(join(g.src, f));
+  const files = rawFiles.sort((a, b) => {
+    const da = captureDates[a] || "";
+    const db = captureDates[b] || "";
+    if (da && db && da !== db) return da < db ? -1 : 1;
+    if (da && !db) return -1;
+    if (!da && db) return 1;
+    return numIn(a) - numIn(b);
+  });
 
   if (files.length === 0) {
     console.warn(`⚠️  Aucune photo trouvée dans ${g.src}`);
