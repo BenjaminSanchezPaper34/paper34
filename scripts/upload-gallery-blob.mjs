@@ -14,7 +14,7 @@
  */
 
 import { put, list, del } from "@vercel/blob";
-import { readFileSync, writeFileSync, existsSync } from "fs";
+import { readFileSync, writeFileSync, existsSync, rmSync } from "fs";
 import { join } from "path";
 
 const SLUGS = ["chiringuito-opening"];
@@ -110,7 +110,15 @@ async function uploadGallery(slug) {
 
   manifest.storage = "blob";
   writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
-  console.log(`✅ ${slug} : manifest réécrit avec URLs Blob`);
+
+  // Nettoyage : les binaires locaux (display/originals) sont maintenant sur
+  // Blob → on les supprime pour garder le dossier de travail léger et éviter
+  // qu'un `vercel deploy` CLI les embarque (dépasserait la limite 250 Mo).
+  for (const sub of ["display", "originals"]) {
+    const p = join(dir, sub);
+    if (existsSync(p)) rmSync(p, { recursive: true, force: true });
+  }
+  console.log(`✅ ${slug} : manifest réécrit avec URLs Blob · binaires locaux nettoyés`);
 }
 
 for (const slug of SLUGS) {
