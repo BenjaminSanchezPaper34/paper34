@@ -62,10 +62,11 @@ for (const g of GALLERIES) {
   }
   const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
   const have = new Set(manifest.photos.map((p) => p.downloadName));
+  const excluded = new Set(manifest.excluded || []); // retirées volontairement
 
   const newFiles = readdirSync(g.src)
     .filter((f) => SOURCE_EXT.has(extname(f).toLowerCase()))
-    .filter((f) => !have.has(f))
+    .filter((f) => !have.has(f) && !excluded.has(f))
     .sort((a, b) => fileNum(a) - fileNum(b));
 
   if (newFiles.length === 0) {

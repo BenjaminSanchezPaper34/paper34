@@ -69,6 +69,8 @@ const GALLERIES = [
       "🌴 @chiringuitovias\n" +
       "🎧 @bon_entendeur @demsko2.1 @maxxbaty @morezan.music\n" +
       "📸 @benjaminsanchez_paper34",
+    // Numéros de photo à NE PAS inclure (retirées volontairement).
+    exclude: [194, 196, 197],
   },
 ];
 
@@ -92,8 +94,10 @@ async function buildGallery(g) {
   // Tri par NUMÉRO de fichier (A7V-1, 2, 3, … 209), pas par ordre alpha
   // (A7V-100 viendrait avant A7V-2) : on prend le DERNIER groupe de chiffres
   // du nom (le préfixe « A7V » contient déjà un 7).
+  const excludeNums = new Set(g.exclude || []);
   const files = readdirSync(g.src)
     .filter((f) => SOURCE_EXT.has(extname(f).toLowerCase()))
+    .filter((f) => !excludeNums.has(fileNum(f)))
     .sort((a, b) => fileNum(a) - fileNum(b));
 
   if (files.length === 0) {

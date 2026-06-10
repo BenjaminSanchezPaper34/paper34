@@ -3,8 +3,8 @@
   "title": "Opening",
   "client": "Chiringuito Vias",
   "date": "2026-06-06",
-  "count": 210,
-  "totalOriginalBytes": 161072215,
+  "count": 207,
+  "totalOriginalBytes": 158718212,
   "photos": [
     {
       "id": "A7V-1",
@@ -2227,18 +2227,6 @@
       "_relOriginal": "originals/A7V-193.heic"
     },
     {
-      "id": "A7V-194",
-      "display": "https://eoqecoejoejelbxu.public.blob.vercel-storage.com/galeries/chiringuito-opening/display/A7V-194.jpg",
-      "original": "https://eoqecoejoejelbxu.public.blob.vercel-storage.com/galeries/chiringuito-opening/originals/A7V-194.heic",
-      "downloadName": "A7V-194.heic",
-      "width": 1440,
-      "height": 1800,
-      "originalBytes": 567899,
-      "originalExt": "heic",
-      "_relDisplay": "display/A7V-194.jpg",
-      "_relOriginal": "originals/A7V-194.heic"
-    },
-    {
       "id": "A7V-195",
       "display": "https://eoqecoejoejelbxu.public.blob.vercel-storage.com/galeries/chiringuito-opening/display/A7V-195.jpg",
       "original": "https://eoqecoejoejelbxu.public.blob.vercel-storage.com/galeries/chiringuito-opening/originals/A7V-195.heic",
@@ -2249,30 +2237,6 @@
       "originalExt": "heic",
       "_relDisplay": "display/A7V-195.jpg",
       "_relOriginal": "originals/A7V-195.heic"
-    },
-    {
-      "id": "A7V-196",
-      "display": "https://eoqecoejoejelbxu.public.blob.vercel-storage.com/galeries/chiringuito-opening/display/A7V-196.jpg",
-      "original": "https://eoqecoejoejelbxu.public.blob.vercel-storage.com/galeries/chiringuito-opening/originals/A7V-196.heic",
-      "downloadName": "A7V-196.heic",
-      "width": 1440,
-      "height": 1800,
-      "originalBytes": 771390,
-      "originalExt": "heic",
-      "_relDisplay": "display/A7V-196.jpg",
-      "_relOriginal": "originals/A7V-196.heic"
-    },
-    {
-      "id": "A7V-197",
-      "display": "https://eoqecoejoejelbxu.public.blob.vercel-storage.com/galeries/chiringuito-opening/display/A7V-197.jpg",
-      "original": "https://eoqecoejoejelbxu.public.blob.vercel-storage.com/galeries/chiringuito-opening/originals/A7V-197.heic",
-      "downloadName": "A7V-197.heic",
-      "width": 1365,
-      "height": 2048,
-      "originalBytes": 1014714,
-      "originalExt": "heic",
-      "_relDisplay": "display/A7V-197.jpg",
-      "_relOriginal": "originals/A7V-197.heic"
     },
     {
       "id": "A7V-198",
@@ -2528,5 +2492,10 @@
     }
   ],
   "storage": "blob",
-  "intro": "👇 Tap sur une photo pour la télécharger\n❤️ N'hésitez pas à nous mentionner sur vos réseaux ❤️\n\n🌴 @chiringuitovias\n🎧 @bon_entendeur @demsko2.1 @maxxbaty @morezan.music\n📸 @benjaminsanchez_paper34"
+  "intro": "👇 Tap sur une photo pour la télécharger\n❤️ N'hésitez pas à nous mentionner sur vos réseaux ❤️\n\n🌴 @chiringuitovias\n🎧 @bon_entendeur @demsko2.1 @maxxbaty @morezan.music\n📸 @benjaminsanchez_paper34",
+  "excluded": [
+    "A7V-194.heic",
+    "A7V-196.heic",
+    "A7V-197.heic"
+  ]
 }
