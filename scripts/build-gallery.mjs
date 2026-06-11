@@ -78,25 +78,33 @@ const GALLERIES = [
 // petits ne sont pas agrandis.
 const DISPLAY_MAX_EDGE = 2048;
 const DISPLAY_QUALITY = 90; // pour les sources déjà SDR (jpg/png) via sharp
+// Vignette de grille : petite + légère → ~9× moins de transfert que le display.
+const THUMB_MAX_EDGE = 640;
+const THUMB_QUALITY = 72;
 
 const SOURCE_EXT = new Set([".heic", ".heif", ".jpg", ".jpeg", ".png", ".tif", ".tiff"]);
 
 async function buildGallery(g) {
   const outDir = join("public", "galeries", g.slug);
   const displayDir = join(outDir, "display");
+  const thumbDir = join(outDir, "thumb");
   const originalsDir = join(outDir, "originals");
 
   // Reset propre
   if (existsSync(outDir)) rmSync(outDir, { recursive: true, force: true });
   mkdirSync(displayDir, { recursive: true });
+  mkdirSync(thumbDir, { recursive: true });
   mkdirSync(originalsDir, { recursive: true });
 
   // Tri par NUMÉRO de fichier (A7V-1, 2, 3, … 209), pas par ordre alpha
   // (A7V-100 viendrait avant A7V-2) : on prend le DERNIER groupe de chiffres
   // du nom (le préfixe « A7V » contient déjà un 7).
   const excludeNums = new Set(g.exclude || []);
-  const files = readdirSync(g.src)
-    .filter((f) => SOURCE_EXT.has(extname(f).toLowerCase()))
+  const allSrc = readdirSync(g.src).filter((f) =>
+    SOURCE_EXT.has(extname(f).toLowerCase())
+  );
+  const excludedNames = allSrc.filter((f) => excludeNums.has(fileNum(f)));
+  const files = allSrc
     .filter((f) => !excludeNums.has(fileNum(f)))
     .sort((a, b) => fileNum(a) - fileNum(b));
 
@@ -149,9 +157,20 @@ async function buildGallery(g) {
       displayH = info.height;
     }
 
+    // 3. Vignette de grille (légère) — générée depuis le display (rapide),
+    //    profil couleur conservé.
+    const thumbName = `${stem}.jpg`;
+    const thumbPath = join(thumbDir, thumbName);
+    await sharp(displayPath)
+      .resize({ width: THUMB_MAX_EDGE, height: THUMB_MAX_EDGE, fit: "inside", withoutEnlargement: true })
+      .keepIccProfile()
+      .jpeg({ quality: THUMB_QUALITY, mozjpeg: true })
+      .toFile(thumbPath);
+
     // Chemins bruts (non encodés) — l'encodage URL se fait au rendu.
     photos.push({
       id: stem,
+      thumb: `thumb/${thumbName}`,
       display: `display/${displayName}`,
       original: `originals/${originalName}`,
       downloadName: originalName,
@@ -162,10 +181,11 @@ async function buildGallery(g) {
     });
 
     const displaySize = statSync(displayPath).size;
+    const thumbSize = statSync(thumbPath).size;
     console.log(
-      `  ✓ ${i}/${files.length}  ${file}  →  affichage ${displayW}×${displayH} (${Math.round(
+      `  ✓ ${i}/${files.length}  ${file}  →  vignette ${Math.round(thumbSize / 1024)} Ko · affichage ${Math.round(
         displaySize / 1024
-      )} Ko, P3) · original ${Math.round(originalSize / 1024)} Ko intact`
+      )} Ko (P3) · original ${Math.round(originalSize / 1024)} Ko intact`
     );
   }
 
@@ -175,6 +195,7 @@ async function buildGallery(g) {
     client: g.client,
     date: g.date,
     ...(g.intro ? { intro: g.intro } : {}),
+    ...(excludedNames.length ? { excluded: excludedNames } : {}),
     count: photos.length,
     totalOriginalBytes: photos.reduce((s, p) => s + p.originalBytes, 0),
     photos,

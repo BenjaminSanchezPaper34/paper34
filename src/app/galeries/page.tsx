@@ -61,7 +61,7 @@ export default function GaleriesPage() {
               {galleries.map((g) => {
                 const url = `${SITE}/galerie/${g.slug}`;
                 const cover = g.photos[0]
-                  ? assetUrl(g.slug, g.photos[0].display)
+                  ? assetUrl(g.slug, g.photos[0].thumb || g.photos[0].display)
                   : null;
                 return (
                   <Link

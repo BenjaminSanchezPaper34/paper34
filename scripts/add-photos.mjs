@@ -1,14 +1,14 @@
 /**
- * add-photos.mjs — Ajoute INCRÉMENTALEMENT les nouvelles photos d'une galerie.
+ * add-photos.mjs — Ajoute INCRÉMENTALEMENT les nouvelles photos d'une galerie (R2).
  *
- * Détecte les fichiers source absents du manifest, les traite (display P3 via
- * sips), les uploade sur Blob, les insère dans le manifest puis re-trie par
- * numéro de fichier. Ne touche pas aux photos déjà présentes (zéro re-upload).
+ * Détecte les fichiers source absents du manifest (hors `excluded`), génère
+ * vignette + affichage (display P3), uploade vignette + affichage + original
+ * sur R2, insère dans le manifest puis re-trie par numéro de fichier.
+ * Ne re-traite ni ne re-uploade l'existant.
  *
  * Usage : node --env-file=.env.local scripts/add-photos.mjs
  */
 
-import { put } from "@vercel/blob";
 import sharp from "sharp";
 import {
   readFileSync,
@@ -21,32 +21,30 @@ import {
 } from "fs";
 import { execFileSync } from "child_process";
 import { join, extname } from "path";
+import { requireR2, r2Client, putFile } from "./r2.mjs";
 
 const GALLERIES = [
-  {
-    slug: "chiringuito-opening",
-    src: "Partage photos/CHIRINGUITO - VIAS/1-06I06I26-OPENING",
-  },
+  { slug: "chiringuito-opening", src: "Partage photos/CHIRINGUITO - VIAS/1-06I06I26-OPENING" },
 ];
 
-const TOKEN = process.env.BLOB_READ_WRITE_TOKEN;
-if (!TOKEN) {
-  console.error("❌ Lance avec : node --env-file=.env.local scripts/add-photos.mjs");
-  process.exit(1);
-}
-
 const DISPLAY_MAX_EDGE = 2048;
+const THUMB_MAX_EDGE = 640;
+const THUMB_QUALITY = 72;
 const DISPLAY_P3 = "/System/Library/ColorSync/Profiles/Display P3.icc";
 const HEIC_EXT = new Set([".heic", ".heif"]);
 const SOURCE_EXT = new Set([".heic", ".heif", ".jpg", ".jpeg", ".png", ".tif", ".tiff"]);
 
-/** Dernier groupe de chiffres d'un nom (hors extension) → numéro de prise. */
 function fileNum(name) {
   const base = name.replace(/\.[^.]+$/, "");
   const nums = base.match(/\d+/g);
   return nums ? parseInt(nums[nums.length - 1], 10) : 0;
 }
-
+function ctOf(ext) {
+  const e = ext.toLowerCase().replace(".", "");
+  if (e === "heic" || e === "heif") return "image/heic";
+  if (e === "png") return "image/png";
+  return "image/jpeg";
+}
 function heicToP3(srcPath, outPath, longEdge) {
   const args = ["-s", "format", "jpeg", "-s", "formatOptions", "high", "-m", DISPLAY_P3];
   if (longEdge > DISPLAY_MAX_EDGE) args.push("-Z", String(DISPLAY_MAX_EDGE));
@@ -54,15 +52,19 @@ function heicToP3(srcPath, outPath, longEdge) {
   execFileSync("sips", args, { stdio: ["ignore", "ignore", "pipe"] });
 }
 
+requireR2();
+const client = r2Client();
+
 for (const g of GALLERIES) {
-  const manifestPath = join("public", "galeries", g.slug, "manifest.json");
+  const dir = join("public", "galeries", g.slug);
+  const manifestPath = join(dir, "manifest.json");
   if (!existsSync(manifestPath)) {
     console.warn(`⚠️  Pas de manifest pour ${g.slug}`);
     continue;
   }
   const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
   const have = new Set(manifest.photos.map((p) => p.downloadName));
-  const excluded = new Set(manifest.excluded || []); // retirées volontairement
+  const excluded = new Set(manifest.excluded || []);
 
   const newFiles = readdirSync(g.src)
     .filter((f) => SOURCE_EXT.has(extname(f).toLowerCase()))
@@ -75,15 +77,16 @@ for (const g of GALLERIES) {
   }
   console.log(`📸 ${g.slug} : ${newFiles.length} nouvelle(s) photo(s)`);
 
-  const tmpDir = join("public", "galeries", g.slug, "_tmp");
-  mkdirSync(tmpDir, { recursive: true });
+  const tmp = join(dir, "_tmp");
+  mkdirSync(tmp, { recursive: true });
 
   for (const file of newFiles) {
     const srcPath = join(g.src, file);
     const ext = extname(file).toLowerCase();
     const stem = file.slice(0, file.length - ext.length);
     const originalSize = statSync(srcPath).size;
-    const displayLocal = join(tmpDir, `${stem}.jpg`);
+    const displayLocal = join(tmp, `${stem}.disp.jpg`);
+    const thumbLocal = join(tmp, `${stem}.thumb.jpg`);
 
     let dw, dh;
     if (HEIC_EXT.has(ext)) {
@@ -102,43 +105,35 @@ for (const g of GALLERIES) {
       dw = info.width;
       dh = info.height;
     }
+    await sharp(displayLocal)
+      .resize({ width: THUMB_MAX_EDGE, height: THUMB_MAX_EDGE, fit: "inside", withoutEnlargement: true })
+      .keepIccProfile()
+      .jpeg({ quality: THUMB_QUALITY, mozjpeg: true })
+      .toFile(thumbLocal);
 
-    const displayBlob = await put(`galeries/${g.slug}/display/${stem}.jpg`, readFileSync(displayLocal), {
-      access: "public",
-      token: TOKEN,
-      contentType: "image/jpeg",
-      addRandomSuffix: false,
-      allowOverwrite: true,
-    });
-    const originalBlob = await put(`galeries/${g.slug}/originals/${file}`, readFileSync(srcPath), {
-      access: "public",
-      token: TOKEN,
-      addRandomSuffix: false,
-      allowOverwrite: true,
-    });
+    const thumbUrl = await putFile(client, `galeries/${g.slug}/thumb/${stem}.jpg`, thumbLocal, "image/jpeg");
+    const displayUrl = await putFile(client, `galeries/${g.slug}/display/${stem}.jpg`, displayLocal, "image/jpeg");
+    const originalUrl = await putFile(client, `galeries/${g.slug}/originals/${file}`, srcPath, ctOf(ext));
 
     manifest.photos.push({
       id: stem,
-      display: displayBlob.url,
-      original: originalBlob.url,
+      thumb: thumbUrl,
+      display: displayUrl,
+      original: originalUrl,
       downloadName: file,
       width: dw,
       height: dh,
       originalBytes: originalSize,
       originalExt: ext.replace(".", ""),
-      _relDisplay: `display/${stem}.jpg`,
-      _relOriginal: `originals/${file}`,
     });
     console.log(`  + ${file}`);
   }
 
-  rmSync(tmpDir, { recursive: true, force: true });
+  rmSync(tmp, { recursive: true, force: true });
 
-  // Re-tri par numéro + recompte
   manifest.photos.sort((a, b) => fileNum(a.downloadName) - fileNum(b.downloadName));
   manifest.count = manifest.photos.length;
   manifest.totalOriginalBytes = manifest.photos.reduce((s, p) => s + p.originalBytes, 0);
   writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
-
-  console.log(`✅ ${g.slug} : ${newFiles.length} ajoutée(s) · total ${manifest.count} photos`);
+  console.log(`✅ ${g.slug} : ${newFiles.length} ajoutée(s) · total ${manifest.count}`);
 }

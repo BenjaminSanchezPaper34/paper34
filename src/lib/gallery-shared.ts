@@ -6,6 +6,8 @@
 
 export type GalleryPhoto = {
   id: string;
+  /** Vignette légère pour la grille (URL R2 ou chemin relatif) */
+  thumb?: string;
   /** Chemin relatif (depuis /galeries/<slug>/) du JPEG d'affichage */
   display: string;
   /** Chemin relatif de l'original intact (téléchargement) */

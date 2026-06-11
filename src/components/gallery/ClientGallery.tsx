@@ -290,7 +290,7 @@ export default function ClientGallery({ gallery }: Props) {
               onClick={() => setLightbox(i)}
             >
               <img
-                src={assetUrl(gallery.slug, p.display)}
+                src={assetUrl(gallery.slug, p.thumb || p.display)}
                 alt={`${gallery.title} — photo ${i + 1}`}
                 width={p.width}
                 height={p.height}
