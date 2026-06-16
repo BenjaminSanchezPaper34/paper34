@@ -15,7 +15,6 @@
  * Visuels en PLACEHOLDER à remplacer par le design Illustrator :
  *   - <ViasLogo /> → logo officiel client (4 variantes dans /public/vias)
  *   - objet `palette` ci-dessous → tes vrais hex (un seul point de swap)
- *   - section « racines » → tes photos du patrimoine
  *   - typographie : Young Serif (titres) · Cal Sans (.v-cal : accents) · Lexend (texte),
  *     chargées via layout.tsx ; base = Lexend, titres via règle #vias dans <style>
  *   - section « applications » → tes vrais mockups
@@ -247,75 +246,8 @@ Un patrimoine aussi riche que la mer.
         </div>
       </section>
 
-      {/* ═══ LES RACINES / LE PATRIMOINE ═══ */}
-      <section className="bg-[var(--sand)] py-28 md:py-40 px-6">
-        <div className="mx-auto max-w-6xl">
-          <p className="v-reveal text-[var(--gueules)] v-cal text-sm font-semibold uppercase tracking-[0.2em] mb-6">
-            Les racines
-          </p>
-          <h2
-            className="v-reveal font-bold tracking-[-0.02em] leading-[1.1] mb-6"
-            style={{ fontSize: "clamp(1.9rem, 4.5vw, 3.25rem)", color: "var(--sea)" }}
-          >
-            Avant de dessiner, écouter.
-          </h2>
-          <p className="v-reveal text-lg text-[var(--ink)]/70 leading-relaxed max-w-2xl mb-14">
-            Une identité juste ne s&apos;invente pas : elle se puise dans le
-            lieu, sa pierre, ses symboles. Vias porte un nom attesté depuis 922.
-            Voici ce dont son image peut hériter.
-          </p>
-
-          <div className="v-stagger grid sm:grid-cols-2 gap-6 md:gap-8">
-            {[
-              {
-                tag: "Le monument",
-                title: "L'église fortifiée",
-                body:
-                  "Saint-Jean-Baptiste, XIVe siècle, classée Monument historique depuis 1907. Une silhouette de pierre qui veille sur le vieux village.",
-              },
-              {
-                tag: "L'eau",
-                title: "Le Canal du Midi & le Libron",
-                body:
-                  "Le canal de Riquet, classé à l'UNESCO. À Vias, les ouvrages du Libron — un système hydraulique unique — laissent la rivière franchir le canal.",
-              },
-              {
-                tag: "Le symbole",
-                title: "Le blason",
-                body:
-                  "D'or aux trois pals de gueules, au chef d'azur fleurdelisé. Les couleurs de Vias existent déjà : or, rouge et azur, héritées des armoiries.",
-              },
-              {
-                tag: "La terre & la mer",
-                title: "Du volcan au lido",
-                body:
-                  "Née d'un ancien volcan (Roque-Haute, basalte noir), portée par la vigne, ouverte sur la Méditerranée et les plages du lido.",
-              },
-            ].map((c) => (
-              <article key={c.title} className="flex flex-col">
-                {/* Emplacement photo — déposer une image du patrimoine */}
-                <div className="aspect-[4/3] rounded-2xl bg-[var(--paper)] border border-[var(--ink)]/10 grid place-items-center text-center px-6">
-                  <span className="text-[11px] uppercase tracking-[0.18em] text-[var(--ink)]/30">
-                    Photo — {c.title}
-                  </span>
-                </div>
-                <div className="pt-5">
-                  <p className="text-[var(--gueules)] text-xs font-semibold uppercase tracking-[0.18em] mb-2">
-                    {c.tag}
-                  </p>
-                  <h3 className="text-xl md:text-2xl font-bold text-[var(--sea)] mb-2 tracking-[-0.01em]">
-                    {c.title}
-                  </h3>
-                  <p className="text-[var(--ink)]/70 leading-relaxed">{c.body}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ═══ LE CONCEPT ═══ */}
-      <section className="py-28 md:py-40 px-6">
+      <section className="bg-[var(--sand)] py-28 md:py-40 px-6">
         <div className="mx-auto max-w-4xl text-center">
           <p className="v-reveal text-[var(--azur)] v-cal text-sm font-semibold uppercase tracking-[0.2em] mb-6">
             Le concept
@@ -455,22 +387,60 @@ Un patrimoine aussi riche que la mer.
               Une géométrie maîtrisée.
             </h2>
             <p className="text-lg text-[var(--ink)]/70 leading-relaxed">
-              Chaque courbe est tracée sur une grille rigoureuse : proportions,
-              espaces de protection et tailles minimales garantissent un logo
-              impeccable à toutes les échelles, du tampon à la signalétique.
+              Chaque arche repose sur une même ligne de base, alignée sur des
+              axes verticaux et une hauteur de référence. Cette rigueur garantit
+              un logo impeccable à toutes les échelles — du tampon à la
+              signalétique.
             </p>
           </div>
-          {/* Placeholder grille de construction — remplacer par l'export AI */}
-          <div className="v-reveal relative aspect-square rounded-2xl border border-[var(--ink)]/10 bg-[var(--paper)] grid place-items-center overflow-hidden">
-            <div
-              className="absolute inset-0 opacity-[0.15]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(var(--azur) 1px, transparent 1px), linear-gradient(90deg, var(--azur) 1px, transparent 1px)",
-                backgroundSize: "28px 28px",
-              }}
+          {/* Planche de construction : guides calés sur le vecteur réel */}
+          <div className="v-reveal rounded-2xl border border-[var(--ink)]/10 bg-[var(--paper)] p-6 md:p-10">
+            <ViasLogo
+              variant="construction"
+              alt="Grille de construction du logo Vias"
+              className="w-full h-auto"
             />
-            <ViasLogo variant="compact-bleu" alt="" className="relative w-36 h-auto" />
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ LE SYMBOLE (fonctionne seul) ═══ */}
+      <section className="bg-[var(--sand)] py-28 md:py-40 px-6">
+        <div className="mx-auto max-w-6xl grid md:grid-cols-2 gap-14 items-center">
+          <div className="v-reveal">
+            <p className="text-[var(--gueules)] v-cal text-sm font-semibold uppercase tracking-[0.2em] mb-6">
+              Le symbole
+            </p>
+            <h2
+              className="font-bold tracking-[-0.02em] leading-[1.1] mb-6"
+              style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)", color: "var(--sea)" }}
+            >
+              Un signe qui tient debout seul.
+            </h2>
+            <p className="text-lg text-[var(--ink)]/70 leading-relaxed">
+              Détaché du mot, le motif des arches reste immédiatement
+              reconnaissable. Il devient avatar, favicon, application, tampon ou
+              marquage de véhicule — partout où le format est court.
+            </p>
+          </div>
+          <div className="v-reveal flex flex-col items-center gap-8">
+            <div className="w-full max-w-sm aspect-square bg-[var(--sea)] rounded-3xl grid place-items-center p-12">
+              <ViasLogo variant="symbole-blanc" alt="Symbole Vias" className="w-[62%] h-auto" />
+            </div>
+            <div className="flex items-center gap-5">
+              <div className="w-20 h-20 rounded-full bg-[var(--paper)] grid place-items-center shadow-sm">
+                <ViasLogo variant="symbole-bleu" alt="" className="w-12" />
+              </div>
+              <div className="w-20 h-20 rounded-2xl bg-[var(--sun)] grid place-items-center">
+                <ViasLogo variant="symbole-bleu" alt="" className="w-12" />
+              </div>
+              <div className="w-12 h-12 rounded-lg bg-[var(--paper)] grid place-items-center">
+                <ViasLogo variant="symbole-bleu" alt="" className="w-8" />
+              </div>
+            </div>
+            <p className="v-cal text-xs uppercase tracking-[0.15em] text-[var(--ink)]/45">
+              Avatar · Application · Favicon
+            </p>
           </div>
         </div>
       </section>
