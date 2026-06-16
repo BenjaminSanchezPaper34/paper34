@@ -179,15 +179,37 @@ export default function ViasPage() {
         </div>
       </section>
 
-      {/* ═══ LE DÉFI (pull-quote) ═══ */}
-      <section className="py-24 md:py-36 px-6">
-        <div className="mx-auto max-w-4xl text-center">
-          <p className="v-reveal text-[var(--gueules)] text-sm font-semibold uppercase tracking-[0.2em] mb-8">
-            Le défi
+      {/* ═══ L'AMBITION / LE CAP (alignée sur la vision de la nouvelle mairie) ═══ */}
+      <section className="py-28 md:py-40 px-6">
+        <div className="mx-auto max-w-4xl">
+          <p className="v-reveal text-[var(--gueules)] text-sm font-semibold uppercase tracking-[0.2em] mb-6">
+            L&apos;ambition
           </p>
+          <h2
+            className="v-reveal font-bold tracking-[-0.02em] leading-[1.05] mb-10"
+            style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", color: "var(--sea)" }}
+          >
+            Le moment de réaffirmer le cœur de Vias.
+          </h2>
+          <div className="v-stagger grid md:grid-cols-2 gap-8 text-[var(--ink)]/75 text-lg leading-relaxed mb-16">
+            <p>
+              Pendant deux mandats, Vias a bâti une station balnéaire reconnue,
+              moteur de son attractivité estivale. Une vraie réussite — et une
+              base solide pour écrire la suite.
+            </p>
+            <p>
+              Aujourd&apos;hui, un nouveau cap se dessine : redonner toute sa
+              place au{" "}
+              <strong className="text-[var(--sea)]">centre-ville historique</strong>,
+              au village et à son patrimoine. Une identité forte est le meilleur
+              moyen de porter cette ambition — réunir la plage et la pierre, la
+              saison et le quotidien, sous un même signe.
+            </p>
+          </div>
+          {/* Punchline — le défi créatif */}
           <p
-            className="v-reveal font-bold tracking-[-0.02em] leading-[1.15]"
-            style={{ fontSize: "clamp(1.75rem, 4.5vw, 3.25rem)", color: "var(--sea)" }}
+            className="v-reveal font-bold tracking-[-0.02em] leading-[1.15] text-center border-t border-[var(--ink)]/10 pt-14"
+            style={{ fontSize: "clamp(1.6rem, 4vw, 2.75rem)", color: "var(--sea)" }}
           >
             Donner à un héritage de mille ans le langage d&apos;aujourd&apos;hui
             — sans jamais en trahir l&apos;âme.
