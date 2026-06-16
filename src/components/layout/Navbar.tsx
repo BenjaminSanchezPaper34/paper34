@@ -14,7 +14,11 @@ export default function Navbar() {
   }, [pathname]);
 
   // Pas de navbar sur les pages internes
-  if (pathname?.startsWith("/lab") || pathname?.startsWith("/galerie/"))
+  if (
+    pathname?.startsWith("/lab") ||
+    pathname?.startsWith("/galerie/") ||
+    pathname?.startsWith("/vias")
+  )
     return null;
 
   return (
