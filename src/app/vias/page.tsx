@@ -656,23 +656,24 @@ Un patrimoine aussi riche que la mer.
           >
             Une identité qui vit partout.
           </h2>
-          <div className="v-stagger grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
+          <div className="v-stagger grid grid-cols-2 lg:grid-cols-6 gap-4 md:gap-5">
             {[
-              { src: "mockup-papeterie", label: "Papeterie" },
-              { src: "mockup-signaletique", label: "Signalétique" },
-              { src: "mockup-polo", label: "Tenues" },
-              { src: "mockup-tote", label: "Goodies" },
+              { src: "mockup-papeterie", label: "Papeterie", span: "col-span-2 lg:col-span-3", ar: "aspect-[16/10]" },
+              { src: "mockup-signaletique", label: "Signalétique", span: "col-span-2 lg:col-span-3", ar: "aspect-[16/10]" },
+              { src: "mockup-app", label: "Site web pensé pour les smartphones", span: "col-span-2 lg:col-span-2", ar: "aspect-[4/3]" },
+              { src: "mockup-polo", label: "Tenues", span: "col-span-1 lg:col-span-2", ar: "aspect-[4/3]" },
+              { src: "mockup-tote", label: "Goodies", span: "col-span-1 lg:col-span-2", ar: "aspect-[4/3]" },
             ].map((m) => (
               <figure
                 key={m.label}
-                className="overflow-hidden rounded-2xl border border-[var(--ink)]/10 bg-[var(--paper)]"
+                className={`${m.span} overflow-hidden rounded-2xl border border-[var(--ink)]/10 bg-[var(--paper)]`}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={`/vias/${m.src}.jpg`}
                   alt={`Logo Vias appliqué — ${m.label}`}
                   loading="lazy"
-                  className="w-full aspect-[4/3] object-cover"
+                  className={`w-full ${m.ar} object-cover`}
                 />
                 <figcaption className="v-cal text-xs uppercase tracking-[0.15em] text-[var(--ink)]/60 px-4 py-3">
                   {m.label}
