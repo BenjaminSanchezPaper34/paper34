@@ -695,7 +695,7 @@ Un patrimoine aussi riche que la mer.
           src="/vias/croquis.jpg"
           alt=""
           aria-hidden="true"
-          className="pointer-events-none select-none absolute inset-0 w-full h-full object-cover invert mix-blend-screen opacity-20"
+          className="pointer-events-none select-none absolute inset-0 w-full h-full object-cover invert mix-blend-screen opacity-10"
         />
         <div className="relative z-10 mx-auto max-w-3xl">
           <ViasLogo variant="compact-blanc" alt="" className="v-reveal w-28 md:w-32 h-auto mx-auto mb-10" />
