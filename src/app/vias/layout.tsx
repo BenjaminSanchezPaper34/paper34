@@ -25,7 +25,7 @@ const lexend = Lexend({
 });
 
 export const metadata: Metadata = {
-  title: "Proposition d'identité visuelle pour Vias | Paper34",
+  title: "Proposition d'identité visuelle pour Vias",
   description:
     "Proposition d'identité visuelle pour la commune de Vias (Hérault). Logo, charte graphique et déclinaisons. Un travail Paper34.",
   // Proposition spontanée : accessible par lien, non indexée tant que non validée.
