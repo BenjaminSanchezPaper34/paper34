@@ -23,6 +23,7 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { gsap, fadeInUp, staggerReveal } from "@/lib/animations";
+import { ViasHeroLogo } from "./ViasHeroLogo";
 
 /* ─── PALETTE — héritée du blason de Vias (à affiner sur tes valeurs) ───
    Blasonnement : d'or aux trois pals de gueules, au chef d'azur
@@ -70,11 +71,15 @@ export default function ViasPage() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Hero
-      fadeInUp(".v-hero-kicker", { y: 16, duration: 0.9 });
-      fadeInUp(".v-hero-title", { y: 40, delay: 0.1 });
-      fadeInUp(".v-hero-mark", { y: 30, delay: 0.25, duration: 1.1 });
-      fadeInUp(".v-hero-sub", { y: 20, delay: 0.4 });
+      // Hero : la typo d'abord, puis chaque arche une à une
+      if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        gsap
+          .timeline({ defaults: { ease: "power3.out" } })
+          .from(".v-hero-kicker", { autoAlpha: 0, y: 14, duration: 0.6 }, 0.1)
+          .from(".v-word", { autoAlpha: 0, y: 22, duration: 0.7 }, 0.35)
+          .from(".v-arch", { autoAlpha: 0, y: 16, duration: 0.5, stagger: 0.12 }, 0.8)
+          .from(".v-hero-sub", { autoAlpha: 0, y: 14, duration: 0.6 }, 1.6);
+      }
 
       // Reveals génériques par section
       document.querySelectorAll<HTMLElement>(".v-reveal").forEach((el) => {
@@ -83,13 +88,6 @@ export default function ViasPage() {
       document.querySelectorAll<HTMLElement>(".v-stagger").forEach((group) => {
         const items = Array.from(group.children) as Element[];
         staggerReveal(items, { trigger: group, stagger: 0.12 });
-      });
-
-      // Parallaxe douce sur le logo héro
-      gsap.to(".v-hero-mark", {
-        yPercent: 18,
-        ease: "none",
-        scrollTrigger: { trigger: ".v-hero", start: "top top", end: "bottom top", scrub: true },
       });
     }, root);
     return () => ctx.revert();
@@ -159,12 +157,8 @@ export default function ViasPage() {
           <p className="v-hero-kicker v-cal text-xs md:text-sm uppercase tracking-[0.3em] text-[var(--paper)]/70 mb-12 md:mb-20">
             Commune de Vias · Hérault
           </p>
-          <h1 className="v-hero-title flex justify-center">
-            <ViasLogo
-              variant="compact-blanc"
-              alt="Vias"
-              className="w-[230px] sm:w-[280px] md:w-[340px] h-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.35)]"
-            />
+          <h1 className="v-hero-title flex justify-center text-[var(--paper)]">
+            <ViasHeroLogo className="w-[230px] sm:w-[280px] md:w-[340px] h-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.35)]" />
           </h1>
           <p className="v-hero-sub mt-12 md:mt-20 text-lg md:text-2xl text-[var(--paper)]/85 max-w-xl leading-snug">
             De la mer aux monuments — une identité pour tout Vias.
