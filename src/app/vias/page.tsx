@@ -325,6 +325,86 @@ export default function ViasPage() {
         </div>
       </section>
 
+      {/* ═══ AVANT / APRÈS ═══ */}
+      <section className="bg-[var(--sand)] py-28 md:py-40 px-6">
+        <div className="mx-auto max-w-6xl">
+          <p className="v-reveal text-[var(--gueules)] text-sm font-semibold uppercase tracking-[0.2em] mb-6">
+            Avant / Après
+          </p>
+          <h2
+            className="v-reveal font-bold tracking-[-0.02em] leading-[1.05] mb-6"
+            style={{ fontSize: "clamp(1.9rem, 4.5vw, 3.25rem)", color: "var(--sea)" }}
+          >
+            Une marque qui raconte enfin tout Vias.
+          </h2>
+          <p className="v-reveal text-lg text-[var(--ink)]/70 leading-relaxed max-w-2xl mb-14">
+            La marque actuelle a fidèlement accompagné l&apos;essor de la station
+            balnéaire. Une nouvelle page s&apos;ouvre — celle d&apos;une identité
+            qui embrasse aussi le village, le canal et mille ans d&apos;histoire.
+          </p>
+
+          <div className="v-stagger grid md:grid-cols-2 gap-6 md:gap-8 items-stretch">
+            {/* AVANT — logo actuel + limites */}
+            <div className="rounded-2xl bg-[var(--paper)] border border-[var(--ink)]/10 p-8 md:p-10 flex flex-col">
+              <span className="inline-flex self-start items-center text-xs font-semibold uppercase tracking-[0.18em] text-[var(--ink)]/50 border border-[var(--ink)]/15 rounded-full px-3 py-1 mb-8">
+                Avant
+              </span>
+              <div className="flex-1 grid place-items-center min-h-[120px] mb-8">
+                {/* Logo officiel actuel (récupéré sur vias-mediterranee.fr) */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/vias/logo-actuel.png"
+                  alt="Logo actuel de la commune de Vias"
+                  className="w-auto max-h-20 md:max-h-24"
+                />
+              </div>
+              <ul className="space-y-3 text-[var(--ink)]/70 text-[15px] leading-relaxed">
+                {[
+                  "Tournée « Méditerranée » : tout sur la plage, rien sur le patrimoine ni le village.",
+                  "Couleurs primaires et effets datés (dégradés, relief) — une esthétique des années 2000.",
+                  "Deux typographies hétérogènes, peu lisibles à petite taille.",
+                  "Pas de symbole autonome ni de version simple (favicon, tampon, monochrome).",
+                ].map((t) => (
+                  <li key={t} className="flex gap-3">
+                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[var(--ink)]/25 shrink-0" />
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* APRÈS — nouvelle direction */}
+            <div className="rounded-2xl bg-[var(--sea)] text-[var(--paper)] p-8 md:p-10 flex flex-col">
+              <span className="inline-flex self-start items-center text-xs font-semibold uppercase tracking-[0.18em] text-[var(--sea)] bg-[var(--sun)] rounded-full px-3 py-1 mb-8">
+                Après
+              </span>
+              <div className="flex-1 grid place-items-center min-h-[120px] mb-8">
+                <div className="flex flex-col items-center gap-3">
+                  <ViasMark className="w-20 h-20 text-[var(--paper)]" color="var(--paper)" />
+                  <Wordmark className="text-[var(--paper)] text-4xl" />
+                </div>
+              </div>
+              <ul className="space-y-3 text-[var(--paper)]/80 text-[15px] leading-relaxed">
+                {[
+                  "Ancrée dans tout le territoire : la pierre, le canal et la mer réunis.",
+                  "Palette héritée du blason — sobre, intemporelle, premium.",
+                  "Un symbole fort et une typographie cohérente.",
+                  "Déclinable partout : du tampon à la signalétique, en couleur comme en monochrome.",
+                ].map((t) => (
+                  <li key={t} className="flex gap-3">
+                    <span className="mt-2 w-1.5 h-1.5 rounded-full bg-[var(--sun)] shrink-0" />
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <p className="v-reveal text-sm text-[var(--ink)]/40 italic mt-6 text-center">
+            (Logo « après » provisoire — remplacé par ton dessin final.)
+          </p>
+        </div>
+      </section>
+
       {/* ═══ LA CONSTRUCTION ═══ */}
       <section className="py-28 md:py-40 px-6">
         <div className="mx-auto max-w-5xl grid md:grid-cols-2 gap-14 items-center">
