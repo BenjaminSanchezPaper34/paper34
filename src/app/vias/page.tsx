@@ -350,10 +350,10 @@ export default function ViasPage() {
                 Avant
               </span>
               <div className="flex-1 grid place-items-center min-h-[120px] mb-8">
-                {/* Logo officiel actuel (récupéré sur vias-mediterranee.fr) */}
+                {/* Logo officiel actuel de Vias — vectoriel (asset client) */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/vias/logo-actuel.png"
+                  src="/vias/logo-actuel.svg"
                   alt="Logo actuel de la commune de Vias"
                   className="w-auto max-h-20 md:max-h-24"
                 />
@@ -361,7 +361,7 @@ export default function ViasPage() {
               <ul className="space-y-3 text-[var(--ink)]/70 text-[15px] leading-relaxed">
                 {[
                   "Tournée « Méditerranée » : tout sur la plage, rien sur le patrimoine ni le village.",
-                  "Couleurs primaires et effets datés (dégradés, relief) — une esthétique des années 2000.",
+                  "Couleurs primaires très saturées et motif de vague convenu — une esthétique des années 2000.",
                   "Deux typographies hétérogènes, peu lisibles à petite taille.",
                   "Pas de symbole autonome ni de version simple (favicon, tampon, monochrome).",
                 ].map((t) => (
