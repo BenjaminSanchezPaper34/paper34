@@ -48,3 +48,7 @@ Partage photos/
 # Galeries : binaires hébergés sur Vercel Blob, pas dans git (seul manifest.json versionné)
 public/galeries/*/display/
 public/galeries/*/originals/
+
+# Vidéos sources (jamais dans git — transcoder + héberger ailleurs)
+*.mov
+*.MOV
