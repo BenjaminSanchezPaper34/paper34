@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Young_Serif, Cal_Sans } from "next/font/google";
+import { Young_Serif, Cal_Sans, Lexend } from "next/font/google";
 
 /* Young Serif — titrage : empattements francs, écho médiéval mais contemporain */
 const youngSerif = Young_Serif({
@@ -9,12 +9,19 @@ const youngSerif = Young_Serif({
   variable: "--font-young-serif",
 });
 
-/* Cal Sans — texte & interface : géométrique, ultra lisible, intemporelle */
+/* Cal Sans — accents & interface : géométrique, chaleureuse (labels, boutons) */
 const calSans = Cal_Sans({
   weight: "400",
   subsets: ["latin"],
   display: "swap",
   variable: "--font-cal-sans",
+});
+
+/* Lexend — lecture : variable, dessinée pour la lisibilité (corps de texte) */
+const lexend = Lexend({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-lexend",
 });
 
 export const metadata: Metadata = {
@@ -32,6 +39,8 @@ export const metadata: Metadata = {
 
 export default function ViasLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className={`${youngSerif.variable} ${calSans.variable}`}>{children}</div>
+    <div className={`${youngSerif.variable} ${calSans.variable} ${lexend.variable}`}>
+      {children}
+    </div>
   );
 }

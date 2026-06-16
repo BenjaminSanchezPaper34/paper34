@@ -16,7 +16,8 @@
  *   - <ViasMark /> → ton vrai logo (SVG)
  *   - objet `palette` ci-dessous → tes vrais hex (un seul point de swap)
  *   - section « racines » → tes photos du patrimoine
- *   - typographie : Young Serif (titrage) + Cal Sans (texte), chargées via layout.tsx
+ *   - typographie : Young Serif (titres) · Cal Sans (.v-cal : accents) · Lexend (texte),
+ *     chargées via layout.tsx ; base = Lexend, titres via règle #vias dans <style>
  *   - section « applications » → tes vrais mockups
  */
 
@@ -115,13 +116,13 @@ export default function ViasPage() {
       ref={root}
       id="vias"
       style={cssVars}
-      className="min-h-screen bg-[var(--paper)] text-[var(--ink)] overflow-hidden font-[family-name:var(--font-cal-sans),sans-serif]"
+      className="min-h-screen bg-[var(--paper)] text-[var(--ink)] overflow-hidden font-[family-name:var(--font-lexend),sans-serif]"
     >
-      {/* Charte typo : titres en Young Serif (poids unique 400), texte en Cal Sans */}
+      {/* Système typo : titres Young Serif · accents Cal Sans (.v-cal) · lecture Lexend (base) */}
       <style
         dangerouslySetInnerHTML={{
           __html:
-            "#vias h1,#vias h2,#vias h3,#vias .v-display{font-family:var(--font-young-serif),Georgia,serif;font-weight:400}",
+            "#vias h1,#vias h2,#vias h3,#vias .v-display{font-family:var(--font-young-serif),Georgia,serif;font-weight:400}#vias .v-cal{font-family:var(--font-cal-sans),sans-serif}",
         }}
       />
 
@@ -140,7 +141,7 @@ export default function ViasPage() {
 
       {/* ═══ HERO ═══ */}
       <section className="v-hero relative min-h-[100svh] flex flex-col items-center justify-center text-center px-6">
-        <p className="v-hero-kicker text-xs md:text-sm uppercase tracking-[0.3em] text-[var(--ink)]/50 mb-8">
+        <p className="v-hero-kicker v-cal text-xs md:text-sm uppercase tracking-[0.3em] text-[var(--ink)]/50 mb-8">
           Commune de Vias · Hérault
         </p>
         <h1
@@ -162,7 +163,7 @@ export default function ViasPage() {
       {/* ═══ LE TERRITOIRE / LE CONTEXTE ═══ */}
       <section className="bg-[var(--sea)] text-[var(--paper)] py-28 md:py-40 px-6">
         <div className="mx-auto max-w-4xl">
-          <p className="v-reveal text-[var(--sun)] text-sm font-semibold uppercase tracking-[0.2em] mb-6">
+          <p className="v-reveal text-[var(--sun)] v-cal text-sm font-semibold uppercase tracking-[0.2em] mb-6">
             Le territoire
           </p>
           <h2
@@ -192,7 +193,7 @@ export default function ViasPage() {
       {/* ═══ L'AMBITION / LE CAP (alignée sur la vision de la nouvelle mairie) ═══ */}
       <section className="py-28 md:py-40 px-6">
         <div className="mx-auto max-w-4xl">
-          <p className="v-reveal text-[var(--gueules)] text-sm font-semibold uppercase tracking-[0.2em] mb-6">
+          <p className="v-reveal text-[var(--gueules)] v-cal text-sm font-semibold uppercase tracking-[0.2em] mb-6">
             L&apos;ambition
           </p>
           <h2
@@ -230,7 +231,7 @@ export default function ViasPage() {
       {/* ═══ LES RACINES / LE PATRIMOINE ═══ */}
       <section className="bg-[var(--sand)] py-28 md:py-40 px-6">
         <div className="mx-auto max-w-6xl">
-          <p className="v-reveal text-[var(--gueules)] text-sm font-semibold uppercase tracking-[0.2em] mb-6">
+          <p className="v-reveal text-[var(--gueules)] v-cal text-sm font-semibold uppercase tracking-[0.2em] mb-6">
             Les racines
           </p>
           <h2
@@ -297,7 +298,7 @@ export default function ViasPage() {
       {/* ═══ LE CONCEPT ═══ */}
       <section className="py-28 md:py-40 px-6">
         <div className="mx-auto max-w-4xl text-center">
-          <p className="v-reveal text-[var(--azur)] text-sm font-semibold uppercase tracking-[0.2em] mb-6">
+          <p className="v-reveal text-[var(--azur)] v-cal text-sm font-semibold uppercase tracking-[0.2em] mb-6">
             Le concept
           </p>
           <h2
@@ -321,7 +322,7 @@ export default function ViasPage() {
       {/* ═══ LE LOGO (révélation) ═══ */}
       <section className="bg-[var(--sea)] py-32 md:py-48 px-6">
         <div className="mx-auto max-w-5xl flex flex-col items-center">
-          <p className="v-reveal text-[var(--sun)] text-sm font-semibold uppercase tracking-[0.2em] mb-12">
+          <p className="v-reveal text-[var(--sun)] v-cal text-sm font-semibold uppercase tracking-[0.2em] mb-12">
             Le logo
           </p>
           <div className="v-reveal flex flex-col items-center gap-7">
@@ -338,7 +339,7 @@ export default function ViasPage() {
       {/* ═══ AVANT / APRÈS ═══ */}
       <section className="bg-[var(--sand)] py-28 md:py-40 px-6">
         <div className="mx-auto max-w-6xl">
-          <p className="v-reveal text-[var(--gueules)] text-sm font-semibold uppercase tracking-[0.2em] mb-6">
+          <p className="v-reveal text-[var(--gueules)] v-cal text-sm font-semibold uppercase tracking-[0.2em] mb-6">
             Avant / Après
           </p>
           <h2
@@ -419,7 +420,7 @@ export default function ViasPage() {
       <section className="py-28 md:py-40 px-6">
         <div className="mx-auto max-w-5xl grid md:grid-cols-2 gap-14 items-center">
           <div className="v-reveal">
-            <p className="text-[var(--azur)] text-sm font-semibold uppercase tracking-[0.2em] mb-6">
+            <p className="text-[var(--azur)] v-cal text-sm font-semibold uppercase tracking-[0.2em] mb-6">
               La construction
             </p>
             <h2
@@ -452,7 +453,7 @@ export default function ViasPage() {
       {/* ═══ LES DÉCLINAISONS ═══ */}
       <section className="bg-[var(--ink)] text-[var(--paper)] py-28 md:py-40 px-6">
         <div className="mx-auto max-w-5xl">
-          <p className="v-reveal text-[var(--sun)] text-sm font-semibold uppercase tracking-[0.2em] mb-6">
+          <p className="v-reveal text-[var(--sun)] v-cal text-sm font-semibold uppercase tracking-[0.2em] mb-6">
             Les déclinaisons
           </p>
           <h2
@@ -482,7 +483,7 @@ export default function ViasPage() {
       {/* ═══ LA PALETTE (ancrée sur le blason) ═══ */}
       <section className="py-28 md:py-40 px-6">
         <div className="mx-auto max-w-5xl">
-          <p className="v-reveal text-[var(--azur)] text-sm font-semibold uppercase tracking-[0.2em] mb-6">
+          <p className="v-reveal text-[var(--azur)] v-cal text-sm font-semibold uppercase tracking-[0.2em] mb-6">
             La palette
           </p>
           <h2
@@ -518,98 +519,108 @@ export default function ViasPage() {
         </div>
       </section>
 
-      {/* ═══ LA TYPOGRAPHIE (charte deux polices) ═══ */}
+      {/* ═══ LA TYPOGRAPHIE (système à trois voix) ═══ */}
       <section className="bg-[var(--sand)] py-28 md:py-40 px-6">
         <div className="mx-auto max-w-6xl">
-          <p className="v-reveal text-[var(--azur)] text-sm font-semibold uppercase tracking-[0.2em] mb-6">
+          <p className="v-reveal text-[var(--azur)] v-cal text-sm font-semibold uppercase tracking-[0.2em] mb-6">
             La typographie
           </p>
           <h2
             className="v-reveal tracking-[-0.01em] mb-6"
             style={{ fontSize: "clamp(1.9rem, 4.5vw, 3.25rem)", color: "var(--sea)" }}
           >
-            Deux voix, une même époque.
+            Trois voix, une même époque.
           </h2>
           <p className="v-reveal text-lg text-[var(--ink)]/70 leading-relaxed max-w-2xl mb-14">
-            Un serif de caractère pour la mémoire, une grotesque limpide pour le
-            quotidien. Ensemble, elles disent « médiéval contemporain » — et c’est
-            tout Vias.
+            Un serif de caractère pour la mémoire, une sans chaleureuse pour les
+            repères, et une lecture limpide pour le quotidien. Ensemble, elles
+            disent « médiéval contemporain » — et c’est tout Vias.
           </p>
 
-          <div className="v-stagger grid md:grid-cols-2 gap-6 md:gap-8 items-stretch">
+          <div className="v-stagger grid sm:grid-cols-3 gap-5 md:gap-6 items-stretch">
             {/* YOUNG SERIF — titrage */}
-            <div className="rounded-2xl bg-[var(--paper)] border border-[var(--ink)]/10 p-8 md:p-10 flex flex-col">
-              <div className="flex items-baseline justify-between mb-8">
-                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--gueules)]">
+            <div className="rounded-2xl bg-[var(--paper)] border border-[var(--ink)]/10 p-7 md:p-8 flex flex-col">
+              <div className="flex items-baseline justify-between mb-6">
+                <span className="v-cal text-xs font-semibold uppercase tracking-[0.16em] text-[var(--gueules)]">
                   Titrage
                 </span>
-                <span className="text-sm text-[var(--ink)]/50">Young Serif</span>
+                <span className="text-sm text-[var(--ink)]/45">Young Serif</span>
               </div>
               <p
-                style={{ fontFamily: "var(--font-young-serif), serif", fontSize: "clamp(5rem, 15vw, 8.5rem)", color: "var(--sea)" }}
+                style={{ fontFamily: "var(--font-young-serif), serif", fontSize: "clamp(4rem, 12vw, 6.5rem)", color: "var(--sea)" }}
                 className="leading-none"
               >
                 Ag
               </p>
               <p
-                style={{ fontFamily: "var(--font-young-serif), serif" }}
-                className="mt-8 text-xl md:text-2xl text-[var(--ink)]/80 leading-snug break-words"
-              >
-                ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz
-                0123456789
-              </p>
-              <p
                 style={{ fontFamily: "var(--font-young-serif), serif", color: "var(--sea)" }}
-                className="mt-8 text-2xl md:text-3xl leading-tight"
+                className="mt-6 text-xl md:text-2xl leading-tight"
               >
-                L’église, le canal, la mer.
+                Pierre &amp; mémoire
               </p>
-              <p className="mt-auto pt-8 text-[15px] text-[var(--ink)]/65 leading-relaxed">
-                Des empattements francs, comme taillés dans la pierre — un écho au
-                manuscrit et au Moyen Âge, mais d’un dessin franchement actuel.
-                Pour les grands titres et les moments forts.
+              <p className="mt-auto pt-6 text-[15px] text-[var(--ink)]/65 leading-relaxed">
+                Empattements francs, écho médiéval mais dessin actuel — pour les
+                grands titres.
               </p>
             </div>
 
-            {/* CAL SANS — texte & interface */}
-            <div className="rounded-2xl bg-[var(--sea)] text-[var(--paper)] p-8 md:p-10 flex flex-col">
-              <div className="flex items-baseline justify-between mb-8">
-                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--sun)]">
-                  Texte &amp; interface
+            {/* CAL SANS — accents & interface */}
+            <div className="rounded-2xl bg-[var(--sea)] text-[var(--paper)] p-7 md:p-8 flex flex-col">
+              <div className="flex items-baseline justify-between mb-6">
+                <span className="v-cal text-xs font-semibold uppercase tracking-[0.16em] text-[var(--sun)]">
+                  Accents
                 </span>
-                <span className="text-sm text-[var(--paper)]/60">Cal Sans</span>
+                <span className="text-sm text-[var(--paper)]/55">Cal Sans</span>
               </div>
               <p
-                style={{ fontFamily: "var(--font-cal-sans), sans-serif", fontSize: "clamp(5rem, 15vw, 8.5rem)" }}
+                style={{ fontFamily: "var(--font-cal-sans), sans-serif", fontSize: "clamp(4rem, 12vw, 6.5rem)" }}
                 className="leading-none text-[var(--paper)]"
               >
                 Ag
               </p>
               <p
                 style={{ fontFamily: "var(--font-cal-sans), sans-serif" }}
-                className="mt-8 text-xl md:text-2xl text-[var(--paper)]/85 leading-snug break-words"
+                className="mt-6 text-xl md:text-2xl leading-tight text-[var(--paper)]"
               >
-                ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz
-                0123456789
+                Labels &amp; boutons
+              </p>
+              <p className="mt-auto pt-6 text-[15px] text-[var(--paper)]/70 leading-relaxed">
+                Géométrique et chaleureuse — pour les intitulés, repères et
+                l’interface.
+              </p>
+            </div>
+
+            {/* LEXEND — lecture */}
+            <div className="rounded-2xl bg-[var(--paper)] border border-[var(--ink)]/10 p-7 md:p-8 flex flex-col">
+              <div className="flex items-baseline justify-between mb-6">
+                <span className="v-cal text-xs font-semibold uppercase tracking-[0.16em] text-[var(--azur)]">
+                  Lecture
+                </span>
+                <span className="text-sm text-[var(--ink)]/45">Lexend</span>
+              </div>
+              <p
+                style={{ fontFamily: "var(--font-lexend), sans-serif", fontSize: "clamp(4rem, 12vw, 6.5rem)", fontWeight: 300, color: "var(--sea)" }}
+                className="leading-none"
+              >
+                Ag
               </p>
               <p
-                style={{ fontFamily: "var(--font-cal-sans), sans-serif" }}
-                className="mt-8 text-2xl md:text-3xl leading-tight text-[var(--paper)]"
+                style={{ fontFamily: "var(--font-lexend), sans-serif" }}
+                className="mt-6 text-xl md:text-2xl leading-tight text-[var(--ink)]/80"
               >
-                Horaires, démarches, plan de ville.
+                Le confort de lecture
               </p>
-              <p className="mt-auto pt-8 text-[15px] text-[var(--paper)]/70 leading-relaxed">
-                Une grotesque géométrique d’une lisibilité exemplaire, sans âge.
-                Elle porte l’information du quotidien — signalétique, formulaires,
-                web — nette à toutes les tailles.
+              <p className="mt-auto pt-6 text-[15px] text-[var(--ink)]/65 leading-relaxed">
+                Variable, dessinée pour la lisibilité — pour tous les paragraphes
+                et le corps de texte.
               </p>
             </div>
           </div>
 
-          {/* Le duo en situation */}
-          <div className="v-reveal mt-6 md:mt-8 rounded-2xl bg-[var(--paper)] border border-[var(--ink)]/10 p-8 md:p-14">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--ink)]/40 mb-6">
-              Le duo en situation
+          {/* Le système en situation */}
+          <div className="v-reveal mt-5 md:mt-6 rounded-2xl bg-[var(--paper)] border border-[var(--ink)]/10 p-8 md:p-14">
+            <p className="v-cal text-xs font-semibold uppercase tracking-[0.18em] text-[var(--ink)]/40 mb-6">
+              Le système en situation
             </p>
             <h3
               style={{ fontFamily: "var(--font-young-serif), serif", color: "var(--sea)" }}
@@ -618,14 +629,22 @@ export default function ViasPage() {
               Mille ans d’histoire, à ciel ouvert.
             </h3>
             <p
-              style={{ fontFamily: "var(--font-cal-sans), sans-serif" }}
+              style={{ fontFamily: "var(--font-lexend), sans-serif" }}
               className="text-lg text-[var(--ink)]/75 leading-relaxed max-w-2xl"
             >
               De l’église fortifiée Saint-Jean-Baptiste aux ouvrages du Libron,
               Vias cultive un patrimoine vivant. Le titre en Young Serif pose la
-              mémoire ; le texte en Cal Sans la rend limpide. Deux familles, un
-              système simple, partout cohérent.
+              mémoire, le texte en Lexend la rend limpide, et Cal Sans signale
+              les repères.
             </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <span className="v-cal inline-flex rounded-full bg-[var(--sea)] text-[var(--paper)] text-xs font-semibold uppercase tracking-[0.14em] px-4 py-2">
+                Découvrir Vias
+              </span>
+              <span className="v-cal inline-flex rounded-full border border-[var(--ink)]/15 text-[var(--ink)]/70 text-xs font-semibold uppercase tracking-[0.14em] px-4 py-2">
+                Démarches en ligne
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -633,7 +652,7 @@ export default function ViasPage() {
       {/* ═══ LES APPLICATIONS ═══ */}
       <section className="py-28 md:py-40 px-6">
         <div className="mx-auto max-w-6xl">
-          <p className="v-reveal text-[var(--azur)] text-sm font-semibold uppercase tracking-[0.2em] mb-6">
+          <p className="v-reveal text-[var(--azur)] v-cal text-sm font-semibold uppercase tracking-[0.2em] mb-6">
             Les applications
           </p>
           <h2
@@ -688,13 +707,13 @@ export default function ViasPage() {
           <div className="v-reveal flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="mailto:contact@paper34.fr?subject=Identité visuelle Vias"
-              className="rounded-full bg-[var(--sun)] text-[var(--ink)] px-8 py-4 text-sm font-semibold hover:opacity-90 transition-opacity"
+              className="v-cal rounded-full bg-[var(--sun)] text-[var(--ink)] px-8 py-4 text-sm font-semibold hover:opacity-90 transition-opacity"
             >
               Échanger avec Paper34
             </a>
             <Link
               href="/"
-              className="rounded-full border border-[var(--paper)]/30 px-8 py-4 text-sm font-semibold hover:bg-[var(--paper)]/10 transition-colors"
+              className="v-cal rounded-full border border-[var(--paper)]/30 px-8 py-4 text-sm font-semibold hover:bg-[var(--paper)]/10 transition-colors"
             >
               Découvrir le studio
             </Link>
