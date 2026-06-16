@@ -200,7 +200,7 @@ export default function ViasPage() {
             className="v-reveal font-bold tracking-[-0.02em] leading-[1.05] mb-10"
             style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)", color: "var(--sea)" }}
           >
-            Le moment de réaffirmer le cœur de Vias.
+Un patrimoine aussi riche que la mer.
           </h2>
           <div className="v-stagger grid md:grid-cols-2 gap-8 text-[var(--ink)]/75 text-lg leading-relaxed mb-16">
             <p>
@@ -211,11 +211,11 @@ export default function ViasPage() {
             </p>
             <p>
               Le nouveau cap : revenir à l&apos;essentiel, sans rien renier.
-              Garder la mer comme signature, et lui réunir ce qui lui manquait —
-              le{" "}
-              <strong className="text-[var(--sea)]">centre-ville historique</strong>,
-              les monuments, la pierre. Une identité forte porte les deux d&apos;un
-              même geste.
+              Garder la mer comme signature, et asseoir enfin un{" "}
+              <strong className="text-[var(--sea)]">patrimoine tout aussi riche</strong>{" "}
+              — centre-ville historique, monuments, pierre volcanique — longtemps
+              resté dans son ombre. Une identité forte porte les deux à parts
+              égales.
             </p>
           </div>
           {/* Punchline — le défi créatif */}
