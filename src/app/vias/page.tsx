@@ -152,7 +152,7 @@ export default function ViasPage() {
         </h1>
         <ViasMark className="v-hero-mark w-16 h-16 md:w-20 md:h-20 mt-8 text-[var(--sun)]" color="var(--sun)" />
         <p className="v-hero-sub mt-8 text-lg md:text-2xl text-[var(--ink)]/70 max-w-xl leading-snug">
-          Une identité née de mille ans d&apos;histoire, tournée vers demain.
+          De la mer aux monuments — une identité pour tout Vias.
         </p>
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[var(--ink)]/40">
           <span className="text-[11px] uppercase tracking-[0.2em]">Découvrir</span>
@@ -204,17 +204,18 @@ export default function ViasPage() {
           </h2>
           <div className="v-stagger grid md:grid-cols-2 gap-8 text-[var(--ink)]/75 text-lg leading-relaxed mb-16">
             <p>
-              Pendant deux mandats, Vias a bâti une station balnéaire reconnue,
-              moteur de son attractivité estivale. Une vraie réussite — et une
-              base solide pour écrire la suite.
+              Pendant deux mandats, Vias a bâti une station balnéaire reconnue —
+              une vraie force, et son moteur économique. Le déséquilibre n&apos;est
+              pas la mer : c&apos;est que le développement et le commerce se sont
+              concentrés presque exclusivement sur le bord de mer.
             </p>
             <p>
-              Aujourd&apos;hui, un nouveau cap se dessine : redonner toute sa
-              place au{" "}
+              Le nouveau cap : revenir à l&apos;essentiel, sans rien renier.
+              Garder la mer comme signature, et lui réunir ce qui lui manquait —
+              le{" "}
               <strong className="text-[var(--sea)]">centre-ville historique</strong>,
-              au village et à son patrimoine. Une identité forte est le meilleur
-              moyen de porter cette ambition — réunir la plage et la pierre, la
-              saison et le quotidien, sous un même signe.
+              les monuments, la pierre. Une identité forte porte les deux d&apos;un
+              même geste.
             </p>
           </div>
           {/* Punchline — le défi créatif */}
@@ -309,9 +310,10 @@ export default function ViasPage() {
           </h2>
           <p className="v-reveal text-lg md:text-xl text-[var(--ink)]/70 leading-relaxed max-w-2xl mx-auto">
             Le parti pris : une identité qui semble avoir toujours existé, tout
-            en parlant le langage du présent. Ni carte postale figée, ni logo
-            hors-sol — un signe contemporain qui porte la mémoire de la pierre,
-            le mouvement de l&apos;eau et la lumière du Sud.
+            en parlant le langage du présent. Un signe contemporain qui tisse les
+            trois forces de Vias — ses monuments et son cœur médiéval, la pierre
+            volcanique de sa terre, et la Méditerranée qui ne s&apos;efface pas.
+            Le patrimoine retrouvé, la mer conservée.
             <span className="block mt-5 text-base text-[var(--ink)]/40 italic">
               (Intention créative — la forme définitive est en cours de dessin.)
             </span>
@@ -371,7 +373,7 @@ export default function ViasPage() {
               </div>
               <ul className="space-y-3 text-[var(--ink)]/70 text-[15px] leading-relaxed">
                 {[
-                  "Tournée « Méditerranée » : tout sur la plage, rien sur le patrimoine ni le village.",
+                  "Centrée sur la seule plage : rien des monuments, du patrimoine, du village.",
                   "Couleurs primaires très saturées et motif de vague convenu — une esthétique des années 2000.",
                   "Deux typographies hétérogènes, peu lisibles à petite taille.",
                   "Pas de symbole autonome ni de version simple (favicon, tampon, monochrome).",
@@ -397,7 +399,7 @@ export default function ViasPage() {
               </div>
               <ul className="space-y-3 text-[var(--paper)]/80 text-[15px] leading-relaxed">
                 {[
-                  "Ancrée dans tout le territoire : la pierre, le canal et la mer réunis.",
+                  "Les trois forces réunies : monuments, pierre volcanique et mer.",
                   "Palette héritée du blason — sobre, intemporelle, premium.",
                   "Un symbole fort et une typographie cohérente.",
                   "Déclinable partout : du tampon à la signalétique, en couleur comme en monochrome.",
