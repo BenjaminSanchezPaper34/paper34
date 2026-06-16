@@ -16,7 +16,8 @@
  *   - <ViasMark /> → ton vrai logo (SVG)
  *   - objet `palette` ci-dessous → tes vrais hex (un seul point de swap)
  *   - section « racines » → tes photos du patrimoine
- *   - sections « typographie » / « applications » → tes specimens & mockups
+ *   - typographie : Young Serif (titrage) + Cal Sans (texte), chargées via layout.tsx
+ *   - section « applications » → tes vrais mockups
  */
 
 import { useEffect, useRef } from "react";
@@ -71,8 +72,8 @@ function ViasMark({ className = "", color = "currentColor" }: { className?: stri
 function Wordmark({ className = "" }: { className?: string }) {
   return (
     <span
-      className={`font-bold tracking-[-0.04em] ${className}`}
-      style={{ fontFamily: "var(--font-inter), sans-serif" }}
+      className={`tracking-[-0.01em] ${className}`}
+      style={{ fontFamily: "var(--font-young-serif), serif" }}
     >
       Vias
     </span>
@@ -112,9 +113,18 @@ export default function ViasPage() {
   return (
     <main
       ref={root}
+      id="vias"
       style={cssVars}
-      className="min-h-screen bg-[var(--paper)] text-[var(--ink)] overflow-hidden"
+      className="min-h-screen bg-[var(--paper)] text-[var(--ink)] overflow-hidden font-[family-name:var(--font-cal-sans),sans-serif]"
     >
+      {/* Charte typo : titres en Young Serif (poids unique 400), texte en Cal Sans */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html:
+            "#vias h1,#vias h2,#vias h3,#vias .v-display{font-family:var(--font-young-serif),Georgia,serif;font-weight:400}",
+        }}
+      />
+
       {/* Bandeau signature Paper34 */}
       <div className="fixed top-0 left-0 right-0 z-40 flex items-center justify-between px-6 py-4 text-xs uppercase tracking-[0.2em] text-[var(--ink)]/60 mix-blend-multiply pointer-events-none">
         <span>Proposition spontanée</span>
@@ -208,7 +218,7 @@ export default function ViasPage() {
           </div>
           {/* Punchline — le défi créatif */}
           <p
-            className="v-reveal font-bold tracking-[-0.02em] leading-[1.15] text-center border-t border-[var(--ink)]/10 pt-14"
+            className="v-reveal v-display tracking-[-0.01em] leading-[1.15] text-center border-t border-[var(--ink)]/10 pt-14"
             style={{ fontSize: "clamp(1.6rem, 4vw, 2.75rem)", color: "var(--sea)" }}
           >
             Donner à un héritage de mille ans le langage d&apos;aujourd&apos;hui
@@ -508,31 +518,113 @@ export default function ViasPage() {
         </div>
       </section>
 
-      {/* ═══ LA TYPOGRAPHIE ═══ */}
+      {/* ═══ LA TYPOGRAPHIE (charte deux polices) ═══ */}
       <section className="bg-[var(--sand)] py-28 md:py-40 px-6">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-6xl">
           <p className="v-reveal text-[var(--azur)] text-sm font-semibold uppercase tracking-[0.2em] mb-6">
             La typographie
           </p>
           <h2
-            className="v-reveal font-bold tracking-[-0.02em] mb-10"
-            style={{ fontSize: "clamp(1.8rem, 4vw, 3rem)", color: "var(--sea)" }}
+            className="v-reveal tracking-[-0.01em] mb-6"
+            style={{ fontSize: "clamp(1.9rem, 4.5vw, 3.25rem)", color: "var(--sea)" }}
           >
-            Une voix entre deux époques.
+            Deux voix, une même époque.
           </h2>
-          {/* Specimen placeholder — remplacer par ta vraie typo */}
-          <div className="v-reveal rounded-2xl bg-[var(--paper)] p-10 md:p-16 border border-[var(--ink)]/10">
-            <p style={{ fontSize: "clamp(4rem, 14vw, 9rem)", color: "var(--sea)" }} className="font-bold leading-none tracking-[-0.03em]">
-              Aa
+          <p className="v-reveal text-lg text-[var(--ink)]/70 leading-relaxed max-w-2xl mb-14">
+            Un serif de caractère pour la mémoire, une grotesque limpide pour le
+            quotidien. Ensemble, elles disent « médiéval contemporain » — et c’est
+            tout Vias.
+          </p>
+
+          <div className="v-stagger grid md:grid-cols-2 gap-6 md:gap-8 items-stretch">
+            {/* YOUNG SERIF — titrage */}
+            <div className="rounded-2xl bg-[var(--paper)] border border-[var(--ink)]/10 p-8 md:p-10 flex flex-col">
+              <div className="flex items-baseline justify-between mb-8">
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--gueules)]">
+                  Titrage
+                </span>
+                <span className="text-sm text-[var(--ink)]/50">Young Serif</span>
+              </div>
+              <p
+                style={{ fontFamily: "var(--font-young-serif), serif", fontSize: "clamp(5rem, 15vw, 8.5rem)", color: "var(--sea)" }}
+                className="leading-none"
+              >
+                Ag
+              </p>
+              <p
+                style={{ fontFamily: "var(--font-young-serif), serif" }}
+                className="mt-8 text-xl md:text-2xl text-[var(--ink)]/80 leading-snug break-words"
+              >
+                ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz
+                0123456789
+              </p>
+              <p
+                style={{ fontFamily: "var(--font-young-serif), serif", color: "var(--sea)" }}
+                className="mt-8 text-2xl md:text-3xl leading-tight"
+              >
+                L’église, le canal, la mer.
+              </p>
+              <p className="mt-auto pt-8 text-[15px] text-[var(--ink)]/65 leading-relaxed">
+                Des empattements francs, comme taillés dans la pierre — un écho au
+                manuscrit et au Moyen Âge, mais d’un dessin franchement actuel.
+                Pour les grands titres et les moments forts.
+              </p>
+            </div>
+
+            {/* CAL SANS — texte & interface */}
+            <div className="rounded-2xl bg-[var(--sea)] text-[var(--paper)] p-8 md:p-10 flex flex-col">
+              <div className="flex items-baseline justify-between mb-8">
+                <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--sun)]">
+                  Texte &amp; interface
+                </span>
+                <span className="text-sm text-[var(--paper)]/60">Cal Sans</span>
+              </div>
+              <p
+                style={{ fontFamily: "var(--font-cal-sans), sans-serif", fontSize: "clamp(5rem, 15vw, 8.5rem)" }}
+                className="leading-none text-[var(--paper)]"
+              >
+                Ag
+              </p>
+              <p
+                style={{ fontFamily: "var(--font-cal-sans), sans-serif" }}
+                className="mt-8 text-xl md:text-2xl text-[var(--paper)]/85 leading-snug break-words"
+              >
+                ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz
+                0123456789
+              </p>
+              <p
+                style={{ fontFamily: "var(--font-cal-sans), sans-serif" }}
+                className="mt-8 text-2xl md:text-3xl leading-tight text-[var(--paper)]"
+              >
+                Horaires, démarches, plan de ville.
+              </p>
+              <p className="mt-auto pt-8 text-[15px] text-[var(--paper)]/70 leading-relaxed">
+                Une grotesque géométrique d’une lisibilité exemplaire, sans âge.
+                Elle porte l’information du quotidien — signalétique, formulaires,
+                web — nette à toutes les tailles.
+              </p>
+            </div>
+          </div>
+
+          {/* Le duo en situation */}
+          <div className="v-reveal mt-6 md:mt-8 rounded-2xl bg-[var(--paper)] border border-[var(--ink)]/10 p-8 md:p-14">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--ink)]/40 mb-6">
+              Le duo en situation
             </p>
-            <p className="mt-6 text-2xl text-[var(--ink)]/70 tracking-wide">
-              ABCDEFGHIJKLMNOPQRSTUVWXYZ
-            </p>
-            <p className="mt-2 text-2xl text-[var(--ink)]/50 tracking-wide">
-              abcdefghijklmnopqrstuvwxyz 0123456789
-            </p>
-            <p className="mt-8 text-sm text-[var(--ink)]/40 italic">
-              (Specimen provisoire — à remplacer par la police retenue.)
+            <h3
+              style={{ fontFamily: "var(--font-young-serif), serif", color: "var(--sea)" }}
+              className="text-3xl md:text-5xl leading-tight mb-5"
+            >
+              Mille ans d’histoire, à ciel ouvert.
+            </h3>
+            <p
+              style={{ fontFamily: "var(--font-cal-sans), sans-serif" }}
+              className="text-lg text-[var(--ink)]/75 leading-relaxed max-w-2xl"
+            >
+              De l’église fortifiée Saint-Jean-Baptiste aux ouvrages du Libron,
+              Vias cultive un patrimoine vivant. Le titre en Young Serif pose la
+              mémoire ; le texte en Cal Sans la rend limpide. Deux familles, un
+              système simple, partout cohérent.
             </p>
           </div>
         </div>

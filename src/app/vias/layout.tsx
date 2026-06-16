@@ -1,4 +1,21 @@
 import type { Metadata } from "next";
+import { Young_Serif, Cal_Sans } from "next/font/google";
+
+/* Young Serif — titrage : empattements francs, écho médiéval mais contemporain */
+const youngSerif = Young_Serif({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-young-serif",
+});
+
+/* Cal Sans — texte & interface : géométrique, ultra lisible, intemporelle */
+const calSans = Cal_Sans({
+  weight: "400",
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-cal-sans",
+});
 
 export const metadata: Metadata = {
   title: "Vias — Proposition d'identité visuelle | Paper34",
@@ -14,5 +31,7 @@ export const metadata: Metadata = {
 };
 
 export default function ViasLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return (
+    <div className={`${youngSerif.variable} ${calSans.variable}`}>{children}</div>
+  );
 }
