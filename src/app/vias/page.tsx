@@ -687,8 +687,17 @@ Un patrimoine aussi riche que la mer.
       </section>
 
       {/* ═══ CLÔTURE / CTA ═══ */}
-      <section className="bg-[var(--sea)] text-[var(--paper)] py-32 md:py-44 px-6 text-center">
-        <div className="mx-auto max-w-3xl">
+      <section className="relative overflow-hidden bg-[var(--sea)] text-[var(--paper)] py-32 md:py-44 px-6 text-center">
+        {/* Planche de croquis en filigrane : inversée + blend screen → les traits
+            ressortent en clair sur le bleu (effet épure / plan d'architecte). */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/vias/croquis.jpg"
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none select-none absolute inset-0 w-full h-full object-cover invert mix-blend-screen opacity-20"
+        />
+        <div className="relative z-10 mx-auto max-w-3xl">
           <ViasLogo variant="compact-blanc" alt="" className="v-reveal w-28 md:w-32 h-auto mx-auto mb-10" />
           <h2
             className="v-reveal font-bold tracking-[-0.02em] leading-[1.05] mb-8"
