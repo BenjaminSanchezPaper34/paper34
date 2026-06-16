@@ -13,7 +13,7 @@
  *   - Nom attesté depuis 922 (villa Aviatio)
  *
  * Visuels en PLACEHOLDER à remplacer par le design Illustrator :
- *   - <ViasMark /> → ton vrai logo (SVG)
+ *   - <ViasLogo /> → logo officiel client (4 variantes dans /public/vias)
  *   - objet `palette` ci-dessous → tes vrais hex (un seul point de swap)
  *   - section « racines » → tes photos du patrimoine
  *   - typographie : Young Serif (titres) · Cal Sans (.v-cal : accents) · Lexend (texte),
@@ -29,7 +29,7 @@ import { gsap, fadeInUp, staggerReveal } from "@/lib/animations";
    Blasonnement : d'or aux trois pals de gueules, au chef d'azur
    chargé de trois fleurs de lys d'or.                                    */
 const palette = {
-  sea: "#0e3148", // Bleu Canal — Canal du Midi, fonds profonds
+  sea: "#0f3e56", // Bleu Vias — la couleur du logo (Canal & Méditerranée)
   azur: "#1c5d9e", // Azur — le chef du blason, la Méditerranée
   gueules: "#b5322b", // Gueules — les trois pals rouges du blason
   sun: "#e0a129", // Or — le champ du blason, le soleil du Sud
@@ -49,35 +49,20 @@ const cssVars = {
 } as React.CSSProperties;
 
 /* ─── Logo placeholder (soleil + vagues + wordmark) — REMPLACER ─── */
-function ViasMark({ className = "", color = "currentColor" }: { className?: string; color?: string }) {
+/* Logo officiel Vias (assets client dans /public/vias). Variantes :
+   bleu / blanc (horizontal) · compact-bleu / compact-blanc (icône + mot empilés). */
+function ViasLogo({
+  variant = "bleu",
+  className = "",
+  alt = "Vias",
+}: {
+  variant?: string;
+  className?: string;
+  alt?: string;
+}) {
   return (
-    <svg viewBox="0 0 120 120" className={className} fill="none" aria-hidden="true">
-      <circle cx="60" cy="44" r="20" fill={color} />
-      <path
-        d="M18 78c8 0 8 8 16 8s8-8 16-8 8 8 16 8 8-8 16-8 8 8 16 8 8-8 8-8"
-        stroke={color}
-        strokeWidth="5"
-        strokeLinecap="round"
-      />
-      <path
-        d="M18 96c8 0 8 8 16 8s8-8 16-8 8 8 16 8 8-8 16-8 8 8 16 8"
-        stroke={color}
-        strokeWidth="5"
-        strokeLinecap="round"
-        opacity="0.5"
-      />
-    </svg>
-  );
-}
-
-function Wordmark({ className = "" }: { className?: string }) {
-  return (
-    <span
-      className={`tracking-[-0.01em] ${className}`}
-      style={{ fontFamily: "var(--font-young-serif), serif" }}
-    >
-      Vias
-    </span>
+    // eslint-disable-next-line @next/next/no-img-element
+    <img src={`/vias/logo-${variant}.svg`} alt={alt} className={className} />
   );
 }
 
@@ -144,13 +129,13 @@ export default function ViasPage() {
         <p className="v-hero-kicker v-cal text-xs md:text-sm uppercase tracking-[0.3em] text-[var(--ink)]/50 mb-8">
           Commune de Vias · Hérault
         </p>
-        <h1
-          className="v-hero-title font-bold tracking-[-0.04em] leading-[0.9]"
-          style={{ fontSize: "clamp(3.5rem, 14vw, 11rem)", color: "var(--sea)" }}
-        >
-          Vias
+        <h1 className="v-hero-title flex justify-center">
+          <ViasLogo
+            variant="compact-bleu"
+            alt="Vias"
+            className="w-[230px] sm:w-[280px] md:w-[340px] h-auto"
+          />
         </h1>
-        <ViasMark className="v-hero-mark w-16 h-16 md:w-20 md:h-20 mt-8 text-[var(--sun)]" color="var(--sun)" />
         <p className="v-hero-sub mt-8 text-lg md:text-2xl text-[var(--ink)]/70 max-w-xl leading-snug">
           De la mer aux monuments — une identité pour tout Vias.
         </p>
@@ -327,13 +312,17 @@ Un patrimoine aussi riche que la mer.
           <p className="v-reveal text-[var(--sun)] v-cal text-sm font-semibold uppercase tracking-[0.2em] mb-12">
             Le logo
           </p>
-          <div className="v-reveal flex flex-col items-center gap-7">
-            <ViasMark className="w-40 h-40 md:w-56 md:h-56 text-[var(--paper)]" color="var(--paper)" />
-            <Wordmark className="text-[var(--paper)]" />
+          <div className="v-reveal w-full flex justify-center">
+            <ViasLogo
+              variant="blanc"
+              alt="Vias"
+              className="w-[82%] max-w-2xl h-auto"
+            />
           </div>
-          <p className="v-reveal mt-12 text-center text-[var(--paper)]/60 max-w-md">
-            Le logotype principal — à décliner sur l&apos;ensemble des supports
-            de la commune.
+          <p className="v-reveal mt-12 text-center text-[var(--paper)]/70 max-w-lg leading-relaxed">
+            Une arcade d&apos;arches dressées — les monuments, le vieux village,
+            la pierre — portée par un bleu profond de Méditerranée. Le patrimoine
+            et la mer réunis dans un seul signe.
           </p>
         </div>
       </section>
@@ -392,10 +381,11 @@ Un patrimoine aussi riche que la mer.
                 Après
               </span>
               <div className="flex-1 grid place-items-center min-h-[120px] mb-8">
-                <div className="flex flex-col items-center gap-3">
-                  <ViasMark className="w-20 h-20 text-[var(--paper)]" color="var(--paper)" />
-                  <Wordmark className="text-[var(--paper)] text-4xl" />
-                </div>
+                <ViasLogo
+                  variant="blanc"
+                  alt="Vias"
+                  className="w-full max-w-[300px] h-auto"
+                />
               </div>
               <ul className="space-y-3 text-[var(--paper)]/80 text-[15px] leading-relaxed">
                 {[
@@ -447,7 +437,7 @@ Un patrimoine aussi riche que la mer.
                 backgroundSize: "28px 28px",
               }}
             />
-            <ViasMark className="relative w-32 h-32 text-[var(--sea)]" color="var(--sea)" />
+            <ViasLogo variant="compact-bleu" alt="" className="relative w-36 h-auto" />
           </div>
         </div>
       </section>
@@ -466,14 +456,14 @@ Un patrimoine aussi riche que la mer.
           </h2>
           <div className="v-stagger grid grid-cols-2 md:grid-cols-4 gap-5">
             {[
-              { bg: "var(--paper)", fg: "var(--sea)", label: "Principal" },
-              { bg: "var(--sea)", fg: "var(--paper)", label: "Négatif" },
-              { bg: "var(--sun)", fg: "var(--ink)", label: "Or" },
-              { bg: "var(--gueules)", fg: "var(--paper)", label: "Gueules" },
+              { bg: "var(--paper)", fg: "var(--sea)", label: "Principal", variant: "compact-bleu" },
+              { bg: "var(--sea)", fg: "var(--paper)", label: "Négatif", variant: "compact-blanc" },
+              { bg: "var(--sun)", fg: "var(--ink)", label: "Or", variant: "compact-bleu" },
+              { bg: "var(--gueules)", fg: "var(--paper)", label: "Gueules", variant: "compact-blanc" },
             ].map((v) => (
-              <div key={v.label} className="rounded-2xl p-8 flex flex-col items-center gap-4" style={{ background: v.bg }}>
-                <ViasMark className="w-16 h-16" color={v.fg} />
-                <span className="text-xs uppercase tracking-[0.15em]" style={{ color: v.fg, opacity: 0.7 }}>
+              <div key={v.label} className="rounded-2xl p-6 flex flex-col items-center gap-4" style={{ background: v.bg }}>
+                <ViasLogo variant={v.variant} alt="" className="h-16 w-auto" />
+                <span className="v-cal text-xs uppercase tracking-[0.15em]" style={{ color: v.fg, opacity: 0.7 }}>
                   {v.label}
                 </span>
               </div>
@@ -665,20 +655,20 @@ Un patrimoine aussi riche que la mer.
           </h2>
           <div className="v-stagger grid grid-cols-2 md:grid-cols-3 gap-5">
             {[
-              { label: "Signalétique", bg: "var(--sea)", fg: "var(--paper)" },
-              { label: "Papeterie", bg: "var(--paper)", fg: "var(--sea)", border: true },
-              { label: "Kakémono", bg: "var(--gueules)", fg: "var(--paper)" },
-              { label: "Véhicules", bg: "var(--ink)", fg: "var(--paper)" },
-              { label: "Goodies", bg: "var(--sun)", fg: "var(--ink)" },
-              { label: "Web & réseaux", bg: "var(--azur)", fg: "var(--paper)" },
+              { label: "Signalétique", bg: "var(--sea)", fg: "var(--paper)", variant: "compact-blanc" },
+              { label: "Papeterie", bg: "var(--paper)", fg: "var(--sea)", border: true, variant: "compact-bleu" },
+              { label: "Kakémono", bg: "var(--gueules)", fg: "var(--paper)", variant: "compact-blanc" },
+              { label: "Véhicules", bg: "var(--ink)", fg: "var(--paper)", variant: "compact-blanc" },
+              { label: "Goodies", bg: "var(--sun)", fg: "var(--ink)", variant: "compact-bleu" },
+              { label: "Web & réseaux", bg: "var(--azur)", fg: "var(--paper)", variant: "compact-blanc" },
             ].map((m) => (
               <div
                 key={m.label}
                 className={`aspect-[4/3] rounded-2xl flex flex-col items-center justify-center gap-4 ${m.border ? "border border-[var(--ink)]/10" : ""}`}
                 style={{ background: m.bg }}
               >
-                <ViasMark className="w-14 h-14" color={m.fg} />
-                <span className="text-xs uppercase tracking-[0.15em]" style={{ color: m.fg, opacity: 0.75 }}>
+                <ViasLogo variant={m.variant} alt="" className="h-14 w-auto" />
+                <span className="v-cal text-xs uppercase tracking-[0.15em]" style={{ color: m.fg, opacity: 0.75 }}>
                   {m.label}
                 </span>
               </div>
@@ -693,7 +683,7 @@ Un patrimoine aussi riche que la mer.
       {/* ═══ CLÔTURE / CTA ═══ */}
       <section className="bg-[var(--sea)] text-[var(--paper)] py-32 md:py-44 px-6 text-center">
         <div className="mx-auto max-w-3xl">
-          <ViasMark className="v-reveal w-20 h-20 mx-auto mb-10 text-[var(--sun)]" color="var(--sun)" />
+          <ViasLogo variant="compact-blanc" alt="" className="v-reveal w-28 md:w-32 h-auto mx-auto mb-10" />
           <h2
             className="v-reveal font-bold tracking-[-0.02em] leading-[1.05] mb-8"
             style={{ fontSize: "clamp(2rem, 5vw, 3.75rem)" }}
