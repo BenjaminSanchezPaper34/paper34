@@ -166,7 +166,7 @@ export default function ViasPage() {
             <ViasHeroLogo className="w-[230px] sm:w-[280px] md:w-[340px] h-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.35)]" />
           </h1>
           <p className="v-hero-sub mt-20 md:mt-24 text-lg md:text-2xl text-[var(--paper)]/85 max-w-xl leading-snug">
-            De la mer aux monuments — une identité pour tout Vias.
+            De la mer aux monuments, une identité pour tout Vias.
           </p>
         </div>
 
@@ -193,11 +193,11 @@ export default function ViasPage() {
               Une église fortifiée du XIV<sup>e</sup> siècle, le Canal du Midi
               classé à l&apos;UNESCO, un blason vieux de plus de mille ans, une
               terre née du volcan et bordée par la Méditerranée. Vias ne manque
-              pas d&apos;histoire — il lui manque un signe qui la rassemble.
+              pas d&apos;histoire. Il lui manque un signe qui la rassemble.
             </p>
             <p>
               Aujourd&apos;hui, son image se disperse : un logo ici, une autre
-              couleur là. L&apos;enjeu est simple — offrir à Vias une marque{" "}
+              couleur là. L&apos;enjeu est simple : offrir à Vias une marque{" "}
               <strong className="text-[var(--paper)]">claire, moderne et
               protégeable</strong>, fidèle à son âme et lisible par tous, du
               vieux village au bord de mer.
@@ -220,7 +220,7 @@ Un patrimoine aussi riche que la mer.
           </h2>
           <div className="v-stagger grid md:grid-cols-2 gap-8 text-[var(--ink)]/75 text-lg leading-relaxed mb-16">
             <p>
-              Pendant deux mandats, Vias a bâti une station balnéaire reconnue —
+              Pendant deux mandats, Vias a bâti une station balnéaire reconnue,
               une vraie force, et son moteur économique. Le déséquilibre n&apos;est
               pas la mer : c&apos;est que le développement et le commerce se sont
               concentrés presque exclusivement sur le bord de mer.
@@ -229,7 +229,7 @@ Un patrimoine aussi riche que la mer.
               Le nouveau cap : revenir à l&apos;essentiel, sans rien renier.
               Garder la mer comme signature, et asseoir enfin un{" "}
               <strong className="text-[var(--sea)]">patrimoine tout aussi riche</strong>{" "}
-              — centre-ville historique, monuments, pierre volcanique — longtemps
+              (centre-ville historique, monuments, pierre volcanique), longtemps
               resté dans son ombre. Une identité forte porte les deux à parts
               égales.
             </p>
@@ -239,8 +239,8 @@ Un patrimoine aussi riche que la mer.
             className="v-reveal v-display tracking-[-0.01em] leading-[1.15] text-center border-t border-[var(--ink)]/10 pt-14"
             style={{ fontSize: "clamp(1.6rem, 4vw, 2.75rem)", color: "var(--sea)" }}
           >
-            Donner à un héritage de mille ans le langage d&apos;aujourd&apos;hui
-            — sans jamais en trahir l&apos;âme.
+            Donner à un héritage de mille ans le langage d&apos;aujourd&apos;hui,
+            sans jamais en trahir l&apos;âme.
           </p>
         </div>
       </section>
@@ -260,11 +260,11 @@ Un patrimoine aussi riche que la mer.
           <p className="v-reveal text-lg md:text-xl text-[var(--ink)]/70 leading-relaxed max-w-2xl mx-auto">
             Le parti pris : une identité qui semble avoir toujours existé, tout
             en parlant le langage du présent. Un signe contemporain qui tisse les
-            trois forces de Vias — ses monuments et son cœur médiéval, la pierre
+            trois forces de Vias : ses monuments et son cœur médiéval, la pierre
             volcanique de sa terre, et la Méditerranée qui ne s&apos;efface pas.
             Le patrimoine retrouvé, la mer conservée.
             <span className="block mt-5 text-base text-[var(--ink)]/40 italic">
-              (Intention créative — la forme définitive est en cours de dessin.)
+              (Intention créative, la forme définitive est en cours de dessin.)
             </span>
           </p>
         </div>
@@ -284,8 +284,8 @@ Un patrimoine aussi riche que la mer.
             />
           </div>
           <p className="v-reveal mt-12 text-center text-[var(--paper)]/70 max-w-lg leading-relaxed">
-            Une arcade d&apos;arches dressées — les monuments, le vieux village,
-            la pierre — portée par un bleu profond de Méditerranée. Le patrimoine
+            Une arcade d&apos;arches dressées (les monuments, le vieux village,
+            la pierre), portée par un bleu profond de Méditerranée. Le patrimoine
             et la mer réunis dans un seul signe.
           </p>
         </div>
@@ -305,7 +305,7 @@ Un patrimoine aussi riche que la mer.
           </h2>
           <p className="v-reveal text-lg text-[var(--ink)]/70 leading-relaxed max-w-2xl mb-14">
             La marque actuelle a fidèlement accompagné l&apos;essor de la station
-            balnéaire. Une nouvelle page s&apos;ouvre — celle d&apos;une identité
+            balnéaire. Une nouvelle page s&apos;ouvre : celle d&apos;une identité
             qui embrasse aussi le village, le canal et mille ans d&apos;histoire.
           </p>
 
@@ -327,7 +327,7 @@ Un patrimoine aussi riche que la mer.
               <ul className="space-y-3 text-[var(--ink)]/70 text-[15px] leading-relaxed">
                 {[
                   "Centrée sur la seule plage : rien des monuments, du patrimoine, du village.",
-                  "Couleurs primaires très saturées et motif de vague convenu — une esthétique des années 2000.",
+                  "Couleurs primaires très saturées et motif de vague convenu, une esthétique des années 2000.",
                   "Deux typographies hétérogènes, peu lisibles à petite taille.",
                   "Pas de symbole autonome ni de version simple (favicon, tampon, monochrome).",
                 ].map((t) => (
@@ -354,7 +354,7 @@ Un patrimoine aussi riche que la mer.
               <ul className="space-y-3 text-[var(--paper)]/80 text-[15px] leading-relaxed">
                 {[
                   "Les trois forces réunies : monuments, pierre volcanique et mer.",
-                  "Palette héritée du blason — sobre, intemporelle, premium.",
+                  "Palette héritée du blason : sobre, intemporelle, premium.",
                   "Un symbole fort et une typographie cohérente.",
                   "Déclinable partout : du tampon à la signalétique, en couleur comme en monochrome.",
                 ].map((t) => (
@@ -367,7 +367,7 @@ Un patrimoine aussi riche que la mer.
             </div>
           </div>
           <p className="v-reveal text-sm text-[var(--ink)]/40 italic mt-6 text-center">
-            (Logo « après » provisoire — remplacé par ton dessin final.)
+            (Logo « après » provisoire, remplacé par ton dessin final.)
           </p>
         </div>
       </section>
@@ -388,7 +388,7 @@ Un patrimoine aussi riche que la mer.
             <p className="text-lg text-[var(--ink)]/70 leading-relaxed">
               Chaque arche repose sur une même ligne de base, alignée sur des
               axes verticaux et une hauteur de référence. Cette rigueur garantit
-              un logo impeccable à toutes les échelles — du tampon à la
+              un logo impeccable à toutes les échelles, du tampon à la
               signalétique.
             </p>
           </div>
@@ -419,7 +419,7 @@ Un patrimoine aussi riche que la mer.
             <p className="text-lg text-[var(--ink)]/70 leading-relaxed">
               Détaché du mot, le motif des arches reste immédiatement
               reconnaissable. Il devient avatar, favicon, application, tampon ou
-              marquage de véhicule — partout où le format est court.
+              marquage de véhicule, partout où le format est court.
             </p>
           </div>
           <div className="v-reveal flex flex-col items-center gap-8">
@@ -487,8 +487,8 @@ Un patrimoine aussi riche que la mer.
             Des couleurs qui ne s&apos;inventent pas.
           </h2>
           <p className="v-reveal text-lg text-[var(--ink)]/70 leading-relaxed max-w-2xl mb-12">
-            Elles se lisent déjà sur le blason de Vias — l&apos;or, le gueules et
-            l&apos;azur — prolongées par la pierre du patrimoine et le basalte du
+            Elles se lisent déjà sur le blason de Vias (l&apos;or, le gueules et
+            l&apos;azur), prolongées par la pierre du patrimoine et le basalte du
             terroir.
           </p>
           <div className="v-stagger grid grid-cols-2 md:grid-cols-3 gap-5">
@@ -528,7 +528,7 @@ Un patrimoine aussi riche que la mer.
           <p className="v-reveal text-lg text-[var(--ink)]/70 leading-relaxed max-w-2xl mb-14">
             Un serif de caractère pour la mémoire, une sans chaleureuse pour les
             repères, et une lecture limpide pour le quotidien. Ensemble, elles
-            disent « médiéval contemporain » — et c’est tout Vias.
+            disent « médiéval contemporain », et c’est tout Vias.
           </p>
 
           <div className="v-stagger grid sm:grid-cols-3 gap-5 md:gap-6 items-stretch">
@@ -553,7 +553,7 @@ Un patrimoine aussi riche que la mer.
                 Pierre &amp; mémoire
               </p>
               <p className="mt-auto pt-6 text-[15px] text-[var(--ink)]/65 leading-relaxed">
-                Empattements francs, écho médiéval mais dessin actuel — pour les
+                Empattements francs, écho médiéval mais dessin actuel. Pour les
                 grands titres.
               </p>
             </div>
@@ -579,7 +579,7 @@ Un patrimoine aussi riche que la mer.
                 Labels &amp; boutons
               </p>
               <p className="mt-auto pt-6 text-[15px] text-[var(--paper)]/70 leading-relaxed">
-                Géométrique et chaleureuse — pour les intitulés, repères et
+                Géométrique et chaleureuse. Pour les intitulés, repères et
                 l’interface.
               </p>
             </div>
@@ -605,7 +605,7 @@ Un patrimoine aussi riche que la mer.
                 Le confort de lecture
               </p>
               <p className="mt-auto pt-6 text-[15px] text-[var(--ink)]/65 leading-relaxed">
-                Variable, dessinée pour la lisibilité — pour tous les paragraphes
+                Variable, dessinée pour la lisibilité. Pour tous les paragraphes
                 et le corps de texte.
               </p>
             </div>
@@ -670,7 +670,7 @@ Un patrimoine aussi riche que la mer.
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={`/vias/${m.src}.jpg`}
-                  alt={`Logo Vias appliqué — ${m.label}`}
+                  alt={`Logo Vias appliqué : ${m.label}`}
                   loading="lazy"
                   className={`w-full ${m.ar} object-cover`}
                 />
@@ -681,7 +681,7 @@ Un patrimoine aussi riche que la mer.
             ))}
           </div>
           <p className="v-reveal text-sm text-[var(--ink)]/40 italic mt-6 text-center">
-            Simulations — exemples d&apos;application de l&apos;identité.
+            Simulations : exemples d&apos;application de l&apos;identité.
           </p>
         </div>
       </section>
@@ -697,7 +697,7 @@ Un patrimoine aussi riche que la mer.
             Donnons à Vias une identité dont elle sera fière.
           </h2>
           <p className="v-reveal text-lg text-[var(--paper)]/75 mb-12 max-w-xl mx-auto">
-            Cette proposition est une intention, offerte spontanément — par
+            Cette proposition est une intention, offerte spontanément, par
             attachement à ce territoire. J&apos;aimerais la faire grandir avec
             vous, jusqu&apos;à la charte complète : logo, déclinaisons,
             signalétique, papeterie et supports numériques.
@@ -717,7 +717,7 @@ Un patrimoine aussi riche que la mer.
             </Link>
           </div>
           <p className="v-reveal mt-16 text-xs uppercase tracking-[0.2em] text-[var(--paper)]/40">
-            Paper34 · Studio graphique à Agde — à deux pas de Vias
+            Paper34 · Studio graphique à Agde, à deux pas de Vias
           </p>
         </div>
       </section>
