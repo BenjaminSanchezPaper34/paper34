@@ -76,7 +76,12 @@ export default function ViasPage() {
         gsap
           .timeline({ defaults: { ease: "power3.out" } })
           .from(".v-hero-kicker", { autoAlpha: 0, y: 14, duration: 0.6 }, 0.1)
-          .from(".v-word", { autoAlpha: 0, y: 22, duration: 0.7 }, 0.35)
+          .fromTo(
+            ".v-word",
+            { autoAlpha: 0, filter: "blur(12px)" },
+            { autoAlpha: 1, filter: "blur(0px)", duration: 0.9 },
+            0.35
+          )
           .from(".v-arch", { autoAlpha: 0, y: 16, duration: 0.5, stagger: 0.12 }, 0.8)
           .from(".v-hero-sub", { autoAlpha: 0, y: 14, duration: 0.6 }, 1.6);
       }
