@@ -124,24 +124,57 @@ export default function ViasPage() {
         </a>
       </div>
 
-      {/* ═══ HERO ═══ */}
-      <section className="v-hero relative min-h-[100svh] flex flex-col items-center justify-center text-center px-6">
-        <p className="v-hero-kicker v-cal text-xs md:text-sm uppercase tracking-[0.3em] text-[var(--ink)]/50 mb-8">
-          Commune de Vias · Hérault
-        </p>
-        <h1 className="v-hero-title flex justify-center">
-          <ViasLogo
-            variant="compact-bleu"
-            alt="Vias"
-            className="w-[230px] sm:w-[280px] md:w-[340px] h-auto"
+      {/* ═══ HERO (vidéo carnaval en fond, assombrie) ═══ */}
+      <section className="v-hero relative min-h-[100svh] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+        {/* Poster (fallback + prefers-reduced-motion) */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url(/vias/hero-poster.jpg)" }}
+          aria-hidden="true"
+        />
+        {/* Vidéo muette, en boucle (hébergée sur R2). Masquée si reduced-motion. */}
+        {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover motion-reduce:hidden"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/vias/hero-poster.jpg"
+          aria-hidden="true"
+        >
+          <source
+            src="https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/vias/hero.mp4"
+            type="video/mp4"
           />
-        </h1>
-        <p className="v-hero-sub mt-8 text-lg md:text-2xl text-[var(--ink)]/70 max-w-xl leading-snug">
-          De la mer aux monuments — une identité pour tout Vias.
-        </p>
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[var(--ink)]/40">
+        </video>
+        {/* Voile sombre pour faire ressortir le logo et le texte */}
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-[var(--sea)]/80 via-[var(--ink)]/65 to-[var(--sea)]/85"
+          aria-hidden="true"
+        />
+
+        {/* Contenu */}
+        <div className="relative z-10 flex flex-col items-center">
+          <p className="v-hero-kicker v-cal text-xs md:text-sm uppercase tracking-[0.3em] text-[var(--paper)]/70 mb-8">
+            Commune de Vias · Hérault
+          </p>
+          <h1 className="v-hero-title flex justify-center">
+            <ViasLogo
+              variant="compact-blanc"
+              alt="Vias"
+              className="w-[230px] sm:w-[280px] md:w-[340px] h-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.35)]"
+            />
+          </h1>
+          <p className="v-hero-sub mt-8 text-lg md:text-2xl text-[var(--paper)]/85 max-w-xl leading-snug">
+            De la mer aux monuments — une identité pour tout Vias.
+          </p>
+        </div>
+
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-[var(--paper)]/50">
           <span className="text-[11px] uppercase tracking-[0.2em]">Découvrir</span>
-          <span className="w-px h-10 bg-[var(--ink)]/30 animate-pulse" />
+          <span className="w-px h-10 bg-[var(--paper)]/40 animate-pulse" />
         </div>
       </section>
 

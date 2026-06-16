@@ -52,3 +52,5 @@ public/galeries/*/originals/
 # Vidéos sources (jamais dans git — transcoder + héberger ailleurs)
 *.mov
 *.MOV
+*.mp4
+*.MP4
