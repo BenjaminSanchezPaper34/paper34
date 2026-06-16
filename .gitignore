@@ -54,3 +54,5 @@ public/galeries/*/originals/
 *.MOV
 *.mp4
 *.MP4
+# dumps IA bruts (on commit les versions optimisées renommées)
+public/vias/hf_*

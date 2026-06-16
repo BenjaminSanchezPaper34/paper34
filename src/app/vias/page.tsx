@@ -656,29 +656,33 @@ Un patrimoine aussi riche que la mer.
           >
             Une identité qui vit partout.
           </h2>
-          <div className="v-stagger grid grid-cols-2 md:grid-cols-3 gap-5">
+          <div className="v-stagger grid grid-cols-2 lg:grid-cols-6 gap-4 md:gap-5">
             {[
-              { label: "Signalétique", bg: "var(--sea)", fg: "var(--paper)", variant: "compact-blanc" },
-              { label: "Papeterie", bg: "var(--paper)", fg: "var(--sea)", border: true, variant: "compact-bleu" },
-              { label: "Kakémono", bg: "var(--gueules)", fg: "var(--paper)", variant: "compact-blanc" },
-              { label: "Véhicules", bg: "var(--ink)", fg: "var(--paper)", variant: "compact-blanc" },
-              { label: "Goodies", bg: "var(--sun)", fg: "var(--ink)", variant: "compact-bleu" },
-              { label: "Web & réseaux", bg: "var(--azur)", fg: "var(--paper)", variant: "compact-blanc" },
+              { src: "mockup-papeterie", label: "Papeterie", span: "col-span-2 lg:col-span-3", ar: "aspect-[16/10]" },
+              { src: "mockup-app", label: "Application mobile", span: "col-span-2 lg:col-span-3", ar: "aspect-[16/10]" },
+              { src: "mockup-signaletique", label: "Signalétique", span: "col-span-2 lg:col-span-2", ar: "aspect-[4/3]" },
+              { src: "mockup-polo", label: "Tenues", span: "col-span-1 lg:col-span-2", ar: "aspect-[4/3]" },
+              { src: "mockup-tote", label: "Goodies", span: "col-span-1 lg:col-span-2", ar: "aspect-[4/3]" },
             ].map((m) => (
-              <div
+              <figure
                 key={m.label}
-                className={`aspect-[4/3] rounded-2xl flex flex-col items-center justify-center gap-4 ${m.border ? "border border-[var(--ink)]/10" : ""}`}
-                style={{ background: m.bg }}
+                className={`${m.span} overflow-hidden rounded-2xl border border-[var(--ink)]/10 bg-[var(--paper)]`}
               >
-                <ViasLogo variant={m.variant} alt="" className="h-14 w-auto" />
-                <span className="v-cal text-xs uppercase tracking-[0.15em]" style={{ color: m.fg, opacity: 0.75 }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`/vias/${m.src}.jpg`}
+                  alt={`Logo Vias appliqué — ${m.label}`}
+                  loading="lazy"
+                  className={`w-full ${m.ar} object-cover`}
+                />
+                <figcaption className="v-cal text-xs uppercase tracking-[0.15em] text-[var(--ink)]/60 px-4 py-3">
                   {m.label}
-                </span>
-              </div>
+                </figcaption>
+              </figure>
             ))}
           </div>
           <p className="v-reveal text-sm text-[var(--ink)]/40 italic mt-6 text-center">
-            (Mockups schématiques — à remplacer par tes vrais visuels en situation.)
+            Simulations — exemples d&apos;application de l&apos;identité.
           </p>
         </div>
       </section>
