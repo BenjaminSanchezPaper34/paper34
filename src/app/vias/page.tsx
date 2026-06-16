@@ -159,13 +159,13 @@ export default function ViasPage() {
 
         {/* Contenu */}
         <div className="relative z-10 flex flex-col items-center">
-          <p className="v-hero-kicker v-cal text-xs md:text-sm uppercase tracking-[0.3em] text-[var(--paper)]/70 mb-12 md:mb-20">
+          <p className="v-hero-kicker v-cal text-xs md:text-sm uppercase tracking-[0.3em] text-[var(--paper)]/70 mb-20 md:mb-24">
             Commune de Vias · Hérault
           </p>
           <h1 className="v-hero-title flex justify-center text-[var(--paper)]">
             <ViasHeroLogo className="w-[230px] sm:w-[280px] md:w-[340px] h-auto drop-shadow-[0_4px_24px_rgba(0,0,0,0.35)]" />
           </h1>
-          <p className="v-hero-sub mt-12 md:mt-20 text-lg md:text-2xl text-[var(--paper)]/85 max-w-xl leading-snug">
+          <p className="v-hero-sub mt-20 md:mt-24 text-lg md:text-2xl text-[var(--paper)]/85 max-w-xl leading-snug">
             De la mer aux monuments — une identité pour tout Vias.
           </p>
         </div>
