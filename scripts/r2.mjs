@@ -49,7 +49,10 @@ export async function putFile(client, key, localPath, contentType) {
       ContentType: contentType,
     })
   );
-  return `${R2.publicUrl}/${key}`;
+  // URL publique : on encode chaque segment du chemin (gère notamment les
+  // espaces des noms DxO « …DeepPRIME XD3 ») ; la clé S3 reste brute.
+  const encodedKey = key.split("/").map(encodeURIComponent).join("/");
+  return `${R2.publicUrl}/${encodedKey}`;
 }
 
 /** Supprime des clés (liste d'URLs publiques ou de clés). */

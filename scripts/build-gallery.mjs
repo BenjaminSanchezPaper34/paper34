@@ -48,30 +48,40 @@ function heicToDisplayJpeg(srcPath, outPath, maxEdge, longEdge) {
   execFileSync("sips", args, { stdio: ["ignore", "ignore", "pipe"] });
 }
 
-/** Dernier groupe de chiffres d'un nom (hors extension) → numéro de prise. */
+/** Numéro de prise = le plus long groupe de chiffres du nom (hors extension).
+ *  Gère « A7V-194 » (→ 194) comme « A7507196-DxO_DeepPRIME XD3 » (→ 7507196,
+ *  le « 3 » de XD3 étant ignoré). Égalité de longueur → le dernier groupe. */
 function fileNum(name) {
   const base = name.replace(/\.[^.]+$/, "");
   const nums = base.match(/\d+/g);
-  return nums ? parseInt(nums[nums.length - 1], 10) : 0;
+  if (!nums) return 0;
+  let best = nums[0];
+  for (const n of nums) if (n.length >= best.length) best = n;
+  return parseInt(best, 10);
 }
 
 // ─── Config des galeries à construire ──────────────────────────────
 const GALLERIES = [
   {
-    slug: "chiringuito-opening",
-    title: "Opening",
+    slug: "chiringuito-coachella",
+    title: "Coachella",
     client: "Chiringuito Vias",
-    date: "2026-06-06",
-    src: "Partage photos/CHIRINGUITO - VIAS/1-06I06I26-OPENING",
+    date: "2026-06-21",
+    src: "partage photos/CHIRINGUITO - VIAS/2-21I06I26-COACHELLA",
     intro:
       "👇 Tap sur une photo pour la télécharger\n" +
       "❤️ N'hésitez pas à nous mentionner sur vos réseaux ❤️\n\n" +
+      "🎪 Soirée Coachella · Fête de la Musique\n" +
       "🌴 @chiringuitovias\n" +
-      "🎧 @bon_entendeur @demsko2.1 @maxxbaty @morezan.music\n" +
       "📸 @benjaminsanchez_paper34",
-    // Numéros de photo à NE PAS inclure (retirées volontairement).
-    exclude: [194, 196, 197],
+    exclude: [],
   },
+  // Galerie précédente — déjà construite et sur R2, NE PAS rebuild :
+  // {
+  //   slug: "chiringuito-opening", title: "Opening", client: "Chiringuito Vias",
+  //   date: "2026-06-06", src: "partage photos/CHIRINGUITO - VIAS/1-06I06I26-OPENING",
+  //   exclude: [194, 196, 197],
+  // },
 ];
 
 // Taille max du côté long pour l'affichage web (px). Les originaux plus
