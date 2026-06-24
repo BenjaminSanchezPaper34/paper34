@@ -13,13 +13,17 @@ import { readFileSync, writeFileSync, existsSync } from "fs";
 import { join } from "path";
 import { requireR2, r2Client, deleteUrls } from "./r2.mjs";
 
-// Numéros de photo à retirer, par galerie.
-const GALLERIES = [{ slug: "chiringuito-opening", remove: [] }];
+// Numéros de photo (caméra) à retirer, par galerie.
+const GALLERIES = [{ slug: "chiringuito-coachella", remove: [] }];
 
+// Numéro de prise = plus long groupe de chiffres (gère A7V-194 et A7507647…XD3).
 function fileNum(name) {
   const base = name.replace(/\.[^.]+$/, "");
   const nums = base.match(/\d+/g);
-  return nums ? parseInt(nums[nums.length - 1], 10) : 0;
+  if (!nums) return 0;
+  let best = nums[0];
+  for (const n of nums) if (n.length >= best.length) best = n;
+  return parseInt(best, 10);
 }
 
 requireR2();

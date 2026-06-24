@@ -75,8 +75,8 @@ const GALLERIES = [
       "🌴 @chiringuitovias\n" +
       "🎧 @lunaamusicfr @demsko2.1 @maxxbaty @morezan.music @carlimusic_ofc\n" +
       "📸 @benjaminsanchez_paper34",
-    exclude: [],
-    cover: 127, // couverture /galeries = position (1-based) dans la galerie
+    exclude: [7507647], // photo retirée volontairement (numéro caméra)
+    cover: 126, // couverture /galeries = position (1-based), après exclusion
   },
   // Galerie précédente — déjà construite et sur R2, NE PAS rebuild :
   // {

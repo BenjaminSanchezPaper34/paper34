@@ -5,8 +5,8 @@
   "date": "2026-06-21",
   "intro": "👇 Tap sur une photo pour la télécharger\n❤️ N'hésitez pas à nous mentionner sur vos réseaux ❤️\n\n🎪 Soirée Coachella · Fête de la Musique\n🌴 @chiringuitovias\n🎧 @lunaamusicfr @demsko2.1 @maxxbaty @morezan.music @carlimusic_ofc\n📸 @benjaminsanchez_paper34",
   "cover": "A7507758-DxO_DeepPRIME XD3",
-  "count": 149,
-  "totalOriginalBytes": 80600023,
+  "count": 148,
+  "totalOriginalBytes": 80193544,
   "photos": [
     {
       "id": "A7507196-DxO_DeepPRIME XD3",
@@ -1493,20 +1493,6 @@
       "_relOriginal": "originals/A7507641-DxO_DeepPRIME XD3.heic"
     },
     {
-      "id": "A7507647-DxO_DeepPRIME XD3",
-      "thumb": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/chiringuito-coachella/thumb/A7507647-DxO_DeepPRIME%20XD3.jpg",
-      "display": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/chiringuito-coachella/display/A7507647-DxO_DeepPRIME%20XD3.jpg",
-      "original": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/chiringuito-coachella/originals/A7507647-DxO_DeepPRIME%20XD3.heic",
-      "downloadName": "A7507647-DxO_DeepPRIME XD3.heic",
-      "width": 1440,
-      "height": 1800,
-      "originalBytes": 406479,
-      "originalExt": "heic",
-      "_relThumb": "thumb/A7507647-DxO_DeepPRIME XD3.jpg",
-      "_relDisplay": "display/A7507647-DxO_DeepPRIME XD3.jpg",
-      "_relOriginal": "originals/A7507647-DxO_DeepPRIME XD3.heic"
-    },
-    {
       "id": "A7507651-DxO_DeepPRIME XD3",
       "thumb": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/chiringuito-coachella/thumb/A7507651-DxO_DeepPRIME%20XD3.jpg",
       "display": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/chiringuito-coachella/display/A7507651-DxO_DeepPRIME%20XD3.jpg",
@@ -2095,5 +2081,8 @@
       "_relOriginal": "originals/A7507879-DxO_DeepPRIME XD3.heic"
     }
   ],
-  "storage": "r2"
+  "storage": "r2",
+  "excluded": [
+    "A7507647-DxO_DeepPRIME XD3.heic"
+  ]
 }
