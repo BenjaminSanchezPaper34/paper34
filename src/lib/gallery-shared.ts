@@ -29,6 +29,8 @@ export type Gallery = {
   totalOriginalBytes: number;
   /** Texte d'intro personnalisé (avec retours ligne et @mentions). Optionnel. */
   intro?: string;
+  /** ID de la photo de couverture pour /galeries (sinon la première). */
+  cover?: string;
   photos: GalleryPhoto[];
 };
 

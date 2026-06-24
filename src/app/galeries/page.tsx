@@ -60,8 +60,10 @@ export default function GaleriesPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {galleries.map((g) => {
                 const url = `${SITE}/galerie/${g.slug}`;
-                const cover = g.photos[0]
-                  ? assetUrl(g.slug, g.photos[0].thumb || g.photos[0].display)
+                const coverPhoto =
+                  g.photos.find((p) => p.id === g.cover) || g.photos[0];
+                const cover = coverPhoto
+                  ? assetUrl(g.slug, coverPhoto.thumb || coverPhoto.display)
                   : null;
                 return (
                   <Link

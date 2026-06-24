@@ -76,12 +76,13 @@ const GALLERIES = [
       "🎧 @lunaamusicfr @demsko2.1 @maxxbaty @morezan.music @carlimusic_ofc\n" +
       "📸 @benjaminsanchez_paper34",
     exclude: [],
+    cover: 127, // couverture /galeries = position (1-based) dans la galerie
   },
   // Galerie précédente — déjà construite et sur R2, NE PAS rebuild :
   // {
   //   slug: "chiringuito-opening", title: "Opening", client: "Chiringuito Vias",
   //   date: "2026-06-06", src: "partage photos/CHIRINGUITO - VIAS/1-06I06I26-OPENING",
-  //   exclude: [194, 196, 197],
+  //   exclude: [194, 196, 197], cover: 106,
   // },
 ];
 
@@ -206,6 +207,7 @@ async function buildGallery(g) {
     client: g.client,
     date: g.date,
     ...(g.intro ? { intro: g.intro } : {}),
+    ...(g.cover && photos[g.cover - 1] ? { cover: photos[g.cover - 1].id } : {}),
     ...(excludedNames.length ? { excluded: excludedNames } : {}),
     count: photos.length,
     totalOriginalBytes: photos.reduce((s, p) => s + p.originalBytes, 0),
