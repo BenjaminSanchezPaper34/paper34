@@ -73,6 +73,7 @@ const GALLERIES = [
       "❤️ N'hésitez pas à nous mentionner sur vos réseaux ❤️\n\n" +
       "🎪 Soirée Coachella · Fête de la Musique\n" +
       "🌴 @chiringuitovias\n" +
+      "🎧 @lunaamusicfr @demsko2.1 @maxxbaty @morezan.music @carlimusic_ofc\n" +
       "📸 @benjaminsanchez_paper34",
     exclude: [],
   },
