@@ -22,7 +22,7 @@ export const SOCIAL_FAQ = [
   {
     question: "Créez-vous aussi les reels et les vidéos ?",
     answer:
-      "Oui, le contenu vidéo (reels Instagram, TikTok) fait partie intégrante de l'offre. Tournage, montage, motion design, sous-titres — tout est inclus.",
+      "Oui, le contenu vidéo (reels Instagram, TikTok) fait partie intégrante de l'offre. Tournage, montage, motion design, sous-titres : tout est inclus.",
   },
   {
     question: "Je garde la main sur mes comptes ?",
@@ -50,7 +50,7 @@ export default function JsonLdSocialMedia() {
     provider: {
       "@type": "LocalBusiness",
       name: "PAPER34",
-      url: "https://paper34.fr",
+      url: "https://www.paper34.fr",
       telephone: "+33782343227",
       address: {
         "@type": "PostalAddress",
@@ -63,7 +63,7 @@ export default function JsonLdSocialMedia() {
     areaServed: { "@type": "Country", name: "France" },
     description:
       "Gestion complète de réseaux sociaux : stratégie éditoriale, création de contenu photo et vidéo, animation de communauté, publicité sponsorisée. Studio basé à Agde, intervention partout en France.",
-    url: "https://paper34.fr/services/reseaux-sociaux",
+    url: "https://www.paper34.fr/services/reseaux-sociaux",
   };
 
   const faqSchema = {
@@ -83,13 +83,13 @@ export default function JsonLdSocialMedia() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Accueil", item: "https://paper34.fr" },
-      { "@type": "ListItem", position: 2, name: "Services", item: "https://paper34.fr/services" },
+      { "@type": "ListItem", position: 1, name: "Accueil", item: "https://www.paper34.fr" },
+      { "@type": "ListItem", position: 2, name: "Services", item: "https://www.paper34.fr/services" },
       {
         "@type": "ListItem",
         position: 3,
         name: "Gestion des réseaux sociaux",
-        item: "https://paper34.fr/services/reseaux-sociaux",
+        item: "https://www.paper34.fr/services/reseaux-sociaux",
       },
     ],
   };

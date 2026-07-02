@@ -46,7 +46,7 @@ export default function JsonLdWebService() {
     provider: {
       "@type": "LocalBusiness",
       name: "PAPER34",
-      url: "https://paper34.fr",
+      url: "https://www.paper34.fr",
       telephone: "+33782343227",
       address: {
         "@type": "PostalAddress",
@@ -67,7 +67,7 @@ export default function JsonLdWebService() {
         priceCurrency: "EUR",
         minPrice: "800",
       },
-      url: "https://paper34.fr/services/creation-site-web",
+      url: "https://www.paper34.fr/services/creation-site-web",
     },
   };
 
@@ -92,19 +92,19 @@ export default function JsonLdWebService() {
         "@type": "ListItem",
         position: 1,
         name: "Accueil",
-        item: "https://paper34.fr",
+        item: "https://www.paper34.fr",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Services",
-        item: "https://paper34.fr/services",
+        item: "https://www.paper34.fr/services",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Cr\u00e9ation de site web",
-        item: "https://paper34.fr/services/creation-site-web",
+        item: "https://www.paper34.fr/services/creation-site-web",
       },
     ],
   };

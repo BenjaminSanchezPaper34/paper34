@@ -126,7 +126,12 @@ const FALLBACK_ITEMS: PortfolioItem[] = [
   { id: 6, title: "Community management", category: "Réseaux sociaux", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
 ];
 
-export async function fetchInstagramFeed(): Promise<PortfolioItem[]> {
+// Nombre de posts affichés sur /portfolio. Au-delà, le HTML explose
+// (371 posts sérialisés = ~560 Ko de page) pour zéro bénéfice : le CTA
+// « Voir plus sur Instagram » prend le relais.
+const FEED_LIMIT = 60;
+
+export async function fetchInstagramFeed(limit = FEED_LIMIT): Promise<PortfolioItem[]> {
   const token = process.env.INSTAGRAM_ACCESS_TOKEN;
 
   if (!token) {
@@ -139,8 +144,8 @@ export async function fetchInstagramFeed(): Promise<PortfolioItem[]> {
     let nextUrl = `https://graph.instagram.com/v22.0/me/media?fields=id,media_type,media_url,thumbnail_url,caption,timestamp,permalink&limit=100&access_token=${token}`;
     let hasMore = true;
 
-    // Pagination : récupère toutes les pages (max 400 posts)
-    while (hasMore && allPosts.length < 400) {
+    // Pagination : s'arrête dès qu'on a de quoi remplir la grille
+    while (hasMore && allPosts.length < limit) {
       const response = await fetch(nextUrl, {
         next: { revalidate: 3600 },
       });
@@ -162,11 +167,11 @@ export async function fetchInstagramFeed(): Promise<PortfolioItem[]> {
       }
     }
 
-    console.log(`[Instagram] ${allPosts.length} posts récupérés`);
+    console.log(`[Instagram] ${allPosts.length} posts récupérés (plafond ${limit})`);
 
     if (allPosts.length === 0) return FALLBACK_ITEMS;
 
-    const posts = allPosts;
+    const posts = allPosts.slice(0, limit);
 
     const items: PortfolioItem[] = posts
       .filter((post) => post.media_url) // Exclure les posts sans media

@@ -4,8 +4,8 @@ export default function JsonLd() {
     "@type": "Organization",
     name: "PAPER34",
     alternateName: "Paper34 Studio Graphique",
-    url: "https://paper34.fr",
-    logo: "https://paper34.fr/images/logo-paper34.svg",
+    url: "https://www.paper34.fr",
+    logo: "https://www.paper34.fr/images/logo-paper34.svg",
     sameAs: [
       "https://www.instagram.com/benjaminsanchez_paper34",
       "https://www.facebook.com/Paper34",
@@ -25,8 +25,8 @@ export default function JsonLd() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "PAPER34",
-    image: "https://paper34.fr/og-image.jpg",
-    url: "https://paper34.fr",
+    image: "https://www.paper34.fr/og-image.jpg",
+    url: "https://www.paper34.fr",
     telephone: "+33782343227",
     email: "contact@paper34.fr",
     address: {
@@ -94,12 +94,12 @@ export default function JsonLd() {
       },
       {
         "@type": "Offer",
-        url: "https://paper34.fr/services/creation-site-web",
+        url: "https://www.paper34.fr/services/creation-site-web",
         itemOffered: {
           "@type": "Service",
           name: "Cr\u00e9ation de site web",
           serviceType: "Web design et d\u00e9veloppement",
-          url: "https://paper34.fr/services/creation-site-web",
+          url: "https://www.paper34.fr/services/creation-site-web",
           description: "Sites vitrines responsive, e-commerce, landing pages, refonte et optimisation SEO. Cr\u00e9ation sur-mesure pour les commerces et entreprises de l'H\u00e9rault.",
           areaServed: { "@type": "Country", name: "France" },
         },
@@ -110,11 +110,11 @@ export default function JsonLd() {
           "@type": "Service",
           name: "Gestion des r\u00e9seaux sociaux",
           serviceType: "Social media management",
-          url: "https://paper34.fr/services/reseaux-sociaux",
+          url: "https://www.paper34.fr/services/reseaux-sociaux",
           description: "Strat\u00e9gie social media, cr\u00e9ation de contenu photo et vid\u00e9o, animation de communaut\u00e9, publicit\u00e9 sponsoris\u00e9e Meta et TikTok.",
           areaServed: { "@type": "Country", name: "France" },
         },
-        url: "https://paper34.fr/services/reseaux-sociaux",
+        url: "https://www.paper34.fr/services/reseaux-sociaux",
       },
       {
         "@type": "Offer",
@@ -139,13 +139,13 @@ export default function JsonLd() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "PAPER34",
-    url: "https://paper34.fr",
-    description: "Studio graphique \u00e0 Agde — identit\u00e9 visuelle, print, digital, vid\u00e9o, photo",
+    url: "https://www.paper34.fr",
+    description: "Studio graphique \u00e0 Agde : identit\u00e9 visuelle, print, digital, vid\u00e9o, photo",
     inLanguage: "fr-FR",
     publisher: {
       "@type": "Organization",
       name: "PAPER34",
-      url: "https://paper34.fr",
+      url: "https://www.paper34.fr",
     },
   };
 

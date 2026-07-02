@@ -16,12 +16,11 @@ const inter = Inter({
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  // Zoom laissé libre : accessibilité (WCAG 1.4.4) + exigence Lighthouse.
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://paper34.fr"),
+  metadataBase: new URL("https://www.paper34.fr"),
   title: {
     default: "PAPER34 | Studio graphique à Agde 34300",
     template: "%s | PAPER34 Studio graphique",
@@ -44,7 +43,7 @@ export const metadata: Metadata = {
     "Paper34",
     "Benjamin Sanchez graphiste",
   ],
-  authors: [{ name: "Benjamin Sanchez", url: "https://paper34.fr" }],
+  authors: [{ name: "Benjamin Sanchez", url: "https://www.paper34.fr" }],
   creator: "PAPER34",
   publisher: "PAPER34",
   formatDetection: {
@@ -52,22 +51,22 @@ export const metadata: Metadata = {
     email: true,
   },
   alternates: {
-    canonical: "https://paper34.fr",
+    canonical: "https://www.paper34.fr",
   },
   openGraph: {
     title: "PAPER34 | Studio graphique à Agde",
     description:
       "Votre communication globale au même endroit. Design, print, digital, vidéo, photo. Studio graphique à Agde, Hérault.",
-    url: "https://paper34.fr",
+    url: "https://www.paper34.fr",
     siteName: "PAPER34",
     locale: "fr_FR",
     type: "website",
     images: [
       {
-        url: "https://paper34.fr/og-image.jpg",
+        url: "https://www.paper34.fr/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "PAPER34 — Studio graphique à Agde",
+        alt: "PAPER34, studio graphique à Agde",
       },
     ],
   },
@@ -75,8 +74,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "PAPER34 | Studio graphique à Agde",
     description:
-      "Identité visuelle, print, digital, vidéo, photo — un studio graphique complet à Agde.",
-    images: ["https://paper34.fr/og-image.jpg"],
+      "Identité visuelle, print, digital, vidéo, photo : un studio graphique complet à Agde.",
+    images: ["https://www.paper34.fr/og-image.jpg"],
   },
   robots: {
     index: true,

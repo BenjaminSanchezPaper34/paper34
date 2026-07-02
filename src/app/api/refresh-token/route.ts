@@ -8,8 +8,14 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const secret = searchParams.get("secret");
 
-  // Protection : seul quelqu'un avec le secret peut rafraîchir
-  if (secret !== process.env.CRON_SECRET) {
+  // Protection. Vercel Cron n'interpole PAS ${CRON_SECRET} dans vercel.json :
+  // il envoie le secret via l'en-tête « Authorization: Bearer <CRON_SECRET> »
+  // (automatique dès que la variable d'env CRON_SECRET existe). On accepte
+  // aussi ?secret= pour les tests manuels.
+  const authHeader = request.headers.get("authorization");
+  const fromCron = authHeader === `Bearer ${process.env.CRON_SECRET}`;
+  const fromQuery = secret !== null && secret === process.env.CRON_SECRET;
+  if (!process.env.CRON_SECRET || (!fromCron && !fromQuery)) {
     return NextResponse.json({ error: "Non autorisé" }, { status: 401 });
   }
 
@@ -43,7 +49,7 @@ export async function GET(request: Request) {
       // Mise à jour automatique de la variable d'environnement sur Vercel.
       // upsert=true : sans lui, Vercel refuse quand la variable existe déjà
       // (c'est ce qui a laissé le token expirer en juin 2026).
-      await fetch(
+      const envRes = await fetch(
         `https://api.vercel.com/v10/projects/${vercelProjectId}/env?upsert=true`,
         {
           method: "POST",
@@ -59,6 +65,16 @@ export async function GET(request: Request) {
           }),
         }
       );
+
+      // Échec de la mise à jour env → 500, pour que l'invocation cron
+      // apparaisse EN ERREUR dans les logs Vercel (pas d'échec silencieux).
+      if (!envRes.ok) {
+        const envErr = await envRes.json().catch(() => ({}));
+        return NextResponse.json(
+          { error: "Token rafraîchi mais mise à jour Vercel échouée", details: envErr },
+          { status: 500 }
+        );
+      }
 
       return NextResponse.json({
         success: true,

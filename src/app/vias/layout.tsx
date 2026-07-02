@@ -28,6 +28,16 @@ export const metadata: Metadata = {
   title: "Proposition d'identité visuelle pour Vias",
   description:
     "Proposition d'identité visuelle pour la commune de Vias (Hérault). Logo, charte graphique et déclinaisons. Un travail Paper34.",
+  openGraph: {
+    title: "Vias : une identité pour tout le territoire",
+    description:
+      "Logo, charte graphique et déclinaisons pour la commune de Vias. Une proposition Paper34.",
+    images: ["/vias/og-vias.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/vias/og-vias.jpg"],
+  },
   // Proposition spontanée : accessible par lien, non indexée tant que non validée.
   robots: {
     index: false,

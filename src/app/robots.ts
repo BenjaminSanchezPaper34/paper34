@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/_next/"],
       },
     ],
-    sitemap: "https://paper34.fr/sitemap.xml",
+    sitemap: "https://www.paper34.fr/sitemap.xml",
   };
 }
