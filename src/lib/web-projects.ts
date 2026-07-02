@@ -50,6 +50,12 @@ export const WEB_PROJECTS: WebProject[] = [
     category: "Restaurant",
     description: "Guinguette à Bessan",
   },
+  {
+    name: "Infini Mouv",
+    url: "https://www.infini-mouv.fr",
+    category: "Salle de sport",
+    description: "Salle de sport à Agde",
+  },
 ];
 
 /**
