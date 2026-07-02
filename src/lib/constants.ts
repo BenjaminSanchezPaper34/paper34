@@ -222,7 +222,8 @@ export const CONTACT_INFO = {
   facebook: "https://www.facebook.com/Paper34",
   linkedin: "https://www.linkedin.com/in/benjamin-sanchez-2395a4288",
   tiktok: "https://www.tiktok.com/@benjaminsanchez_paper34",
-  portfolio: "https://benjaminsanchez-paper34.pixieset.com",
+  // Galeries photos maison (le compte Pixieset est fermé)
+  portfolio: "/galeries",
   googleReview: "https://g.page/r/CYYVSpDMpiAZEB0/review",
 } as const;
 

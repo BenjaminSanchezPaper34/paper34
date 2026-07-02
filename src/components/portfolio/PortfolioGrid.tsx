@@ -333,14 +333,12 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
         </div>
       </section>
 
-      {/* CTA Pixieset : visible uniquement en filtre Photos */}
+      {/* CTA Galeries photos : visible uniquement en filtre Photos */}
       {filter === "Photos" && (
         <section className="bg-bg-primary pb-8">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <a
               href={CONTACT_INFO.portfolio}
-              target="_blank"
-              rel="noopener noreferrer"
               className="group block rounded-2xl border border-accent/30 bg-gradient-to-br from-accent/15 via-accent/5 to-transparent hover:border-accent/60 hover:from-accent/20 transition-all duration-300 overflow-hidden"
             >
               <div className="flex items-center gap-5 p-5 md:p-6">
@@ -356,10 +354,10 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
                     Galerie photos compl&egrave;te
                   </p>
                   <h3 className="text-base md:text-lg font-semibold text-text-primary mb-0.5">
-                    Voir toutes mes photos sur Pixieset
+                    Voir mes galeries photos
                   </h3>
                   <p className="text-sm text-text-secondary hidden md:block">
-                    Reportages &eacute;v&eacute;nements, portraits, immobilier, gastronomie &mdash; tri&eacute;s par projet, en haute d&eacute;finition.
+                    Reportages &eacute;v&eacute;nements, portraits, gastronomie : des galeries tri&eacute;es par projet, en haute d&eacute;finition.
                   </p>
                 </div>
                 <div className="shrink-0 hidden sm:flex items-center gap-2 text-sm font-semibold text-accent group-hover:gap-3 transition-all">

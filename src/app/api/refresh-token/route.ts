@@ -40,9 +40,11 @@ export async function GET(request: Request) {
     const vercelProjectId = process.env.VERCEL_PROJECT_ID;
 
     if (vercelToken && vercelProjectId) {
-      // Mise à jour automatique de la variable d'environnement sur Vercel
+      // Mise à jour automatique de la variable d'environnement sur Vercel.
+      // upsert=true : sans lui, Vercel refuse quand la variable existe déjà
+      // (c'est ce qui a laissé le token expirer en juin 2026).
       await fetch(
-        `https://api.vercel.com/v10/projects/${vercelProjectId}/env`,
+        `https://api.vercel.com/v10/projects/${vercelProjectId}/env?upsert=true`,
         {
           method: "POST",
           headers: {
