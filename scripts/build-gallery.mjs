@@ -63,22 +63,27 @@ function fileNum(name) {
 // ─── Config des galeries à construire ──────────────────────────────
 const GALLERIES = [
   {
-    slug: "chiringuito-coachella",
-    title: "Coachella",
+    slug: "chiringuito-reggaeton",
+    title: "Reggaeton",
     client: "Chiringuito Vias",
-    date: "2026-06-21",
-    src: "partage photos/CHIRINGUITO - VIAS/2-21I06I26-COACHELLA",
+    date: "2026-07-11",
+    src: "partage photos/CHIRINGUITO - VIAS/3-11I07I26-REGGAETON",
     intro:
       "👇 Tap sur une photo pour la télécharger\n" +
       "❤️ N'hésitez pas à nous mentionner sur vos réseaux ❤️\n\n" +
-      "🎪 Soirée Coachella · Fête de la Musique\n" +
+      "🔥 Soirée Reggaeton\n" +
       "🌴 @chiringuitovias\n" +
-      "🎧 @lunaamusicfr @demsko2.1 @maxxbaty @morezan.music @carlimusic_ofc\n" +
+      "🎤 Bad Bunny El Clon en show live\n" +
+      "🎧 DJ Will · @demsko2.1 · J-Lauw\n" +
       "📸 @benjaminsanchez_paper34",
-    exclude: [7507647], // photo retirée volontairement (numéro caméra)
-    cover: 126, // couverture /galeries = position (1-based), après exclusion
+    exclude: [],
   },
-  // Galerie précédente — déjà construite et sur R2, NE PAS rebuild :
+  // Galeries précédentes — déjà construites et sur R2, NE PAS rebuild :
+  // {
+  //   slug: "chiringuito-coachella", title: "Coachella", client: "Chiringuito Vias",
+  //   date: "2026-06-21", src: "partage photos/CHIRINGUITO - VIAS/2-21I06I26-COACHELLA",
+  //   exclude: [7507647], cover: 126,
+  // },
   // {
   //   slug: "chiringuito-opening", title: "Opening", client: "Chiringuito Vias",
   //   date: "2026-06-06", src: "partage photos/CHIRINGUITO - VIAS/1-06I06I26-OPENING",
