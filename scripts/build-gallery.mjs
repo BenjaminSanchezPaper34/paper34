@@ -77,6 +77,7 @@ const GALLERIES = [
       "🎧 @therealdjwill · @demsko2.1 · @j.lauww\n" +
       "📸 @benjaminsanchez_paper34",
     exclude: [],
+    cover: 90, // couverture /galeries = position (1-based)
   },
   // Galeries précédentes — déjà construites et sur R2, NE PAS rebuild :
   // {
