@@ -74,7 +74,7 @@ const GALLERIES = [
       "🔥 Soirée Reggaeton\n" +
       "🌴 @chiringuitovias\n" +
       "🎤 Bad Bunny El Clon en show live\n" +
-      "🎧 DJ Will · @demsko2.1 · J-Lauw\n" +
+      "🎧 @therealdjwill · @demsko2.1 · @j.lauww\n" +
       "📸 @benjaminsanchez_paper34",
     exclude: [],
   },
