@@ -410,9 +410,11 @@ export default function ClientGallery({ gallery }: Props) {
             </div>
           </div>
 
-          {/* Dégradé haut + compteur + fermer */}
+          {/* Dégradé haut + compteur + fermer. pointer-events-none : le bandeau
+              ne bloque pas les contrôles vidéo (plein écran en paysage iPhone) ;
+              seul le bouton fermer reste cliquable. */}
           <div
-            className="absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/70 via-black/25 to-transparent"
+            className="absolute top-0 left-0 right-0 z-10 bg-gradient-to-b from-black/70 via-black/25 to-transparent pointer-events-none"
             style={{ paddingTop: "max(0.75rem, env(safe-area-inset-top))" }}
           >
             <div className="flex items-center justify-between px-5 pb-10 pt-3 text-white">
@@ -421,7 +423,7 @@ export default function ClientGallery({ gallery }: Props) {
               </span>
               <button
                 onClick={close}
-                className="w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white flex items-center justify-center transition-colors shrink-0"
+                className="pointer-events-auto w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white flex items-center justify-center transition-colors shrink-0"
                 aria-label="Fermer"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -451,9 +453,11 @@ export default function ClientGallery({ gallery }: Props) {
             </svg>
           </button>
 
-          {/* Dégradé bas + actions (zone du pouce sur mobile) */}
+          {/* Dégradé bas + actions (zone du pouce sur mobile). pointer-events-none :
+              ne bloque pas la timeline/plein écran du player en paysage ; seuls
+              les boutons restent cliquables. */}
           <div
-            className="absolute bottom-0 left-0 right-0 z-10 px-4 pt-16 bg-gradient-to-t from-black/90 via-black/55 to-transparent"
+            className="absolute bottom-0 left-0 right-0 z-10 px-4 pt-16 bg-gradient-to-t from-black/90 via-black/55 to-transparent pointer-events-none"
             style={{ paddingBottom: "max(1.1rem, env(safe-area-inset-bottom))" }}
           >
             {photos[lightbox].type === "video" ? (
@@ -471,7 +475,7 @@ export default function ClientGallery({ gallery }: Props) {
               <button
                 onClick={() => downloadOriginal(lightbox)}
                 disabled={savingIndex === lightbox}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent hover:bg-accent-hover px-8 py-3.5 text-sm font-semibold text-white transition-colors disabled:opacity-70 disabled:cursor-wait"
+                className="pointer-events-auto inline-flex items-center justify-center gap-2 rounded-full bg-accent hover:bg-accent-hover px-8 py-3.5 text-sm font-semibold text-white transition-colors disabled:opacity-70 disabled:cursor-wait"
               >
                 {savingIndex === lightbox ? (
                   <>
