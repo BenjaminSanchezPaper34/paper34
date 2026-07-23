@@ -1,0 +1,43 @@
+{
+  "slug": "mariage-leola-clement",
+  "title": "Mariage à Vias",
+  "client": "Léola & Clément",
+  "date": "2026-05-09",
+  "intro": "🤍 Le mariage de Léola & Clément, à Vias.\n🎞️ Deux films : la mairie et l'église, puis le domaine.\n🎥 @benjaminsanchez_paper34",
+  "cover": "domaine",
+  "count": 2,
+  "totalOriginalBytes": 232000352,
+  "storage": "r2",
+  "photos": [
+    {
+      "id": "mairie-eglise",
+      "type": "video",
+      "title": "La mairie & l'église",
+      "duration": "3 min 10",
+      "thumb": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/mariage-leola-clement/thumb/mairie-eglise.jpg",
+      "display": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/mariage-leola-clement/display/mairie-eglise.jpg",
+      "video": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/mariage-leola-clement/video/mairie-eglise.mp4",
+      "original": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/mariage-leola-clement/video/mairie-eglise.mp4",
+      "downloadName": "Mariage-Leola-Clement-Mairie-Eglise.mp4",
+      "width": 1920,
+      "height": 1080,
+      "originalBytes": 95048612,
+      "originalExt": "mp4"
+    },
+    {
+      "id": "domaine",
+      "type": "video",
+      "title": "Le domaine",
+      "duration": "4 min 46",
+      "thumb": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/mariage-leola-clement/thumb/domaine.jpg",
+      "display": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/mariage-leola-clement/display/domaine.jpg",
+      "video": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/mariage-leola-clement/video/domaine.mp4",
+      "original": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/mariage-leola-clement/video/domaine.mp4",
+      "downloadName": "Mariage-Leola-Clement-Domaine.mp4",
+      "width": 1920,
+      "height": 1080,
+      "originalBytes": 136951740,
+      "originalExt": "mp4"
+    }
+  ]
+}

@@ -249,6 +249,9 @@ export default function ClientGallery({ gallery }: Props) {
     }
   }
 
+  // Galerie 100 % vidéo (mariages…) : lecture seule, pas de téléchargement.
+  const isVideoGallery = photos.length > 0 && photos.every((p) => p.type === "video");
+
   return (
     <>
       {/* Barre d'action sticky */}
@@ -256,8 +259,9 @@ export default function ClientGallery({ gallery }: Props) {
         <div className="mx-auto max-w-7xl px-6 py-3 flex items-center justify-between gap-4">
           <p className="text-sm text-text-secondary">
             <span className="text-text-primary font-medium">{gallery.count}</span>{" "}
-            photos · {formatBytes(gallery.totalOriginalBytes)}
+            {isVideoGallery ? "films" : `photos · ${formatBytes(gallery.totalOriginalBytes)}`}
           </p>
+          {!isVideoGallery && (
           <button
             onClick={downloadAll}
             disabled={zipping}
@@ -277,6 +281,7 @@ export default function ClientGallery({ gallery }: Props) {
               </>
             )}
           </button>
+          )}
         </div>
       </div>
 
@@ -286,32 +291,54 @@ export default function ClientGallery({ gallery }: Props) {
           {photos.map((p, i) => (
             <div
               key={p.id}
-              className="group relative aspect-square rounded-xl overflow-hidden bg-bg-card cursor-pointer [transform:translateZ(0)] [will-change:transform]"
+              className={`group relative rounded-xl overflow-hidden bg-bg-card cursor-pointer [transform:translateZ(0)] [will-change:transform] ${
+                p.type === "video" ? "col-span-2 aspect-video" : "aspect-square"
+              }`}
               onClick={() => setLightbox(i)}
             >
               <img
                 src={assetUrl(gallery.slug, p.thumb || p.display)}
-                alt={`${gallery.title} — photo ${i + 1}`}
+                alt={p.title || `${gallery.title} — photo ${i + 1}`}
                 width={p.width}
                 height={p.height}
                 loading="lazy"
                 draggable={false}
                 className="w-full h-full object-cover rounded-xl transition-transform duration-500 group-hover:scale-[1.05] select-none pointer-events-none [-webkit-touch-callout:none]"
               />
-              {/* Overlay download au hover */}
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  downloadOriginal(i);
-                }}
-                className="absolute bottom-2.5 right-2.5 w-9 h-9 rounded-full bg-black/55 backdrop-blur-sm text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-accent"
-                title="Télécharger l'original"
-                aria-label="Télécharger l'original"
-              >
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M12 4v12m0 0l-4-4m4 4l4-4" />
-                </svg>
-              </button>
+              {p.type === "video" ? (
+                <>
+                  {/* Badge lecture centré */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="w-16 h-16 rounded-full bg-black/45 backdrop-blur-sm flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                      <svg className="w-7 h-7 text-white translate-x-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M8 5.14v13.72c0 .8.87 1.3 1.56.88l10.54-6.86a1.03 1.03 0 000-1.76L9.56 4.26A1.03 1.03 0 008 5.14z" />
+                      </svg>
+                    </span>
+                  </div>
+                  {/* Titre + durée */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/75 to-transparent px-4 pb-3 pt-10 flex items-end justify-between gap-3">
+                    {p.title && <span className="text-white text-sm font-medium">{p.title}</span>}
+                    {p.duration && (
+                      <span className="text-white/75 text-xs tabular-nums shrink-0">{p.duration}</span>
+                    )}
+                  </div>
+                </>
+              ) : (
+                /* Overlay download au hover (photos uniquement) */
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    downloadOriginal(i);
+                  }}
+                  className="absolute bottom-2.5 right-2.5 w-9 h-9 rounded-full bg-black/55 backdrop-blur-sm text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-accent"
+                  title="Télécharger l'original"
+                  aria-label="Télécharger l'original"
+                >
+                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M12 4v12m0 0l-4-4m4 4l4-4" />
+                  </svg>
+                </button>
+              )}
             </div>
           ))}
         </div>
@@ -349,12 +376,35 @@ export default function ClientGallery({ gallery }: Props) {
                   key={slot}
                   className="w-full h-full shrink-0 flex items-center justify-center"
                 >
-                  <img
-                    src={assetUrl(gallery.slug, photos[idx].display)}
-                    alt={`${gallery.title} — photo ${idx + 1}`}
-                    className="w-full h-full object-contain select-none pointer-events-none [-webkit-touch-callout:none]"
-                    draggable={false}
-                  />
+                  {photos[idx].type === "video" && slot === 1 ? (
+                    /* Player sur la slide centrale uniquement. stopPropagation :
+                       les gestes sur le player ne déclenchent pas le swipe. */
+                    <div
+                      className="w-full max-h-full px-0 sm:px-14"
+                      onTouchStart={(e) => e.stopPropagation()}
+                      onTouchMove={(e) => e.stopPropagation()}
+                      onTouchEnd={(e) => e.stopPropagation()}
+                    >
+                      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+                      <video
+                        key={photos[idx].id}
+                        controls
+                        playsInline
+                        preload="metadata"
+                        poster={assetUrl(gallery.slug, photos[idx].display)}
+                        className="w-full max-h-[82vh] object-contain"
+                      >
+                        <source src={photos[idx].video} type="video/mp4" />
+                      </video>
+                    </div>
+                  ) : (
+                    <img
+                      src={assetUrl(gallery.slug, photos[idx].display)}
+                      alt={photos[idx].title || `${gallery.title} — photo ${idx + 1}`}
+                      className="w-full h-full object-contain select-none pointer-events-none [-webkit-touch-callout:none]"
+                      draggable={false}
+                    />
+                  )}
                 </div>
               ))}
             </div>
@@ -406,6 +456,16 @@ export default function ClientGallery({ gallery }: Props) {
             className="absolute bottom-0 left-0 right-0 z-10 px-4 pt-16 bg-gradient-to-t from-black/90 via-black/55 to-transparent"
             style={{ paddingBottom: "max(1.1rem, env(safe-area-inset-bottom))" }}
           >
+            {photos[lightbox].type === "video" ? (
+              /* Vidéo : légende sobre, pas de téléchargement */
+              <p className="text-center text-sm text-white/80 pb-1">
+                {photos[lightbox].title}
+                {photos[lightbox].duration && (
+                  <span className="text-white/50"> · {photos[lightbox].duration}</span>
+                )}
+              </p>
+            ) : (
+            <>
             <div className="flex items-center justify-center max-w-lg mx-auto">
               {/* Enregistrer cette photo (centré) */}
               <button
@@ -431,6 +491,8 @@ export default function ClientGallery({ gallery }: Props) {
             <p className="text-center text-[11px] text-white/45 mt-2.5">
               Qualité originale conservée
             </p>
+            </>
+            )}
           </div>
         </div>
       )}

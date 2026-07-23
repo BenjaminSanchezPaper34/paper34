@@ -6,10 +6,18 @@
 
 export type GalleryPhoto = {
   id: string;
+  /** "video" pour un film (grille = affiche + badge lecture, lightbox = player). */
+  type?: "image" | "video";
   /** Vignette légère pour la grille (URL R2 ou chemin relatif) */
   thumb?: string;
-  /** Chemin relatif (depuis /galeries/<slug>/) du JPEG d'affichage */
+  /** Chemin relatif (depuis /galeries/<slug>/) du JPEG d'affichage (affiche pour une vidéo) */
   display: string;
+  /** URL du MP4 web (items vidéo uniquement) */
+  video?: string;
+  /** Titre court affiché sous la vignette (items vidéo) */
+  title?: string;
+  /** Durée lisible, ex. « 4 min 46 » (items vidéo) */
+  duration?: string;
   /** Chemin relatif de l'original intact (téléchargement) */
   original: string;
   /** Nom de fichier exact pour le téléchargement */
