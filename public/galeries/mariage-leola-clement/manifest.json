@@ -1,7 +1,7 @@
 {
   "slug": "mariage-leola-clement",
-  "title": "Mariage à Vias",
-  "client": "Léola & Clément",
+  "title": "Léola & Clément",
+  "client": "Mariage à Vias",
   "date": "2026-05-09",
   "intro": "🤍 Le mariage de Léola & Clément, à Vias.\n🎞️ Deux films : la mairie et l'église, puis le domaine.\n🎥 @benjaminsanchez_paper34",
   "cover": "domaine",
@@ -20,7 +20,7 @@
       "original": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/mariage-leola-clement/video/mairie-eglise.mp4",
       "downloadName": "Mariage-Leola-Clement-Mairie-Eglise.mp4",
       "width": 1920,
-      "height": 1080,
+      "height": 816,
       "originalBytes": 95048612,
       "originalExt": "mp4"
     },
@@ -35,7 +35,7 @@
       "original": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/mariage-leola-clement/video/domaine.mp4",
       "downloadName": "Mariage-Leola-Clement-Domaine.mp4",
       "width": 1920,
-      "height": 1080,
+      "height": 800,
       "originalBytes": 136951740,
       "originalExt": "mp4"
     }

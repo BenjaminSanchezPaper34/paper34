@@ -50,6 +50,10 @@ export default async function GaleriePage({
   const gallery: Gallery | null = getGallery(slug);
   if (!gallery) notFound();
 
+  // Galerie 100 % vidéo (mariages…) : libellés adaptés.
+  const isVideo =
+    gallery.photos.length > 0 && gallery.photos.every((p) => p.type === "video");
+
   return (
     <main className="min-h-screen bg-bg-primary text-text-primary">
       {/* Hero */}
@@ -67,14 +71,15 @@ export default async function GaleriePage({
           {gallery.title}
         </h1>
         <p className="text-text-secondary">
-          {formatDateFr(gallery.date)} · {gallery.count} photos
+          {formatDateFr(gallery.date)} · {gallery.count}{" "}
+          {isVideo ? "films" : "photos"}
         </p>
         {gallery.intro ? (
           <GalleryIntro text={gallery.intro} />
         ) : (
           <p className="text-sm text-text-tertiary mt-4 max-w-xl">
             Cliquez sur une photo pour l&apos;agrandir. Téléchargez vos photos
-            individuellement ou en une fois — les fichiers sont fournis en
+            individuellement ou en une fois : les fichiers sont fournis en
             qualité originale.
           </p>
         )}
@@ -85,7 +90,7 @@ export default async function GaleriePage({
       {/* Footer galerie */}
       <footer className="mx-auto max-w-7xl px-6 py-12 mt-8 border-t border-border text-center">
         <p className="text-sm text-text-tertiary">
-          Photos réalisées par{" "}
+          {isVideo ? "Vidéos réalisées" : "Photos réalisées"} par{" "}
           <Link href="/" className="text-accent hover:underline">
             Paper34
           </Link>
