@@ -13,12 +13,9 @@ export default function Navbar() {
     setMobileOpen(false);
   }, [pathname]);
 
-  // Pas de navbar sur les pages internes
-  if (
-    pathname?.startsWith("/lab") ||
-    pathname?.startsWith("/galerie/") ||
-    pathname?.startsWith("/vias")
-  )
+  // Pas de navbar sur les pages immersives (lab, proposition Vias).
+  // Les galeries clients la gardent : porte d'entrée vers le reste du site.
+  if (pathname?.startsWith("/lab") || pathname?.startsWith("/vias"))
     return null;
 
   return (

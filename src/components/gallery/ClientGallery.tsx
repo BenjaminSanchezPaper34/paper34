@@ -254,8 +254,8 @@ export default function ClientGallery({ gallery }: Props) {
 
   return (
     <>
-      {/* Barre d'action sticky */}
-      <div className="sticky top-0 z-20 bg-bg-primary/85 backdrop-blur-xl border-b border-border">
+      {/* Barre d'action sticky (sous la navbar fixe, h-16) */}
+      <div className="sticky top-16 z-20 bg-bg-primary/85 backdrop-blur-xl border-b border-border">
         <div className="mx-auto max-w-7xl px-6 py-3 flex items-center justify-between gap-4">
           <p className="text-sm text-text-secondary">
             <span className="text-text-primary font-medium">{gallery.count}</span>{" "}

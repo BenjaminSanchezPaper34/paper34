@@ -8,11 +8,9 @@ import { usePathname } from "next/navigation";
  */
 export default function FooterGate({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  if (
-    pathname?.startsWith("/lab") ||
-    pathname?.startsWith("/galerie/") ||
-    pathname?.startsWith("/vias")
-  )
+  // Masqué sur les pages immersives ; les galeries clients le gardent
+  // (porte d'entrée vers le reste du site).
+  if (pathname?.startsWith("/lab") || pathname?.startsWith("/vias"))
     return null;
   return <>{children}</>;
 }
