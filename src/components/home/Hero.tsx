@@ -111,8 +111,10 @@ export default function Hero() {
           playsInline
           className="h-full w-full object-cover"
         >
-          <source src="/videos/videosd-paper34.mp4" type="video/mp4" />
-          <source src="/videos/videosd-paper34.webm" type="video/webm" />
+          {/* Servies depuis R2 (egress gratuit) : 9-15 Mo par visite sortaient
+              du quota Vercel Fast Data Transfer (pause du compte en juillet). */}
+          <source src="https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/site/hero-home.mp4" type="video/mp4" />
+          <source src="https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/site/hero-home.webm" type="video/webm" />
         </video>
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/60" />

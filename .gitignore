@@ -57,3 +57,4 @@ public/galeries/*/originals/
 # dumps IA bruts (on commit les versions optimisées renommées)
 public/vias/hf_*
 public/vias/croquis.jpeg
+*.webm

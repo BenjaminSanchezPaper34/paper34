@@ -120,7 +120,7 @@ type InstagramPost = {
 const FALLBACK_ITEMS: PortfolioItem[] = [
   { id: 1, title: "Pampa Restaurant", category: "Design", type: "image", src: "/images/portfolio/placeholder.jpg", size: "featured" },
   { id: 2, title: "Villa Margot", category: "Print", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
-  { id: 3, title: "Spot vidéo surf", category: "Vidéo", type: "video", src: "/videos/videosd-paper34.mp4", size: "small" },
+  { id: 3, title: "Spot vidéo surf", category: "Vidéo", type: "video", src: "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/site/hero-home.mp4", size: "small" },
   { id: 4, title: "Site vitrine restaurant", category: "Web", type: "image", src: "/images/portfolio/placeholder.jpg", size: "tall" },
   { id: 5, title: "Domaine viticole", category: "Photo", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
   { id: 6, title: "Community management", category: "Réseaux sociaux", type: "image", src: "/images/portfolio/placeholder.jpg", size: "small" },
