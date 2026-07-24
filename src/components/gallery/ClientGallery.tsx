@@ -97,8 +97,11 @@ export default function ClientGallery({ gallery }: Props) {
       const { default: JSZip } = await import("jszip");
       const zip = new JSZip();
 
-      for (let i = 0; i < photos.length; i++) {
-        const p = photos[i];
+      // Les films sont exclus du ZIP (lecture seule, trop lourds) :
+      // seules les images partent au téléchargement groupé.
+      const downloadable = photos.filter((p) => p.type !== "video");
+      for (let i = 0; i < downloadable.length; i++) {
+        const p = downloadable[i];
         const res = await fetch(assetUrl(gallery.slug, p.original));
         const buf = await res.arrayBuffer();
         // STORE = aucune compression → octets identiques à l'original
@@ -250,7 +253,12 @@ export default function ClientGallery({ gallery }: Props) {
   }
 
   // Galerie 100 % vidéo (mariages…) : lecture seule, pas de téléchargement.
-  const isVideoGallery = photos.length > 0 && photos.every((p) => p.type === "video");
+  // Galerie mixte (campagnes : film + visuels print) : « créations », et le
+  // ZIP ne contient que les images.
+  const videoCount = photos.filter((p) => p.type === "video").length;
+  const isVideoGallery = photos.length > 0 && videoCount === photos.length;
+  const isMixed = videoCount > 0 && !isVideoGallery;
+  const downloadableCount = photos.length - videoCount;
 
   return (
     <>
@@ -261,7 +269,9 @@ export default function ClientGallery({ gallery }: Props) {
             <span className="text-text-primary font-medium">{gallery.count}</span>{" "}
             {isVideoGallery
               ? gallery.count > 1 ? "films" : "film"
-              : `${gallery.count > 1 ? "photos" : "photo"} · ${formatBytes(gallery.totalOriginalBytes)}`}
+              : isMixed
+                ? "créations"
+                : `${gallery.count > 1 ? "photos" : "photo"} · ${formatBytes(gallery.totalOriginalBytes)}`}
           </p>
           {!isVideoGallery && (
           <button
@@ -272,7 +282,7 @@ export default function ClientGallery({ gallery }: Props) {
             {zipping ? (
               <>
                 <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                Préparation {zipProgress}/{gallery.count}…
+                Préparation {zipProgress}/{downloadableCount}…
               </>
             ) : (
               <>
@@ -326,20 +336,28 @@ export default function ClientGallery({ gallery }: Props) {
                   </div>
                 </>
               ) : (
-                /* Overlay download au hover (photos uniquement) */
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    downloadOriginal(i);
-                  }}
-                  className="absolute bottom-2.5 right-2.5 w-9 h-9 rounded-full bg-black/55 backdrop-blur-sm text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-accent"
-                  title="Télécharger l'original"
-                  aria-label="Télécharger l'original"
-                >
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M12 4v12m0 0l-4-4m4 4l4-4" />
-                  </svg>
-                </button>
+                <>
+                  {/* Titre optionnel (visuels de campagne : affiches, stories…) */}
+                  {p.title && (
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent px-3 pb-2.5 pt-8 pointer-events-none">
+                      <span className="text-white text-xs font-medium">{p.title}</span>
+                    </div>
+                  )}
+                  {/* Overlay download au hover (photos uniquement) */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      downloadOriginal(i);
+                    }}
+                    className="absolute bottom-2.5 right-2.5 w-9 h-9 rounded-full bg-black/55 backdrop-blur-sm text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-accent"
+                    title="Télécharger l'original"
+                    aria-label="Télécharger l'original"
+                  >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M12 4v12m0 0l-4-4m4 4l4-4" />
+                    </svg>
+                  </button>
+                </>
               )}
             </div>
           ))}

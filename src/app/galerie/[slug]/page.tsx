@@ -50,9 +50,10 @@ export default async function GaleriePage({
   const gallery: Gallery | null = getGallery(slug);
   if (!gallery) notFound();
 
-  // Galerie 100 % vidéo (mariages…) : libellés adaptés.
-  const isVideo =
-    gallery.photos.length > 0 && gallery.photos.every((p) => p.type === "video");
+  // Galerie 100 % vidéo (mariages…) ou mixte (campagnes) : libellés adaptés.
+  const videoCount = gallery.photos.filter((p) => p.type === "video").length;
+  const isVideo = gallery.photos.length > 0 && videoCount === gallery.photos.length;
+  const isMixed = videoCount > 0 && !isVideo;
 
   return (
     <main className="min-h-screen bg-bg-primary text-text-primary">
@@ -68,7 +69,9 @@ export default async function GaleriePage({
           {formatDateFr(gallery.date)} · {gallery.count}{" "}
           {isVideo
             ? gallery.count > 1 ? "films" : "film"
-            : gallery.count > 1 ? "photos" : "photo"}
+            : isMixed
+              ? "créations"
+              : gallery.count > 1 ? "photos" : "photo"}
         </p>
         {gallery.intro ? (
           <GalleryIntro text={gallery.intro} />
@@ -128,7 +131,12 @@ export default async function GaleriePage({
       {/* Signature galerie */}
       <div className="mx-auto max-w-7xl px-6 py-12 text-center">
         <p className="text-sm text-text-tertiary">
-          {isVideo ? "Vidéos réalisées" : "Photos réalisées"} par{" "}
+          {isVideo
+            ? "Vidéos réalisées"
+            : isMixed
+              ? "Campagne réalisée"
+              : "Photos réalisées"}{" "}
+          par{" "}
           <Link href="/" className="text-accent hover:underline">
             Paper34
           </Link>

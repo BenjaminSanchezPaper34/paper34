@@ -92,9 +92,13 @@ export default function GaleriesPage() {
                       </h2>
                       <p className="text-xs text-white/60 mb-3">
                         {formatDateFr(g.date)} · {g.count}{" "}
-                        {g.photos.every((p) => p.type === "video")
-                          ? g.count > 1 ? "films" : "film"
-                          : g.count > 1 ? "photos" : "photo"}
+                        {(() => {
+                          const v = g.photos.filter((p) => p.type === "video").length;
+                          if (v > 0 && v === g.photos.length)
+                            return g.count > 1 ? "films" : "film";
+                          if (v > 0) return "créations";
+                          return g.count > 1 ? "photos" : "photo";
+                        })()}
                       </p>
                       <div className="flex items-center gap-2">
                         <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1.5 text-xs font-semibold text-white">

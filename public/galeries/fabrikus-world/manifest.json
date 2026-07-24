@@ -1,18 +1,18 @@
 {
   "slug": "fabrikus-world",
   "title": "Fabrikus World",
-  "client": "Film publicitaire",
+  "client": "Campagne 2026",
   "date": "2026-06-16",
   "ctaTheme": "entreprise",
-  "intro": "🎢 Fabrikus World, le parc de loisirs à Vias.\n🎬 Le spot publicitaire de 45 secondes réalisé par Paper34.\n🌴 @fabrikusworld\n🎥 @benjaminsanchez_paper34",
-  "count": 1,
-  "totalOriginalBytes": 50519987,
+  "intro": "🎢 Fabrikus World, le parc de loisirs à Vias.\n🎬 La campagne 2026 réalisée par Paper34 : film publicitaire, affichage grand format et contenus réseaux.\n🌴 @fabrikusworld\n🎥 @benjaminsanchez_paper34",
+  "count": 4,
+  "totalOriginalBytes": 51484141,
   "storage": "r2",
   "photos": [
     {
       "id": "pub-45s",
       "type": "video",
-      "title": "Le spot publicitaire",
+      "title": "Le film · version longue",
       "duration": "45 s",
       "thumb": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/fabrikus-world/thumb/pub-45s.jpg",
       "display": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/fabrikus-world/display/pub-45s.jpg",
@@ -23,6 +23,42 @@
       "height": 1080,
       "originalBytes": 50519987,
       "originalExt": "mp4"
+    },
+    {
+      "id": "affiche-2m2",
+      "title": "Affiche 2 m²",
+      "thumb": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/fabrikus-world/thumb/affiche-2m2.jpg",
+      "display": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/fabrikus-world/display/affiche-2m2.jpg",
+      "original": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/fabrikus-world/originals/Fabrikus-World-Affiche-2m2.jpg",
+      "downloadName": "Fabrikus-World-Affiche-2m2.jpg",
+      "width": 867,
+      "height": 1280,
+      "originalBytes": 330180,
+      "originalExt": "jpg"
+    },
+    {
+      "id": "affiche-8m2",
+      "title": "Affiche 8 m²",
+      "thumb": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/fabrikus-world/thumb/affiche-8m2.jpg",
+      "display": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/fabrikus-world/display/affiche-8m2.jpg",
+      "original": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/fabrikus-world/originals/Fabrikus-World-Affiche-8m2.jpg",
+      "downloadName": "Fabrikus-World-Affiche-8m2.jpg",
+      "width": 1280,
+      "height": 941,
+      "originalBytes": 364435,
+      "originalExt": "jpg"
+    },
+    {
+      "id": "story-reseaux",
+      "title": "Story réseaux",
+      "thumb": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/fabrikus-world/thumb/story-reseaux.jpg",
+      "display": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/fabrikus-world/display/story-reseaux.jpg",
+      "original": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/fabrikus-world/originals/Fabrikus-World-Story.jpg",
+      "downloadName": "Fabrikus-World-Story.jpg",
+      "width": 720,
+      "height": 1280,
+      "originalBytes": 269539,
+      "originalExt": "jpg"
     }
   ]
 }
