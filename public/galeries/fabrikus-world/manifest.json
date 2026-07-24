@@ -1,0 +1,27 @@
+{
+  "slug": "fabrikus-world",
+  "title": "Fabrikus World",
+  "client": "Film publicitaire",
+  "date": "2026-06-16",
+  "intro": "🎢 Fabrikus World, le parc de loisirs à Vias.\n🎬 Le spot publicitaire de 45 secondes réalisé par Paper34.\n🌴 @fabrikusworld\n🎥 @benjaminsanchez_paper34",
+  "count": 1,
+  "totalOriginalBytes": 50519987,
+  "storage": "r2",
+  "photos": [
+    {
+      "id": "pub-45s",
+      "type": "video",
+      "title": "Le spot publicitaire",
+      "duration": "45 s",
+      "thumb": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/fabrikus-world/thumb/pub-45s.jpg",
+      "display": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/fabrikus-world/display/pub-45s.jpg",
+      "video": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/fabrikus-world/video/pub-45s.mp4",
+      "original": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/fabrikus-world/video/pub-45s.mp4",
+      "downloadName": "Fabrikus-World-Pub-45s.mp4",
+      "width": 1920,
+      "height": 1080,
+      "originalBytes": 50519987,
+      "originalExt": "mp4"
+    }
+  ]
+}
