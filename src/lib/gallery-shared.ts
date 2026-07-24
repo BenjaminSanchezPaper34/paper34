@@ -39,6 +39,9 @@ export type Gallery = {
   intro?: string;
   /** ID de la photo de couverture pour /galeries (sinon la première). */
   cover?: string;
+  /** Thème du bloc d'accroche en fin de galerie ("mariage" | "entreprise").
+   *  Par défaut : événement pour les photos, projet vidéo pour les films. */
+  ctaTheme?: "mariage" | "entreprise";
   photos: GalleryPhoto[];
 };
 

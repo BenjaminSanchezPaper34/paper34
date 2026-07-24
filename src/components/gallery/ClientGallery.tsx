@@ -259,7 +259,9 @@ export default function ClientGallery({ gallery }: Props) {
         <div className="mx-auto max-w-7xl px-6 py-3 flex items-center justify-between gap-4">
           <p className="text-sm text-text-secondary">
             <span className="text-text-primary font-medium">{gallery.count}</span>{" "}
-            {isVideoGallery ? "films" : `photos · ${formatBytes(gallery.totalOriginalBytes)}`}
+            {isVideoGallery
+              ? gallery.count > 1 ? "films" : "film"
+              : `${gallery.count > 1 ? "photos" : "photo"} · ${formatBytes(gallery.totalOriginalBytes)}`}
           </p>
           {!isVideoGallery && (
           <button

@@ -66,7 +66,9 @@ export default async function GaleriePage({
         </h1>
         <p className="text-text-secondary">
           {formatDateFr(gallery.date)} · {gallery.count}{" "}
-          {isVideo ? "films" : "photos"}
+          {isVideo
+            ? gallery.count > 1 ? "films" : "film"
+            : gallery.count > 1 ? "photos" : "photo"}
         </p>
         {gallery.intro ? (
           <GalleryIntro text={gallery.intro} />
@@ -89,14 +91,22 @@ export default async function GaleriePage({
             Paper34 · Studio graphique à Agde
           </p>
           <h2 className="text-2xl md:text-4xl font-bold tracking-[-1px] mb-4">
-            {isVideo
+            {gallery.ctaTheme === "mariage"
               ? "Vous préparez un mariage ?"
-              : "Un événement à couvrir ?"}
+              : gallery.ctaTheme === "entreprise"
+                ? "Un film pour votre marque ?"
+                : isVideo
+                  ? "Un projet vidéo ?"
+                  : "Un événement à couvrir ?"}
           </h2>
           <p className="text-text-secondary max-w-2xl mx-auto mb-8">
-            {isVideo
+            {gallery.ctaTheme === "mariage"
               ? "Paper34 réalise le film de votre journée, de la cérémonie à la piste de danse. Racontez-nous votre projet, on s'occupe des images."
-              : "Soirées, ouvertures, mariages : Paper34 photographie et filme vos événements, et accompagne aussi votre image au quotidien (identité, réseaux, site web)."}
+              : gallery.ctaTheme === "entreprise"
+                ? "Spots publicitaires, films d'entreprise, contenus pour vos réseaux : Paper34 met votre activité en images, du tournage au montage."
+                : isVideo
+                  ? "Clips, événements, publicités : Paper34 filme et monte vos projets, du tournage à la diffusion."
+                  : "Soirées, ouvertures, mariages : Paper34 photographie et filme vos événements, et accompagne aussi votre image au quotidien (identité, réseaux, site web)."}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link

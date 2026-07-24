@@ -92,7 +92,9 @@ export default function GaleriesPage() {
                       </h2>
                       <p className="text-xs text-white/60 mb-3">
                         {formatDateFr(g.date)} · {g.count}{" "}
-                        {g.photos.every((p) => p.type === "video") ? "films" : "photos"}
+                        {g.photos.every((p) => p.type === "video")
+                          ? g.count > 1 ? "films" : "film"
+                          : g.count > 1 ? "photos" : "photo"}
                       </p>
                       <div className="flex items-center gap-2">
                         <span className="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1.5 text-xs font-semibold text-white">
