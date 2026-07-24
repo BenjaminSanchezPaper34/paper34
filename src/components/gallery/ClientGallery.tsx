@@ -297,8 +297,91 @@ export default function ClientGallery({ gallery }: Props) {
         </div>
       </div>
 
-      {/* Grille uniforme : ordre de lecture gauche→droite puis ligne suivante */}
+      {/* Grille. Galeries mixtes (campagnes) : mise en page façon Behance —
+          films en pleine largeur, visuels print en maçonnerie aux proportions
+          naturelles (jamais recadrés). Sinon : grille uniforme en ordre de
+          lecture. */}
       <div className="mx-auto max-w-7xl px-6 py-8">
+        {isMixed && (
+          <>
+            {/* Films : pièce maîtresse pleine largeur */}
+            <div className="space-y-3">
+              {photos.map((p, i) =>
+                p.type === "video" ? (
+                  <div
+                    key={p.id}
+                    className="group relative aspect-video rounded-xl overflow-hidden bg-bg-card cursor-pointer [transform:translateZ(0)]"
+                    onClick={() => setLightbox(i)}
+                  >
+                    <img
+                      src={assetUrl(gallery.slug, p.thumb || p.display)}
+                      alt={p.title || gallery.title}
+                      width={p.width}
+                      height={p.height}
+                      loading="lazy"
+                      draggable={false}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03] select-none pointer-events-none [-webkit-touch-callout:none]"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="w-16 h-16 rounded-full bg-black/45 backdrop-blur-sm flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                        <svg className="w-7 h-7 text-white translate-x-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M8 5.14v13.72c0 .8.87 1.3 1.56.88l10.54-6.86a1.03 1.03 0 000-1.76L9.56 4.26A1.03 1.03 0 008 5.14z" />
+                        </svg>
+                      </span>
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/75 to-transparent px-4 pb-3 pt-10 flex items-end justify-between gap-3">
+                      {p.title && <span className="text-white text-sm font-medium">{p.title}</span>}
+                      {p.duration && (
+                        <span className="text-white/75 text-xs tabular-nums shrink-0">{p.duration}</span>
+                      )}
+                    </div>
+                  </div>
+                ) : null
+              )}
+            </div>
+            {/* Visuels print : maçonnerie, proportions d'origine */}
+            <div className="mt-3 columns-1 sm:columns-2 lg:columns-3 gap-3">
+              {photos.map((p, i) =>
+                p.type !== "video" ? (
+                  <div
+                    key={p.id}
+                    className="mb-3 break-inside-avoid group relative rounded-xl overflow-hidden bg-bg-card cursor-pointer [transform:translateZ(0)]"
+                    onClick={() => setLightbox(i)}
+                  >
+                    <img
+                      src={assetUrl(gallery.slug, p.thumb || p.display)}
+                      alt={p.title || `${gallery.title} — visuel ${i + 1}`}
+                      width={p.width}
+                      height={p.height}
+                      loading="lazy"
+                      draggable={false}
+                      className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02] select-none pointer-events-none [-webkit-touch-callout:none]"
+                    />
+                    {p.title && (
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent px-3 pb-2.5 pt-8 pointer-events-none">
+                        <span className="text-white text-xs font-medium">{p.title}</span>
+                      </div>
+                    )}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        downloadOriginal(i);
+                      }}
+                      className="absolute top-2.5 right-2.5 w-9 h-9 rounded-full bg-black/55 backdrop-blur-sm text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity hover:bg-accent"
+                      title="Télécharger l'original"
+                      aria-label="Télécharger l'original"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M12 4v12m0 0l-4-4m4 4l4-4" />
+                      </svg>
+                    </button>
+                  </div>
+                ) : null
+              )}
+            </div>
+          </>
+        )}
+        {!isMixed && (
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3">
           {photos.map((p, i) => (
             <div
@@ -362,6 +445,7 @@ export default function ClientGallery({ gallery }: Props) {
             </div>
           ))}
         </div>
+        )}
       </div>
 
       {/* Lightbox */}
