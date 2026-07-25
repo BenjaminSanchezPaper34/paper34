@@ -2,6 +2,7 @@ import Link from "next/link";
 import { WEB_PROJECTS } from "@/lib/web-projects";
 import WebPortfolioGrid from "@/components/web-portfolio/WebPortfolioGrid";
 import JsonLdWebService, { FAQ_ITEMS } from "@/components/seo/JsonLdWebService";
+import JsonLdBreadcrumb from "@/components/seo/JsonLdBreadcrumb";
 
 const PROCESS_STEPS = [
   {
@@ -35,6 +36,13 @@ export default function CreationSiteWebPage() {
   return (
     <>
       <JsonLdWebService />
+      <JsonLdBreadcrumb
+        items={[
+          { name: "Accueil", url: "https://www.paper34.fr" },
+          { name: "Services", url: "https://www.paper34.fr/services" },
+          { name: "Création de site web", url: "https://www.paper34.fr/services/creation-site-web" },
+        ]}
+      />
 
       {/* Hero */}
       <section className="pt-32 pb-12 md:pt-40 md:pb-20 bg-bg-primary">

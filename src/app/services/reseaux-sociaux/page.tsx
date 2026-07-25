@@ -1,5 +1,6 @@
 import Link from "next/link";
 import JsonLdSocialMedia, { SOCIAL_FAQ } from "@/components/seo/JsonLdSocialMedia";
+import JsonLdBreadcrumb from "@/components/seo/JsonLdBreadcrumb";
 
 const PROCESS_STEPS = [
   {
@@ -33,6 +34,13 @@ export default function ReseauxSociauxPage() {
   return (
     <>
       <JsonLdSocialMedia />
+      <JsonLdBreadcrumb
+        items={[
+          { name: "Accueil", url: "https://www.paper34.fr" },
+          { name: "Services", url: "https://www.paper34.fr/services" },
+          { name: "Réseaux sociaux", url: "https://www.paper34.fr/services/reseaux-sociaux" },
+        ]}
+      />
 
       {/* Hero */}
       <section className="pt-32 pb-12 md:pt-40 md:pb-20 bg-bg-primary overflow-hidden">
