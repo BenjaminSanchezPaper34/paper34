@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { track } from "@vercel/analytics";
 import { CONTACT_INFO, SERVICES } from "@/lib/constants";
 import { fadeInUp } from "@/lib/animations";
 
@@ -29,6 +30,15 @@ export default function ContactPage() {
       });
 
       if (res.ok) {
+        // Conversion : quel service demandé, et depuis quelle page le
+        // visiteur est arrivé sur le formulaire (galerie, service, direct…).
+        const data = new FormData(form);
+        track("devis_envoye", {
+          service: String(data.get("service") || "non précisé"),
+          provenance: document.referrer
+            ? new URL(document.referrer).pathname
+            : "direct",
+        });
         setSubmitted(true);
       } else {
         alert("Erreur lors de l\u2019envoi. Veuillez r\u00e9essayer.");

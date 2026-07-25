@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -127,6 +129,9 @@ export default function RootLayout({
             <Footer />
           </FooterGate>
         </LenisProvider>
+        {/* Mesure d'audience Vercel (sans cookie) + Core Web Vitals réels */}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
