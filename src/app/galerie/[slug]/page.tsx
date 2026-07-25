@@ -50,6 +50,16 @@ export default async function GaleriePage({
   const gallery: Gallery | null = getGallery(slug);
   if (!gallery) notFound();
 
+  // Galeries voisines (les plus récentes d'abord, comme sur /galeries) pour
+  // enchaîner sans repasser par le menu.
+  const all = getGallerySlugs()
+    .map((s) => getGallery(s))
+    .filter((g): g is Gallery => g !== null)
+    .sort((a, b) => b.date.localeCompare(a.date));
+  const pos = all.findIndex((g) => g.slug === gallery.slug);
+  const prev = pos > 0 ? all[pos - 1] : null;
+  const next = pos >= 0 && pos < all.length - 1 ? all[pos + 1] : null;
+
   // Galerie 100 % vidéo (mariages…) ou mixte (campagnes) : libellés adaptés.
   const videoCount = gallery.photos.filter((p) => p.type === "video").length;
   const isVideo = gallery.photos.length > 0 && videoCount === gallery.photos.length;
@@ -59,6 +69,26 @@ export default async function GaleriePage({
     <main className="min-h-screen bg-bg-primary text-text-primary">
       {/* Hero (pt-24 : dégage la navbar fixe, qui porte désormais le logo) */}
       <header className="mx-auto max-w-7xl px-6 pt-24 pb-8 md:pt-28 md:pb-10">
+        {/* Fil d'Ariane : retour explicite vers la liste des galeries */}
+        <nav aria-label="Fil d'Ariane" className="mb-6">
+          <ol className="flex items-center gap-2 text-sm text-text-tertiary">
+            <li>
+              <Link
+                href="/galeries"
+                className="inline-flex items-center gap-1.5 hover:text-text-primary transition-colors"
+              >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                </svg>
+                Toutes les galeries
+              </Link>
+            </li>
+            <li aria-hidden="true" className="text-text-tertiary/50">
+              /
+            </li>
+            <li className="text-text-secondary truncate">{gallery.title}</li>
+          </ol>
+        </nav>
         <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
           {gallery.client}
         </p>
@@ -85,6 +115,53 @@ export default async function GaleriePage({
       </header>
 
       <ClientGallery gallery={gallery} />
+
+      {/* Galeries voisines : enchaîner sans repasser par le menu */}
+      {(prev || next) && (
+        <nav
+          aria-label="Autres galeries"
+          className="mx-auto max-w-7xl px-6 mt-12 grid gap-3 sm:grid-cols-2"
+        >
+          {prev ? (
+            <Link
+              href={`/galerie/${prev.slug}`}
+              className="group flex items-center gap-3 rounded-2xl border border-border hover:border-border-hover hover:bg-white/5 px-5 py-4 transition-all"
+            >
+              <svg className="w-5 h-5 text-accent shrink-0 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+              <span className="min-w-0">
+                <span className="block text-[11px] uppercase tracking-[0.15em] text-text-tertiary">
+                  Galerie précédente
+                </span>
+                <span className="block text-sm font-semibold text-text-primary truncate">
+                  {prev.title}
+                </span>
+              </span>
+            </Link>
+          ) : (
+            <span className="hidden sm:block" />
+          )}
+          {next && (
+            <Link
+              href={`/galerie/${next.slug}`}
+              className="group flex items-center justify-end gap-3 rounded-2xl border border-border hover:border-border-hover hover:bg-white/5 px-5 py-4 text-right transition-all"
+            >
+              <span className="min-w-0">
+                <span className="block text-[11px] uppercase tracking-[0.15em] text-text-tertiary">
+                  Galerie suivante
+                </span>
+                <span className="block text-sm font-semibold text-text-primary truncate">
+                  {next.title}
+                </span>
+              </span>
+              <svg className="w-5 h-5 text-accent shrink-0 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          )}
+        </nav>
+      )}
 
       {/* Accroche : le visiteur vient de voir le travail, on l'invite à
           découvrir le studio (adapté photo/vidéo) */}
@@ -123,6 +200,12 @@ export default async function GaleriePage({
               className="rounded-full border border-border hover:border-border-hover hover:bg-white/5 px-7 py-3 text-sm font-medium text-text-secondary hover:text-text-primary transition-all"
             >
               Découvrir le studio
+            </Link>
+            <Link
+              href="/galeries"
+              className="rounded-full px-7 py-3 text-sm font-medium text-text-tertiary hover:text-text-primary transition-colors"
+            >
+              Toutes les galeries
             </Link>
           </div>
         </div>
