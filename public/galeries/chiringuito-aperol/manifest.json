@@ -4,8 +4,8 @@
   "client": "Chiringuito Vias",
   "date": "2026-07-24",
   "intro": "👋 Tap sur une photo pour la télécharger\n❤️ N'hésitez pas à nous mentionner sur vos réseaux ❤️\n\n🍊 Soirée Aperol · @aperolspritzfr\n🌴 @chiringuitovias\n🎧 @joachim_pastor · @chambrenoiremusic\n📸 @benjaminsanchez_paper34",
-  "count": 136,
-  "totalOriginalBytes": 75291207,
+  "count": 135,
+  "totalOriginalBytes": 73981383,
   "photos": [
     {
       "id": "A7V-1",
@@ -1896,21 +1896,10 @@
       "_relThumb": "thumb/A7V-135.jpg",
       "_relDisplay": "display/A7V-135.jpg",
       "_relOriginal": "originals/A7V-135.heic"
-    },
-    {
-      "id": "A7V-136",
-      "thumb": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/chiringuito-aperol/thumb/A7V-136.jpg",
-      "display": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/chiringuito-aperol/display/A7V-136.jpg",
-      "original": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/chiringuito-aperol/originals/Chiringuito-Aperol-136.heic",
-      "downloadName": "Chiringuito-Aperol-136.heic",
-      "width": 1921,
-      "height": 1440,
-      "originalBytes": 1309824,
-      "originalExt": "heic",
-      "_relThumb": "thumb/A7V-136.jpg",
-      "_relDisplay": "display/A7V-136.jpg",
-      "_relOriginal": "originals/A7V-136.heic"
     }
   ],
-  "storage": "r2"
+  "storage": "r2",
+  "excluded": [
+    "Chiringuito-Aperol-136.heic"
+  ]
 }

@@ -14,7 +14,7 @@ import { join } from "path";
 import { requireR2, r2Client, deleteUrls } from "./r2.mjs";
 
 // Numéros de photo (caméra) à retirer, par galerie.
-const GALLERIES = [{ slug: "chiringuito-coachella", remove: [] }];
+const GALLERIES = [{ slug: "chiringuito-aperol", remove: [] }];
 
 // Numéro de prise = plus long groupe de chiffres (gère A7V-194 et A7507647…XD3).
 function fileNum(name) {
