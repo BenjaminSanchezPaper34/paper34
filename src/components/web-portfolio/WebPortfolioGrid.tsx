@@ -33,7 +33,7 @@ export default function WebPortfolioGrid({ projects }: { projects: WebProject[] 
   return (
     <div
       ref={gridRef}
-      className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10"
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"
     >
       {projects.map((project) => (
         <div key={project.url} className="web-mockup">

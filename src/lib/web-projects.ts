@@ -65,12 +65,31 @@ export const WEB_PROJECTS: WebProject[] = [
 ];
 
 /**
- * G\u00e9n\u00e8re l'URL Microlink pour un screenshot d'une URL donn\u00e9e.
- * Microlink fournit une API gratuite avec 50 req/jour, mais les images
- * sont mises en cache sur leur CDN \u2014 donc une fois g\u00e9n\u00e9r\u00e9es elles sont
- * servies sans consommer le quota.
+ * Aper\u00e7u d'une r\u00e9alisation, servi depuis R2.
+ *
+ * Les captures \u00e9taient g\u00e9n\u00e9r\u00e9es \u00e0 la vol\u00e9e par l'API Microlink : au-del\u00e0
+ * de quelques vignettes, le quota gratuit \u00e9tait atteint et les images ne
+ * s'affichaient plus chez les visiteurs. Elles sont d\u00e9sormais g\u00e9n\u00e9r\u00e9es
+ * une fois (scripts/capture-realisations.mjs) puis h\u00e9berg\u00e9es sur R2.
  */
-export function getScreenshotUrl(url: string): string {
+const R2_PUBLIC = "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev";
+
+/** Identifiant de fichier d\u00e9riv\u00e9 du nom du projet. */
+export function projectSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+export function getScreenshotUrl(nameOrUrl: string): string {
+  return `${R2_PUBLIC}/site/realisations/${projectSlug(nameOrUrl)}.jpg`;
+}
+
+/** Ancienne g\u00e9n\u00e9ration \u00e0 la vol\u00e9e (conserv\u00e9e pour r\u00e9f\u00e9rence/reg\u00e9n\u00e9ration). */
+export function getMicrolinkUrl(url: string): string {
   const encoded = encodeURIComponent(url);
   return `https://api.microlink.io/?url=${encoded}&screenshot=true&meta=false&embed=screenshot.url&type=jpeg&viewport.width=1280&viewport.height=800&waitUntil=networkidle0`;
 }

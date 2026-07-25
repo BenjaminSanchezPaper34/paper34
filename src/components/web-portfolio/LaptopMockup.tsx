@@ -1,7 +1,7 @@
 import { getScreenshotUrl, type WebProject } from "@/lib/web-projects";
 
 export default function LaptopMockup({ project }: { project: WebProject }) {
-  const screenshot = getScreenshotUrl(project.url);
+  const screenshot = getScreenshotUrl(project.name);
   // Affiche le domaine sans le https:// dans la barre de titre
   const displayUrl = project.url.replace(/^https?:\/\//, "").replace(/\/$/, "");
 
