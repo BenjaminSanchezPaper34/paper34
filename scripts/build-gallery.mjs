@@ -71,8 +71,9 @@ const GALLERIES = [
     intro:
       "\u{1F44B} Tap sur une photo pour la t\u00e9l\u00e9charger\n" +
       "\u2764\uFE0F N'h\u00e9sitez pas \u00e0 nous mentionner sur vos r\u00e9seaux \u2764\uFE0F\n\n" +
-      "\u{1F34A} Soir\u00e9e Aperol\n" +
+      "\u{1F34A} Soir\u00e9e Aperol \u00b7 @aperolspritzfr\n" +
       "\u{1F334} @chiringuitovias\n" +
+      "\u{1F3A7} @joachim_pastor \u00b7 @chambrenoiremusic\n" +
       "\u{1F4F8} @benjaminsanchez_paper34",
     exclude: [],
   },
