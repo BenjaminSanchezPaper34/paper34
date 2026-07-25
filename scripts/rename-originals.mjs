@@ -17,7 +17,7 @@ import { S3Client, CopyObjectCommand } from "@aws-sdk/client-s3";
 import { requireR2, r2Client, deleteUrls, R2 } from "./r2.mjs";
 
 const GALLERIES = [
-  { slug: "chiringuito-reggaeton", prefix: "Chiringuito-Reggaeton" },
+  { slug: "chiringuito-aperol", prefix: "Chiringuito-Aperol" },
 ];
 
 function ctOf(ext) {

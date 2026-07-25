@@ -63,33 +63,22 @@ function fileNum(name) {
 // ─── Config des galeries à construire ──────────────────────────────
 const GALLERIES = [
   {
-    slug: "chiringuito-reggaeton",
-    title: "Reggaeton",
+    slug: "chiringuito-aperol",
+    title: "Aperol",
     client: "Chiringuito Vias",
-    date: "2026-07-11",
-    src: "partage photos/CHIRINGUITO - VIAS/3-11I07I26-REGGAETON",
+    date: "2026-07-24",
+    src: "partage photos/CHIRINGUITO - VIAS/4-24I07I26-APEROL",
     intro:
-      "👇 Tap sur une photo pour la télécharger\n" +
-      "❤️ N'hésitez pas à nous mentionner sur vos réseaux ❤️\n\n" +
-      "🔥 Soirée Reggaeton\n" +
-      "🌴 @chiringuitovias\n" +
-      "🎤 Bad Bunny El Clon en show live\n" +
-      "🎧 @therealdjwill · @demsko2.1 · @j.lauww\n" +
-      "📸 @benjaminsanchez_paper34",
+      "\u{1F44B} Tap sur une photo pour la t\u00e9l\u00e9charger\n" +
+      "\u2764\uFE0F N'h\u00e9sitez pas \u00e0 nous mentionner sur vos r\u00e9seaux \u2764\uFE0F\n\n" +
+      "\u{1F34A} Soir\u00e9e Aperol\n" +
+      "\u{1F334} @chiringuitovias\n" +
+      "\u{1F4F8} @benjaminsanchez_paper34",
     exclude: [],
-    cover: 90, // couverture /galeries = position (1-based)
   },
   // Galeries précédentes — déjà construites et sur R2, NE PAS rebuild :
-  // {
-  //   slug: "chiringuito-coachella", title: "Coachella", client: "Chiringuito Vias",
-  //   date: "2026-06-21", src: "partage photos/CHIRINGUITO - VIAS/2-21I06I26-COACHELLA",
-  //   exclude: [7507647], cover: 126,
-  // },
-  // {
-  //   slug: "chiringuito-opening", title: "Opening", client: "Chiringuito Vias",
-  //   date: "2026-06-06", src: "partage photos/CHIRINGUITO - VIAS/1-06I06I26-OPENING",
-  //   exclude: [194, 196, 197], cover: 106,
-  // },
+  // reggaeton (11/07, cover 90) · coachella (21/06, exclude 7507647, cover 126)
+  // opening (06/06, exclude 194/196/197, cover 106)
 ];
 
 // Taille max du côté long pour l'affichage web (px). Les originaux plus
