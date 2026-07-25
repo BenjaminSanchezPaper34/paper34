@@ -333,8 +333,8 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
         </div>
       </section>
 
-      {/* CTA Galeries photos : visible uniquement en filtre Photos */}
-      {filter === "Photos" && (
+      {/* CTA Galeries : filtre Photos (reportages) ou Vidéos (films en ligne) */}
+      {(filter === "Photos" || filter === "Vidéos") && (
         <section className="bg-bg-primary pb-8">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <a
@@ -342,22 +342,32 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
               className="group block rounded-2xl border border-accent/30 bg-gradient-to-br from-accent/15 via-accent/5 to-transparent hover:border-accent/60 hover:from-accent/20 transition-all duration-300 overflow-hidden"
             >
               <div className="flex items-center gap-5 p-5 md:p-6">
-                {/* Pictogramme appareil photo */}
+                {/* Pictogramme : appareil photo ou caméra selon le filtre */}
                 <div className="shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-accent/15 border border-accent/30 flex items-center justify-center text-accent group-hover:scale-105 transition-transform">
-                  <svg className="w-6 h-6 md:w-7 md:h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
+                  {filter === "Vidéos" ? (
+                    <svg className="w-6 h-6 md:w-7 md:h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M4.5 18.75h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25h-9A2.25 2.25 0 002.25 7.5v9a2.25 2.25 0 002.25 2.25z" />
+                    </svg>
+                  ) : (
+                    <svg className="w-6 h-6 md:w-7 md:h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  )}
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-[11px] uppercase tracking-[0.2em] text-accent/80 mb-1">
-                    Galerie photos compl&egrave;te
+                    {filter === "Vidéos" ? "Films en ligne" : "Galerie photos complète"}
                   </p>
                   <h3 className="text-base md:text-lg font-semibold text-text-primary mb-0.5">
-                    Voir mes galeries photos
+                    {filter === "Vidéos"
+                      ? "Voir mes films en galerie"
+                      : "Voir mes galeries photos"}
                   </h3>
                   <p className="text-sm text-text-secondary hidden md:block">
-                    Reportages &eacute;v&eacute;nements, portraits, gastronomie : des galeries tri&eacute;es par projet, en haute d&eacute;finition.
+                    {filter === "Vidéos"
+                      ? "Films de mariage, spots publicitaires, campagnes : des projets complets à visionner en ligne."
+                      : "Reportages événements, portraits, gastronomie : des galeries triées par projet, en haute définition."}
                   </p>
                 </div>
                 <div className="shrink-0 hidden sm:flex items-center gap-2 text-sm font-semibold text-accent group-hover:gap-3 transition-all">
