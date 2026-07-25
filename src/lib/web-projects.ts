@@ -56,6 +56,12 @@ export const WEB_PROJECTS: WebProject[] = [
     category: "Salle de sport",
     description: "Salle de sport à Agde",
   },
+  {
+    name: "CEM",
+    url: "https://www.cem-expertcomptable.fr",
+    category: "Expertise comptable",
+    description: "Cabinet d'expertise comptable à Agde et Paris",
+  },
 ];
 
 /**
