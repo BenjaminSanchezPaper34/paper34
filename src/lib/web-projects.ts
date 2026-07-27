@@ -39,12 +39,6 @@ export const WEB_PROJECTS: WebProject[] = [
     description: "Restaurant gastronomique",
   },
   {
-    name: "Safran",
-    url: "https://www.safran-vias.fr",
-    category: "Traiteur",
-    description: "Traiteur",
-  },
-  {
     name: "La Guinguette",
     url: "https://www.guinguette-bessan.fr",
     category: "Restaurant",
