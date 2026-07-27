@@ -62,6 +62,12 @@ export const WEB_PROJECTS: WebProject[] = [
     category: "Expertise comptable",
     description: "Cabinet d'expertise comptable à Agde et Paris",
   },
+  {
+    name: "Languedoc Isolation",
+    url: "https://languedocisolation.com/index.html",
+    category: "Rénovation énergétique",
+    description: "Isolation thermique RGE à Béziers",
+  },
 ];
 
 /**
