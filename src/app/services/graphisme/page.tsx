@@ -1,5 +1,6 @@
 import Link from "next/link";
 import JsonLdBreadcrumb from "@/components/seo/JsonLdBreadcrumb";
+import JsonLdGraphisme, { FAQ_ITEMS } from "@/components/seo/JsonLdGraphisme";
 
 /**
  * Page Graphisme & impression — "du logo à l'objet imprimé".
@@ -136,6 +137,7 @@ const STEPS = [
 export default function GraphismePage() {
   return (
     <>
+      <JsonLdGraphisme />
       <JsonLdBreadcrumb
         items={[
           { name: "Accueil", url: "https://www.paper34.fr" },
@@ -313,6 +315,43 @@ export default function GraphismePage() {
                   <p className="text-text-secondary leading-relaxed">{step.text}</p>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-20 md:py-28 bg-bg-primary">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
+              FAQ
+            </p>
+            <h2 className="text-[clamp(28px,5vw,48px)] font-bold tracking-[-2px] mb-4">
+              Questions <span className="gradient-text">fréquentes</span>
+            </h2>
+          </div>
+
+          <div className="space-y-3">
+            {FAQ_ITEMS.map((item) => (
+              <details
+                key={item.question}
+                className="group rounded-2xl border border-border bg-bg-card overflow-hidden hover:border-border-hover transition-colors"
+              >
+                <summary className="flex items-center justify-between gap-4 p-6 cursor-pointer list-none">
+                  <h3 className="text-base md:text-lg font-semibold text-text-primary">
+                    {item.question}
+                  </h3>
+                  <span className="flex-shrink-0 w-8 h-8 rounded-full bg-bg-secondary flex items-center justify-center text-accent transition-transform duration-300 group-open:rotate-45">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 5v14m-7-7h14" />
+                    </svg>
+                  </span>
+                </summary>
+                <div className="px-6 pb-6 text-text-secondary leading-relaxed">
+                  {item.answer}
+                </div>
+              </details>
             ))}
           </div>
         </div>

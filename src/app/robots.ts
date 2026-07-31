@@ -1,20 +1,18 @@
 import type { MetadataRoute } from "next";
 
-// Crawlers voraces (IA/scrapers/SEO-bots) bloqués : en juillet 2026,
-// 1,9 M de requêtes edge et 300 Go de transfert ont mis le compte Vercel
-// en pause. Google et Bing restent autorisés via la règle « * ».
+// Scrapers et SEO-bots sans bénéfice client, bloqués depuis la pause
+// Vercel de juillet 2026 (1,9 M de requêtes edge, 300 Go de transfert).
+// Les bots des moteurs de réponse IA (GPTBot, ClaudeBot, PerplexityBot…)
+// sont volontairement AUTORISÉS depuis le 31/07/2026 : ils alimentent les
+// citations et recommandations dans ChatGPT, Claude et Perplexity, et le
+// coût est devenu négligeable depuis que les médias lourds sont sur R2.
 const BLOCKED_BOTS = [
-  "GPTBot",
-  "ClaudeBot",
-  "CCBot",
   "Bytespider",
+  "CCBot",
   "Amazonbot",
   "meta-externalagent",
   "FacebookBot",
-  "PerplexityBot",
   "Applebot-Extended",
-  "Google-Extended",
-  "anthropic-ai",
   "cohere-ai",
   "Diffbot",
   "ImagesiftBot",

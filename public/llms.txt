@@ -14,7 +14,7 @@
 ## Services principaux
 
 - [Identité visuelle](https://www.paper34.fr/services) : création de logos, chartes graphiques, supports de marque.
-- [Communication print & impression](https://www.paper34.fr/services) : flyers, brochures, affiches, cartes de visite — création + impression + livraison.
+- [Graphisme & impression](https://www.paper34.fr/services/graphisme) : du logo à l'objet imprimé — conception graphique, impression chez des imprimeurs partenaires et livraison directe. Print classique (cartes de visite, flyers, dépliants, brochures, affiches, menus), grand format et signalétique (bâches, kakemonos, roll-ups, panneaux de chantier, stickers, vitrophanie, marquage véhicule), textile et objet (t-shirts, polos et vêtements de travail brodés ou floqués, casquettes, tote bags, mugs, goodies publicitaires). Un seul interlocuteur : création, fabrication, livraison.
 - [Création de sites web](https://www.paper34.fr/services/creation-site-web) : sites vitrines, e-commerce, landing pages, design moderne, responsive, SEO optimisé. Intervention partout en France.
 - [Gestion des réseaux sociaux](https://www.paper34.fr/services/reseaux-sociaux) : stratégie éditoriale, création de contenu photo/vidéo, animation de communauté, publicité sponsorisée Meta et TikTok.
 - [Vidéos promotionnelles](https://www.paper34.fr/services) : films promotionnels, motion design, montage vidéo.
@@ -25,6 +25,7 @@
 
 - [Accueil](https://www.paper34.fr/)
 - [Tous les services](https://www.paper34.fr/services)
+- [Graphisme & impression](https://www.paper34.fr/services/graphisme)
 - [Création de site web](https://www.paper34.fr/services/creation-site-web)
 - [Gestion des réseaux sociaux](https://www.paper34.fr/services/reseaux-sociaux)
 - [Portfolio](https://www.paper34.fr/portfolio)
