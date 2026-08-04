@@ -20,7 +20,9 @@ export type ManagedAccount = {
     followers: string;
     posts: string;
     following?: string;
-    /** Couverture cumulée des 6 derniers mois (source : Meta Business Suite) */
+    /** Vues cumulées FB+IG des 6 derniers mois (source : Meta Business Suite) */
+    views6m?: string;
+    /** Couverture (comptes uniques touchés) des 6 derniers mois */
     reach6m?: string;
   };
   /** Derniers posts publiés (visuels R2 rafraîchis via scripts, liens réels) */
@@ -47,7 +49,9 @@ export const MANAGED_ACCOUNTS: ManagedAccount[] = [
     stats: {
       followers: "18 K",
       posts: "1 221",
-      // reach6m : à renseigner depuis Meta Business Suite (couverture 6 mois)
+      // Relevé Meta Business Suite le 03/08/2026, période 04/02 → 03/08/2026
+      views6m: "3,9 M",
+      reach6m: "286 K",
     },
     // Les 12 derniers posts du compte (au 03/08/2026) — visuels ré-hébergés
     // sur R2, chaque tuile pointe vers le post réel.

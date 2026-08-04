@@ -18,11 +18,16 @@ export default function SocialFeature({ account }: { account: ManagedAccount }) 
     if (rootRef.current) fadeInUp(rootRef.current, { y: 30 });
   }, []);
 
+  // Priorité aux chiffres de visibilité 6 mois ; les publications ne
+  // s'affichent qu'à défaut (moins parlantes qu'une portée réelle).
   const metrics: { v: string; l: string }[] = [];
   if (account.stats?.followers) metrics.push({ v: account.stats.followers, l: "abonnés" });
-  if (account.stats?.posts) metrics.push({ v: account.stats.posts, l: "publications" });
+  if (account.stats?.views6m)
+    metrics.push({ v: account.stats.views6m, l: "vues · 6 derniers mois" });
   if (account.stats?.reach6m)
     metrics.push({ v: account.stats.reach6m, l: "comptes touchés · 6 mois" });
+  if (!account.stats?.views6m && !account.stats?.reach6m && account.stats?.posts)
+    metrics.push({ v: account.stats.posts, l: "publications" });
 
   return (
     <div
