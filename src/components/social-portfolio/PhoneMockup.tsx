@@ -98,12 +98,12 @@ export default function PhoneMockup({ account, tilt = "none" }: Props) {
                 </div>
               </div>
 
-              {/* Stats */}
+              {/* Stats (réelles si fournies) */}
               <div className="flex justify-around px-3 pb-3 text-center">
                 {[
-                  { v: "—", l: "publi." },
-                  { v: "—", l: "abonnés" },
-                  { v: "—", l: "suivis" },
+                  { v: account.stats?.posts ?? "—", l: "publi." },
+                  { v: account.stats?.followers ?? "—", l: "abonnés" },
+                  { v: account.stats?.following ?? "—", l: "suivis" },
                 ].map((s) => (
                   <div key={s.l}>
                     <p className="text-xs font-bold">{s.v}</p>
@@ -142,18 +142,28 @@ export default function PhoneMockup({ account, tilt = "none" }: Props) {
                 </div>
               </div>
 
-              {/* Grille 3×3 du feed (tuiles colorées en attendant les vraies images) */}
-              <div className="flex-1 grid grid-cols-3 gap-px bg-gray-100">
-                {tiles.map((t, i) => (
-                  <div
-                    key={i}
-                    className="aspect-square"
-                    style={{
-                      background: `linear-gradient(${t.angle}deg, ${c1}, ${c2})`,
-                      opacity: t.opacity,
-                    }}
-                  />
-                ))}
+              {/* Grille 3×3 du feed : vrais visuels si fournis, sinon tuiles colorées */}
+              <div className="flex-1 grid grid-cols-3 gap-px bg-gray-100 content-start">
+                {account.feed && account.feed.length >= 9
+                  ? account.feed.slice(0, 9).map((src, i) => (
+                      <img
+                        key={i}
+                        src={src}
+                        alt=""
+                        loading="lazy"
+                        className="aspect-square w-full object-cover"
+                      />
+                    ))
+                  : tiles.map((t, i) => (
+                      <div
+                        key={i}
+                        className="aspect-square"
+                        style={{
+                          background: `linear-gradient(${t.angle}deg, ${c1}, ${c2})`,
+                          opacity: t.opacity,
+                        }}
+                      />
+                    ))}
               </div>
             </div>
           )}

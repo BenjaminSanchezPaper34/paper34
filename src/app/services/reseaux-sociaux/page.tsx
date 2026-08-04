@@ -1,6 +1,8 @@
 import Link from "next/link";
 import JsonLdSocialMedia, { SOCIAL_FAQ } from "@/components/seo/JsonLdSocialMedia";
 import JsonLdBreadcrumb from "@/components/seo/JsonLdBreadcrumb";
+import SocialFeature from "@/components/social-portfolio/SocialFeature";
+import { MANAGED_ACCOUNTS } from "@/lib/instagram-accounts";
 
 const PROCESS_STEPS = [
   {
@@ -105,8 +107,34 @@ export default function ReseauxSociauxPage() {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* Comptes gérés — preuve par l'exemple */}
       <section className="py-20 md:py-28 bg-bg-primary">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
+              Références
+            </p>
+            <h2 className="text-[clamp(28px,5vw,48px)] font-bold tracking-[-2px] mb-4">
+              Les comptes que <span className="gradient-text">j&apos;anime</span>
+            </h2>
+            <p className="text-text-secondary max-w-xl mx-auto">
+              Des feeds vivants, du contenu créé et shooté sur place. Cliquez :
+              les comptes parlent mieux que les promesses.
+            </p>
+          </div>
+
+          <div className="space-y-24">
+            {MANAGED_ACCOUNTS.filter((a) => a.feed && a.feed.length > 0).map(
+              (account) => (
+                <SocialFeature key={account.handle} account={account} />
+              )
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-20 md:py-28 bg-bg-secondary">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <div className="text-center mb-16">
             <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
