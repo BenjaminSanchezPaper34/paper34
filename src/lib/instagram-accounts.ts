@@ -5,6 +5,12 @@ export type FeedItem = {
   img: string;
   post?: string;
   video?: boolean;
+  /**
+   * Avis client mis en page (visuel texte). Conservé sur la page réseaux,
+   * mais écarté de l'accueil : en petite tuile, les pavés de texte sont
+   * illisibles et moins attirants que les photos et les reels.
+   */
+  review?: boolean;
 };
 
 export type ManagedAccount = {
@@ -59,17 +65,17 @@ export const MANAGED_ACCOUNTS: ManagedAccount[] = [
     // sur R2, chaque tuile pointe vers le post réel.
     feed: [
       { img: `${CHIRINGUITO_RECENT}/post-01.jpg`, post: "https://www.instagram.com/chiringuitovias/p/Dblo1_SiqUX/" },
-      { img: `${CHIRINGUITO_RECENT}/post-02.jpg`, post: "https://www.instagram.com/chiringuitovias/p/DbfaRHjCo7B/" },
+      { img: `${CHIRINGUITO_RECENT}/post-02.jpg`, post: "https://www.instagram.com/chiringuitovias/p/DbfaRHjCo7B/", review: true },
       { img: `${CHIRINGUITO_RECENT}/post-03.jpg`, post: "https://www.instagram.com/chiringuitovias/p/DbZ-f3KihTH/" },
       { img: `${CHIRINGUITO_RECENT}/post-04.jpg`, post: "https://www.instagram.com/chiringuitovias/reel/DbXtNF_iAi9/", video: true },
       { img: `${CHIRINGUITO_RECENT}/post-05.jpg`, post: "https://www.instagram.com/chiringuitovias/p/DbS_jBGCjhm/" },
       { img: `${CHIRINGUITO_RECENT}/post-06.jpg`, post: "https://www.instagram.com/chiringuitovias/p/DbOTvEqijKf/" },
-      { img: `${CHIRINGUITO_RECENT}/post-07.jpg`, post: "https://www.instagram.com/chiringuitovias/p/DbJLi6LHFSi/" },
+      { img: `${CHIRINGUITO_RECENT}/post-07.jpg`, post: "https://www.instagram.com/chiringuitovias/p/DbJLi6LHFSi/", review: true },
       { img: `${CHIRINGUITO_RECENT}/post-08.jpg`, post: "https://www.instagram.com/chiringuitovias/p/DbOSvtyil2F/" },
       { img: `${CHIRINGUITO_RECENT}/post-09.jpg`, post: "https://www.instagram.com/j.lauww/p/DbGsxbfDP8_/" },
       { img: `${CHIRINGUITO_RECENT}/post-10.jpg`, post: "https://www.instagram.com/chiringuitovias/p/DbFngSEioqD/" },
       { img: `${CHIRINGUITO_RECENT}/post-11.jpg`, post: "https://www.instagram.com/chiringuitovias/reel/DbBh9pPKs5e/", video: true },
-      { img: `${CHIRINGUITO_RECENT}/post-12.jpg`, post: "https://www.instagram.com/chiringuitovias/p/Da78pEyHJ3v/" },
+      { img: `${CHIRINGUITO_RECENT}/post-12.jpg`, post: "https://www.instagram.com/chiringuitovias/p/Da78pEyHJ3v/", review: true },
     ],
     gradient: ["#0ea5e9", "#0369a1"],
   },
@@ -90,12 +96,12 @@ export const MANAGED_ACCOUNTS: ManagedAccount[] = [
     },
     // Les 12 derniers posts du compte (au 03/08/2026)
     feed: [
-      { img: `${GUINGUETTE_RECENT}/post-01.jpg`, post: "https://www.instagram.com/guinguettedebessan/p/DblpcOrCIfi/" },
+      { img: `${GUINGUETTE_RECENT}/post-01.jpg`, post: "https://www.instagram.com/guinguettedebessan/p/DblpcOrCIfi/", review: true },
       { img: `${GUINGUETTE_RECENT}/post-02.jpg`, post: "https://www.instagram.com/guinguettedebessan/p/DbaEM2tCJ1m/" },
       { img: `${GUINGUETTE_RECENT}/post-03.jpg`, post: "https://www.instagram.com/guinguettedebessan/p/DbQKTAmiJd2/" },
       { img: `${GUINGUETTE_RECENT}/post-04.jpg`, post: "https://www.instagram.com/guinguettedebessan/reel/DbGqmj7o0-U/", video: true },
       { img: `${GUINGUETTE_RECENT}/post-05.jpg`, post: "https://www.instagram.com/guinguettedebessan/p/Da7kBl4CCkN/" },
-      { img: `${GUINGUETTE_RECENT}/post-06.jpg`, post: "https://www.instagram.com/guinguettedebessan/p/DaxBIw5iCk6/" },
+      { img: `${GUINGUETTE_RECENT}/post-06.jpg`, post: "https://www.instagram.com/guinguettedebessan/p/DaxBIw5iCk6/", review: true },
       { img: `${GUINGUETTE_RECENT}/post-07.jpg`, post: "https://www.instagram.com/guinguettedebessan/p/DanRshAEYAS/" },
       { img: `${GUINGUETTE_RECENT}/post-08.jpg`, post: "https://www.instagram.com/guinguettedebessan/p/Dac9cUbCOXK/" },
       { img: `${GUINGUETTE_RECENT}/post-09.jpg`, post: "https://www.instagram.com/guinguettedebessan/reel/DaPrrbYohjs/", video: true },
@@ -123,17 +129,17 @@ export const MANAGED_ACCOUNTS: ManagedAccount[] = [
     // Les 12 derniers posts du compte (au 04/08/2026)
     feed: [
       { img: `${FARINETTE_RECENT}/post-01.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/p/DbnIjMwliJd/" },
-      { img: `${FARINETTE_RECENT}/post-02.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/reel/DbfUzvWt0PC/", video: true },
+      { img: `${FARINETTE_RECENT}/post-02.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/reel/DbfUzvWt0PC/", video: true, review: true },
       { img: `${FARINETTE_RECENT}/post-03.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/reel/DbXm_jaNLl0/", video: true },
       { img: `${FARINETTE_RECENT}/post-04.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/p/DbQAwLfjV73/" },
       { img: `${FARINETTE_RECENT}/post-05.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/p/DbDTM3jkWLb/" },
       { img: `${FARINETTE_RECENT}/post-06.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/p/Da76KI8jdRJ/" },
-      { img: `${FARINETTE_RECENT}/post-07.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/reel/DaxGd1Dt6ec/", video: true },
+      { img: `${FARINETTE_RECENT}/post-07.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/reel/DaxGd1Dt6ec/", video: true, review: true },
       { img: `${FARINETTE_RECENT}/post-08.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/reel/DanAxuaN2G1/", video: true },
       { img: `${FARINETTE_RECENT}/post-09.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/p/DahbQbPDe_M/" },
       { img: `${FARINETTE_RECENT}/post-10.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/p/DaW1chviCae/" },
       { img: `${FARINETTE_RECENT}/post-11.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/reel/DaPvYZ2NKSg/", video: true },
-      { img: `${FARINETTE_RECENT}/post-12.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/reel/DaFjM3FN8gM/", video: true },
+      { img: `${FARINETTE_RECENT}/post-12.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/reel/DaFjM3FN8gM/", video: true, review: true },
     ],
     gradient: ["#f59e0b", "#92400e"],
   },

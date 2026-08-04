@@ -17,9 +17,13 @@ export default function SocialProof() {
   const accounts = MANAGED_ACCOUNTS.filter((a) => a.feed && a.feed.length > 0);
 
   // Posts de tous les comptes, entrelacés pour varier les univers.
+  // Les avis clients mis en page sont écartés : en vitrine, les photos et
+  // les reels accrochent, les pavés de texte non.
   const posts = accounts
     .flatMap((a) =>
-      (a.feed ?? []).map((item, i) => ({ ...item, account: a, rank: i }))
+      (a.feed ?? [])
+        .filter((item) => !item.review)
+        .map((item, i) => ({ ...item, account: a, rank: i }))
     )
     .sort((x, y) => x.rank - y.rank)
     .slice(0, 12);
