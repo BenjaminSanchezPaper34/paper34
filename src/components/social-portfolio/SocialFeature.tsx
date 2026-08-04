@@ -88,9 +88,10 @@ export default function SocialFeature({ account }: { account: ManagedAccount }) 
         </div>
       </div>
 
-      {/* Derniers posts publiés */}
+      {/* Derniers posts publiés — la rangée déborde jusqu'au bord de la carte :
+          le post coupé suffit à signaler le scroll, la barre est masquée */}
       {account.feed && account.feed.length > 0 && (
-        <div className="flex gap-2.5 overflow-x-auto pb-2 snap-x [-webkit-overflow-scrolling:touch]">
+        <div className="flex gap-2.5 overflow-x-auto -mx-6 md:-mx-8 px-6 md:px-8 snap-x [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {account.feed.map((item, i) => (
             <a
               key={i}
