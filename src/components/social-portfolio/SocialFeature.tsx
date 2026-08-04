@@ -158,6 +158,26 @@ export default function SocialFeature({ account }: { account: ManagedAccount }) 
               )}
             </a>
           ))}
+
+          {/* Dernière tuile : invitation à poursuivre sur le compte */}
+          <a
+            href={profileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex-shrink-0 h-40 md:h-52 aspect-[4/5] rounded-lg border border-border bg-bg-secondary/60 flex flex-col items-center justify-center gap-2 px-3 text-center transition-all duration-300 hover:border-accent hover:bg-accent/5"
+          >
+            <span className="w-9 h-9 rounded-full bg-accent/10 flex items-center justify-center text-accent transition-transform duration-300 group-hover:scale-110">
+              <InstagramIcon className="w-5 h-5" />
+            </span>
+            <span className="text-sm font-semibold text-text-primary leading-tight">
+              Voir tout le compte
+            </span>
+            <span className="text-xs text-text-tertiary">@{account.handle}</span>
+            <span className="text-accent text-lg leading-none transition-transform duration-300 group-hover:translate-x-1">
+              &rarr;
+            </span>
+          </a>
+
           <div className="w-3.5 md:w-[22px] flex-shrink-0" aria-hidden />
         </div>
       )}
