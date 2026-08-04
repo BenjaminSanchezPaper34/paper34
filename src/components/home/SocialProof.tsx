@@ -51,11 +51,11 @@ export default function SocialProof() {
             </h2>
             {headline && (
               <p className="text-lg text-text-secondary mt-5 max-w-lg">
-                Stratégie, shooting, publication —{" "}
+                Stratégie, shooting, publication — jusqu&apos;à{" "}
                 <strong className="text-text-primary font-semibold">
                   {headline} de vues sur les 6 derniers mois
                 </strong>{" "}
-                pour un seul de mes clients. Voici leurs dernières publications.
+                pour un seul compte. Voici leurs dernières publications.
               </p>
             )}
           </div>

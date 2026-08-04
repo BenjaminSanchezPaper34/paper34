@@ -34,6 +34,7 @@ export type ManagedAccount = {
 };
 
 const CHIRINGUITO_RECENT = `${R2}/site/social/chiringuitovias/recent`;
+const GUINGUETTE_RECENT = `${R2}/site/social/guinguettedebessan/recent`;
 
 // Comptes gérés. Seuls ceux qui ont un `feed` rempli apparaissent dans la
 // section « Les comptes que j'anime » (les autres attendent leurs visuels).
@@ -70,6 +71,38 @@ export const MANAGED_ACCOUNTS: ManagedAccount[] = [
       { img: `${CHIRINGUITO_RECENT}/post-12.jpg`, post: "https://www.instagram.com/chiringuitovias/p/Da78pEyHJ3v/" },
     ],
     gradient: ["#0ea5e9", "#0369a1"],
+  },
+  {
+    name: "La Guinguette de Bessan",
+    handle: "guinguettedebessan",
+    category: "Restaurant · Bessan",
+    description:
+      "Restaurant au bord de l'Hérault : ouverture de saison, carte terre & mer, terrasse et soirées. Contenus shootés sur place et publiés sur Instagram comme sur Facebook.",
+    facebook:
+      "https://www.facebook.com/La-guinguette-de-Bessan-officiel-236629180448376",
+    stats: {
+      followers: "1 674",
+      posts: "126",
+      // Relevé Meta Business Suite le 03/08/2026, période 04/02 → 03/08/2026
+      // (915 557 vues Facebook + 104 380 vues Instagram)
+      views6m: "1 M",
+    },
+    // Les 12 derniers posts du compte (au 03/08/2026)
+    feed: [
+      { img: `${GUINGUETTE_RECENT}/post-01.jpg`, post: "https://www.instagram.com/guinguettedebessan/p/DblpcOrCIfi/" },
+      { img: `${GUINGUETTE_RECENT}/post-02.jpg`, post: "https://www.instagram.com/guinguettedebessan/p/DbaEM2tCJ1m/" },
+      { img: `${GUINGUETTE_RECENT}/post-03.jpg`, post: "https://www.instagram.com/guinguettedebessan/p/DbQKTAmiJd2/" },
+      { img: `${GUINGUETTE_RECENT}/post-04.jpg`, post: "https://www.instagram.com/guinguettedebessan/reel/DbGqmj7o0-U/", video: true },
+      { img: `${GUINGUETTE_RECENT}/post-05.jpg`, post: "https://www.instagram.com/guinguettedebessan/p/Da7kBl4CCkN/" },
+      { img: `${GUINGUETTE_RECENT}/post-06.jpg`, post: "https://www.instagram.com/guinguettedebessan/p/DaxBIw5iCk6/" },
+      { img: `${GUINGUETTE_RECENT}/post-07.jpg`, post: "https://www.instagram.com/guinguettedebessan/p/DanRshAEYAS/" },
+      { img: `${GUINGUETTE_RECENT}/post-08.jpg`, post: "https://www.instagram.com/guinguettedebessan/p/Dac9cUbCOXK/" },
+      { img: `${GUINGUETTE_RECENT}/post-09.jpg`, post: "https://www.instagram.com/guinguettedebessan/reel/DaPrrbYohjs/", video: true },
+      { img: `${GUINGUETTE_RECENT}/post-10.jpg`, post: "https://www.instagram.com/guinguettedebessan/p/DaI08-mCGIG/" },
+      { img: `${GUINGUETTE_RECENT}/post-11.jpg`, post: "https://www.instagram.com/guinguettedebessan/p/DZ8EgT2iF38/" },
+      { img: `${GUINGUETTE_RECENT}/post-12.jpg`, post: "https://www.instagram.com/guinguettedebessan/p/DZ14T98Ec9O/" },
+    ],
+    gradient: ["#84cc16", "#3f6212"],
   },
   {
     name: "Le Dix9",
