@@ -45,11 +45,13 @@ const DEPTH_SHADOW = [
 const DEPTH_Z = ["z-20", "z-10", "z-0"];
 
 /** Filtre de l'image par plan : l'arrière-plan est légèrement flou et
- *  éteint (1,5 px max) — et redevient net au survol. */
+ *  éteint (1,5 px max) — et redevient net au survol. L'image floutée est
+ *  agrandie de 6 % pour que la frange du flou sorte du cadre : sans ça,
+ *  le bord flou « vide » l'intérieur de la carte et casse l'arrondi. */
 const DEPTH_FILTER = [
   "",
   "",
-  "blur-[1.5px] brightness-[0.82] saturate-[0.8] group-hover:blur-none group-hover:brightness-100 group-hover:saturate-100 transition-[filter] duration-500",
+  "scale-[1.06] blur-[1.5px] brightness-[0.82] saturate-[0.8] group-hover:blur-none group-hover:brightness-100 group-hover:saturate-100 transition-[filter] duration-500",
 ];
 
 /** Amplitude de parallaxe verticale par plan (px) : proche = rapide. */
@@ -154,7 +156,7 @@ export default function SocialProofMosaic() {
             aria-label={`Voir ce post de ${item.account.name} sur Instagram`}
           >
             <div
-              className={`relative overflow-hidden rounded-2xl ${r.h} aspect-[4/5] ${r.tilt} ${DEPTH_SHADOW[r.depth]} transition-transform duration-500 ease-out group-hover:rotate-0 group-hover:scale-[1.04]`}
+              className={`relative overflow-hidden rounded-2xl ring-1 ring-white/10 ${r.h} aspect-[4/5] ${r.tilt} ${DEPTH_SHADOW[r.depth]} transition-transform duration-500 ease-out group-hover:rotate-0 group-hover:scale-[1.04]`}
             >
               <img
                 src={item.img}
