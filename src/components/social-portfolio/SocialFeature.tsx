@@ -129,9 +129,10 @@ export default function SocialFeature({ account }: { account: ManagedAccount }) 
 
       {/* Derniers posts publiés — la rangée déborde jusqu'au bord de la carte,
           barre masquée. Des cales en tête et en queue recréent le padding de la
-          carte : il défile avec le contenu (padding CSS peu fiable en scroll). */}
+          carte : il défile avec le contenu. Pas de scroll-snap : au chargement,
+          il aimantait le premier post au bord et avalait la cale. */}
       {account.feed && account.feed.length > 0 && (
-        <div className="flex gap-2.5 overflow-x-auto -mx-6 md:-mx-8 snap-x [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex gap-2.5 overflow-x-auto -mx-6 md:-mx-8 [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <div className="w-3.5 md:w-[22px] flex-shrink-0" aria-hidden />
           {account.feed.map((item, i) => (
             <a
@@ -139,7 +140,7 @@ export default function SocialFeature({ account }: { account: ManagedAccount }) 
               href={item.post ?? profileUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative flex-shrink-0 snap-start"
+              className="group relative flex-shrink-0"
               aria-label={`Voir ce post de ${account.name} sur Instagram`}
             >
               <img
