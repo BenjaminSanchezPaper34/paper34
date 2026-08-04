@@ -17,16 +17,43 @@ import { MANAGED_ACCOUNTS } from "@/lib/instagram-accounts";
  * bandes restent lisibles et scrollables horizontalement à la main.
  */
 
-/** Rythme des tuiles : hauteur, décalage vertical, inclinaison. */
+/**
+ * Rythme des tuiles : hauteur, décalage vertical, inclinaison et PLAN.
+ * La taille suit la logique d'une profondeur de champ photographique :
+ *   depth 0 = premier plan  → grande, nette, ombre portée, parallaxe rapide
+ *   depth 1 = plan moyen    → intermédiaire
+ *   depth 2 = arrière-plan  → petite, léger flou, couleurs adoucies, lente
+ */
 const RHYTHM = [
-  { h: "h-56 md:h-72", offset: "mt-0", tilt: "-rotate-1" },
-  { h: "h-44 md:h-56", offset: "mt-10 md:mt-16", tilt: "rotate-1" },
-  { h: "h-64 md:h-80", offset: "mt-2 md:mt-4", tilt: "rotate-0" },
-  { h: "h-48 md:h-60", offset: "mt-14 md:mt-20", tilt: "-rotate-2" },
-  { h: "h-52 md:h-64", offset: "mt-6 md:mt-8", tilt: "rotate-2" },
-  { h: "h-60 md:h-72", offset: "mt-0", tilt: "-rotate-1" },
-  { h: "h-44 md:h-52", offset: "mt-12 md:mt-16", tilt: "rotate-1" },
+  { h: "h-56 md:h-72", offset: "mt-0", tilt: "-rotate-1", depth: 1 },
+  { h: "h-44 md:h-56", offset: "mt-10 md:mt-16", tilt: "rotate-1", depth: 2 },
+  { h: "h-64 md:h-80", offset: "mt-2 md:mt-4", tilt: "rotate-0", depth: 0 },
+  { h: "h-48 md:h-60", offset: "mt-14 md:mt-20", tilt: "-rotate-2", depth: 2 },
+  { h: "h-52 md:h-64", offset: "mt-6 md:mt-8", tilt: "rotate-2", depth: 1 },
+  { h: "h-60 md:h-72", offset: "mt-0", tilt: "-rotate-1", depth: 0 },
+  { h: "h-44 md:h-52", offset: "mt-12 md:mt-16", tilt: "rotate-1", depth: 2 },
 ];
+
+/** Ombre du cadre par plan : le premier plan « décolle » de la page. */
+const DEPTH_SHADOW = [
+  "shadow-2xl shadow-black/40",
+  "shadow-lg shadow-black/20",
+  "",
+];
+
+/** Empilement : le premier plan passe devant en cas de chevauchement. */
+const DEPTH_Z = ["z-20", "z-10", "z-0"];
+
+/** Filtre de l'image par plan : l'arrière-plan est légèrement flou et
+ *  éteint (1,5 px max) — et redevient net au survol. */
+const DEPTH_FILTER = [
+  "",
+  "",
+  "blur-[1.5px] brightness-[0.82] saturate-[0.8] group-hover:blur-none group-hover:brightness-100 group-hover:saturate-100 transition-[filter] duration-500",
+];
+
+/** Amplitude de parallaxe verticale par plan (px) : proche = rapide. */
+const DEPTH_SPEED = [34, 20, 9];
 
 export default function SocialProofMosaic() {
   const headerRef = useRef<HTMLDivElement>(null);
@@ -77,10 +104,12 @@ export default function SocialProofMosaic() {
         gsap.fromTo(rowBRef.current, { x: -amp * 1.4 }, { x: amp * 1.4, ...common });
       }
 
-      // Parallaxe verticale par tuile : vitesses légèrement différentes.
+      // Parallaxe verticale par tuile, calée sur son plan :
+      // premier plan rapide, arrière-plan presque immobile.
       const tiles = sectionRef.current!.querySelectorAll<HTMLElement>(".mosaic-tile");
-      tiles.forEach((tile, i) => {
-        const depth = ((i % 4) + 1) * 8; // 8 → 32 px
+      tiles.forEach((tile) => {
+        const tier = Number(tile.dataset.depth ?? 1);
+        const depth = DEPTH_SPEED[tier] ?? 20;
         gsap.fromTo(
           tile,
           { y: depth },
@@ -120,17 +149,18 @@ export default function SocialProofMosaic() {
             href={item.post ?? `https://www.instagram.com/${item.account.handle}/`}
             target="_blank"
             rel="noopener noreferrer"
-            className={`mosaic-tile group relative flex-shrink-0 ${r.offset}`}
+            data-depth={r.depth}
+            className={`mosaic-tile group relative flex-shrink-0 ${r.offset} ${DEPTH_Z[r.depth]}`}
             aria-label={`Voir ce post de ${item.account.name} sur Instagram`}
           >
             <div
-              className={`relative overflow-hidden rounded-2xl ${r.h} aspect-[4/5] ${r.tilt} transition-transform duration-500 ease-out group-hover:rotate-0 group-hover:scale-[1.04]`}
+              className={`relative overflow-hidden rounded-2xl ${r.h} aspect-[4/5] ${r.tilt} ${DEPTH_SHADOW[r.depth]} transition-transform duration-500 ease-out group-hover:rotate-0 group-hover:scale-[1.04]`}
             >
               <img
                 src={item.img}
                 alt={`Publication récente pour ${item.account.name}`}
                 loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover"
+                className={`absolute inset-0 w-full h-full object-cover ${DEPTH_FILTER[r.depth]}`}
               />
               {item.video && (
                 <span className="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-black/55 backdrop-blur-sm flex items-center justify-center pointer-events-none">
