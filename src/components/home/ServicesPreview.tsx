@@ -5,6 +5,16 @@ import Link from "next/link";
 import { SERVICES } from "@/lib/constants";
 import { staggerReveal } from "@/lib/animations";
 
+// Services disposant d'une page dédiée : on y envoie directement depuis
+// l'accueil plutôt que vers l'ancre de /services (un clic gagné).
+const DEDICATED_PAGES: Record<string, string> = {
+  web: "/services/creation-site-web",
+  "reseaux-sociaux": "/services/reseaux-sociaux",
+  design: "/services/graphisme",
+  print: "/services/graphisme",
+  tenue: "/services/graphisme",
+};
+
 export default function ServicesPreview() {
   const sectionRef = useRef<HTMLElement>(null);
   const cardsRef = useRef<HTMLDivElement>(null);
@@ -42,7 +52,7 @@ export default function ServicesPreview() {
           {SERVICES.map((service) => (
             <Link
               key={service.id}
-              href={`/services#${service.id}`}
+              href={DEDICATED_PAGES[service.id] ?? `/services#${service.id}`}
               className="service-card group relative rounded-2xl border border-border bg-bg-card p-6 transition-all duration-300 hover:bg-bg-card-hover hover:border-border-hover hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20"
             >
               <div className="mb-4 w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center transition-colors duration-300 group-hover:bg-accent/20">
