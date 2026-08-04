@@ -118,8 +118,9 @@ export default function ReseauxSociauxPage() {
               Les comptes que <span className="gradient-text">j&apos;anime</span>
             </h2>
             <p className="text-text-secondary max-w-xl mx-auto">
-              Des feeds vivants, du contenu créé et shooté sur place. Cliquez :
-              les comptes parlent mieux que les promesses.
+              Stratégie, création, publication : des comptes gérés au quotidien.
+              Les chiffres viennent de Meta Business Suite, les posts sont les
+              vrais derniers publiés — cliquez, tout est réel.
             </p>
           </div>
 

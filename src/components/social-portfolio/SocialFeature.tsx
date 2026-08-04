@@ -4,11 +4,38 @@ import { useEffect, useRef } from "react";
 import { fadeInUp } from "@/lib/animations";
 import { getProfileUrl, type ManagedAccount } from "@/lib/instagram-accounts";
 
+/** Logos plateformes (SVG inline, monochromes, hérités de currentColor) */
+function InstagramIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+      <rect x="2.5" y="2.5" width="19" height="19" rx="5.5" />
+      <circle cx="12" cy="12" r="4.5" />
+      <circle cx="17.8" cy="6.2" r="1.2" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function FacebookIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M13.5 21v-7h2.4l.4-3h-2.8V9.1c0-.9.3-1.5 1.6-1.5h1.3V4.9c-.3 0-1.1-.1-2-.1-2.1 0-3.5 1.3-3.5 3.6V11H8.5v3h2.4v7h2.6z" />
+    </svg>
+  );
+}
+
+function TikTokIcon({ className = "w-4 h-4" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M16.6 3c.4 1.9 1.7 3.4 3.9 3.7v3c-1.5 0-2.8-.5-3.9-1.3v6.4c0 3.7-2.6 6.2-6 6.2-3.2 0-5.6-2.3-5.6-5.4 0-3.4 2.9-5.6 6.3-5.3v3.1c-.3-.1-.7-.2-1.1-.2-1.4 0-2.4 1-2.4 2.4 0 1.4 1 2.4 2.6 2.4 1.7 0 2.8-1.3 2.8-3.3V3h3.4z" />
+    </svg>
+  );
+}
+
 /**
  * Bannière compacte « compte que j'anime », pensée pour s'empiler :
- * en-tête (nom, catégorie, chiffres, boutons plateformes) puis une rangée
- * défilante des derniers posts publiés. Chaque tuile pointe vers le post
- * réel ; les reels portent un badge lecture.
+ * identité + boutons plateformes (logos), bande de chiffres clés,
+ * puis la rangée défilante des derniers posts (débord de carte,
+ * barre masquée — le post coupé signale le scroll).
  */
 export default function SocialFeature({ account }: { account: ManagedAccount }) {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -18,15 +45,12 @@ export default function SocialFeature({ account }: { account: ManagedAccount }) 
     if (rootRef.current) fadeInUp(rootRef.current, { y: 30 });
   }, []);
 
-  // Priorité aux chiffres de visibilité 6 mois ; les publications ne
-  // s'affichent qu'à défaut (moins parlantes qu'une portée réelle).
+  // Les vues 6 mois portent le message ; à défaut, le volume de publications.
   const metrics: { v: string; l: string }[] = [];
-  if (account.stats?.followers) metrics.push({ v: account.stats.followers, l: "abonnés" });
   if (account.stats?.views6m)
-    metrics.push({ v: account.stats.views6m, l: "vues · 6 derniers mois" });
-  if (account.stats?.reach6m)
-    metrics.push({ v: account.stats.reach6m, l: "comptes touchés · 6 mois" });
-  if (!account.stats?.views6m && !account.stats?.reach6m && account.stats?.posts)
+    metrics.push({ v: account.stats.views6m, l: "vues sur les 6 derniers mois" });
+  if (account.stats?.followers) metrics.push({ v: account.stats.followers, l: "abonnés" });
+  if (!account.stats?.views6m && account.stats?.posts)
     metrics.push({ v: account.stats.posts, l: "publications" });
 
   return (
@@ -34,9 +58,9 @@ export default function SocialFeature({ account }: { account: ManagedAccount }) 
       ref={rootRef}
       className="rounded-3xl border border-border bg-bg-card p-6 md:p-8 hover:border-border-hover transition-colors"
     >
-      {/* En-tête : identité + chiffres + plateformes */}
-      <div className="flex flex-col lg:flex-row lg:items-center gap-6 lg:gap-10 mb-6">
-        <div className="min-w-0 lg:flex-1">
+      {/* Identité + plateformes */}
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
+        <div className="min-w-0">
           <p className="text-accent text-xs font-semibold uppercase tracking-widest mb-1">
             {account.category}
           </p>
@@ -50,24 +74,14 @@ export default function SocialFeature({ account }: { account: ManagedAccount }) 
           )}
         </div>
 
-        {metrics.length > 0 && (
-          <div className="flex gap-8 flex-shrink-0">
-            {metrics.map((m) => (
-              <div key={m.l}>
-                <p className="text-xl md:text-2xl font-bold gradient-text">{m.v}</p>
-                <p className="text-xs text-text-tertiary mt-0.5">{m.l}</p>
-              </div>
-            ))}
-          </div>
-        )}
-
-        <div className="flex flex-wrap gap-2 flex-shrink-0">
+        <div className="flex flex-wrap items-center gap-2 flex-shrink-0">
           <a
             href={profileUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow hover:scale-[1.02]"
+            className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow hover:scale-[1.02]"
           >
+            <InstagramIcon />
             @{account.handle}
           </a>
           {account.facebook && (
@@ -75,8 +89,10 @@ export default function SocialFeature({ account }: { account: ManagedAccount }) 
               href={account.facebook}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-border px-4 py-2 text-sm font-semibold text-text-primary transition-all duration-300 hover:bg-white/5 hover:border-border-hover"
+              aria-label={`Page Facebook de ${account.name}`}
+              className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-semibold text-text-primary transition-all duration-300 hover:bg-white/5 hover:border-border-hover"
             >
+              <FacebookIcon />
               Facebook
             </a>
           )}
@@ -85,13 +101,29 @@ export default function SocialFeature({ account }: { account: ManagedAccount }) 
               href={account.tiktok}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-border px-4 py-2 text-sm font-semibold text-text-primary transition-all duration-300 hover:bg-white/5 hover:border-border-hover"
+              aria-label={`Compte TikTok de ${account.name}`}
+              className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-semibold text-text-primary transition-all duration-300 hover:bg-white/5 hover:border-border-hover"
             >
+              <TikTokIcon />
               TikTok
             </a>
           )}
         </div>
       </div>
+
+      {/* Bande de chiffres */}
+      {metrics.length > 0 && (
+        <div className="flex divide-x divide-border rounded-2xl bg-bg-secondary/60 mb-6">
+          {metrics.map((m) => (
+            <div key={m.l} className="flex-1 px-5 py-4 md:px-6">
+              <p className="text-2xl md:text-3xl font-bold gradient-text leading-none">
+                {m.v}
+              </p>
+              <p className="text-xs md:text-sm text-text-tertiary mt-1.5">{m.l}</p>
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Derniers posts publiés — la rangée déborde jusqu'au bord de la carte :
           le post coupé suffit à signaler le scroll, la barre est masquée */}
