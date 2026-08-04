@@ -70,8 +70,35 @@ export default function ReseauxSociauxPage() {
         </div>
       </section>
 
-      {/* Processus */}
+      {/* Comptes gérés — la preuve par l'image, dès l'arrivée */}
       <section className="py-20 md:py-28 bg-bg-secondary">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
+              Références
+            </p>
+            <h2 className="text-[clamp(28px,5vw,48px)] font-bold tracking-[-2px] mb-4">
+              Les comptes que <span className="gradient-text">j&apos;anime</span>
+            </h2>
+            <p className="text-text-secondary max-w-xl mx-auto">
+              Stratégie, création, publication : des comptes gérés au quotidien.
+              Les chiffres viennent de Meta Business Suite, les posts sont les
+              vrais derniers publiés — cliquez, tout est réel.
+            </p>
+          </div>
+
+          <div className="space-y-6">
+            {MANAGED_ACCOUNTS.filter((a) => a.feed && a.feed.length > 0).map(
+              (account) => (
+                <SocialFeature key={account.handle} account={account} />
+              )
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Processus */}
+      <section className="py-20 md:py-28 bg-bg-primary">
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
           <div className="text-center mb-16">
             <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
@@ -103,33 +130,6 @@ export default function ReseauxSociauxPage() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Comptes gérés — preuve par l'exemple */}
-      <section className="py-20 md:py-28 bg-bg-primary">
-        <div className="mx-auto max-w-6xl px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
-              Références
-            </p>
-            <h2 className="text-[clamp(28px,5vw,48px)] font-bold tracking-[-2px] mb-4">
-              Les comptes que <span className="gradient-text">j&apos;anime</span>
-            </h2>
-            <p className="text-text-secondary max-w-xl mx-auto">
-              Stratégie, création, publication : des comptes gérés au quotidien.
-              Les chiffres viennent de Meta Business Suite, les posts sont les
-              vrais derniers publiés — cliquez, tout est réel.
-            </p>
-          </div>
-
-          <div className="space-y-6">
-            {MANAGED_ACCOUNTS.filter((a) => a.feed && a.feed.length > 0).map(
-              (account) => (
-                <SocialFeature key={account.handle} account={account} />
-              )
-            )}
           </div>
         </div>
       </section>
