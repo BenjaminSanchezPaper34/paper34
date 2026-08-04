@@ -1,12 +1,17 @@
 const R2 = "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev";
 
+/** Un post du feed : visuel R2 + lien vers le vrai post (reel → badge lecture) */
+export type FeedItem = {
+  img: string;
+  post?: string;
+  video?: boolean;
+};
+
 export type ManagedAccount = {
   name: string;
   handle: string; // sans @
   category: string;
   description?: string;
-  /** Année de début de l'accompagnement (affichée « depuis 20XX ») */
-  since?: number;
   /** Liens vers les autres plateformes du client (Instagram déduit du handle) */
   facebook?: string;
   tiktok?: string;
@@ -18,13 +23,15 @@ export type ManagedAccount = {
     /** Couverture cumulée des 6 derniers mois (source : Meta Business Suite) */
     reach6m?: string;
   };
-  /** Visuels de posts réels (URLs R2) — les 9 premiers remplissent le mockup iPhone */
-  feed?: string[];
+  /** Derniers posts publiés (visuels R2 rafraîchis via scripts, liens réels) */
+  feed?: FeedItem[];
   /** Optionnel : palette de gradient pour le fallback visuel */
   gradient?: [string, string];
   /** Optionnel : chemin local d'un screenshot (ex: /images/social/chiringuitovias.jpg) */
   screenshot?: string;
 };
+
+const CHIRINGUITO_RECENT = `${R2}/site/social/chiringuitovias/recent`;
 
 // Comptes gérés. Seuls ceux qui ont un `feed` rempli apparaissent dans la
 // section « Les comptes que j'anime » (les autres attendent leurs visuels).
@@ -32,38 +39,31 @@ export const MANAGED_ACCOUNTS: ManagedAccount[] = [
   {
     name: "Chiringuito Vias Plage",
     handle: "chiringuitovias",
-    category: "Plage privée",
+    category: "Plage privée · Vias",
     description:
-      "Plage privée emblématique de Vias. J'anime le compte au fil des saisons : affiches des soirées, photos et reels des événements, stories, couverture des concerts. Le contenu est shooté sur place — c'est l'ambiance réelle qui fait vivre le compte.",
-    since: 2016,
+      "Affiches des soirées, photos et reels shootés sur place, stories, couverture des concerts — le compte vit au rythme des saisons.",
     facebook: "https://www.facebook.com/chiringuitovias/",
     tiktok: "https://www.tiktok.com/@chiringuitovias",
     stats: {
       followers: "18 K",
       posts: "1 221",
-      following: "1 772",
       // reach6m : à renseigner depuis Meta Business Suite (couverture 6 mois)
     },
+    // Les 12 derniers posts du compte (au 03/08/2026) — visuels ré-hébergés
+    // sur R2, chaque tuile pointe vers le post réel.
     feed: [
-      // Mix affiches créées + photos d'événements shootées (ordre = feed du mockup)
-      `${R2}/site/social/chiringuitovias/affiche-aperol.jpg`,
-      `${R2}/galeries/chiringuito-opening/display/A7V-113.jpg`,
-      `${R2}/site/social/chiringuitovias/affiche-demsko.jpg`,
-      `${R2}/galeries/chiringuito-coachella/display/A7507758-DxO_DeepPRIME%20XD3.jpg`,
-      `${R2}/site/social/chiringuitovias/affiche-maxx-baty.jpg`,
-      `${R2}/galeries/chiringuito-reggaeton/display/A7V-90.jpg`,
-      `${R2}/site/social/chiringuitovias/affiche-morezan.jpg`,
-      `${R2}/galeries/chiringuito-aperol/display/A7V-60.jpg`,
-      `${R2}/site/social/chiringuitovias/affiche-yann-muller.jpg`,
-      `${R2}/galeries/chiringuito-opening/display/A7V-27.jpg`,
-      `${R2}/site/social/chiringuitovias/affiche-luis-labori.jpg`,
-      `${R2}/galeries/chiringuito-coachella/display/A7507348-DxO_DeepPRIME%20XD3.jpg`,
-      `${R2}/galeries/chiringuito-reggaeton/display/A7V-12.jpg`,
-      `${R2}/galeries/chiringuito-aperol/display/A7V-1.jpg`,
-      `${R2}/galeries/chiringuito-opening/display/A7V-158.jpg`,
-      `${R2}/galeries/chiringuito-coachella/display/A7507597-DxO_DeepPRIME%20XD3.jpg`,
-      `${R2}/galeries/chiringuito-reggaeton/display/A7V-140.jpg`,
-      `${R2}/galeries/chiringuito-aperol/display/A7V-120.jpg`,
+      { img: `${CHIRINGUITO_RECENT}/post-01.jpg`, post: "https://www.instagram.com/chiringuitovias/p/Dblo1_SiqUX/" },
+      { img: `${CHIRINGUITO_RECENT}/post-02.jpg`, post: "https://www.instagram.com/chiringuitovias/p/DbfaRHjCo7B/" },
+      { img: `${CHIRINGUITO_RECENT}/post-03.jpg`, post: "https://www.instagram.com/chiringuitovias/p/DbZ-f3KihTH/" },
+      { img: `${CHIRINGUITO_RECENT}/post-04.jpg`, post: "https://www.instagram.com/chiringuitovias/reel/DbXtNF_iAi9/", video: true },
+      { img: `${CHIRINGUITO_RECENT}/post-05.jpg`, post: "https://www.instagram.com/chiringuitovias/p/DbS_jBGCjhm/" },
+      { img: `${CHIRINGUITO_RECENT}/post-06.jpg`, post: "https://www.instagram.com/chiringuitovias/p/DbOTvEqijKf/" },
+      { img: `${CHIRINGUITO_RECENT}/post-07.jpg`, post: "https://www.instagram.com/chiringuitovias/p/DbJLi6LHFSi/" },
+      { img: `${CHIRINGUITO_RECENT}/post-08.jpg`, post: "https://www.instagram.com/chiringuitovias/p/DbOSvtyil2F/" },
+      { img: `${CHIRINGUITO_RECENT}/post-09.jpg`, post: "https://www.instagram.com/j.lauww/p/DbGsxbfDP8_/" },
+      { img: `${CHIRINGUITO_RECENT}/post-10.jpg`, post: "https://www.instagram.com/chiringuitovias/p/DbFngSEioqD/" },
+      { img: `${CHIRINGUITO_RECENT}/post-11.jpg`, post: "https://www.instagram.com/chiringuitovias/reel/DbBh9pPKs5e/", video: true },
+      { img: `${CHIRINGUITO_RECENT}/post-12.jpg`, post: "https://www.instagram.com/chiringuitovias/p/Da78pEyHJ3v/" },
     ],
     gradient: ["#0ea5e9", "#0369a1"],
   },

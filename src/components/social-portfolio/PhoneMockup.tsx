@@ -145,10 +145,10 @@ export default function PhoneMockup({ account, tilt = "none" }: Props) {
               {/* Grille 3×3 du feed : vrais visuels si fournis, sinon tuiles colorées */}
               <div className="flex-1 grid grid-cols-3 gap-px bg-gray-100 content-start">
                 {account.feed && account.feed.length >= 9
-                  ? account.feed.slice(0, 9).map((src, i) => (
+                  ? account.feed.slice(0, 9).map((item, i) => (
                       <img
                         key={i}
-                        src={src}
+                        src={item.img}
                         alt=""
                         loading="lazy"
                         className="aspect-square w-full object-cover"

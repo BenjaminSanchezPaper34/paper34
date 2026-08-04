@@ -123,7 +123,7 @@ export default function ReseauxSociauxPage() {
             </p>
           </div>
 
-          <div className="space-y-24">
+          <div className="space-y-6">
             {MANAGED_ACCOUNTS.filter((a) => a.feed && a.feed.length > 0).map(
               (account) => (
                 <SocialFeature key={account.handle} account={account} />
