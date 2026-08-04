@@ -147,7 +147,7 @@ export default function SocialFeature({ account }: { account: ManagedAccount }) 
                 src={item.img}
                 alt={`Post récent de ${account.name}`}
                 loading="lazy"
-                className="h-32 md:h-40 aspect-[4/5] rounded-lg object-cover transition-all duration-300 group-hover:scale-[1.03] group-hover:shadow-lg"
+                className="h-40 md:h-52 aspect-[4/5] rounded-lg object-cover transition-all duration-300 group-hover:scale-[1.03] group-hover:shadow-lg"
               />
               {item.video && (
                 <span className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-black/60 flex items-center justify-center pointer-events-none">
