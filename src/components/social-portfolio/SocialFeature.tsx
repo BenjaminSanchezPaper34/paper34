@@ -58,9 +58,10 @@ export default function SocialFeature({ account }: { account: ManagedAccount }) 
       ref={rootRef}
       className="rounded-3xl border border-border bg-bg-card p-6 md:p-8 hover:border-border-hover transition-colors"
     >
-      {/* Identité + plateformes */}
-      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6">
-        <div className="min-w-0">
+      {/* En-tête deux colonnes, alignées en haut :
+          gauche = titre + légende · droite = liens puis chiffres */}
+      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-6 mb-6">
+        <div className="min-w-0 md:max-w-[55%]">
           <p className="text-accent text-xs font-semibold uppercase tracking-widest mb-1">
             {account.category}
           </p>
@@ -68,67 +69,70 @@ export default function SocialFeature({ account }: { account: ManagedAccount }) 
             {account.name}
           </h3>
           {account.description && (
-            <p className="text-sm text-text-secondary leading-relaxed mt-2 max-w-xl">
+            <p className="text-sm text-text-secondary leading-relaxed mt-2">
               {account.description}
             </p>
           )}
         </div>
 
-        <div className="flex flex-wrap items-center gap-2 flex-shrink-0">
-          <a
-            href={profileUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow hover:scale-[1.02]"
-          >
-            <InstagramIcon />
-            @{account.handle}
-          </a>
-          {account.facebook && (
+        <div className="flex flex-col items-start md:items-end gap-4 flex-shrink-0">
+          <div className="flex flex-wrap md:justify-end items-center gap-2">
             <a
-              href={account.facebook}
+              href={profileUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`Page Facebook de ${account.name}`}
-              className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-semibold text-text-primary transition-all duration-300 hover:bg-white/5 hover:border-border-hover"
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow hover:scale-[1.02]"
             >
-              <FacebookIcon />
-              Facebook
+              <InstagramIcon />
+              @{account.handle}
             </a>
-          )}
-          {account.tiktok && (
-            <a
-              href={account.tiktok}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Compte TikTok de ${account.name}`}
-              className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-semibold text-text-primary transition-all duration-300 hover:bg-white/5 hover:border-border-hover"
-            >
-              <TikTokIcon />
-              TikTok
-            </a>
+            {account.facebook && (
+              <a
+                href={account.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Page Facebook de ${account.name}`}
+                className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-semibold text-text-primary transition-all duration-300 hover:bg-white/5 hover:border-border-hover"
+              >
+                <FacebookIcon />
+                Facebook
+              </a>
+            )}
+            {account.tiktok && (
+              <a
+                href={account.tiktok}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Compte TikTok de ${account.name}`}
+                className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-semibold text-text-primary transition-all duration-300 hover:bg-white/5 hover:border-border-hover"
+              >
+                <TikTokIcon />
+                TikTok
+              </a>
+            )}
+          </div>
+
+          {metrics.length > 0 && (
+            <div className="flex gap-8 md:text-right">
+              {metrics.map((m) => (
+                <div key={m.l}>
+                  <p className="text-2xl md:text-3xl font-bold gradient-text leading-none">
+                    {m.v}
+                  </p>
+                  <p className="text-xs md:text-sm text-text-tertiary mt-1.5">{m.l}</p>
+                </div>
+              ))}
+            </div>
           )}
         </div>
       </div>
 
-      {/* Bande de chiffres */}
-      {metrics.length > 0 && (
-        <div className="flex divide-x divide-border rounded-2xl bg-bg-secondary/60 mb-6">
-          {metrics.map((m) => (
-            <div key={m.l} className="flex-1 px-5 py-4 md:px-6">
-              <p className="text-2xl md:text-3xl font-bold gradient-text leading-none">
-                {m.v}
-              </p>
-              <p className="text-xs md:text-sm text-text-tertiary mt-1.5">{m.l}</p>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {/* Derniers posts publiés — la rangée déborde jusqu'au bord de la carte :
-          le post coupé suffit à signaler le scroll, la barre est masquée */}
+      {/* Derniers posts publiés — la rangée déborde jusqu'au bord de la carte,
+          barre masquée. Des cales en tête et en queue recréent le padding de la
+          carte : il défile avec le contenu (padding CSS peu fiable en scroll). */}
       {account.feed && account.feed.length > 0 && (
-        <div className="flex gap-2.5 overflow-x-auto -mx-6 md:-mx-8 px-6 md:px-8 snap-x [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="flex gap-2.5 overflow-x-auto -mx-6 md:-mx-8 snap-x [-webkit-overflow-scrolling:touch] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="w-3.5 md:w-[22px] flex-shrink-0" aria-hidden />
           {account.feed.map((item, i) => (
             <a
               key={i}
@@ -153,6 +157,7 @@ export default function SocialFeature({ account }: { account: ManagedAccount }) 
               )}
             </a>
           ))}
+          <div className="w-3.5 md:w-[22px] flex-shrink-0" aria-hidden />
         </div>
       )}
     </div>
