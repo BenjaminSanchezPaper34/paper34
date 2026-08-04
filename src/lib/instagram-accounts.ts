@@ -35,6 +35,7 @@ export type ManagedAccount = {
 
 const CHIRINGUITO_RECENT = `${R2}/site/social/chiringuitovias/recent`;
 const GUINGUETTE_RECENT = `${R2}/site/social/guinguettedebessan/recent`;
+const FARINETTE_RECENT = `${R2}/site/social/lesdelicesdefarinette/recent`;
 
 // Comptes gérés. Seuls ceux qui ont un `feed` rempli apparaissent dans la
 // section « Les comptes que j'anime » (les autres attendent leurs visuels).
@@ -103,6 +104,38 @@ export const MANAGED_ACCOUNTS: ManagedAccount[] = [
       { img: `${GUINGUETTE_RECENT}/post-12.jpg`, post: "https://www.instagram.com/guinguettedebessan/p/DZ14T98Ec9O/" },
     ],
     gradient: ["#84cc16", "#3f6212"],
+  },
+  {
+    name: "Les Délices de Farinette",
+    handle: "lesdelicesdefarinette",
+    category: "Boulangerie-pâtisserie · Vias Plage",
+    description:
+      "Boulangerie-pâtisserie artisanale : entremets trompe-l'œil, viennoiseries et pain maison. Reels gourmands et photos produits, déclinés sur Instagram, Facebook et TikTok.",
+    facebook: "https://www.facebook.com/lesdelicesdefarinette",
+    tiktok: "https://www.tiktok.com/@lesdelicesdefarinette",
+    stats: {
+      followers: "491",
+      posts: "37",
+      // Relevé Meta Business Suite le 03/08/2026, période 04/02 → 03/08/2026
+      // (259 500 vues Facebook + 88 305 vues Instagram)
+      views6m: "348 K",
+    },
+    // Les 12 derniers posts du compte (au 04/08/2026)
+    feed: [
+      { img: `${FARINETTE_RECENT}/post-01.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/p/DbnIjMwliJd/" },
+      { img: `${FARINETTE_RECENT}/post-02.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/reel/DbfUzvWt0PC/", video: true },
+      { img: `${FARINETTE_RECENT}/post-03.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/reel/DbXm_jaNLl0/", video: true },
+      { img: `${FARINETTE_RECENT}/post-04.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/p/DbQAwLfjV73/" },
+      { img: `${FARINETTE_RECENT}/post-05.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/p/DbDTM3jkWLb/" },
+      { img: `${FARINETTE_RECENT}/post-06.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/p/Da76KI8jdRJ/" },
+      { img: `${FARINETTE_RECENT}/post-07.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/reel/DaxGd1Dt6ec/", video: true },
+      { img: `${FARINETTE_RECENT}/post-08.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/reel/DanAxuaN2G1/", video: true },
+      { img: `${FARINETTE_RECENT}/post-09.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/p/DahbQbPDe_M/" },
+      { img: `${FARINETTE_RECENT}/post-10.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/p/DaW1chviCae/" },
+      { img: `${FARINETTE_RECENT}/post-11.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/reel/DaPvYZ2NKSg/", video: true },
+      { img: `${FARINETTE_RECENT}/post-12.jpg`, post: "https://www.instagram.com/lesdelicesdefarinette/reel/DaFjM3FN8gM/", video: true },
+    ],
+    gradient: ["#f59e0b", "#92400e"],
   },
   {
     name: "Le Dix9",
