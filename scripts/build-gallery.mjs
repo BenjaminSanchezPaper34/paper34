@@ -63,23 +63,25 @@ function fileNum(name) {
 // ─── Config des galeries à construire ──────────────────────────────
 const GALLERIES = [
   {
-    slug: "chiringuito-aperol",
-    title: "Aperol",
-    client: "Chiringuito Vias",
-    date: "2026-07-24",
-    src: "partage photos/CHIRINGUITO - VIAS/4-24I07I26-APEROL",
+    slug: "actah-associes",
+    title: "Portraits & \u00e9quipe",
+    client: "ACTAH & Associ\u00e9s",
+    date: "2026-07-09",
+    // Source HORS du projet : ne jamais laisser les originaux dans
+    // public/galeries/<slug>, le build efface ce dossier avant d'\u00e9crire.
+    src: "/Users/benjaminsanchez/Library/Mobile Documents/com~apple~CloudDocs/TRAVAUX/2026/ACTAH & ASSOCIES - BEZIERS/SEANCE PHOTO",
+    ctaTheme: "entreprise",
+    cover: 5,
     intro:
-      "\u{1F44B} Tap sur une photo pour la t\u00e9l\u00e9charger\n" +
-      "\u2764\uFE0F N'h\u00e9sitez pas \u00e0 nous mentionner sur vos r\u00e9seaux \u2764\uFE0F\n\n" +
-      "\u{1F34A} Soir\u00e9e Aperol \u00b7 @aperolspritzfr\n" +
-      "\u{1F334} @chiringuitovias\n" +
-      "\u{1F3A7} @joachim_pastor \u00b7 @chambrenoiremusic\n" +
-      "\u{1F4F8} @benjaminsanchez_paper34",
+      "\u{1F44B} Tap sur une photo pour la t\u00e9l\u00e9charger\n\n" +
+      "\u2696\uFE0F Cabinet d'avocats ACTAH & Associ\u00e9s \u00b7 B\u00e9ziers\n" +
+      "\u{1F4F8} Portraits, \u00e9quipe et reportage au cabinet \u2014 s\u00e9ance r\u00e9alis\u00e9e pour illustrer leur nouveau site web\n" +
+      "\u{1F4F7} @benjaminsanchez_paper34",
     exclude: [],
   },
-  // Galeries précédentes — déjà construites et sur R2, NE PAS rebuild :
-  // reggaeton (11/07, cover 90) · coachella (21/06, exclude 7507647, cover 126)
-  // opening (06/06, exclude 194/196/197, cover 106)
+  // Galeries pr\u00e9c\u00e9dentes \u2014 d\u00e9j\u00e0 construites et sur R2, NE PAS rebuild :
+  // aperol (24/07) \u00b7 reggaeton (11/07, cover 90)
+  // coachella (21/06, exclude 7507647, cover 126) \u00b7 opening (06/06, cover 106)
 ];
 
 // Taille max du côté long pour l'affichage web (px). Les originaux plus
@@ -202,6 +204,7 @@ async function buildGallery(g) {
     title: g.title,
     client: g.client,
     date: g.date,
+    ...(g.ctaTheme ? { ctaTheme: g.ctaTheme } : {}),
     ...(g.intro ? { intro: g.intro } : {}),
     ...(g.cover && photos[g.cover - 1] ? { cover: photos[g.cover - 1].id } : {}),
     ...(excludedNames.length ? { excluded: excludedNames } : {}),
