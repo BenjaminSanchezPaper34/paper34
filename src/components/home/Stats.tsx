@@ -20,14 +20,16 @@ export default function Stats() {
       });
     });
 
-    // Fade in the whole section
+    // Reveal flou → net : les chiffres se "mettent au point"
+    // pendant que le compteur monte.
     gsap.fromTo(
       section.querySelectorAll(".stat-item"),
-      { opacity: 0, y: 30 },
+      { opacity: 0, y: 30, filter: "blur(8px)" },
       {
         opacity: 1,
         y: 0,
-        duration: 0.8,
+        filter: "blur(0px)",
+        duration: 0.9,
         stagger: 0.15,
         ease: "power3.out",
         scrollTrigger: {

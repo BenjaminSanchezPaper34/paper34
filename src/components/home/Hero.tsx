@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/animations";
 import Link from "next/link";
+import Magnetic from "@/components/fx/Magnetic";
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -18,14 +19,34 @@ export default function Hero() {
     const subtitle = subtitleRef.current;
     const cta = ctaRef.current;
     const scroll = scrollRef.current;
+    const video = videoRef.current;
 
     if (!section || !title || !subtitle || !cta || !scroll) return;
 
-    // Reveal immédiat — pas de delay, les éléments apparaissent dès le mount
-    gsap.to(title, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" });
-    gsap.to(subtitle, { opacity: 1, y: 0, duration: 0.7, delay: 0.15, ease: "power3.out" });
-    gsap.to(cta, { opacity: 1, y: 0, duration: 0.6, delay: 0.3, ease: "power3.out" });
-    gsap.to(scroll, { opacity: 1, duration: 0.5, delay: 0.5 });
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduced) {
+      title.querySelectorAll(".hero-word").forEach((w) => {
+        (w as HTMLElement).style.transform = "none";
+      });
+      gsap.set([subtitle, cta, scroll], { opacity: 1, y: 0 });
+      return;
+    }
+
+    // Split-text : chaque ligne monte depuis son masque
+    gsap.to(title.querySelectorAll(".hero-word"), {
+      y: 0,
+      duration: 1,
+      stagger: 0.12,
+      ease: "power4.out",
+      delay: 0.15,
+    });
+    // Dé-zoom lent de la vidéo à l'arrivée
+    if (video) {
+      gsap.fromTo(video, { scale: 1.14 }, { scale: 1, duration: 2.4, ease: "power2.out" });
+    }
+    gsap.to(subtitle, { opacity: 1, y: 0, duration: 0.8, delay: 0.5, ease: "power3.out" });
+    gsap.to(cta, { opacity: 1, y: 0, duration: 0.7, delay: 0.7, ease: "power3.out" });
+    gsap.to(scroll, { opacity: 1, duration: 0.5, delay: 1 });
 
     // Scroll parallax — use fromTo so reverse (scroll up) works perfectly
     gsap.fromTo(
@@ -109,7 +130,7 @@ export default function Hero() {
           loop
           muted
           playsInline
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover will-change-transform"
         >
           {/* Servies depuis R2 (egress gratuit) : 9-15 Mo par visite sortaient
               du quota Vercel Fast Data Transfer (pause du compte en juillet). */}
@@ -126,11 +147,17 @@ export default function Hero() {
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto">
         <h1
           ref={titleRef}
-          className="text-[clamp(32px,6vw,72px)] font-bold leading-[1] tracking-[-2px] mb-6 opacity-0 translate-y-5"
+          className="text-[clamp(32px,6vw,72px)] font-bold leading-[1] tracking-[-2px] mb-6"
         >
-          Du contenu
+          <span className="inline-block overflow-hidden align-bottom pb-[0.08em] -mb-[0.08em]">
+            <span className="hero-word inline-block translate-y-[110%]">Du contenu</span>
+          </span>
           <br />
-          <span className="gradient-text">qui se remarque.</span>
+          <span className="inline-block overflow-hidden align-bottom pb-[0.12em] -mb-[0.12em]">
+            <span className="hero-word gradient-text inline-block translate-y-[110%]">
+              qui se remarque.
+            </span>
+          </span>
         </h1>
         <p
           ref={subtitleRef}
@@ -144,18 +171,22 @@ export default function Hero() {
           ref={ctaRef}
           className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 translate-y-3"
         >
-          <Link
-            href="/portfolio"
-            className="rounded-full bg-accent px-8 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow hover:scale-[1.02]"
-          >
-            Voir les réalisations
-          </Link>
-          <Link
-            href="/contact"
-            className="rounded-full border border-border px-8 py-3.5 text-sm font-semibold text-text-primary transition-all duration-300 hover:bg-white/5 hover:border-border-hover"
-          >
-            Me contacter 💌
-          </Link>
+          <Magnetic>
+            <Link
+              href="/portfolio"
+              className="rounded-full bg-accent px-8 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow"
+            >
+              Voir les réalisations
+            </Link>
+          </Magnetic>
+          <Magnetic>
+            <Link
+              href="/contact"
+              className="rounded-full border border-border px-8 py-3.5 text-sm font-semibold text-text-primary transition-all duration-300 hover:bg-white/5 hover:border-border-hover"
+            >
+              Me contacter 💌
+            </Link>
+          </Magnetic>
         </div>
       </div>
 

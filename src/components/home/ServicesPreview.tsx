@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { SERVICES } from "@/lib/constants";
 import { staggerReveal } from "@/lib/animations";
+import LineReveal from "@/components/fx/LineReveal";
 
 // Services disposant d'une page dédiée : on y envoie directement depuis
 // l'accueil plutôt que vers l'ancre de /services (un clic gagné).
@@ -24,6 +25,32 @@ export default function ServicesPreview() {
     if (!cards) return;
     const items = cards.querySelectorAll(".service-card");
     staggerReveal(Array.from(items), { trigger: cards, stagger: 0.1 });
+
+    // Spotlight : halo bleu qui suit le curseur sur chaque carte.
+    // Desktop uniquement — inactif au toucher et en reduced-motion.
+    const fine = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!fine || reduced) return;
+
+    const cleanups: (() => void)[] = [];
+    items.forEach((card) => {
+      const spot = card.querySelector<HTMLElement>(".card-spot");
+      if (!spot) return;
+      const move = (e: Event) => {
+        const ev = e as MouseEvent;
+        const r = card.getBoundingClientRect();
+        spot.style.background = `radial-gradient(260px circle at ${ev.clientX - r.left}px ${ev.clientY - r.top}px, rgba(0,113,227,.14), transparent 70%)`;
+        spot.style.opacity = "1";
+      };
+      const leave = () => (spot.style.opacity = "0");
+      card.addEventListener("mousemove", move);
+      card.addEventListener("mouseleave", leave);
+      cleanups.push(() => {
+        card.removeEventListener("mousemove", move);
+        card.removeEventListener("mouseleave", leave);
+      });
+    });
+    return () => cleanups.forEach((fn) => fn());
   }, []);
 
   return (
@@ -38,9 +65,10 @@ export default function ServicesPreview() {
             Ce que je fais
           </p>
           <h2 className="text-[clamp(28px,5vw,56px)] font-bold tracking-[-2px] leading-tight">
-            Tous vos besoins,
-            <br />
-            <span className="gradient-text">un seul interlocuteur.</span>
+            <LineReveal>Tous vos besoins,</LineReveal>
+            <LineReveal delay={0.1}>
+              <span className="gradient-text">un seul interlocuteur.</span>
+            </LineReveal>
           </h2>
         </div>
 
@@ -55,20 +83,25 @@ export default function ServicesPreview() {
               href={DEDICATED_PAGES[service.id] ?? `/services#${service.id}`}
               className="service-card group relative rounded-2xl border border-border bg-bg-card p-6 transition-all duration-300 hover:bg-bg-card-hover hover:border-border-hover hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20"
             >
-              <div className="mb-4 w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center transition-colors duration-300 group-hover:bg-accent/20">
+              {/* Spotlight curseur */}
+              <span
+                className="card-spot pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-500"
+                aria-hidden
+              />
+              <div className="relative mb-4 w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center transition-colors duration-300 group-hover:bg-accent/20">
                 <img
                   src={service.icon}
                   alt=""
                   className="w-6 h-6 brightness-0 invert opacity-70 group-hover:opacity-100 transition-opacity"
                 />
               </div>
-              <h3 className="text-lg font-semibold mb-2 group-hover:text-accent transition-colors">
+              <h3 className="relative text-lg font-semibold mb-2 group-hover:text-accent transition-colors">
                 {service.title}
               </h3>
-              <p className="text-sm text-text-secondary leading-relaxed">
+              <p className="relative text-sm text-text-secondary leading-relaxed">
                 {service.description}
               </p>
-              <div className="mt-4 flex items-center gap-1 text-xs text-accent opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="relative mt-4 flex items-center gap-1 text-xs text-accent opacity-0 -translate-x-1.5 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
                 En savoir plus
                 <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />

@@ -1,5 +1,6 @@
 import { fetchInstagramFeed } from "@/lib/instagram";
 import PortfolioGrid from "@/components/portfolio/PortfolioGrid";
+import Reveal from "@/components/fx/Reveal";
 
 export default async function PortfolioPage() {
   const items = await fetchInstagramFeed();
@@ -8,7 +9,7 @@ export default async function PortfolioPage() {
     <>
       {/* Hero */}
       <section className="pt-32 pb-12 md:pt-40 md:pb-20 bg-bg-primary">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
+        <Reveal className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
           <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-4">
             Portfolio
           </p>
@@ -29,7 +30,7 @@ export default async function PortfolioPage() {
             </svg>
             Voir sur Instagram
           </a>
-        </div>
+        </Reveal>
       </section>
 
       <PortfolioGrid items={items} />

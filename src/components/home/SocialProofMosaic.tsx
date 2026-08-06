@@ -4,6 +4,8 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { gsap, fadeInUp } from "@/lib/animations";
 import { MANAGED_ACCOUNTS } from "@/lib/instagram-accounts";
+import Tilt from "@/components/fx/Tilt";
+import Magnetic from "@/components/fx/Magnetic";
 
 /**
  * Variante « mosaïque » de la preuve sociale (test de mise en page).
@@ -155,8 +157,8 @@ export default function SocialProofMosaic() {
             className={`mosaic-tile group relative flex-shrink-0 ${r.offset} ${DEPTH_Z[r.depth]}`}
             aria-label={`Voir ce post de ${item.account.name} sur Instagram`}
           >
-            <div
-              className={`relative overflow-hidden rounded-2xl ring-1 ring-white/10 ${r.h} aspect-[4/5] ${r.tilt} ${DEPTH_SHADOW[r.depth]} transition-transform duration-500 ease-out group-hover:rotate-0 group-hover:scale-[1.04]`}
+            <Tilt
+              className={`relative overflow-hidden rounded-2xl ring-1 ring-white/10 ${r.h} aspect-[4/5] ${r.tilt} ${DEPTH_SHADOW[r.depth]}`}
             >
               <img
                 src={item.img}
@@ -177,7 +179,7 @@ export default function SocialProofMosaic() {
                   @{item.account.handle}
                 </span>
               </span>
-            </div>
+            </Tilt>
           </a>
         );
       })}
@@ -220,15 +222,17 @@ export default function SocialProofMosaic() {
             )}
           </div>
 
-          <Link
-            href="/services/reseaux-sociaux"
-            className="flex-shrink-0 inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow hover:scale-[1.02]"
-          >
-            Voir les comptes et les chiffres
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </Link>
+          <Magnetic className="flex-shrink-0">
+            <Link
+              href="/services/reseaux-sociaux"
+              className="inline-flex items-center gap-2 rounded-full bg-accent px-7 py-3.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow"
+            >
+              Voir les comptes et les chiffres
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </Magnetic>
         </div>
       </div>
 

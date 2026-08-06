@@ -63,6 +63,24 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  /* Sheen : léger mouvement du dégradé (animations Design, août 2026) */
+  background-size: 200% 200%;
+  animation: sheen 5s ease-in-out infinite alternate;
+}
+
+@keyframes sheen {
+  from { background-position: 0% 0%; }
+  to   { background-position: 100% 100%; }
+}
+
+/* Dot minuteur des témoignages */
+@keyframes dotFill {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-text { animation: none; }
 }
 
 /* Smooth scrollbar */

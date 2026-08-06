@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getGallerySlugs, getGallery } from "@/lib/galleries";
 import { assetUrl } from "@/lib/gallery-shared";
 import CopyLinkButton from "@/components/gallery/CopyLinkButton";
+import Reveal from "@/components/fx/Reveal";
 
 const SITE = "https://www.paper34.fr";
 
@@ -35,7 +36,7 @@ export default function GaleriesPage() {
     <main className="min-h-screen bg-bg-primary text-text-primary">
       {/* Hero */}
       <section className="pt-32 pb-10 md:pt-40 md:pb-14">
-        <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
+        <Reveal className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
           <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-4">
             Galeries
           </p>
@@ -46,7 +47,7 @@ export default function GaleriesPage() {
             Retrouvez les photos des soirées et événements. Cliquez pour
             ouvrir, puis téléchargez vos clichés en qualité originale.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       {/* Grille */}

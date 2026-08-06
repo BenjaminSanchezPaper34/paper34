@@ -7,23 +7,51 @@ import { NAV_LINKS } from "@/lib/constants";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  // Navbar intelligente : masquée en descente, revient en remontée.
+  // Passé 80px, le fond gradient laisse place à un verre dépoli.
+  const [hidden, setHidden] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
     setMobileOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    let last = 0;
+    const onScroll = () => {
+      const y = window.scrollY;
+      setHidden(y > last && y > 140);
+      setScrolled(y > 80);
+      last = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   // Pas de navbar sur les pages immersives (lab, proposition Vias).
-  // Les galeries clients la gardent : porte d'entrée vers le reste du site.
   if (pathname?.startsWith("/lab") || pathname?.startsWith("/vias"))
     return null;
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50"
+      className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-500 ease-[cubic-bezier(.4,0,.2,1)] ${
+        hidden && !mobileOpen ? "-translate-y-full" : "translate-y-0"
+      }`}
     >
-      {/* Gradient fade : noir en haut → transparent en bas, déborde au-dessus pour la status bar mobile */}
-      <div className="absolute -top-12 left-0 right-0 bottom-0 bg-gradient-to-b from-black via-black/60 to-transparent pointer-events-none" style={{ paddingBottom: "2rem", bottom: "-2rem" }} />
+      {/* Gradient fade : visible en haut de page uniquement */}
+      <div
+        className={`absolute -top-12 left-0 right-0 bottom-0 bg-gradient-to-b from-black via-black/60 to-transparent pointer-events-none transition-opacity duration-500 ${
+          scrolled ? "opacity-0" : "opacity-100"
+        }`}
+        style={{ paddingBottom: "2rem", bottom: "-2rem" }}
+      />
+      {/* Verre dépoli : apparaît après 80px de scroll */}
+      <div
+        className={`absolute inset-0 bg-black/55 backdrop-blur-2xl border-b border-border transition-opacity duration-500 ${
+          scrolled ? "opacity-100" : "opacity-0"
+        }`}
+      />
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}

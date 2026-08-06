@@ -156,19 +156,30 @@ export default function Testimonials() {
 
           {/* Dots + CTA */}
           <div className="flex flex-col items-center gap-6 mt-8">
-            {/* Dots */}
+            {/* Dots — le point actif se remplit comme un minuteur (5s) */}
             <div className="flex gap-2">
               {TESTIMONIALS.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => goTo(i)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  className={`relative h-2 rounded-full overflow-hidden transition-all duration-300 ${
                     active === i
-                      ? "bg-accent w-6"
-                      : "bg-text-tertiary hover:bg-text-secondary"
+                      ? "w-7 bg-accent/25"
+                      : "w-2 bg-text-tertiary hover:bg-text-secondary"
                   }`}
                   aria-label={`T\u00e9moignage ${i + 1}`}
-                />
+                >
+                  {active === i && !paused && (
+                    <span
+                      // key force le redémarrage de l'animation à chaque avis
+                      key={active}
+                      className="absolute inset-0 rounded-full bg-accent origin-left animate-[dotFill_5s_linear_forwards]"
+                    />
+                  )}
+                  {active === i && paused && (
+                    <span className="absolute inset-0 rounded-full bg-accent" />
+                  )}
+                </button>
               ))}
             </div>
 

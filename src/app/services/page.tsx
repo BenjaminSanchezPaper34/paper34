@@ -4,9 +4,11 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { SERVICES } from "@/lib/constants";
 import { fadeInUp, staggerReveal } from "@/lib/animations";
+import LineReveal from "@/components/fx/LineReveal";
+import Magnetic from "@/components/fx/Magnetic";
 
 export default function ServicesPage() {
-  const heroRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLParagraphElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -23,15 +25,17 @@ export default function ServicesPage() {
     <>
       {/* Hero */}
       <section className="pt-32 pb-12 md:pt-40 md:pb-20 bg-bg-primary">
-        <div ref={heroRef} className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8 text-center">
           <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-4">
             Services
           </p>
           <h1 className="text-[clamp(36px,7vw,72px)] font-bold tracking-[-2px] leading-tight mb-6">
-            Tout ce dont vous avez besoin,{" "}
-            <span className="gradient-text">rien de superflu.</span>
+            <LineReveal>Tout ce dont vous avez besoin,</LineReveal>
+            <LineReveal delay={0.1}>
+              <span className="gradient-text">rien de superflu.</span>
+            </LineReveal>
           </h1>
-          <p className="text-lg text-text-secondary max-w-xl mx-auto">
+          <p ref={heroRef} className="text-lg text-text-secondary max-w-xl mx-auto">
             Du concept à la réalisation, je prends en charge l&apos;ensemble de votre
             communication pour un résultat cohérent et impactant.
           </p>
@@ -127,12 +131,14 @@ export default function ServicesPage() {
           <p className="text-text-secondary mb-6">
             Vous avez un projet ? Parlons-en.
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex rounded-full bg-accent px-8 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow hover:scale-[1.02]"
-          >
-            Me contacter
-          </Link>
+          <Magnetic className="inline-block">
+            <Link
+              href="/contact"
+              className="inline-flex rounded-full bg-accent px-8 py-3.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow"
+            >
+              Me contacter
+            </Link>
+          </Magnetic>
         </div>
       </section>
     </>

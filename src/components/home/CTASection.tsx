@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { fadeInUp } from "@/lib/animations";
+import Magnetic from "@/components/fx/Magnetic";
 
 export default function CTASection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -38,18 +39,22 @@ export default function CTASection() {
             qui se remarque.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/contact"
-              className="rounded-full bg-accent px-8 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow hover:scale-[1.02]"
-            >
-              Démarrer un projet
-            </Link>
-            <a
-              href="mailto:contact@paper34.fr"
-              className="rounded-full border border-border px-8 py-3.5 text-sm font-semibold text-text-primary transition-all duration-300 hover:bg-white/5 hover:border-border-hover"
-            >
-              contact@paper34.fr
-            </a>
+            <Magnetic>
+              <Link
+                href="/contact"
+                className="inline-block rounded-full bg-accent px-8 py-3.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow"
+              >
+                Démarrer un projet
+              </Link>
+            </Magnetic>
+            <Magnetic>
+              <a
+                href="mailto:contact@paper34.fr"
+                className="inline-block rounded-full border border-border px-8 py-3.5 text-sm font-semibold text-text-primary transition-colors duration-300 hover:bg-white/5 hover:border-border-hover"
+              >
+                contact@paper34.fr
+              </a>
+            </Magnetic>
           </div>
         </div>
       </div>

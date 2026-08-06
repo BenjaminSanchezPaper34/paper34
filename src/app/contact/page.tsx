@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { track } from "@vercel/analytics";
 import { CONTACT_INFO, SERVICES } from "@/lib/constants";
 import { fadeInUp } from "@/lib/animations";
+import LineReveal from "@/components/fx/LineReveal";
+import Magnetic from "@/components/fx/Magnetic";
 
 export default function ContactPage() {
   const formRef = useRef<HTMLDivElement>(null);
@@ -59,8 +61,9 @@ export default function ContactPage() {
             Contact
           </p>
           <h1 className="text-[clamp(36px,7vw,72px)] font-bold tracking-[-2px] leading-tight mb-6">
-            Parlons de votre{" "}
-            <span className="gradient-text">projet.</span>
+            <LineReveal>
+              Parlons de votre <span className="gradient-text">projet.</span>
+            </LineReveal>
           </h1>
           <p className="text-lg text-text-secondary max-w-xl mx-auto">
             N&apos;hésitez pas à me contacter pour discuter de vos besoins.
@@ -167,13 +170,15 @@ export default function ContactPage() {
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  disabled={sending}
-                  className="w-full rounded-full bg-accent px-8 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed"
-                >
-                  {sending ? "Envoi en cours..." : "Envoyer le message"}
-                </button>
+                <Magnetic className="block w-full">
+                  <button
+                    type="submit"
+                    disabled={sending}
+                    className="w-full rounded-full bg-accent px-8 py-3.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    {sending ? "Envoi en cours..." : "Envoyer le message"}
+                  </button>
+                </Magnetic>
               </form>
             )}
           </div>
