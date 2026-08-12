@@ -32,7 +32,9 @@ import { tmpdir } from "os";
 // On convertit donc en DIRECT via `sips` (ImageIO Apple) : tonemap HDR→SDR de
 // qualité + sortie en Display P3 (gamut large, vivant sur écrans iPhone).
 // N'altère jamais l'original (qui reste téléchargé tel quel).
-const HEIC_EXT = new Set([".heic", ".heif"]);
+// .jxl (JPEG XL, exports DxO) suit la même voie : sharp ne le décode pas,
+// ImageIO (sips) si — mêmes réglages, même sortie Display P3.
+const HEIC_EXT = new Set([".heic", ".heif", ".jxl"]);
 const DISPLAY_P3_PROFILE = "/System/Library/ColorSync/Profiles/Display P3.icc";
 
 /** Convertit un HEIC HDR en JPEG Display P3 d'affichage via sips/ImageIO.
@@ -46,6 +48,19 @@ function heicToDisplayJpeg(srcPath, outPath, maxEdge, longEdge) {
   if (longEdge > maxEdge) args.push("-Z", String(maxEdge));
   args.push(srcPath, "--out", outPath);
   execFileSync("sips", args, { stdio: ["ignore", "ignore", "pipe"] });
+}
+
+/** Dimensions via sips (pour les formats que sharp ne lit pas, ex. .jxl). */
+function sipsDims(srcPath) {
+  const out = execFileSync(
+    "sips",
+    ["-g", "pixelWidth", "-g", "pixelHeight", srcPath],
+    { encoding: "utf8" }
+  );
+  return {
+    width: parseInt(out.match(/pixelWidth: (\d+)/)?.[1] ?? "0", 10),
+    height: parseInt(out.match(/pixelHeight: (\d+)/)?.[1] ?? "0", 10),
+  };
 }
 
 /** Numéro de prise = le plus long groupe de chiffres du nom (hors extension).
@@ -63,23 +78,21 @@ function fileNum(name) {
 // ─── Config des galeries à construire ──────────────────────────────
 const GALLERIES = [
   {
-    slug: "actah-associes",
-    title: "Portraits & \u00e9quipe",
-    client: "ACTAH & Associ\u00e9s",
-    date: "2026-07-09",
-    // Source HORS du projet : ne jamais laisser les originaux dans
-    // public/galeries/<slug>, le build efface ce dossier avant d'\u00e9crire.
-    src: "/Users/benjaminsanchez/Library/Mobile Documents/com~apple~CloudDocs/TRAVAUX/2026/ACTAH & ASSOCIES - BEZIERS/SEANCE PHOTO",
-    ctaTheme: "entreprise",
-    cover: 5,
+    slug: "guinguette-st-laurent",
+    title: "Saint-Laurent",
+    client: "La Guinguette de Bessan",
+    date: "2026-08-11",
+    src: "partage photos/LA GUINGUETTE DE BESSAN - BESSAN/1-11I08I26-STLAURENT",
     intro:
-      "\u{1F44B} Tap sur une photo pour la t\u00e9l\u00e9charger\n\n" +
-      "\u2696\uFE0F Cabinet d'avocats ACTAH & Associ\u00e9s \u00b7 B\u00e9ziers\n" +
-      "\u{1F4F8} Portraits, \u00e9quipe et reportage au cabinet \u2014 s\u00e9ance r\u00e9alis\u00e9e pour illustrer leur nouveau site web\n" +
-      "\u{1F4F7} @benjaminsanchez_paper34",
+      "\u{1F44B} Tap sur une photo pour la t\u00e9l\u00e9charger\n" +
+      "\u2764\uFE0F N'h\u00e9sitez pas \u00e0 nous mentionner sur vos r\u00e9seaux \u2764\uFE0F\n\n" +
+      "\u{1F386} Saint-Laurent \u00b7 la f\u00eate de Bessan\n" +
+      "\u{1F333} @guinguettedebessan\n" +
+      "\u{1F4F8} @benjaminsanchez_paper34",
     exclude: [],
   },
   // Galeries pr\u00e9c\u00e9dentes \u2014 d\u00e9j\u00e0 construites et sur R2, NE PAS rebuild :
+  // actah-associes (09/07, cover 5 = A7V-5, + film-cabinet ajout\u00e9 \u00e0 la main)
   // aperol (24/07) \u00b7 reggaeton (11/07, cover 90)
   // coachella (21/06, exclude 7507647, cover 126) \u00b7 opening (06/06, cover 106)
 ];
@@ -92,7 +105,7 @@ const DISPLAY_QUALITY = 90; // pour les sources déjà SDR (jpg/png) via sharp
 const THUMB_MAX_EDGE = 640;
 const THUMB_QUALITY = 72;
 
-const SOURCE_EXT = new Set([".heic", ".heif", ".jpg", ".jpeg", ".png", ".tif", ".tiff"]);
+const SOURCE_EXT = new Set([".heic", ".heif", ".jxl", ".jpg", ".jpeg", ".png", ".tif", ".tiff"]);
 
 async function buildGallery(g) {
   const outDir = join("public", "galeries", g.slug);
@@ -143,8 +156,10 @@ async function buildGallery(g) {
 
     let displayW, displayH;
     if (isHeic) {
-      // HEIC HDR → JPEG P3 via sips/ImageIO (tonemap de qualité)
-      const meta = await sharp(srcPath).metadata(); // lecture dims (sans décoder)
+      // HEIC HDR / JXL → JPEG P3 via sips/ImageIO (tonemap de qualité).
+      // Dims : sharp lit l'en-tête HEIC mais pas le JXL → sips dans ce cas.
+      const meta =
+        ext === ".jxl" ? sipsDims(srcPath) : await sharp(srcPath).metadata();
       const longEdge = Math.max(meta.width || 0, meta.height || 0);
       heicToDisplayJpeg(srcPath, displayPath, DISPLAY_MAX_EDGE, longEdge);
       const out = await sharp(displayPath).metadata();
