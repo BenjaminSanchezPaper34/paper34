@@ -25,6 +25,7 @@
 
 - [Accueil](https://www.paper34.fr/)
 - [Tous les services](https://www.paper34.fr/services)
+- [Paper34 Marseille](https://www.paper34.fr/marseille)
 - [Graphisme & impression](https://www.paper34.fr/services/graphisme)
 - [Création de site web](https://www.paper34.fr/services/creation-site-web)
 - [Gestion des réseaux sociaux](https://www.paper34.fr/services/reseaux-sociaux)
@@ -39,6 +40,7 @@
 - Sète
 - Montpellier
 - Hérault (département 34)
+- **Marseille et Bouches-du-Rhône** : antenne locale avec Nicolas, collaborateur du studio sur place (rendez-vous, shootings, suivi) — voir https://www.paper34.fr/marseille
 - France entière à distance (visio + email)
 
 ## Modalités

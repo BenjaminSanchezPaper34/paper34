@@ -14,8 +14,14 @@ export default function Footer() {
               className="h-7 mb-4"
             />
             <p className="text-text-secondary text-sm leading-relaxed max-w-xs">
-              Studio graphique à Agde. Votre communication globale au même
-              endroit.
+              Studio graphique à Agde et{" "}
+              <Link
+                href="/marseille"
+                className="underline underline-offset-2 hover:text-text-primary transition-colors"
+              >
+                à Marseille
+              </Link>
+              . Votre communication globale au même endroit.
             </p>
           </div>
 
