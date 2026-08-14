@@ -10,6 +10,7 @@ import LineReveal from "@/components/fx/LineReveal";
 // l'accueil plutôt que vers l'ancre de /services (un clic gagné).
 const DEDICATED_PAGES: Record<string, string> = {
   web: "/services/creation-site-web",
+  apps: "/services/applications",
   "reseaux-sociaux": "/services/reseaux-sociaux",
   design: "/services/graphisme",
   print: "/services/graphisme",

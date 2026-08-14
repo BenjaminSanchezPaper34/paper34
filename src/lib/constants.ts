@@ -22,6 +22,21 @@ export const SERVICES = [
     ],
   },
   {
+    id: "apps",
+    title: "D\u00e9veloppement d'applications",
+    description:
+      "Applications web et mobiles sur-mesure : r\u00e9servation, fid\u00e9lit\u00e9, outils internes, tableaux de bord. Con\u00e7ues, d\u00e9velopp\u00e9es et maintenues par le studio, avec le design en plus.",
+    icon: "/images/services/phone-paper34.svg",
+    features: [
+      "Applications web (PWA)",
+      "Apps iOS & Android",
+      "Outils m\u00e9tier & back-office",
+      "Tableaux de bord connect\u00e9s",
+      "R\u00e9servation & fid\u00e9lit\u00e9",
+      "H\u00e9bergement & maintenance",
+    ],
+  },
+  {
     id: "design",
     title: "Identit\u00e9 visuelle",
     description:
