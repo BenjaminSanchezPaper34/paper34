@@ -304,19 +304,13 @@ export default function ClientGallery({ gallery }: Props) {
       <div className="mx-auto max-w-7xl px-6 py-8">
         {isMixed && (
           <>
-            {/* Films : pièce maîtresse pleine largeur */}
+            {/* Films horizontaux : pièce maîtresse pleine largeur */}
             <div className="space-y-3">
               {photos.map((p, i) =>
-                p.type === "video" ? (
+                p.type === "video" && (p.width ?? 0) >= (p.height ?? 0) ? (
                   <div
                     key={p.id}
-                    /* Reels verticaux : carte 9/16 centrée à largeur contenue,
-                       films horizontaux : pleine largeur 16/9 */
-                    className={`group relative rounded-xl overflow-hidden bg-bg-card cursor-pointer [transform:translateZ(0)] ${
-                      (p.height ?? 0) > (p.width ?? 0)
-                        ? "aspect-[9/16] w-full max-w-sm mx-auto"
-                        : "aspect-video"
-                    }`}
+                    className="group relative aspect-video rounded-xl overflow-hidden bg-bg-card cursor-pointer [transform:translateZ(0)]"
                     onClick={() => setLightbox(i)}
                   >
                     <img
@@ -345,13 +339,47 @@ export default function ClientGallery({ gallery }: Props) {
                 ) : null
               )}
             </div>
-            {/* Visuels print : maçonnerie, proportions d'origine */}
-            <div className="mt-3 columns-1 sm:columns-2 lg:columns-3 gap-3">
-              {photos.map((p, i) =>
-                p.type !== "video" ? (
+            {/* Bento : reels verticaux (2 rangées de haut) + photos en cases
+                carrées, flux dense — les photos comblent autour de la vidéo */}
+            <div className="mt-3 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-3 [grid-auto-flow:dense]">
+              {photos.map((p, i) => {
+                if (p.type === "video") {
+                  if ((p.height ?? 0) <= (p.width ?? 0)) return null; // déjà en pleine largeur
+                  return (
+                    <div
+                      key={p.id}
+                      className="group relative row-span-2 rounded-xl overflow-hidden bg-bg-card cursor-pointer [transform:translateZ(0)]"
+                      onClick={() => setLightbox(i)}
+                    >
+                      <img
+                        src={assetUrl(gallery.slug, p.thumb || p.display)}
+                        alt={p.title || gallery.title}
+                        width={p.width}
+                        height={p.height}
+                        loading="lazy"
+                        draggable={false}
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03] select-none pointer-events-none [-webkit-touch-callout:none]"
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="w-14 h-14 rounded-full bg-black/45 backdrop-blur-sm flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                          <svg className="w-6 h-6 text-white translate-x-0.5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M8 5.14v13.72c0 .8.87 1.3 1.56.88l10.54-6.86a1.03 1.03 0 000-1.76L9.56 4.26A1.03 1.03 0 008 5.14z" />
+                          </svg>
+                        </span>
+                      </div>
+                      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/75 to-transparent px-3 pb-2.5 pt-8 flex items-end justify-between gap-2">
+                        {p.title && <span className="text-white text-xs font-medium">{p.title}</span>}
+                        {p.duration && (
+                          <span className="text-white/75 text-xs tabular-nums shrink-0">{p.duration}</span>
+                        )}
+                      </div>
+                    </div>
+                  );
+                }
+                return (
                   <div
                     key={p.id}
-                    className="mb-3 break-inside-avoid group relative rounded-xl overflow-hidden bg-bg-card cursor-pointer [transform:translateZ(0)]"
+                    className="group relative aspect-square rounded-xl overflow-hidden bg-bg-card cursor-pointer [transform:translateZ(0)]"
                     onClick={() => setLightbox(i)}
                   >
                     <img
@@ -361,7 +389,7 @@ export default function ClientGallery({ gallery }: Props) {
                       height={p.height}
                       loading="lazy"
                       draggable={false}
-                      className="w-full h-auto transition-transform duration-500 group-hover:scale-[1.02] select-none pointer-events-none [-webkit-touch-callout:none]"
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.05] select-none pointer-events-none [-webkit-touch-callout:none]"
                     />
                     {p.title && (
                       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent px-3 pb-2.5 pt-8 pointer-events-none">
@@ -382,8 +410,8 @@ export default function ClientGallery({ gallery }: Props) {
                       </svg>
                     </button>
                   </div>
-                ) : null
-              )}
+                );
+              })}
             </div>
           </>
         )}
