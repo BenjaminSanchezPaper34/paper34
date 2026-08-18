@@ -310,7 +310,13 @@ export default function ClientGallery({ gallery }: Props) {
                 p.type === "video" ? (
                   <div
                     key={p.id}
-                    className="group relative aspect-video rounded-xl overflow-hidden bg-bg-card cursor-pointer [transform:translateZ(0)]"
+                    /* Reels verticaux : carte 9/16 centrée à largeur contenue,
+                       films horizontaux : pleine largeur 16/9 */
+                    className={`group relative rounded-xl overflow-hidden bg-bg-card cursor-pointer [transform:translateZ(0)] ${
+                      (p.height ?? 0) > (p.width ?? 0)
+                        ? "aspect-[9/16] w-full max-w-sm mx-auto"
+                        : "aspect-video"
+                    }`}
                     onClick={() => setLightbox(i)}
                   >
                     <img
@@ -387,7 +393,11 @@ export default function ClientGallery({ gallery }: Props) {
             <div
               key={p.id}
               className={`group relative rounded-xl overflow-hidden bg-bg-card cursor-pointer [transform:translateZ(0)] [will-change:transform] ${
-                p.type === "video" ? "col-span-2 aspect-video" : "aspect-square"
+                p.type === "video"
+                  ? (p.height ?? 0) > (p.width ?? 0)
+                    ? "aspect-[9/16]"
+                    : "col-span-2 aspect-video"
+                  : "aspect-square"
               }`}
               onClick={() => setLightbox(i)}
             >
