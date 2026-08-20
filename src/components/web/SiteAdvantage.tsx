@@ -18,14 +18,18 @@ gsap.registerPlugin(ScrollTrigger);
  * n'aurait qu'à recopier.
  */
 
-/** Surfaces où le site du client est trouvable, disposées autour du centre. */
+/**
+ * Surfaces où le site du client est trouvable, réparties tous les ~52° autour
+ * du centre (7 entrées, Google en tête d'affiche à la verticale).
+ */
 const SURFACES = [
   { label: "Google", angle: -90, kind: "search" },
-  { label: "ChatGPT", angle: -30, kind: "ai" },
-  { label: "Perplexity", angle: 30, kind: "ai" },
-  { label: "Google Maps", angle: 90, kind: "search" },
-  { label: "Copilot", angle: 150, kind: "ai" },
-  { label: "Siri", angle: 210, kind: "search" },
+  { label: "ChatGPT", angle: -38, kind: "ai" },
+  { label: "Gemini", angle: 14, kind: "ai" },
+  { label: "Perplexity", angle: 66, kind: "ai" },
+  { label: "Copilot", angle: 118, kind: "ai" },
+  { label: "Google Maps", angle: 170, kind: "search" },
+  { label: "Siri", angle: 222, kind: "search" },
 ] as const;
 
 const STATS = [
@@ -106,6 +110,9 @@ export default function SiteAdvantage() {
           v: target,
           duration: 1.4,
           ease: "power2.out",
+          // Sans ça, GSAP écrit « 0 » dès le montage : le visiteur verrait des
+          // compteurs à zéro tant qu'il n'a pas atteint la section.
+          immediateRender: false,
           scrollTrigger: { trigger: el, start: "top 88%" },
           onUpdate: () => {
             el.textContent = `${obj.v.toFixed(decimals)}${suffix}`;
@@ -153,9 +160,13 @@ export default function SiteAdvantage() {
         <div className="sa-constellation relative mx-auto mb-20 md:mb-28 max-w-3xl">
           {/* Desktop : disposition rayonnante */}
           <div className="hidden md:block relative h-[420px]">
+            {/* preserveAspectRatio="none" : le SVG doit s'étirer exactement sur
+                le conteneur, sinon son contenu est centré à l'échelle 1 et les
+                rayons n'atteignent plus les pastilles positionnées en %. */}
             <svg
               className="absolute inset-0 w-full h-full pointer-events-none"
               viewBox="0 0 600 420"
+              preserveAspectRatio="none"
               aria-hidden="true"
             >
               {SURFACES.map((s) => {
