@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { WEB_PROJECTS } from "@/lib/web-projects";
 import WebPortfolioGrid from "@/components/web-portfolio/WebPortfolioGrid";
+import SiteAdvantage from "@/components/web/SiteAdvantage";
 import JsonLdWebService, { FAQ_ITEMS } from "@/components/seo/JsonLdWebService";
 import JsonLdBreadcrumb from "@/components/seo/JsonLdBreadcrumb";
 
@@ -56,8 +57,9 @@ export default function CreationSiteWebPage() {
           </h1>
           <p className="text-lg text-text-secondary max-w-2xl mx-auto mb-8">
             Sites vitrines, e-commerce, landing pages — conçus pour les
-            commerces, restaurants et entreprises partout en France. Design
-            moderne, performance, référencement Google.
+            commerces, restaurants et entreprises partout en France. Rapides sur
+            mobile, trouvés sur Google, et lisibles par les intelligences
+            artificielles qui répondent désormais à vos clients.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -75,6 +77,9 @@ export default function CreationSiteWebPage() {
           </div>
         </div>
       </section>
+
+      {/* Argumentaire visuel : surfaces, chiffres, comparatif */}
+      <SiteAdvantage />
 
       {/* Portfolio web */}
       <section id="realisations" className="py-20 md:py-28 bg-bg-primary scroll-mt-24">
