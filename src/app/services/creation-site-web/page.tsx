@@ -81,7 +81,9 @@ export default function CreationSiteWebPage() {
       {/* Portfolio web — la preuve d'abord : on montre des images avant de
           parler méthode (même hiérarchie que la page réseaux sociaux). */}
       <section id="realisations" className="py-20 md:py-28 bg-bg-primary scroll-mt-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        {/* Conteneur élargi au-delà de 1536 px : sans ça, les 5 colonnes
+            réduiraient chaque maquette à ~220 px et l'URL deviendrait illisible. */}
+        <div className="mx-auto max-w-7xl 2xl:max-w-[1600px] px-6 lg:px-8">
           <div className="text-center mb-16">
             <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
               Réalisations

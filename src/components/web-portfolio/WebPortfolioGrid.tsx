@@ -34,18 +34,20 @@ export default function WebPortfolioGrid({ projects }: { projects: WebProject[] 
     <div
       ref={gridRef}
       /*
-       * Dernière ligne incomplète : une carte seule à gauche fait « oubliée ».
-       * On la recentre en CSS pur — la règle s'active d'elle-même selon le
-       * nombre de projets, sans rien à maintenir à chaque ajout.
-       *  - 3 colonnes (lg) : orpheline (3n+1) → colonne 2
-       *  - 2 colonnes (md) : orpheline (2n+1) → centrée sur les 2 colonnes
+       * Flex plutôt que grid : `justify-center` recentre toute dernière ligne
+       * incomplète, quel que soit le nombre de colonnes du palier. Une grille
+       * exigerait des règles nth-child par breakpoint qui se contredisent
+       * (le 10e projet est orphelin à 3 colonnes, pas à 4).
+       * Largeurs = 100/n % moins la part de gouttière : gap-8 (2rem) jusqu'à
+       * xl, gap-6 (1.5rem) en 2xl où l'on passe à 5 colonnes.
        */
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10
-        md:[&>*:last-child:nth-child(2n+1)]:col-span-2 md:[&>*:last-child:nth-child(2n+1)]:max-w-[calc(50%-1.25rem)] md:[&>*:last-child:nth-child(2n+1)]:mx-auto
-        lg:[&>*:last-child:nth-child(3n+1)]:col-start-2 lg:[&>*:last-child:nth-child(3n+1)]:col-span-1 lg:[&>*:last-child:nth-child(3n+1)]:max-w-none"
+      className="flex flex-wrap justify-center gap-8 2xl:gap-6"
     >
       {projects.map((project) => (
-        <div key={project.url} className="web-mockup">
+        <div
+          key={project.url}
+          className="web-mockup w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)] xl:w-[calc(25%-1.5rem)] 2xl:w-[calc(20%-1.2rem)]"
+        >
           <LaptopMockup project={project} />
         </div>
       ))}
