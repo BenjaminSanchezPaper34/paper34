@@ -23,13 +23,13 @@ gsap.registerPlugin(ScrollTrigger);
  * du centre (7 entrées, Google en tête d'affiche à la verticale).
  */
 const SURFACES = [
-  { label: "Google", angle: -90, kind: "search" },
-  { label: "ChatGPT", angle: -38, kind: "ai" },
-  { label: "Gemini", angle: 14, kind: "ai" },
-  { label: "Perplexity", angle: 66, kind: "ai" },
-  { label: "Copilot", angle: 118, kind: "ai" },
-  { label: "Google Maps", angle: 170, kind: "search" },
-  { label: "Siri", angle: 222, kind: "search" },
+  { label: "Google", angle: -90 },
+  { label: "ChatGPT", angle: -38 },
+  { label: "Gemini", angle: 14 },
+  { label: "Perplexity", angle: 66 },
+  { label: "Copilot", angle: 118 },
+  { label: "Google Maps", angle: 170 },
+  { label: "Siri", angle: 222 },
 ] as const;
 
 const STATS = [
@@ -87,9 +87,10 @@ export default function SiteAdvantage() {
         immediateRender: false,
         scrollTrigger: { trigger: ".sa-constellation", start: "top 80%" },
       });
+      // Opacité seule : un scaleX n'anime rien sur les rayons verticaux et
+      // rendait la cascade irrégulière selon la direction du trait.
       gsap.from(".sa-ray", {
         opacity: 0,
-        scaleX: 0,
         duration: 0.7,
         stagger: 0.09,
         ease: "power2.out",
@@ -170,7 +171,7 @@ export default function SiteAdvantage() {
                 return (
                   <line
                     key={s.label}
-                    className="sa-ray origin-center"
+                    className="sa-ray"
                     x1={300}
                     y1={210}
                     x2={x}
@@ -182,10 +183,19 @@ export default function SiteAdvantage() {
                 );
               })}
               <defs>
-                <linearGradient id="sa-grad" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor="var(--color-accent)" stopOpacity="0.85" />
-                  <stop offset="100%" stopColor="var(--color-accent)" stopOpacity="0.15" />
-                </linearGradient>
+                {/* Dégradé RADIAL en userSpaceOnUse : un dégradé linéaire
+                    horizontal dégénère sur les rayons verticaux (boîte
+                    englobante de largeur nulle) et le trait disparaît. */}
+                <radialGradient
+                  id="sa-grad"
+                  gradientUnits="userSpaceOnUse"
+                  cx="300"
+                  cy="210"
+                  r="260"
+                >
+                  <stop offset="0%" stopColor="var(--color-accent)" stopOpacity="0.9" />
+                  <stop offset="100%" stopColor="var(--color-accent)" stopOpacity="0.35" />
+                </radialGradient>
               </defs>
             </svg>
 
@@ -213,16 +223,8 @@ export default function SiteAdvantage() {
                   className="sa-satellite absolute -translate-x-1/2 -translate-y-1/2"
                   style={{ left: `${left}%`, top: `${top}%` }}
                 >
-                  <span
-                    className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium whitespace-nowrap ${
-                      s.kind === "ai"
-                        ? "border-accent/40 bg-accent/10 text-text-primary"
-                        : "border-border bg-bg-card text-text-secondary"
-                    }`}
-                  >
-                    {s.kind === "ai" && (
-                      <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-                    )}
+                  <span className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-bg-card px-4 py-2 text-sm font-medium text-text-primary whitespace-nowrap">
+                    <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
                     {s.label}
                   </span>
                 </div>
@@ -243,27 +245,19 @@ export default function SiteAdvantage() {
               {SURFACES.map((s) => (
                 <span
                   key={s.label}
-                  className={`sa-satellite inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-sm font-medium ${
-                    s.kind === "ai"
-                      ? "border-accent/40 bg-accent/10 text-text-primary"
-                      : "border-border bg-bg-card text-text-secondary"
-                  }`}
+                  className="sa-satellite inline-flex items-center gap-2 rounded-full border border-accent/40 bg-bg-card px-3.5 py-2 text-sm font-medium text-text-primary"
                 >
-                  {s.kind === "ai" && (
-                    <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-                  )}
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
                   {s.label}
                 </span>
               ))}
             </div>
           </div>
 
-          <p className="mt-8 text-center text-sm text-text-secondary">
-            <span className="inline-flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-              Les points bleus sont les moteurs de réponse par IA — la
-              nouvelle porte d&apos;entrée vers votre activité.
-            </span>
+          <p className="mt-8 text-center text-sm text-text-secondary max-w-xl mx-auto leading-relaxed">
+            Moteurs de recherche, cartes, assistants vocaux et intelligences
+            artificielles : votre site est écrit pour être lu — et cité — par
+            tous, sans exception.
           </p>
         </div>
 
