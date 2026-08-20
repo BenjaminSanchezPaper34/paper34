@@ -74,31 +74,28 @@ export default function SiteAdvantage() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const ctx = gsap.context(() => {
-      // Constellation : le centre pulse, les satellites arrivent en cascade.
-      gsap.fromTo(
-        ".sa-satellite",
-        { opacity: 0, scale: 0.6 },
-        {
-          opacity: 1,
-          scale: 1,
-          duration: 0.6,
-          stagger: 0.09,
-          ease: "back.out(1.7)",
-          scrollTrigger: { trigger: ".sa-constellation", start: "top 80%" },
-        }
-      );
-      gsap.fromTo(
-        ".sa-ray",
-        { opacity: 0, scaleX: 0 },
-        {
-          opacity: 1,
-          scaleX: 1,
-          duration: 0.7,
-          stagger: 0.09,
-          ease: "power2.out",
-          scrollTrigger: { trigger: ".sa-constellation", start: "top 80%" },
-        }
-      );
+      // Constellation : les satellites arrivent en cascade, les rayons se tracent.
+      // `from` + immediateRender:false plutôt que `fromTo` : si le déclencheur
+      // ne partait jamais (onglet en veille, calcul de position raté), les
+      // éléments restent VISIBLES au lieu de disparaître.
+      gsap.from(".sa-satellite", {
+        opacity: 0,
+        scale: 0.6,
+        duration: 0.6,
+        stagger: 0.09,
+        ease: "back.out(1.7)",
+        immediateRender: false,
+        scrollTrigger: { trigger: ".sa-constellation", start: "top 80%" },
+      });
+      gsap.from(".sa-ray", {
+        opacity: 0,
+        scaleX: 0,
+        duration: 0.7,
+        stagger: 0.09,
+        ease: "power2.out",
+        immediateRender: false,
+        scrollTrigger: { trigger: ".sa-constellation", start: "top 80%" },
+      });
 
       // Compteurs : la valeur monte quand la carte entre dans l'écran.
       root.querySelectorAll<HTMLElement>("[data-count]").forEach((el) => {
@@ -120,19 +117,16 @@ export default function SiteAdvantage() {
         });
       });
 
-      // Lignes du comparatif.
-      gsap.fromTo(
-        ".sa-row",
-        { opacity: 0, y: 16 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.5,
-          stagger: 0.07,
-          ease: "power2.out",
-          scrollTrigger: { trigger: ".sa-compare", start: "top 82%" },
-        }
-      );
+      // Lignes du comparatif (même principe « fail visible »).
+      gsap.from(".sa-row", {
+        opacity: 0,
+        y: 16,
+        duration: 0.5,
+        stagger: 0.07,
+        ease: "power2.out",
+        immediateRender: false,
+        scrollTrigger: { trigger: ".sa-compare", start: "top 82%" },
+      });
     }, root);
 
     return () => ctx.revert();
