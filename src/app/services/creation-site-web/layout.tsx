@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Création de site web sur-mesure",
   description:
-    "Création de sites web sur-mesure partout en France. Sites vitrines, e-commerce, landing pages — design moderne, responsive, optimisé SEO. Studio basé à Agde, intervention 100 % à distance. Devis gratuit.",
+    "Création de sites web sur-mesure partout en France. Sites vitrines, e-commerce, landing pages — rapides sur mobile, référencés sur Google et lisibles par les IA (ChatGPT, Gemini, Perplexity). Studio basé à Agde. Devis gratuit.",
   keywords: [
     // National
     "création site web",
@@ -17,6 +17,13 @@ export const metadata: Metadata = {
     "refonte site web",
     "site responsive",
     "site web SEO",
+    // Référencement sur les moteurs de réponse IA (GEO) — requêtes émergentes
+    "site web optimisé IA",
+    "référencement ChatGPT",
+    "être visible sur ChatGPT",
+    "référencement IA générative",
+    "GEO référencement",
+    "site web rapide",
     "landing page",
     "création site WordPress",
     "site Next.js",

@@ -21,6 +21,17 @@ export const FAQ_ITEMS = [
       "Oui, j'optimise tous mes sites pour le SEO (r\u00e9f\u00e9rencement naturel) : structure HTML s\u00e9mantique, meta-donn\u00e9es, vitesse de chargement, donn\u00e9es structur\u00e9es Schema.org, sitemap, robots.txt. J'inscris \u00e9galement votre site sur Google Search Console.",
   },
   {
+    question:
+      "Mon site sera-t-il visible sur ChatGPT, Gemini et les autres IA ?",
+    answer:
+      "Oui. De plus en plus de clients ne tapent plus leur recherche sur Google : ils la posent à ChatGPT, Gemini, Perplexity ou Copilot, qui répondent en citant des sites. Chaque site que je livre est conçu pour faire partie des sources citées — information claire, vérifiable et accessible à ces moteurs de réponse — en plus du référencement Google classique. Cette optimisation est comprise dans le prix, ce n'est pas une option.",
+  },
+  {
+    question: "Mon site sera-t-il rapide à charger ?",
+    answer:
+      "Oui, c'est un critère de conception, pas une correction de fin de projet. Les sites que je livre répondent en moins de 0,1 seconde et sont pensés pour le mobile d'abord, d'où arrivent plus de 7 visiteurs sur 10. La vitesse compte doublement : elle évite que le visiteur reparte avant l'affichage, et Google en fait un critère de classement.",
+  },
+  {
     question: "Gérez-vous aussi l'hébergement et le nom de domaine ?",
     answer:
       "Oui, je peux prendre en charge l'achat du nom de domaine, la configuration de l'h\u00e9bergement (Vercel, Hostinger, OVH selon le projet) et la mise en ligne. Vous restez propri\u00e9taire de tout.",
