@@ -78,10 +78,8 @@ export default function CreationSiteWebPage() {
         </div>
       </section>
 
-      {/* Argumentaire visuel : surfaces, chiffres, comparatif */}
-      <SiteAdvantage />
-
-      {/* Portfolio web */}
+      {/* Portfolio web — la preuve d'abord : on montre des images avant de
+          parler méthode (même hiérarchie que la page réseaux sociaux). */}
       <section id="realisations" className="py-20 md:py-28 bg-bg-primary scroll-mt-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -101,8 +99,11 @@ export default function CreationSiteWebPage() {
         </div>
       </section>
 
+      {/* Argumentaire visuel : surfaces, chiffres, comparatif */}
+      <SiteAdvantage />
+
       {/* Processus */}
-      <section className="py-20 md:py-28 bg-bg-secondary">
+      <section className="py-20 md:py-28 bg-bg-primary">
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
           <div className="text-center mb-16">
             <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
@@ -139,7 +140,7 @@ export default function CreationSiteWebPage() {
       </section>
 
       {/* FAQ */}
-      <section className="py-20 md:py-28 bg-bg-primary">
+      <section className="py-20 md:py-28 bg-bg-secondary">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <div className="text-center mb-16">
             <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
