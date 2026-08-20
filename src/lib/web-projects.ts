@@ -9,6 +9,12 @@ export type WebProject = {
 // 3 projets visibles dans tes propri\u00e9t\u00e9s Search Console + commentaire de l'utilisateur.
 export const WEB_PROJECTS: WebProject[] = [
   {
+    name: "Actah & Associés",
+    url: "https://actah-associes.fr",
+    category: "Cabinet d'avocats",
+    description: "Cabinet d'avocats à Béziers",
+  },
+  {
     name: "Chiringuito",
     url: "https://www.chiringuito-vias.fr",
     category: "Plage privée",
