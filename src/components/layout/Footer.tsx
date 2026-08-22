@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { NAV_LINKS, CONTACT_INFO } from "@/lib/constants";
+import { LienGestionCookies } from "@/components/legal/Consent";
 
 export default function Footer() {
   return (
@@ -138,14 +139,29 @@ export default function Footer() {
           <p className="text-xs text-text-tertiary">
             &copy; {new Date().getFullYear()} PAPER34 - Tous droits réservés
           </p>
-          <a
-            href={CONTACT_INFO.googleReview}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs text-text-tertiary hover:text-accent transition-colors"
-          >
-            Laisser un avis Google
-          </a>
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+            <Link
+              href="/mentions-legales"
+              className="text-xs text-text-tertiary hover:text-accent transition-colors"
+            >
+              Mentions légales
+            </Link>
+            <Link
+              href="/confidentialite"
+              className="text-xs text-text-tertiary hover:text-accent transition-colors"
+            >
+              Confidentialité
+            </Link>
+            <LienGestionCookies className="text-xs text-text-tertiary hover:text-accent transition-colors" />
+            <a
+              href={CONTACT_INFO.googleReview}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-text-tertiary hover:text-accent transition-colors"
+            >
+              Laisser un avis Google
+            </a>
+          </div>
         </div>
       </div>
     </footer>

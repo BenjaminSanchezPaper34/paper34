@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { ConsentProvider } from "@/components/legal/Consent";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
@@ -104,24 +105,16 @@ export default function RootLayout({
   return (
     <html lang="fr" className={`${inter.variable} antialiased`}>
       <head>
-        {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-8GK54Y4FEL" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-8GK54Y4FEL');
-            `,
-          }}
-        />
+        {/* Google Analytics n'est PAS chargé ici : il dépose des cookies et
+            ne peut se déclencher qu'après consentement explicite (CNIL).
+            L'injection est faite par ConsentProvider une fois l'accord donné. */}
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="theme-color" content="#000000" />
       </head>
       <body className={`grain font-[family-name:var(--font-inter),sans-serif]`}>
         <JsonLd />
+        <ConsentProvider>
         <LenisProvider>
           <Navbar />
           <main>{children}</main>
@@ -129,6 +122,7 @@ export default function RootLayout({
             <Footer />
           </FooterGate>
         </LenisProvider>
+        </ConsentProvider>
         {/* Mesure d'audience Vercel (sans cookie) + Core Web Vitals réels */}
         <Analytics />
         <SpeedInsights />
