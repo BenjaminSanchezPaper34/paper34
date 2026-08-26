@@ -15,7 +15,7 @@ import { readFileSync, writeFileSync, existsSync, rmSync } from "fs";
 import { join } from "path";
 import { requireR2, r2Client, putFile, deletePrefix } from "./r2.mjs";
 
-const SLUGS = ["guinguette-st-laurent"];
+const SLUGS = ["scenes-doc-impromptu"];
 
 function ctOf(ext) {
   const e = ext.toLowerCase();

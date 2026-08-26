@@ -78,20 +78,21 @@ function fileNum(name) {
 // ─── Config des galeries à construire ──────────────────────────────
 const GALLERIES = [
   {
-    slug: "guinguette-st-laurent",
-    title: "Saint-Laurent",
-    client: "La Guinguette de Bessan",
-    date: "2026-08-11",
-    src: "partage photos/LA GUINGUETTE DE BESSAN - BESSAN/1-11I08I26-STLAURENT",
+    slug: "scenes-doc-impromptu",
+    title: "L'Impromptu de P\u00e9zenas",
+    client: "Les Sc\u00e8nes d'Oc",
+    date: "2026-08-23",
+    src: "partage photos/LES SCENES D'OC - VIAS/1-23I08I26",
     intro:
       "\u{1F44B} Tap sur une photo pour la t\u00e9l\u00e9charger\n" +
       "\u2764\uFE0F N'h\u00e9sitez pas \u00e0 nous mentionner sur vos r\u00e9seaux \u2764\uFE0F\n\n" +
-      "\u{1F386} Saint-Laurent \u00b7 la f\u00eate de Bessan\n" +
-      "\u{1F333} @guinguettedebessan\n" +
+      "\u{1F3AD} L'Impromptu de P\u00e9zenas \u00b7 repr\u00e9sentation du 23 ao\u00fbt 2026 \u00e0 P\u00e9zenas\n" +
+      "\u{1F39F}\uFE0F @scenesdoc\n" +
       "\u{1F4F8} @benjaminsanchez_paper34",
     exclude: [],
   },
   // Galeries pr\u00e9c\u00e9dentes \u2014 d\u00e9j\u00e0 construites et sur R2, NE PAS rebuild :
+  // guinguette-st-laurent (11/08)
   // actah-associes (09/07, cover 5 = A7V-5, + film-cabinet ajout\u00e9 \u00e0 la main)
   // aperol (24/07) \u00b7 reggaeton (11/07, cover 90)
   // coachella (21/06, exclude 7507647, cover 126) \u00b7 opening (06/06, cover 106)
