@@ -74,7 +74,7 @@ export default function Testimonials() {
   }, [prev, next]);
 
   return (
-    <section ref={sectionRef} className="relative py-24 md:py-32 bg-bg-primary">
+    <section ref={sectionRef} className="relative py-24 md:py-32 bg-bg-secondary">
       <div className="mx-auto max-w-4xl px-6 lg:px-8">
         <div className="testimonials-content">
           {/* Header */}

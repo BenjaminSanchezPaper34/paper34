@@ -53,7 +53,7 @@ export default function CTASection() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-32 md:py-40 overflow-hidden"
+      className="relative py-32 md:py-40 overflow-hidden bg-bg-primary"
     >
       {/* Gradient mesh background */}
       <div className="absolute inset-0">
