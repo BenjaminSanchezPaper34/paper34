@@ -15,7 +15,7 @@ import { readFileSync, writeFileSync, existsSync, rmSync } from "fs";
 import { join } from "path";
 import { requireR2, r2Client, putFile, deletePrefix } from "./r2.mjs";
 
-const SLUGS = ["scenes-doc-impromptu"];
+const SLUGS = ["megakart-lorik"];
 
 function ctOf(ext) {
   const e = ext.toLowerCase();
