@@ -78,21 +78,21 @@ function fileNum(name) {
 // ─── Config des galeries à construire ──────────────────────────────
 const GALLERIES = [
   {
-    slug: "megakart-lorik",
-    title: "Session Lorik",
-    client: "Megakart",
-    date: "2026-08-28",
-    src: "partage photos/MEGAKART - VIAS/1-28I08I26-LORIK",
+    slug: "midicapthau-en-mer",
+    title: "Sortie en mer",
+    client: "Midi Cap Thau",
+    date: "2026-09-02",
+    src: "partage photos/MIDI CAP THAU - MARSEILLAN/1-02I09I26",
     intro:
       "\u{1F44B} Tap sur une photo pour la t\u00e9l\u00e9charger\n" +
       "\u2764\uFE0F N'h\u00e9sitez pas \u00e0 nous mentionner sur vos r\u00e9seaux \u2764\uFE0F\n\n" +
-      "\u{1F3CE}\uFE0F Sur la piste de Megakart \u00b7 Vias-Plage\n" +
-      "\u{1F3C1} @karting_megakart\n" +
+      "\u2693 Sortie en mer du 2 septembre 2026 \u00b7 au d\u00e9part de Marseillan\n" +
+      "\u{1F30A} @midicapthau\n" +
       "\u{1F4F8} @benjaminsanchez_paper34",
     exclude: [],
   },
   // Galeries pr\u00e9c\u00e9dentes \u2014 d\u00e9j\u00e0 construites et sur R2, NE PAS rebuild :
-  // scenes-doc-impromptu (23/08) \u00b7 guinguette-st-laurent (11/08)
+  // megakart-lorik (28/08) \u00b7 scenes-doc-impromptu (23/08) \u00b7 guinguette-st-laurent (11/08)
   // actah-associes (09/07, cover 5 = A7V-5, + film-cabinet ajout\u00e9 \u00e0 la main)
   // aperol (24/07) \u00b7 reggaeton (11/07, cover 90)
   // coachella (21/06, exclude 7507647, cover 126) \u00b7 opening (06/06, cover 106)
