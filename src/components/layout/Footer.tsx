@@ -4,7 +4,7 @@ import { LienGestionCookies } from "@/components/legal/Consent";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border bg-bg-secondary">
+    <footer className="border-t border-border bg-bg-primary">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}

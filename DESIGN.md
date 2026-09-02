@@ -1,12 +1,28 @@
 # DESIGN.md — PAPER34 · Agde
 
-> DA rétro-formalisée depuis le code le 30/08/2026 (révision complète). Référence pour toute
-> évolution du site. Standard studio : garder ce fichier en contexte pendant tout build.
+> DA rétro-formalisée le 30/08/2026, puis mise à jour le soir même avec la refonte 2026
+> (branche `refonte-2026`). Référence pour toute évolution du site. Standard studio : garder ce
+> fichier en contexte pendant tout build.
 
 **Secteur** : studio graphique (photo, vidéo, web, print)
 **Personnalité en 3 mots** : précis, nocturne, lumineux
 **Positionnement visuel** : sobriété Apple-like sur fond noir, la lumière comme matière
 (glows, fluides, grain) — le site EST la démo du savoir-faire.
+
+---
+
+## 0. Message — Pain · Person · Promise
+
+- **Person** : le commerçant, restaurateur, artisan ou cabinet de l'Hérault (et au-delà) qui
+  veut une image pro sans gérer cinq prestataires.
+- **Pain** : éparpillé entre un graphiste, un imprimeur, un « webmaster » et un community
+  manager → image incohérente ; invisible là où ses clients cherchent désormais (Maps, Apple
+  Plans, ChatGPT).
+- **Promise** : **« De la carte de visite à ChatGPT. »** — un seul studio pour être reconnu
+  sur tous les supports et trouvé partout où l'on vous cherche.
+
+→ Titre du hero, meta title/description, OG, encadré « L'essentiel » du llms.txt. L'offre se
+présente en 4 piliers (Être trouvé · Être reconnu · Être vu · Aller plus loin) empilés au scroll.
 
 ---
 
@@ -28,14 +44,14 @@ Règle : une seule couleur — le bleu. Toute la richesse visuelle vient de la l
 
 ## 2. Typographie
 
-- **Fonctionnelle ET display** : Inter via `next/font/google` (auto-hébergée au build,
-  CNIL-clean), variable `--font-inter`.
-- Hiérarchie par la graisse et le tracking négatif (`tracking-[-1px]`/`[-2px]`) plutôt que
-  par un second caractère. Grands titres en `clamp()`.
+- **Fonctionnelle** : Inter via `next/font/google` (auto-hébergée, CNIL-clean), `--font-inter`.
+- **Display** : **Bricolage Grotesque** (variable, OFL, `next/font`, `--font-bricolage`,
+  utilitaire `font-display`) — réservée au H1 du hero, aux H2 de section et aux titres des
+  cartes d'offre. Grotesque à caractère : la personnalité que le site n'avait pas avec Inter
+  seule. Jamais en corps de texte.
+- Tracking négatif (`-0.03em`) sur les titres display, grands titres en `clamp()`.
 - Tailles : corps `text-base`+, descriptions `text-sm`+, `text-xs` réservé aux kickers
   uppercase, helper text et copyright — conforme au minimum studio.
-- ⚠️ À arbitrer un jour : Inter est LA police par défaut du web — une display distinctive
-  (type Fontshare) différencierait davantage. Décision Benjamin, refonte visible.
 
 ## 3. Matière
 
@@ -53,8 +69,11 @@ Règle : une seule couleur — le bleu. Toute la richesse visuelle vient de la l
 - **Au scroll (GSAP + ScrollTrigger)** : reveals de sections, hero, staggers de grilles —
   patterns maison : `gsap.context()` cleanup, `immediateRender: false`, `from()` fail-visible
 - **Ne bouge jamais** : corps de texte, pages légales
-- **Effet signature** : les volutes fluides teal & orange au curseur (CTA home + /lab/splash-cinema,
-  sim Pavel Dobryakov) — l'exception chromatique assumée du site
+- **Effet signature** : la lumière bleue en sillage — hero : une vague lumineuse tracée en
+  boucle (moteur wake du lab, canvas 2D) + sillage au curseur, dans les bleus du site ; CTA
+  finale : volutes fluides teal & orange (sim Pavel Dobryakov), l'exception chromatique assumée
+- **Scroll lock** : UNE section — l'offre en 4 cartes empilées (`sticky` + recul GSAP scrub
+  de la carte recouverte). Fallback empilé sur mobile, inactif en reduced-motion
 - **UI d'état (Motion)** : non utilisé à ce jour ; candidat naturel : lightbox galeries
 - Tout WebGL : harnais standard (IntersectionObserver + coupé pointer coarse /
   `prefers-reduced-motion`) — modèle : `CTASection.tsx`. Le /lab (noindex, démos) est

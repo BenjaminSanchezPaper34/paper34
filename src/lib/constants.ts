@@ -249,3 +249,74 @@ export const PORTFOLIO_CATEGORIES = [
   "Design",
   "Impressions",
 ] as const;
+
+/**
+ * L'offre en quatre piliers — page d'accueil (OfferStack).
+ * Pain · Person · Promise : au commerçant, restaurateur ou cabinet de
+ * l'Hérault, éparpillé entre prestataires et invisible là où ses clients
+ * cherchent désormais, Paper34 promet un seul studio pour être vu et
+ * reconnu — « de la carte de visite à ChatGPT ».
+ * Le détail fin des prestations reste dans SERVICES (page /services).
+ */
+export const OFFER_PILLARS = [
+  {
+    id: "trouve",
+    verb: "Être trouvé",
+    title: "Un site rapide, visible partout où l’on vous cherche.",
+    description:
+      "Un site sur-mesure qui répond en moins d’un dixième de seconde, référencé sur Google et Bing, présent sur Google Maps et Apple Plans, et lisible par ChatGPT, Gemini et Perplexity. Vos fiches d’établissement gérées avec vous.",
+    points: [
+      "Site vitrine ou e-commerce, conçu mobile d’abord",
+      "Fiches Google, Bing et Apple Plans",
+      "Référencement classique et moteurs de réponse IA",
+      "Hébergement, maintenance et mises à jour",
+    ],
+    href: "/services/creation-site-web",
+    cta: "Le site web",
+  },
+  {
+    id: "reconnu",
+    verb: "Être reconnu",
+    title: "Une identité qui tient, de l’écran au comptoir.",
+    description:
+      "Logo, mini-charte, cartes de visite, flyers, menus, kakemonos, tenues brodées : création, fabrication et livraison. Vous n’avez ni imprimeur ni fournisseur à chercher — et tout se ressemble, parce que tout vient du même endroit.",
+    points: [
+      "Logo et charte graphique",
+      "Print : cartes, flyers, affiches, menus, brochures",
+      "Grand format et signalétique",
+      "Textile et objets personnalisés",
+    ],
+    href: "/services/graphisme",
+    cta: "Graphisme & impression",
+  },
+  {
+    id: "vu",
+    verb: "Être vu",
+    title: "Des images qui arrêtent le pouce.",
+    description:
+      "Photo, vidéo et animation de vos réseaux : du contenu qui donne envie, publié régulièrement, sponsorisé quand il le faut. Produit par le studio, sur place, chez vous — jamais tiré d’une banque d’images.",
+    points: [
+      "Reportages photo et vidéo",
+      "Reels, posts et stories",
+      "Animation Instagram, Facebook, TikTok",
+      "Publicité Meta et TikTok",
+    ],
+    href: "/services/reseaux-sociaux",
+    cta: "Photo, vidéo & réseaux",
+  },
+  {
+    id: "loin",
+    verb: "Aller plus loin",
+    title: "Des outils à vous, pas des abonnements.",
+    description:
+      "Réservation, fidélité, commande, back-office : des applications web et mobiles conçues, développées et maintenues par le studio, avec le design en plus. Vos données et vos clients restent chez vous.",
+    points: [
+      "Applications web (PWA) et mobiles",
+      "Réservation et fidélité",
+      "Outils métier et tableaux de bord",
+      "Maintenance comprise",
+    ],
+    href: "/services/applications",
+    cta: "Les applications",
+  },
+] as const;

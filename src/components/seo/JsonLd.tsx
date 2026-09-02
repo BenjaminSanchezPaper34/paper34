@@ -12,6 +12,17 @@ export default function JsonLd() {
       "https://www.linkedin.com/in/benjamin-sanchez-2395a4288",
       "https://www.tiktok.com/@benjaminsanchez_paper34",
     ],
+    slogan: "De la carte de visite \u00e0 ChatGPT.",
+    knowsAbout: [
+      "Identit\u00e9 visuelle et charte graphique",
+      "Communication print et impression",
+      "Cr\u00e9ation de sites web rapides (Next.js)",
+      "R\u00e9f\u00e9rencement naturel et moteurs de r\u00e9ponse IA (ChatGPT, Gemini, Perplexity)",
+      "Fiches d'\u00e9tablissement Google, Bing et Apple Plans",
+      "Photographie et vid\u00e9o d'entreprise",
+      "Gestion des r\u00e9seaux sociaux",
+      "D\u00e9veloppement d'applications web et mobiles",
+    ],
     contactPoint: {
       "@type": "ContactPoint",
       telephone: "+33782343227",
@@ -100,7 +111,7 @@ export default function JsonLd() {
           name: "Cr\u00e9ation de site web",
           serviceType: "Web design et d\u00e9veloppement",
           url: "https://www.paper34.fr/services/creation-site-web",
-          description: "Sites vitrines responsive, e-commerce, landing pages, refonte et optimisation SEO. Cr\u00e9ation sur-mesure pour les commerces et entreprises de l'H\u00e9rault.",
+          description: "Sites vitrines et e-commerce sur-mesure, con\u00e7us mobile d'abord et r\u00e9pondant en moins d'un dixi\u00e8me de seconde. R\u00e9f\u00e9renc\u00e9s sur Google et Bing, pr\u00e9sents sur Google Maps et Apple Plans, lisibles par ChatGPT, Gemini et Perplexity. Fiches d'\u00e9tablissement g\u00e9r\u00e9es avec le client.",
           areaServed: { "@type": "Country", name: "France" },
         },
       },
@@ -132,6 +143,17 @@ export default function JsonLd() {
           description: "Reportage photo, packshot produit, photo corporate",
         },
       },
+      {
+        "@type": "Offer",
+        url: "https://www.paper34.fr/services/applications",
+        itemOffered: {
+          "@type": "Service",
+          name: "D\u00e9veloppement d'applications",
+          serviceType: "D\u00e9veloppement web et mobile",
+          url: "https://www.paper34.fr/services/applications",
+          description: "Applications web (PWA) et mobiles sur-mesure : r\u00e9servation, fid\u00e9lit\u00e9, outils m\u00e9tier, tableaux de bord. Con\u00e7ues et maintenues par le studio.",
+        },
+      },
     ],
   };
 
@@ -140,7 +162,7 @@ export default function JsonLd() {
     "@type": "WebSite",
     name: "PAPER34",
     url: "https://www.paper34.fr",
-    description: "Studio graphique \u00e0 Agde : identit\u00e9 visuelle, print, digital, vid\u00e9o, photo",
+    description: "Studio graphique \u00e0 Agde : identit\u00e9 visuelle, print, photo, vid\u00e9o, r\u00e9seaux sociaux et sites web visibles sur Google, Apple Plans et les IA.",
     inLanguage: "fr-FR",
     publisher: {
       "@type": "Organization",

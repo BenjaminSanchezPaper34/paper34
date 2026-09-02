@@ -206,7 +206,7 @@ export default function SocialProofMosaic() {
             <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
               Réseaux sociaux
             </p>
-            <h2 className="text-[clamp(28px,5vw,56px)] font-bold tracking-[-2px] leading-tight">
+            <h2 className="font-display text-[clamp(28px,5vw,56px)] font-bold tracking-[-0.03em] leading-[1.02]">
               J&apos;anime leurs comptes
               <br />
               <span className="gradient-text">au quotidien.</span>

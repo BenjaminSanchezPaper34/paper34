@@ -53,7 +53,7 @@ export default function CTASection() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-32 md:py-40 overflow-hidden bg-bg-primary"
+      className="relative py-32 md:py-40 overflow-hidden bg-bg-secondary"
     >
       {/* Gradient mesh background */}
       <div className="absolute inset-0">
@@ -80,7 +80,7 @@ export default function CTASection() {
 
       <div className="relative mx-auto max-w-3xl px-6 lg:px-8 text-center">
         <div className="cta-content">
-          <h2 className="text-[clamp(32px,6vw,64px)] font-bold tracking-[-2px] leading-tight mb-6">
+          <h2 className="font-display text-[clamp(32px,6vw,68px)] font-bold tracking-[-0.03em] leading-[1.02] mb-6">
             Un projet en tête ?
             <br />
             <span className="gradient-text">Donnons-lui vie.</span>

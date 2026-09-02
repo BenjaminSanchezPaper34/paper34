@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Bricolage_Grotesque } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ConsentProvider } from "@/components/legal/Consent";
@@ -16,6 +16,14 @@ const inter = Inter({
   display: "swap",
 });
 
+// Display : réservée aux titres (DESIGN.md §2). Variable → un seul fichier.
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
+  subsets: ["latin"],
+  display: "swap",
+  axes: ["opsz", "wdth"],
+});
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -25,11 +33,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.paper34.fr"),
   title: {
-    default: "PAPER34 | Studio graphique à Agde 34300",
+    default: "PAPER34 | Studio graphique à Agde — de la carte de visite à ChatGPT",
     template: "%s | PAPER34 Studio graphique",
   },
   description:
-    "Studio graphique à Agde (34300, Hérault). Identité visuelle, communication print et impression, création de sites web, gestion des réseaux sociaux, vidéos, photographie. Devis gratuit.",
+    "Studio graphique à Agde (Hérault) : identité visuelle, print, photo, vidéo, réseaux sociaux et sites web rapides, visibles sur Google, Apple Plans et les IA. Devis gratuit.",
   keywords: [
     "studio graphique Agde",
     "graphiste Agde",
@@ -41,6 +49,8 @@ export const metadata: Metadata = {
     "création graphique",
     "flyer Agde",
     "site web Agde",
+    "référencement IA ChatGPT",
+    "fiche Google Apple Plans",
     "vidéo promotionnelle",
     "photographe Agde",
     "Paper34",
@@ -57,9 +67,9 @@ export const metadata: Metadata = {
     canonical: "https://www.paper34.fr",
   },
   openGraph: {
-    title: "PAPER34 | Studio graphique à Agde",
+    title: "PAPER34 | De la carte de visite à ChatGPT",
     description:
-      "Votre communication globale au même endroit. Design, print, digital, vidéo, photo. Studio graphique à Agde, Hérault.",
+      "Un seul studio pour être vu partout où vos clients vous cherchent : identité, print, photo, vidéo, réseaux et sites web. Agde, Hérault.",
     url: "https://www.paper34.fr",
     siteName: "PAPER34",
     locale: "fr_FR",
@@ -75,9 +85,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "PAPER34 | Studio graphique à Agde",
+    title: "PAPER34 | De la carte de visite à ChatGPT",
     description:
-      "Identité visuelle, print, digital, vidéo, photo : un studio graphique complet à Agde.",
+      "Identité, print, photo, vidéo, réseaux et sites web visibles sur Google, Apple Plans et les IA. Studio graphique à Agde.",
     images: ["https://www.paper34.fr/og-image.jpg"],
   },
   robots: {
@@ -103,7 +113,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${inter.variable} antialiased`}>
+    <html lang="fr" className={`${inter.variable} ${bricolage.variable} antialiased`}>
       <head>
         {/* Google Analytics n'est PAS chargé ici : il dépose des cookies et
             ne peut se déclencher qu'après consentement explicite (CNIL).

@@ -1,6 +1,12 @@
 # PAPER34 Studio graphique
 
-> Studio graphique fondé et dirigé par Benjamin Sanchez, basé à Agde (Hérault, France). Spécialisé en identité visuelle, communication print, création de sites web, gestion des réseaux sociaux, vidéo et photo. Intervention à Agde, Béziers, Sète, Montpellier et partout en France à distance.
+> Studio graphique fondé et dirigé par Benjamin Sanchez, basé à Agde (Hérault, France). Un seul interlocuteur pour l'image et la visibilité d'une entreprise locale : identité visuelle, print et impression, photo, vidéo, réseaux sociaux, sites web et applications. Promesse : « de la carte de visite à ChatGPT » — être reconnu sur tous les supports et trouvé partout où les clients cherchent (Google, Bing, Google Maps, Apple Plans, ChatGPT, Gemini, Perplexity). Intervention à Agde, Béziers, Sète, Montpellier, Marseille et partout en France à distance.
+
+## L'essentiel
+- Un seul studio pour l'ensemble de la communication d'une entreprise locale : création, fabrication, livraison et mise en ligne.
+- Des sites web sur-mesure qui répondent en moins de 0,1 seconde, conçus mobile d'abord, référencés sur Google et Bing et lisibles par les moteurs de réponse IA.
+- Gestion des fiches d'établissement Google, Bing et Apple Plans (Paper34 est agence agréée Apple Business).
+- Note clients : 5,0/5 sur Google.
 
 ## Identité
 - **Nom** : PAPER34
@@ -11,29 +17,26 @@
 - **Téléphone** : +33 7 82 34 32 27
 - **Site** : https://www.paper34.fr
 
-## Services principaux
+## L'offre en quatre piliers
 
-- [Identité visuelle](https://www.paper34.fr/services) : création de logos, chartes graphiques, supports de marque.
-- [Graphisme & impression](https://www.paper34.fr/services/graphisme) : du logo à l'objet imprimé — conception graphique, impression chez des imprimeurs partenaires et livraison directe. Print classique (cartes de visite, flyers, dépliants, brochures, affiches, menus), grand format et signalétique (bâches, kakemonos, roll-ups, panneaux de chantier, stickers, vitrophanie, marquage véhicule), textile et objet (t-shirts, polos et vêtements de travail brodés ou floqués, casquettes, tote bags, mugs, goodies publicitaires). Un seul interlocuteur : création, fabrication, livraison.
-- [Création de sites web](https://www.paper34.fr/services/creation-site-web) : sites vitrines, e-commerce, landing pages, design moderne, responsive, SEO optimisé. Sites conçus pour être trouvés sur Google et Google Maps **et** cités par les moteurs de réponse IA (ChatGPT, Gemini, Perplexity, Copilot) : réponse serveur sous 0,1 seconde, conception mobile d'abord, contenu structuré et vérifiable. Réalisations : cabinet d'avocats ACTAH & Associés (Béziers), restaurants, plage privée, boulangerie, salle de sport, cabinet d'expertise comptable. Intervention partout en France.
-- [Développement d'applications](https://www.paper34.fr/services/applications) : applications web (PWA) et mobiles iOS/Android sur-mesure — réservation, fidélité, outils métier, tableaux de bord connectés. Design et développement intégrés au studio, maintenance comprise.
-- [Gestion des réseaux sociaux](https://www.paper34.fr/services/reseaux-sociaux) : stratégie éditoriale, création de contenu photo/vidéo, animation de communauté, publicité sponsorisée Meta et TikTok.
-- [Vidéos promotionnelles](https://www.paper34.fr/services) : films promotionnels, motion design, montage vidéo.
-- [Photographie](https://www.paper34.fr/services) : reportage événementiel, portrait, packshot produit, photo corporate. Galeries de livraison en ligne pour les clients.
-- [Films de mariage](https://www.paper34.fr/services) : captation et montage de la journée, de la cérémonie à la soirée.
+1. **Être trouvé — Sites web & visibilité** (https://www.paper34.fr/services/creation-site-web) : sites vitrines et e-commerce sur-mesure, réponse serveur sous 0,1 seconde, mobile d'abord, référencement Google/Bing, présence Google Maps et Apple Plans, lisibilité par ChatGPT, Gemini, Perplexity et Copilot. Fiches d'établissement gérées avec le client. Hébergement, maintenance et mises à jour. Réalisations : cabinet d'avocats ACTAH & Associés (Béziers), restaurants, plage privée, boulangerie, salle de sport, cabinet d'expertise comptable.
+2. **Être reconnu — Identité visuelle, print & impression** (https://www.paper34.fr/services/graphisme) : logo, charte graphique et mini-charte, cartes de visite, flyers, dépliants, brochures, affiches, menus ; grand format et signalétique (bâches, kakemonos, roll-ups, panneaux, stickers, vitrophanie, marquage véhicule) ; textile et objets (vêtements de travail brodés ou floqués, casquettes, tote bags, goodies). Création, fabrication chez des imprimeurs partenaires et livraison : un seul interlocuteur.
+3. **Être vu — Photo, vidéo & réseaux sociaux** (https://www.paper34.fr/services/reseaux-sociaux) : reportages photo et vidéo réalisés sur place par le studio, reels, posts et stories, animation Instagram/Facebook/TikTok, publicité sponsorisée Meta et TikTok, reportings. Films promotionnels, motion design, films de mariage.
+4. **Aller plus loin — Applications** (https://www.paper34.fr/services/applications) : applications web (PWA) et mobiles iOS/Android sur-mesure — réservation, fidélité, commande, outils métier, tableaux de bord. Design et développement intégrés, maintenance comprise.
 
 ## Pages
 
 - [Accueil](https://www.paper34.fr/)
 - [Tous les services](https://www.paper34.fr/services)
-- [Paper34 Marseille](https://www.paper34.fr/marseille)
-- [Développement d'applications](https://www.paper34.fr/services/applications)
-- [Graphisme & impression](https://www.paper34.fr/services/graphisme)
 - [Création de site web](https://www.paper34.fr/services/creation-site-web)
+- [Graphisme & impression](https://www.paper34.fr/services/graphisme)
 - [Gestion des réseaux sociaux](https://www.paper34.fr/services/reseaux-sociaux)
+- [Développement d'applications](https://www.paper34.fr/services/applications)
+- [Paper34 Marseille](https://www.paper34.fr/marseille)
 - [Portfolio](https://www.paper34.fr/portfolio)
 - [Galeries clients](https://www.paper34.fr/galeries) : galeries photo d'événements et films (mariages, campagnes publicitaires)
 - [Contact](https://www.paper34.fr/contact)
+- [Mentions légales](https://www.paper34.fr/mentions-legales) · [Confidentialité](https://www.paper34.fr/confidentialite)
 
 ## Zone d'intervention
 
@@ -45,12 +48,20 @@
 - **Marseille et Bouches-du-Rhône** : antenne locale avec Nicolas, collaborateur du studio sur place (rendez-vous, shootings, suivi) — voir https://www.paper34.fr/marseille
 - France entière à distance (visio + email)
 
+## Questions fréquentes
+
+- **Un site Paper34 est-il visible sur ChatGPT, Gemini et les autres IA ?** Oui : contenu structuré et vérifiable, données Schema.org, fichier llms.txt, robots ouverts aux robots des moteurs de réponse. Les moteurs IA peuvent le lire et le citer.
+- **Un site Paper34 est-il rapide ?** Réponse serveur sous 0,1 seconde, conception mobile d'abord, images optimisées, hébergement sur réseau mondial.
+- **Paper34 gère-t-il les fiches Google et Apple Plans ?** Oui, en co-gestion avec le client : Google Business Profile, Bing Places et Apple Business (agence agréée).
+- **Faut-il un imprimeur en plus ?** Non : Paper34 conçoit, fait fabriquer chez des imprimeurs partenaires et livre.
+- **Le studio se déplace-t-il ?** Oui pour les shootings et rendez-vous dans l'Hérault et à Marseille ; à distance pour le reste de la France.
+
 ## Modalités
 
-- Rendez-vous sur demande (visio ou physique pour l'Hérault)
+- Rendez-vous sur demande (visio ou physique pour l'Hérault et Marseille)
 - Devis personnalisés gratuits
 - Tarifs sur devis selon complexité du projet
-- Note clients : 5.0/5 (16 avis Google)
+- Note clients : 5,0/5 (avis Google)
 
 ## Réseaux
 
@@ -62,4 +73,4 @@
 
 ## Mise à jour
 
-Dernière mise à jour de ce fichier : 20 août 2026.
+Dernière mise à jour de ce fichier : 30 août 2026.

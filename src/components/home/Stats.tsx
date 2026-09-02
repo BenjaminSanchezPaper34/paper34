@@ -43,7 +43,7 @@ export default function Stats() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-20 md:py-28 bg-bg-secondary"
+      className="relative py-20 md:py-28 bg-bg-primary"
     >
       {/* Subtle glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />

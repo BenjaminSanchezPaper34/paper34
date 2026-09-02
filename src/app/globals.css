@@ -13,6 +13,10 @@
   --color-accent-glow: rgba(0, 113, 227, 0.4);
   --color-border: rgba(255, 255, 255, 0.08);
   --color-border-hover: rgba(255, 255, 255, 0.15);
+  /* Display : Bricolage Grotesque (next/font, auto-hébergée) — réservée aux
+     titres et moments émotionnels ; Inter reste la police fonctionnelle. */
+  --font-display: var(--font-bricolage), var(--font-inter), sans-serif;
+  --font-sans: var(--font-inter), sans-serif;
 }
 
 html {

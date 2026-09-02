@@ -74,7 +74,7 @@ export default function Testimonials() {
   }, [prev, next]);
 
   return (
-    <section ref={sectionRef} className="relative py-24 md:py-32 bg-bg-secondary">
+    <section ref={sectionRef} className="relative py-24 md:py-32 bg-bg-primary">
       <div className="mx-auto max-w-4xl px-6 lg:px-8">
         <div className="testimonials-content">
           {/* Header */}
@@ -82,7 +82,7 @@ export default function Testimonials() {
             <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
               T&eacute;moignages
             </p>
-            <h2 className="text-[clamp(28px,5vw,48px)] font-bold tracking-[-2px]">
+            <h2 className="font-display text-[clamp(28px,5vw,52px)] font-bold tracking-[-0.03em]">
               Ce qu&apos;ils en <span className="gradient-text">disent</span>
             </h2>
           </div>
