@@ -4,14 +4,14 @@
  * (render delay ~2 s mesuré avec le <img src=".svg">).
  * Source : public/images/logo-paper34.svg (conservé pour JSON-LD, footer, OG).
  */
-export default function LogoPaper34({ className }: { className?: string }) {
+export default function LogoPaper34({ className, fill = "#fff" }: { className?: string; fill?: string }) {
   return (
     <svg
       viewBox="0 0 612.51 111.15"
       role="img"
       aria-label="PAPER34"
       className={className}
-      fill="#fff"
+      fill={fill}
     >
       <polygon points="589.02 66.53 612.51 66.53 612.51 37.21 589.02 66.53" />
       <path d="m559.65,58.53L606.67.79h-44.43v25.38l-24.75,18.6c9.75,2.6,17.46,7.03,22.16,13.76Z" />

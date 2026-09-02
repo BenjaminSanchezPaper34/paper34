@@ -35,7 +35,14 @@ const MAX_DOT_R = SPACING / 2; // rayon max d'un point
 const DROP_LIFETIME = 1.4; // secondes
 const MAX_DROPS = 80;
 
-export default function HalftoneCmyk() {
+type Props = {
+  /** Gouttes d'encre déposées toutes seules à intervalle régulier (vitrine sans curseur). */
+  autoDrops?: boolean;
+  /** Intervalle entre deux gouttes auto (ms). */
+  autoInterval?: number;
+};
+
+export default function HalftoneCmyk({ autoDrops = false, autoInterval = 520 }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -99,6 +106,22 @@ export default function HalftoneCmyk() {
     }
 
     window.addEventListener("pointermove", onMove);
+
+    // Gouttes automatiques : positions aléatoires, rayon généreux, sans le
+    // filtre anti-spam (elles ne dépendent pas du mouvement).
+    let autoTimer: ReturnType<typeof setInterval> | undefined;
+    if (autoDrops) {
+      autoTimer = setInterval(() => {
+        if (!w || !h) return;
+        drops.push({
+          x: w * (0.12 + Math.random() * 0.76),
+          y: h * (0.12 + Math.random() * 0.76),
+          radius: 70 + Math.random() * 70,
+          life: 1,
+        });
+        if (drops.length > MAX_DROPS) drops.splice(0, drops.length - MAX_DROPS);
+      }, autoInterval);
+    }
 
     /**
      * Dessine la trame d'un canal dans un bbox autour d'une goutte.
@@ -181,10 +204,11 @@ export default function HalftoneCmyk() {
 
     return () => {
       cancelAnimationFrame(raf);
+      if (autoTimer) clearInterval(autoTimer);
       ro.disconnect();
       window.removeEventListener("pointermove", onMove);
     };
-  }, []);
+  }, [autoDrops, autoInterval]);
 
   return (
     <canvas
