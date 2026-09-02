@@ -24,14 +24,15 @@ import WakeTrail from "@/components/lab/WakeTrail";
 // sur la largeur de l'écran par WakeSignature).
 const WAVE = {
   viewBox: { x: 0, y: 0, w: 1400, h: 400 },
-  d: "M -40 260 C 120 120, 260 120, 400 250 S 660 380, 800 240 S 1060 100, 1200 220 S 1380 330, 1460 200",
+  // Confinée au tiers bas du hero : la lumière passe SOUS le texte, jamais dessus.
+  d: "M -40 330 C 120 250, 260 250, 400 330 S 660 400, 800 320 S 1060 240, 1200 320 S 1380 390, 1460 300",
 };
 
 // Bleus Paper34 en matière lumineuse : corps bleu électrique, crête claire.
 const WAKE_OPTIONS = {
-  bodyColor: "rgba(0, 113, 227, 0.55)",
-  foamColor: "rgba(200, 228, 255, 0.9)",
-  maxWidth: 90,
+  bodyColor: "rgba(0, 113, 227, 0.42)",
+  foamColor: "rgba(200, 228, 255, 0.8)",
+  maxWidth: 64,
   foamWidth: 2,
   lifetime: 3.4,
   taperTail: 10,
@@ -94,29 +95,13 @@ export default function Hero() {
     const scroll = scrollRef.current;
     if (!section || !title || !subtitle || !cta || !scroll) return;
 
+    // L'entrée est en CSS pur (keyframes hero-in-*, voir globals.css) : elle
+    // démarre au premier paint, sans attendre l'hydratation — le LCP n'est
+    // plus retardé par le JS. Ici : uniquement le storytelling au scroll.
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) {
-      title.querySelectorAll(".hero-word").forEach((w) => {
-        (w as HTMLElement).style.transform = "none";
-      });
-      gsap.set([section.querySelector(".hero-kicker"), subtitle, cta, scroll], { opacity: 1, y: 0 });
-      return;
-    }
+    if (reduced) return;
 
     const ctx = gsap.context(() => {
-      // Entrée : chaque ligne du titre monte depuis son masque
-      gsap.to(title.querySelectorAll(".hero-word"), {
-        y: 0,
-        duration: 1,
-        stagger: 0.12,
-        ease: "power4.out",
-        delay: 0.15,
-      });
-      gsap.to(section.querySelector(".hero-kicker"), { opacity: 1, y: 0, duration: 0.6, delay: 0.1, ease: "power3.out" });
-      gsap.to(subtitle, { opacity: 1, y: 0, duration: 0.8, delay: 0.5, ease: "power3.out" });
-      gsap.to(cta, { opacity: 1, y: 0, duration: 0.7, delay: 0.7, ease: "power3.out" });
-      gsap.to(scroll, { opacity: 1, duration: 0.5, delay: 1 });
-
       // Sortie au scroll : le texte s'efface et recule (fromTo → réversible)
       gsap.fromTo(
         title,
@@ -195,7 +180,7 @@ export default function Hero() {
 
       {/* Contenu */}
       <div className="relative z-10 text-center px-6 max-w-5xl mx-auto pt-24 pb-20">
-        <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-6 opacity-0 translate-y-3 hero-kicker">
+        <p className="hero-in-fade [animation-delay:.1s] text-accent text-sm font-semibold uppercase tracking-widest mb-6">
           Studio graphique · Agde
         </p>
         <h1
@@ -203,16 +188,16 @@ export default function Hero() {
           className="font-display text-[clamp(38px,7.2vw,92px)] font-bold leading-[0.98] tracking-[-0.03em] mb-7"
         >
           <span className="inline-block overflow-hidden align-bottom pb-[0.08em] -mb-[0.08em]">
-            <span className="hero-word inline-block translate-y-[110%]">De la carte de visite</span>
+            <span className="hero-word hero-in-rise inline-block">De la carte de visite</span>
           </span>
           <br />
           <span className="inline-block overflow-hidden align-bottom pb-[0.14em] -mb-[0.14em]">
-            <span className="hero-word gradient-text inline-block translate-y-[110%]">à ChatGPT.</span>
+            <span className="hero-word hero-in-rise [animation-delay:.27s] gradient-text inline-block">à ChatGPT.</span>
           </span>
         </h1>
         <p
           ref={subtitleRef}
-          className="text-[clamp(16px,2.1vw,21px)] text-text-secondary max-w-2xl mx-auto mb-10 opacity-0 translate-y-4 leading-relaxed"
+          className="hero-in-fade [animation-delay:.45s] text-[clamp(16px,2.1vw,21px)] text-text-secondary max-w-2xl mx-auto mb-10 leading-relaxed"
         >
           Identité, print, photo, vidéo, réseaux et sites web : un seul studio pour
           être vu partout où vos clients vous cherchent — Google, Maps, Apple Plans
@@ -220,7 +205,7 @@ export default function Hero() {
         </p>
         <div
           ref={ctaRef}
-          className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 translate-y-3"
+          className="hero-in-fade [animation-delay:.65s] flex flex-col sm:flex-row gap-4 justify-center"
         >
           <Magnetic>
             <Link
@@ -244,7 +229,7 @@ export default function Hero() {
       {/* Indicateur de scroll */}
       <div
         ref={scrollRef}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0"
+        className="hero-in-fade [animation-delay:1s] absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
         <span className="text-xs text-text-tertiary uppercase tracking-widest">Scroll</span>
         <div className="w-px h-10 bg-gradient-to-b from-text-tertiary to-transparent animate-bounce" />

@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV_LINKS } from "@/lib/constants";
+import LogoPaper34 from "@/components/layout/LogoPaper34";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -56,11 +57,7 @@ export default function Navbar() {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <img
-              src="/images/logo-paper34.svg"
-              alt="PAPER34"
-              className="h-7 transition-opacity group-hover:opacity-80"
-            />
+            <LogoPaper34 className="h-7 w-auto transition-opacity group-hover:opacity-80" />
           </Link>
 
           {/* Desktop links */}

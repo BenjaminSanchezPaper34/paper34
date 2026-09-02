@@ -68,6 +68,29 @@ function purgerCookiesAnalytics() {
 export function ConsentProvider({ children }: { children: React.ReactNode }) {
   const [etat, setEtat] = useState<Etat>("inconnu");
   const [pret, setPret] = useState(false);
+  // Le bandeau n'apparaît qu'au premier geste du visiteur (ou après 4 s) :
+  // rien ne saute au visage à l'arrivée, le hero est vu propre, et le bloc
+  // de texte du bandeau ne devient pas l'élément LCP de la page. Aucun
+  // script tiers ne part avant le consentement, différé ou non.
+  const [afficher, setAfficher] = useState(false);
+
+  useEffect(() => {
+    let fait = false;
+    const go = () => {
+      if (fait) return;
+      fait = true;
+      setAfficher(true);
+      stop();
+    };
+    const evts: (keyof WindowEventMap)[] = ["pointerdown", "keydown", "touchstart", "wheel", "scroll"];
+    const timer = setTimeout(go, 4000);
+    const stop = () => {
+      clearTimeout(timer);
+      evts.forEach((e) => window.removeEventListener(e, go));
+    };
+    evts.forEach((e) => window.addEventListener(e, go, { passive: true, once: true }));
+    return stop;
+  }, []);
 
   useEffect(() => {
     let v: string | null = null;
@@ -114,7 +137,7 @@ export function ConsentProvider({ children }: { children: React.ReactNode }) {
     >
       {children}
 
-      {pret && etat === "inconnu" && (
+      {pret && afficher && etat === "inconnu" && (
         <div
           role="dialog"
           aria-live="polite"
@@ -127,10 +150,8 @@ export function ConsentProvider({ children }: { children: React.ReactNode }) {
                 Cookies de mesure d&apos;audience
               </strong>
               <p>
-                J&apos;utilise Google Analytics pour comprendre quelles pages
-                intéressent les visiteurs. Ces cookies ne sont déposés
-                qu&apos;avec votre accord, et le site fonctionne parfaitement
-                sans.{" "}
+                Google Analytics, uniquement avec votre accord — le site
+                fonctionne parfaitement sans.{" "}
                 <Link href="/confidentialite" className="text-accent underline underline-offset-2">
                   En savoir plus
                 </Link>

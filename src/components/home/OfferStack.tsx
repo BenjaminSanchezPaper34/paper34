@@ -91,7 +91,7 @@ export default function OfferStack() {
               className="offer-card md:sticky"
               style={{ top: `calc(6rem + ${i * 1.25}rem)` }}
             >
-              <div className="offer-card-inner relative overflow-hidden rounded-3xl border border-border bg-bg-card p-8 md:p-12 md:min-h-[62vh] flex flex-col justify-between will-change-transform">
+              <div className="offer-card-inner relative overflow-hidden rounded-3xl border border-border bg-bg-card p-8 md:p-12 md:min-h-[32rem] flex flex-col justify-between will-change-transform">
                 {/* Numéro en filigrane */}
                 <span
                   className="font-display pointer-events-none absolute -right-2 -top-6 text-[clamp(120px,18vw,240px)] font-bold leading-none tracking-[-0.05em] text-white/[0.035] select-none"
@@ -147,7 +147,7 @@ export default function OfferStack() {
         {/* Renvoi vers le détail complet */}
         <p className="mt-14 text-center text-text-secondary">
           Le détail de chaque prestation, du flocage aux tableaux de bord :{" "}
-          <Link href="/services" className="text-accent hover:text-accent-hover underline underline-offset-4 transition-colors">
+          <Link href="/services" className="inline-block py-3 text-accent hover:text-accent-hover underline underline-offset-4 transition-colors">
             tous les services
           </Link>
           .

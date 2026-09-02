@@ -21,7 +21,6 @@ const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
   subsets: ["latin"],
   display: "swap",
-  axes: ["opsz", "wdth"],
 });
 
 export const viewport: Viewport = {
@@ -37,7 +36,7 @@ export const metadata: Metadata = {
     template: "%s | PAPER34 Studio graphique",
   },
   description:
-    "Studio graphique à Agde (Hérault) : identité visuelle, print, photo, vidéo, réseaux sociaux et sites web rapides, visibles sur Google, Apple Plans et les IA. Devis gratuit.",
+    "Studio graphique à Agde : identité, print, photo, vidéo, réseaux sociaux et sites web rapides, visibles sur Google, Apple Plans et les IA. Devis gratuit.",
   keywords: [
     "studio graphique Agde",
     "graphiste Agde",

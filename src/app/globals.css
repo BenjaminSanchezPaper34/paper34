@@ -7,7 +7,7 @@
   --color-bg-card-hover: #1a1a1a;
   --color-text-primary: #ffffff;
   --color-text-secondary: #a1a1a6;
-  --color-text-tertiary: #6e6e73;
+  --color-text-tertiary: #86868b; /* 5.5:1 sur noir (ex-#6e6e73 = 3.7, sous WCAG AA) */
   --color-accent: #0071e3;
   --color-accent-hover: #0077ED;
   --color-accent-glow: rgba(0, 113, 227, 0.4);
@@ -36,6 +36,34 @@ body {
   overflow-x: hidden;
 }
 
+
+/* Accent en TEXTE : le bleu de remplissage (#0071e3) ne fait que 4.2:1 sur noir,
+   sous le seuil AA (4.5) pour les kickers et labels. Le même bleu, une marche plus
+   claire, pour tout ce qui est écrit — les fonds (bg-accent) ne bougent pas. */
+.text-accent {
+  color: #3b9dff;
+}
+
+/* Entrée du hero — en CSS pour ne pas retarder le LCP (pas d'attente du JS) */
+@keyframes heroRise {
+  from { transform: translateY(110%); }
+  to   { transform: translateY(0); }
+}
+@keyframes heroFade {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-in-rise {
+  transform: translateY(110%);
+  animation: heroRise 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+}
+.hero-in-fade {
+  opacity: 0;
+  animation: heroFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-in-rise, .hero-in-fade { animation: none; opacity: 1; transform: none; }
+}
 
 /* Glow effect — halo persistant */
 .glow {
@@ -83,8 +111,20 @@ body {
   to   { transform: scaleX(1); }
 }
 
+/* Le mot en dégradé du hero cumule sa montée ET le sheen : les deux règles
+   posent `animation`, on les combine ici (déclaré après .gradient-text). */
+.hero-in-rise.gradient-text {
+  animation:
+    heroRise 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards,
+    sheen 5s ease-in-out infinite alternate;
+}
+.hero-in-rise.gradient-text[class*="animation-delay"] {
+  animation-delay: 0.27s, 0s;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .gradient-text { animation: none; }
+  .hero-in-rise.gradient-text { animation: none; transform: none; }
 }
 
 /* Smooth scrollbar */

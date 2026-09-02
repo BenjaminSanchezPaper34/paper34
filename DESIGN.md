@@ -35,8 +35,9 @@ présente en 4 piliers (Être trouvé · Être reconnu · Être vu · Aller plus
 | Carte | `#111111` | `--color-bg-card` | Surfaces élevées (cards, témoignages) ; hover `#1a1a1a` |
 | Blanc | `#ffffff` | `--color-text-primary` | Titres et texte principal |
 | Gris Apple | `#a1a1a6` | `--color-text-secondary` | Corps de texte secondaire, descriptions |
-| Gris retrait | `#6e6e73` | `--color-text-tertiary` | Micro-labels, kickers uppercase |
-| Bleu électrique | `#0071e3` | `--color-accent` | L'unique décision chromatique : CTA, liens, kickers, gradient-text — hover `#0077ED`, halo `--color-accent-glow` (bleu 40 %) |
+| Gris retrait | `#86868b` | `--color-text-tertiary` | Micro-labels, compteurs, « Scroll » — relevé de #6e6e73 le 30/08 pour tenir 5,5:1 sur noir (WCAG AA) |
+| Bleu électrique | `#0071e3` | `--color-accent` | L'unique décision chromatique — en REMPLISSAGE : CTA, fonds, halo `--color-accent-glow` (bleu 40 %), hover `#0077ED` |
+| Bleu électrique (texte) | `#3b9dff` | `.text-accent` | Le même bleu, une marche plus claire, dès qu'il est ÉCRIT sur noir (kickers, liens, labels) : #0071e3 ne fait que 4,2:1, sous le seuil AA. Une teinte, deux luminances — pas une seconde couleur |
 | Bordure fantôme | `rgba(255,255,255,.08)` | `--color-border` | Contours discrets ; hover `.15` |
 
 Règle : une seule couleur — le bleu. Toute la richesse visuelle vient de la lumière
