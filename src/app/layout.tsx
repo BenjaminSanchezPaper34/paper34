@@ -24,27 +24,31 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.paper34.fr"),
+  // Audit Search Console du 05/09/2026 : la création de site web devient la
+  // promesse n° 1 du site (requêtes « agence web agde », « création site
+  // internet agde »). Le print n'est plus un axe de référencement.
   title: {
-    default: "PAPER34 | Studio graphique à Agde 34300",
-    template: "%s | PAPER34 Studio graphique",
+    default: "PAPER34 | Création de site web à Agde — studio graphique",
+    template: "%s | PAPER34",
   },
   description:
-    "Studio graphique à Agde (34300, Hérault). Identité visuelle, communication print et impression, création de sites web, gestion des réseaux sociaux, vidéos, photographie. Devis gratuit.",
+    "Agence web et studio graphique à Agde (Hérault). Création de sites web pour restaurants, commerces et loisirs d'Agde, Marseillan, Vias, Sète et Béziers : rapides, trouvés sur Google, cités par ChatGPT. Identité visuelle, réseaux sociaux, photo et vidéo.",
   keywords: [
+    "création site web Agde",
+    "agence web Agde",
+    "création site internet Agde",
+    "agence web Hérault",
+    "site internet restaurant Hérault",
+    "création site web Marseillan",
+    "création site web Sète",
+    "création site web Béziers",
     "studio graphique Agde",
     "graphiste Agde",
-    "graphiste Hérault",
-    "design graphique 34",
     "identité visuelle Agde",
-    "logo Agde",
-    "communication visuelle",
-    "création graphique",
-    "flyer Agde",
-    "site web Agde",
-    "vidéo promotionnelle",
+    "gestion réseaux sociaux Agde",
     "photographe Agde",
     "Paper34",
-    "Benjamin Sanchez graphiste",
+    "Benjamin Sanchez",
   ],
   authors: [{ name: "Benjamin Sanchez", url: "https://www.paper34.fr" }],
   creator: "PAPER34",
@@ -57,9 +61,9 @@ export const metadata: Metadata = {
     canonical: "https://www.paper34.fr",
   },
   openGraph: {
-    title: "PAPER34 | Studio graphique à Agde",
+    title: "PAPER34 | Création de site web à Agde",
     description:
-      "Votre communication globale au même endroit. Design, print, digital, vidéo, photo. Studio graphique à Agde, Hérault.",
+      "Des sites web qui font venir les clients : restaurants, commerces et loisirs d'Agde au Cap, de Marseillan à Sète. Studio graphique complet, devis gratuit.",
     url: "https://www.paper34.fr",
     siteName: "PAPER34",
     locale: "fr_FR",
@@ -75,9 +79,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "PAPER34 | Studio graphique à Agde",
+    title: "PAPER34 | Création de site web à Agde",
     description:
-      "Identité visuelle, print, digital, vidéo, photo : un studio graphique complet à Agde.",
+      "Sites web, identité visuelle, réseaux sociaux, photo et vidéo : le studio des commerces d'Agde et du littoral.",
     images: ["https://www.paper34.fr/og-image.jpg"],
   },
   robots: {

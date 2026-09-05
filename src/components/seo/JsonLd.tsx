@@ -52,6 +52,22 @@ export default function JsonLd() {
       },
       {
         "@type": "City",
+        name: "Marseillan",
+      },
+      {
+        "@type": "City",
+        name: "Vias",
+      },
+      {
+        "@type": "City",
+        name: "Bessan",
+      },
+      {
+        "@type": "City",
+        name: "P\u00e9zenas",
+      },
+      {
+        "@type": "City",
         name: "B\u00e9ziers",
       },
       {
@@ -75,7 +91,20 @@ export default function JsonLd() {
       bestRating: "5",
       worstRating: "5",
     },
+    // Ordre = priorit\u00e9 commerciale (audit 05/09/2026) : le web d'abord.
     makesOffer: [
+      {
+        "@type": "Offer",
+        url: "https://www.paper34.fr/services/creation-site-web",
+        itemOffered: {
+          "@type": "Service",
+          name: "Cr\u00e9ation de site web \u00e0 Agde",
+          serviceType: "Web design et d\u00e9veloppement",
+          url: "https://www.paper34.fr/services/creation-site-web",
+          description: "Sites vitrines, e-commerce et r\u00e9servation pour les restaurants, commerces et loisirs d'Agde, Marseillan, Vias, S\u00e8te et B\u00e9ziers. Rapides, r\u00e9f\u00e9renc\u00e9s sur Google, cit\u00e9s par les IA.",
+          areaServed: { "@type": "AdministrativeArea", name: "H\u00e9rault" },
+        },
+      },
       {
         "@type": "Offer",
         itemOffered: {
@@ -88,20 +117,8 @@ export default function JsonLd() {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Communication print & impression",
-          description: "Cr\u00e9ation graphique, impression et livraison de flyers, brochures, affiches, cartes de visite",
-        },
-      },
-      {
-        "@type": "Offer",
-        url: "https://www.paper34.fr/services/creation-site-web",
-        itemOffered: {
-          "@type": "Service",
-          name: "Cr\u00e9ation de site web",
-          serviceType: "Web design et d\u00e9veloppement",
-          url: "https://www.paper34.fr/services/creation-site-web",
-          description: "Sites vitrines responsive, e-commerce, landing pages, refonte et optimisation SEO. Cr\u00e9ation sur-mesure pour les commerces et entreprises de l'H\u00e9rault.",
-          areaServed: { "@type": "Country", name: "France" },
+          name: "Design de supports print",
+          description: "Conception graphique de vos cartes, menus, flyers et affiches, fabrication d\u00e9l\u00e9gu\u00e9e \u00e0 des imprimeurs partenaires",
         },
       },
       {
@@ -140,7 +157,7 @@ export default function JsonLd() {
     "@type": "WebSite",
     name: "PAPER34",
     url: "https://www.paper34.fr",
-    description: "Studio graphique \u00e0 Agde : identit\u00e9 visuelle, print, digital, vid\u00e9o, photo",
+    description: "Agence web et studio graphique \u00e0 Agde : cr\u00e9ation de sites web, identit\u00e9 visuelle, r\u00e9seaux sociaux, photo et vid\u00e9o pour les commerces du littoral de l'H\u00e9rault",
     inLanguage: "fr-FR",
     publisher: {
       "@type": "Organization",

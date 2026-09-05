@@ -163,9 +163,9 @@ export default function Hero() {
           ref={subtitleRef}
           className="text-[clamp(15px,2.2vw,20px)] text-text-secondary max-w-xl mx-auto mb-10 opacity-0 translate-y-4"
         >
-          Design, vid&eacute;o, photo, web, impression.
+          Sites web, applications et r&eacute;seaux sociaux, avec le design en plus.
           <br />
-          Un studio graphique complet pour donner de la visibilit&eacute; &agrave; votre activit&eacute;.
+          Le studio d&apos;Agde qui rend les restaurants et commerces du littoral visibles, de Google &agrave; ChatGPT.
         </p>
         <div
           ref={ctaRef}

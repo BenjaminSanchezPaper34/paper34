@@ -33,6 +33,35 @@ const PROCESS_STEPS = [
   },
 ];
 
+// Villes servies en direct (déplacement possible pour le brief) — le reste
+// de la France à distance. Ordre : du studio vers l'extérieur.
+const LOCAL_AREAS = [
+  {
+    city: "Agde & Cap d'Agde",
+    text: "Restaurants, plages privées, loisirs nautiques, commerces du centre et du Cap : des sites pensés pour la saison et les visiteurs sur téléphone.",
+  },
+  {
+    city: "Marseillan & Vias",
+    text: "Guinguettes, chiringuitos, campings et producteurs : réservation, carte à jour, photos qui donnent faim.",
+  },
+  {
+    city: "Sète, Pézenas & Bessan",
+    text: "Artisans, cabinets, boutiques et lieux culturels : un site clair qui rassure et qui se trouve sur Google Maps comme sur ChatGPT.",
+  },
+  {
+    city: "Béziers & Montpellier",
+    text: "PME, professions libérales et franchises : refonte, performance, référencement local multi-villes.",
+  },
+];
+
+const LOCAL_PROJECTS = [
+  { name: "Chiringuito", city: "Vias-Plage", url: "https://www.chiringuito-vias.fr" },
+  { name: "La Guinguette", city: "Bessan", url: "https://www.guinguette-bessan.fr" },
+  { name: "O Soleil", city: "Marseillan", url: "https://www.osoleil-marseillan.fr" },
+  { name: "Infini Mouv", city: "Agde", url: "https://www.infini-mouv.fr" },
+  { name: "Les Délices de Farinette", city: "Vias", url: "https://www.lesdelicesdefarinette.fr" },
+];
+
 export default function CreationSiteWebPage() {
   return (
     <>
@@ -52,14 +81,15 @@ export default function CreationSiteWebPage() {
             Création de site web
           </p>
           <h1 className="text-[clamp(36px,7vw,72px)] font-bold tracking-[-2px] leading-tight mb-6">
-            Création de sites web{" "}
-            <span className="gradient-text">sur-mesure.</span>
+            Création de site web à Agde{" "}
+            <span className="gradient-text">et sur le littoral.</span>
           </h1>
           <p className="text-lg text-text-secondary max-w-2xl mx-auto mb-8">
-            Sites vitrines, e-commerce, landing pages — conçus pour les
-            commerces, restaurants et entreprises partout en France. Rapides sur
-            mobile, trouvés sur Google, et lisibles par les intelligences
-            artificielles qui répondent désormais à vos clients.
+            Sites vitrines, e-commerce, réservation — conçus pour les
+            restaurants, commerces et loisirs d&apos;Agde, Marseillan, Vias,
+            Sète et Béziers. Rapides sur mobile, en tête sur Google, et cités par
+            les intelligences artificielles qui répondent désormais à vos
+            clients.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -98,6 +128,66 @@ export default function CreationSiteWebPage() {
           </div>
 
           <WebPortfolioGrid projects={[...WEB_PROJECTS]} />
+        </div>
+      </section>
+
+      {/* Ancrage local — audit GSC 05/09/2026 : la page n'apparaissait
+          qu'en page 2-3 sur « agence web agde » faute de nommer les villes
+          et les clients d'ici. Villes servies + réalisations locales. */}
+      <section id="agde" className="py-20 md:py-28 bg-bg-secondary scroll-mt-24">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
+              Agence web locale
+            </p>
+            <h2 className="text-[clamp(28px,5vw,48px)] font-bold tracking-[-2px] mb-4">
+              Des sites pour les commerces{" "}
+              <span className="gradient-text">d&apos;Agde et du littoral.</span>
+            </h2>
+            <p className="text-text-secondary max-w-2xl mx-auto">
+              Le studio est à Agde. Les restaurants de plage, les guinguettes,
+              les salles de sport et les artisans du coin sont mes clients de
+              tous les jours : je connais la saison, les touristes qui cherchent
+              sur leur téléphone, et ce qu&apos;un site doit faire pour remplir
+              une terrasse.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {LOCAL_AREAS.map((area) => (
+              <div
+                key={area.city}
+                className="rounded-2xl border border-border bg-bg-card p-6 hover:border-border-hover transition-colors"
+              >
+                <h3 className="text-lg font-semibold mb-2">{area.city}</h3>
+                <p className="text-sm text-text-secondary leading-relaxed">
+                  {area.text}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-10 text-center text-sm text-text-secondary max-w-3xl mx-auto leading-relaxed">
+            Parmi les sites livrés à côté de chez vous :{" "}
+            {LOCAL_PROJECTS.map((p, i) => (
+              <span key={p.name}>
+                <a
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-text-primary underline decoration-border hover:decoration-accent transition-colors"
+                >
+                  {p.name}
+                </a>{" "}
+                ({p.city}){i < LOCAL_PROJECTS.length - 1 ? ", " : "."}
+              </span>
+            ))}{" "}
+            Et pour Marseille, le studio a désormais une{" "}
+            <Link href="/marseille" className="text-accent hover:underline">
+              antenne sur place
+            </Link>
+            .
+          </p>
         </div>
       </section>
 

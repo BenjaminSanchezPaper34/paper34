@@ -1,11 +1,15 @@
 export const NAV_LINKS = [
   { label: "Accueil", href: "/" },
+  { label: "Sites web", href: "/services/creation-site-web" },
   { label: "Services", href: "/services" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Galeries", href: "/galeries" },
 ] as const;
 
 export const SERVICES = [
+  // Ordre = priorité commerciale (05/09/2026) : d'abord ce qui fait du
+  // chiffre à forte marge (web, applications, réseaux sociaux) ; print,
+  // illustrations et objets en fin de liste.
   {
     id: "web",
     title: "Cr\u00e9ation de sites web",
@@ -37,34 +41,6 @@ export const SERVICES = [
     ],
   },
   {
-    id: "design",
-    title: "Identit\u00e9 visuelle",
-    description:
-      "Cr\u00e9ation de logos, chartes graphiques et supports de marque pour une identit\u00e9 forte et coh\u00e9rente.",
-    icon: "/images/services/design-paper34.svg",
-    features: [
-      "Logo & d\u00e9clinaisons",
-      "Charte graphique compl\u00e8te",
-      "Papeterie & supports",
-      "Guidelines de marque",
-    ],
-  },
-  {
-    id: "print",
-    title: "Communication print & impression",
-    description:
-      "De la cr\u00e9ation graphique \u00e0 l\u2019impression, je g\u00e8re tout : conception, fabrication et livraison de vos supports imprim\u00e9s. Pas besoin de chercher un imprimeur, je m\u2019en occupe.",
-    icon: "/images/services/print-paper34.svg",
-    features: [
-      "Flyers & d\u00e9pliants",
-      "Brochures & catalogues",
-      "Affiches & kakemonos",
-      "Cartes de visite",
-      "Impression & livraison",
-      "Packaging & stickers",
-    ],
-  },
-  {
     id: "reseaux-sociaux",
     title: "Gestion des r\u00e9seaux sociaux",
     description:
@@ -77,6 +53,19 @@ export const SERVICES = [
       "Publicit\u00e9 sponsoris\u00e9e (Ads)",
       "Reportings & statistiques",
       "Formation & accompagnement",
+    ],
+  },
+  {
+    id: "design",
+    title: "Identit\u00e9 visuelle",
+    description:
+      "Cr\u00e9ation de logos, chartes graphiques et supports de marque pour une identit\u00e9 forte et coh\u00e9rente.",
+    icon: "/images/services/design-paper34.svg",
+    features: [
+      "Logo & d\u00e9clinaisons",
+      "Charte graphique compl\u00e8te",
+      "Papeterie & supports",
+      "Guidelines de marque",
     ],
   },
   {
@@ -103,6 +92,21 @@ export const SERVICES = [
       "Reportage \u00e9v\u00e9nementiel",
       "Photo corporate",
       "Retouche & post-traitement",
+    ],
+  },
+  {
+    id: "print",
+    title: "Design de supports print",
+    description:
+      "Cartes, menus, flyers, affiches : je con\u00e7ois vos supports imprim\u00e9s dans la continuit\u00e9 de votre identit\u00e9 et de votre site, et je confie la fabrication \u00e0 des imprimeurs partenaires. Vous recevez le r\u00e9sultat, pas les fichiers.",
+    icon: "/images/services/print-paper34.svg",
+    features: [
+      "Flyers & d\u00e9pliants",
+      "Brochures & catalogues",
+      "Affiches & kakemonos",
+      "Cartes de visite",
+      "Impression & livraison",
+      "Packaging & stickers",
     ],
   },
   {

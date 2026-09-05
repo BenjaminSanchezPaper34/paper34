@@ -1,10 +1,27 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Création de site web sur-mesure",
+  // Requête cible n° 1 (audit GSC 05/09/2026) : « agence web agde » /
+  // « création site internet agde », page 2 → objectif page 1. Le local
+  // passe devant le national dans le titre, la description et les mots-clés.
+  title: "Création de site web à Agde et dans l'Hérault — agence web",
   description:
-    "Création de sites web sur-mesure partout en France. Sites vitrines, e-commerce, landing pages — rapides sur mobile, référencés sur Google et lisibles par les IA (ChatGPT, Gemini, Perplexity). Studio basé à Agde. Devis gratuit.",
+    "Agence web à Agde : création de sites vitrines et e-commerce pour les restaurants, commerces et loisirs d'Agde, Marseillan, Vias, Sète, Pézenas et Béziers. Rapides sur mobile, en tête sur Google, cités par ChatGPT. Devis gratuit, à partir de 800 €.",
   keywords: [
+    // Local — priorité
+    "création site web Agde",
+    "agence web Agde",
+    "création site internet Agde",
+    "agence web Hérault",
+    "site internet Cap d'Agde",
+    "création site web Marseillan",
+    "création site web Vias",
+    "création site web Sète",
+    "création site web Pézenas",
+    "création site web Béziers",
+    "création site web Montpellier",
+    "site internet restaurant Hérault",
+    "site web commerce Agde",
     // National
     "création site web",
     "création site internet",
@@ -27,13 +44,6 @@ export const metadata: Metadata = {
     "landing page",
     "création site WordPress",
     "site Next.js",
-    // Local (pour rester visible localement aussi)
-    "création site web Agde",
-    "agence web Hérault",
-    "site internet Cap d'Agde",
-    "création site web Béziers",
-    "création site web Sète",
-    "création site web Montpellier",
     // Marque
     "Paper34",
     "Benjamin Sanchez web",
@@ -43,9 +53,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     images: ["/og-image.jpg"],
-    title: "Création de site web sur-mesure | PAPER34",
+    title: "Création de site web à Agde | PAPER34",
     description:
-      "Sites vitrines, e-commerce, landing pages. Design moderne, responsive, optimisé SEO. Intervention partout en France.",
+      "Sites vitrines et e-commerce pour les restaurants, commerces et loisirs d'Agde et du littoral de l'Hérault. Rapides, référencés, cités par les IA.",
     url: "https://www.paper34.fr/services/creation-site-web",
   },
 };

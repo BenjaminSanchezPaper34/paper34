@@ -37,6 +37,17 @@ export const FAQ_ITEMS = [
       "Oui, je peux prendre en charge l'achat du nom de domaine, la configuration de l'h\u00e9bergement (Vercel, Hostinger, OVH selon le projet) et la mise en ligne. Vous restez propri\u00e9taire de tout.",
   },
   {
+    question: "Vous créez des sites pour les restaurants et commerces d'Agde ?",
+    answer:
+      "Oui, c'est le cœur de mon activité. Le studio est à Agde et la plupart des sites que je livre sont ceux de restaurants de plage, guinguettes, salles de sport, artisans et commerces d'Agde, du Cap d'Agde, de Marseillan, Vias, Bessan, Sète et Pézenas. Je connais la saison touristique et les clients qui cherchent sur leur téléphone : le site est conçu pour être trouvé sur Google Maps et sur ChatGPT, puis pour faire réserver ou venir.",
+  },
+  {
+    question:
+      "Pourquoi choisir une agence web à Agde plutôt qu'une plateforme en ligne ?",
+    answer:
+      "Parce qu'un site de restaurant ou de commerce local se gagne sur des détails qu'une plateforme ne voit pas : la bonne photo au bon endroit, la carte à jour, les horaires d'été, la fiche Google cohérente avec le site, le bouton qui appelle en un geste. Je viens sur place pour le brief, je photographie moi-même si besoin, et je reste joignable après la mise en ligne. Le site vous appartient, sans abonnement imposé.",
+  },
+  {
     question: "Travaillez-vous avec des clients partout en France ?",
     answer:
       "Oui, j'interviens partout en France \u00e0 distance. Le studio est bas\u00e9 \u00e0 Agde mais la totalit\u00e9 des \u00e9changes (brief, validation, mise en ligne) peut se faire en visio et par email. Pour les clients de l'H\u00e9rault et alentours, un d\u00e9placement pour le brief initial est possible si besoin.",
@@ -52,7 +63,7 @@ export default function JsonLdWebService() {
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Cr\u00e9ation de site web",
+    name: "Cr\u00e9ation de site web \u00e0 Agde",
     serviceType: "Web design et d\u00e9veloppement",
     provider: {
       "@type": "LocalBusiness",
@@ -67,9 +78,21 @@ export default function JsonLdWebService() {
         addressCountry: "FR",
       },
     },
-    areaServed: { "@type": "Country", name: "France" },
+    areaServed: [
+      { "@type": "City", name: "Agde" },
+      { "@type": "City", name: "Cap d'Agde" },
+      { "@type": "City", name: "Marseillan" },
+      { "@type": "City", name: "Vias" },
+      { "@type": "City", name: "Bessan" },
+      { "@type": "City", name: "S\u00e8te" },
+      { "@type": "City", name: "P\u00e9zenas" },
+      { "@type": "City", name: "B\u00e9ziers" },
+      { "@type": "City", name: "Montpellier" },
+      { "@type": "AdministrativeArea", name: "H\u00e9rault" },
+      { "@type": "Country", name: "France" },
+    ],
     description:
-      "Cr\u00e9ation de sites web sur-mesure : sites vitrines, e-commerce, landing pages. Design moderne, responsive, optimis\u00e9 SEO. Studio bas\u00e9 \u00e0 Agde, intervention partout en France \u00e0 distance.",
+      "Cr\u00e9ation de sites web pour les restaurants, commerces et loisirs d'Agde et du littoral de l'H\u00e9rault : sites vitrines, e-commerce, r\u00e9servation. Rapides sur mobile, r\u00e9f\u00e9renc\u00e9s sur Google, cit\u00e9s par les IA. Studio \u00e0 Agde, intervention partout en France \u00e0 distance.",
     offers: {
       "@type": "Offer",
       priceCurrency: "EUR",
