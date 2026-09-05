@@ -45,7 +45,7 @@ const LOCAL_CASES = [
   },
   {
     city: "Vias-Plage",
-    text: "Le Chiringuito de Vias-Plage, le Pampa et Fabrikus World : trois comptes animés à la saison, contenus produits sur place, publication aux créneaux où les vacanciers regardent. Les Délices de Farinette : compte et site.",
+    text: "Le Chiringuito de Vias-Plage : compte animé à la saison, contenus produits sur place, publication aux créneaux où les vacanciers regardent. Les Délices de Farinette : compte et site.",
   },
   {
     city: "Bessan",
@@ -53,7 +53,7 @@ const LOCAL_CASES = [
   },
   {
     city: "Pézenas",
-    text: "Les Scènes d'Oc, troupe de théâtre : reportage de représentation pour leurs réseaux et leur presse. Métiers d'art, antiquaires et commerces du centre : le contenu se tourne dans vos ateliers et vos rues.",
+    text: "Métiers d'art, antiquaires, restaurants et commerces du centre historique : le contenu se tourne dans vos ateliers et vos rues, au rythme des visiteurs du week-end et des marchés.",
   },
   {
     city: "Sète et Béziers",
