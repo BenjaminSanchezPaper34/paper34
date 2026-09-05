@@ -41,7 +41,7 @@ const LOCAL_CASES = [
   },
   {
     city: "Marseillan",
-    text: "La Team C, le restaurant du boulevard Lamartine : photos de l'équipe et des plats pour ses réseaux et ses fiches. Midi Cap Thau, sorties en mer : reportage à bord, dauphins et grand bleu pour Instagram.",
+    text: "La Team C, le restaurant du boulevard Lamartine : photos de l'équipe et des plats pour ses réseaux et ses fiches. Port, étang de Thau et plage : les restaurants et loisirs de Marseillan ont une lumière et une saison à eux, le contenu se tourne sur place.",
   },
   {
     city: "Vias-Plage",
