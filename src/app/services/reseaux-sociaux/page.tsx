@@ -32,6 +32,35 @@ const PROCESS_STEPS = [
   },
 ];
 
+// Villes servies et clients nommés (comptes animés ou contenus produits pour
+// leurs réseaux). Ordre : du studio vers l'extérieur.
+const LOCAL_CASES = [
+  {
+    city: "Agde et le Cap d'Agde",
+    text: "Infini Mouv, la salle de sport d'Agde : compte animé, contenus tournés en salle. Megakart, le karting du Cap : reportages photo des sessions pour leurs réseaux. Plages, loisirs et commerces du Cap : la saison se prépare au printemps.",
+  },
+  {
+    city: "Marseillan",
+    text: "La Team C, le restaurant du boulevard Lamartine : photos de l'équipe et des plats pour ses réseaux et ses fiches. Midi Cap Thau, sorties en mer : reportage à bord, dauphins et grand bleu pour Instagram.",
+  },
+  {
+    city: "Vias-Plage",
+    text: "Le Chiringuito de Vias-Plage, le Pampa et Fabrikus World : trois comptes animés à la saison, contenus produits sur place, publication aux créneaux où les vacanciers regardent. Les Délices de Farinette : compte et site.",
+  },
+  {
+    city: "Bessan",
+    text: "La Guinguette de Bessan : compte animé, reportages des soirées et des concerts, galeries photo partagées aux clients le lendemain matin pour qu'ils repartagent.",
+  },
+  {
+    city: "Pézenas",
+    text: "Les Scènes d'Oc, troupe de théâtre : reportage de représentation pour leurs réseaux et leur presse. Métiers d'art, antiquaires et commerces du centre : le contenu se tourne dans vos ateliers et vos rues.",
+  },
+  {
+    city: "Sète et Béziers",
+    text: "Restaurants, commerces et PME : même méthode, shooting sur place, calendrier local, reporting mensuel. Déplacement inclus dans l'Hérault, le reste de la France à distance.",
+  },
+];
+
 export default function ReseauxSociauxPage() {
   return (
     <>
@@ -51,13 +80,14 @@ export default function ReseauxSociauxPage() {
             Gestion des réseaux sociaux
           </p>
           <h1 className="text-[clamp(36px,7vw,72px)] font-bold tracking-[-2px] leading-tight mb-6">
-            Vos réseaux,{" "}
-            <span className="gradient-text">votre image.</span>
+            Gestion des réseaux sociaux{" "}
+            <span className="gradient-text">à Agde et sur le littoral.</span>
           </h1>
           <p className="text-lg text-text-secondary max-w-2xl mx-auto mb-8">
-            Stratégie éditoriale, création de contenu photo et vidéo, animation
-            de communauté. Je m&apos;occupe de votre présence sociale pour que vous
-            puissiez vous concentrer sur votre métier.
+            Stratégie éditoriale, photo, vidéo et publication pour les
+            restaurants, commerces et loisirs d&apos;Agde, Marseillan, Vias,
+            Bessan, Pézenas, Sète et Béziers. Je m&apos;occupe de votre présence
+            sociale pour que vous puissiez vous concentrer sur votre métier.
           </p>
           <div className="flex justify-center">
             <Link
@@ -97,8 +127,46 @@ export default function ReseauxSociauxPage() {
         </div>
       </section>
 
+      {/* Ancrage local — audit GSC 05/09/2026 : la page ne nommait ni ville
+          ni client, position 61-76 sur « gestion réseaux sociaux pézenas /
+          béziers ». Villes servies + cas clients nommés. */}
+      <section id="local" className="py-20 md:py-28 bg-bg-primary scroll-mt-24">
+        <div className="mx-auto max-w-6xl px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
+              Community manager local
+            </p>
+            <h2 className="text-[clamp(28px,5vw,48px)] font-bold tracking-[-2px] mb-4">
+              Des comptes qui vivent{" "}
+              <span className="gradient-text">ici, pas depuis un bureau.</span>
+            </h2>
+            <p className="text-text-secondary max-w-2xl mx-auto">
+              Je photographie et je filme sur place : la terrasse au coucher du
+              soleil, le service du midi, l&apos;équipe, la soirée. C&apos;est ce
+              contenu vrai, tourné à Agde, Vias ou Marseillan, qui fait remonter
+              un compte local. Et je connais le calendrier d&apos;ici : rentrée,
+              vacances de la zone C, saison, marchés, fêtes de village.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {LOCAL_CASES.map((c) => (
+              <div
+                key={c.city}
+                className="rounded-2xl border border-border bg-bg-card p-6 hover:border-border-hover transition-colors"
+              >
+                <h3 className="text-lg font-semibold mb-2">{c.city}</h3>
+                <p className="text-sm text-text-secondary leading-relaxed">
+                  {c.text}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Processus */}
-      <section className="py-20 md:py-28 bg-bg-primary">
+      <section className="py-20 md:py-28 bg-bg-secondary">
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
           <div className="text-center mb-16">
             <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
@@ -134,8 +202,9 @@ export default function ReseauxSociauxPage() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="py-20 md:py-28 bg-bg-secondary">
+      {/* FAQ — fond primaire : la section Processus au-dessus est déjà en
+          secondaire, deux fonds identiques adjacents sont interdits. */}
+      <section className="py-20 md:py-28 bg-bg-primary">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <div className="text-center mb-16">
             <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">

@@ -1,10 +1,22 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Gestion des réseaux sociaux",
+  // Audit GSC 05/09/2026 : la page sortait en position 61-76 sur « gestion
+  // réseaux sociaux pézenas / béziers » faute de nommer villes et clients.
+  title: "Gestion des réseaux sociaux à Agde, Pézenas et Béziers",
   description:
-    "Gestion complète de vos réseaux sociaux : stratégie éditoriale, création de contenu photo et vidéo, animation de communauté, publicité sponsorisée. Studio basé à Agde, intervention partout en France.",
+    "Community manager à Agde : stratégie, photo, vidéo et publication pour les restaurants, commerces et loisirs d'Agde, Marseillan, Vias, Bessan, Pézenas, Sète et Béziers. Comptes animés au quotidien, reporting mensuel, publicité Meta et TikTok.",
   keywords: [
+    // Local — priorité
+    "gestion réseaux sociaux Agde",
+    "community manager Agde",
+    "gestion réseaux sociaux Pézenas",
+    "gestion réseaux sociaux Béziers",
+    "gestion réseaux sociaux Sète",
+    "community manager Hérault",
+    "gestion Instagram restaurant Hérault",
+    "social media Marseillan",
+    "social media Vias",
     // National
     "gestion réseaux sociaux",
     "community manager",
@@ -19,11 +31,6 @@ export const metadata: Metadata = {
     "publicité Instagram",
     "shooting réseaux sociaux",
     "reels Instagram pro",
-    // Local
-    "community manager Agde",
-    "gestion réseaux sociaux Hérault",
-    "social media Béziers",
-    "social media Sète",
     // Marque
     "Paper34",
     "Benjamin Sanchez social",
@@ -33,9 +40,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     images: ["/og-image.jpg"],
-    title: "Gestion des réseaux sociaux | PAPER34",
+    title: "Gestion des réseaux sociaux à Agde | PAPER34",
     description:
-      "Stratégie, création de contenu, animation. Voir les comptes Instagram que je gère pour mes clients.",
+      "Stratégie, photo, vidéo, publication : les comptes Instagram de restaurants et commerces d'Agde, Vias, Bessan et Marseillan que j'anime au quotidien.",
     url: "https://www.paper34.fr/services/reseaux-sociaux",
   },
 };

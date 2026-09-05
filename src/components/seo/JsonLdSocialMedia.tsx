@@ -35,6 +35,12 @@ export const SOCIAL_FAQ = [
       "Oui, je peux créer et gérer vos campagnes publicitaires sur Meta (Instagram + Facebook) et TikTok : ciblage, créatives, suivi des performances, optimisation du budget.",
   },
   {
+    question:
+      "Vous gérez les réseaux sociaux de commerces à Agde, Pézenas ou Béziers ?",
+    answer:
+      "Oui, c'est mon terrain. Le studio est à Agde et j'anime les comptes de restaurants, commerces et loisirs d'Agde, du Cap d'Agde, de Vias-Plage, de Bessan et de Marseillan, avec des shootings sur place. Pézenas, Sète et Béziers sont à moins de quarante minutes : je m'y déplace pour les tournages, le reste se fait à distance. Le contenu tourné chez vous, au bon moment de la saison, est ce qui fait remonter un compte local.",
+  },
+  {
     question: "Combien de temps avant de voir des résultats ?",
     answer:
       "Les premiers résultats (engagement, croissance) sont visibles en 1 à 3 mois avec une stratégie solide et des publications régulières. La conversion en clients est progressive et dépend du secteur.",
@@ -45,7 +51,7 @@ export default function JsonLdSocialMedia() {
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    name: "Gestion des réseaux sociaux",
+    name: "Gestion des réseaux sociaux à Agde",
     serviceType: "Social media management",
     provider: {
       "@type": "LocalBusiness",
@@ -60,9 +66,20 @@ export default function JsonLdSocialMedia() {
         addressCountry: "FR",
       },
     },
-    areaServed: { "@type": "Country", name: "France" },
+    areaServed: [
+      { "@type": "City", name: "Agde" },
+      { "@type": "City", name: "Cap d'Agde" },
+      { "@type": "City", name: "Marseillan" },
+      { "@type": "City", name: "Vias" },
+      { "@type": "City", name: "Bessan" },
+      { "@type": "City", name: "Pézenas" },
+      { "@type": "City", name: "Sète" },
+      { "@type": "City", name: "Béziers" },
+      { "@type": "AdministrativeArea", name: "Hérault" },
+      { "@type": "Country", name: "France" },
+    ],
     description:
-      "Gestion complète de réseaux sociaux : stratégie éditoriale, création de contenu photo et vidéo, animation de communauté, publicité sponsorisée. Studio basé à Agde, intervention partout en France.",
+      "Gestion de réseaux sociaux pour les restaurants, commerces et loisirs d'Agde, Marseillan, Vias, Bessan, Pézenas, Sète et Béziers : stratégie éditoriale, photo et vidéo tournées sur place, publication, animation, publicité Meta et TikTok. Studio à Agde, intervention partout en France à distance.",
     url: "https://www.paper34.fr/services/reseaux-sociaux",
   };
 

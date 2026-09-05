@@ -37,20 +37,28 @@ const PROCESS_STEPS = [
 // de la France à distance. Ordre : du studio vers l'extérieur.
 const LOCAL_AREAS = [
   {
-    city: "Agde & Cap d'Agde",
-    text: "Restaurants, plages privées, loisirs nautiques, commerces du centre et du Cap : des sites pensés pour la saison et les visiteurs sur téléphone.",
+    city: "Agde et le Cap d'Agde",
+    text: "Le studio est ici. Restaurants, plages privées, loisirs nautiques, salles de sport et commerces du centre : des sites pensés pour la saison, pour les visiteurs qui cherchent depuis la plage sur leur téléphone, et pour la fiche Google qui va avec. Infini Mouv, la salle de sport d'Agde, est un de ces sites.",
   },
   {
-    city: "Marseillan & Vias",
-    text: "Guinguettes, chiringuitos, campings et producteurs : réservation, carte à jour, photos qui donnent faim.",
+    city: "Marseillan",
+    text: "Port, étang de Thau, plage : restaurants de bord d'eau, sorties en mer, caves et producteurs. Un site de restaurant à Marseillan doit montrer la carte, la terrasse et le bouton réserver en une seconde. O Soleil, à Marseillan, en est l'exemple.",
   },
   {
-    city: "Sète, Pézenas & Bessan",
-    text: "Artisans, cabinets, boutiques et lieux culturels : un site clair qui rassure et qui se trouve sur Google Maps comme sur ChatGPT.",
+    city: "Vias et Vias-Plage",
+    text: "Chiringuitos, guinguettes, campings et commerces de saison : très forte fréquentation estivale, clientèle qui découvre l'adresse sur Google Maps et Instagram. Le Chiringuito de Vias-Plage et Les Délices de Farinette sont deux sites livrés ici.",
   },
   {
-    city: "Béziers & Montpellier",
-    text: "PME, professions libérales et franchises : refonte, performance, référencement local multi-villes.",
+    city: "Sète",
+    text: "Restaurants du quai, artisans, cabinets et lieux culturels : une ville où la concurrence en ligne est réelle. Le site doit être rapide, structuré et cité par les IA quand on demande « où manger à Sète ».",
+  },
+  {
+    city: "Pézenas",
+    text: "Métiers d'art, antiquaires, compagnies de théâtre, commerces du centre historique : des sites qui racontent un savoir-faire et qui sortent sur les recherches de visiteurs du week-end.",
+  },
+  {
+    city: "Béziers et Bessan",
+    text: "PME, professions libérales, franchises et lieux de sortie : refonte, performance, référencement local sur plusieurs villes. La Guinguette de Bessan est un site du studio.",
   },
 ];
 
@@ -153,7 +161,7 @@ export default function CreationSiteWebPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {LOCAL_AREAS.map((area) => (
               <div
                 key={area.city}

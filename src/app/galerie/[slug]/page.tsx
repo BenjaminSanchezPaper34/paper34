@@ -188,6 +188,18 @@ export default async function GaleriePage({
                   ? "Clips, événements, publicités : Paper34 filme et monte vos projets, du tournage à la diffusion."
                   : "Soirées, ouvertures, mariages : Paper34 photographie et filme vos événements, et accompagne aussi votre image au quotidien (identité, réseaux, site web)."}
           </p>
+          {/* Lien éditorial vers l'offre prioritaire du studio (maillage
+              interne vers la page création de site, audit GSC 05/09/2026). */}
+          <p className="text-sm text-text-tertiary max-w-2xl mx-auto -mt-4 mb-8">
+            Ces photos servent aussi un site : découvrez la{" "}
+            <Link
+              href="/services/creation-site-web"
+              className="text-accent hover:underline"
+            >
+              création de site web à Agde et sur le littoral
+            </Link>{" "}
+            par Paper34.
+          </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link
               href="/contact"
