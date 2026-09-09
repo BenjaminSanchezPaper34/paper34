@@ -55,7 +55,7 @@ export const FAQ_ITEMS = [
   {
     question: "Que se passe-t-il apr\u00e8s la mise en ligne du site ?",
     answer:
-      "Je propose un contrat de maintenance optionnel pour les mises \u00e0 jour de s\u00e9curit\u00e9, les sauvegardes r\u00e9guli\u00e8res et les \u00e9volutions futures de votre site. Vous restez libre d'arr\u00eater \u00e0 tout moment.",
+      "Je propose une maintenance mensuelle : chaque mois, je lis vos r\u00e9sultats Google et Bing, je tiens vos fiches Google Maps, Apple Plans et Bing Places align\u00e9es sur le site, je m'occupe de la s\u00e9curit\u00e9, de l'h\u00e9bergement et des sauvegardes, et je vous envoie un rapport avec trois d\u00e9cisions concr\u00e8tes. Le montant se fixe au devis selon votre rythme de modifications : un restaurant qui change sa carte chaque semaine et une entreprise qui ne touche \u00e0 rien pendant un an n'ont pas le m\u00eame abonnement. R\u00e9siliable \u00e0 tout moment.",
   },
 ];
 

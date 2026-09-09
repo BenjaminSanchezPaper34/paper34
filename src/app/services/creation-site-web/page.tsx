@@ -2,6 +2,7 @@ import Link from "next/link";
 import { WEB_PROJECTS } from "@/lib/web-projects";
 import WebPortfolioGrid from "@/components/web-portfolio/WebPortfolioGrid";
 import SiteAdvantage from "@/components/web/SiteAdvantage";
+import MaintenanceMensuelle from "@/components/web/MaintenanceMensuelle";
 import JsonLdWebService, { FAQ_ITEMS } from "@/components/seo/JsonLdWebService";
 import JsonLdBreadcrumb from "@/components/seo/JsonLdBreadcrumb";
 
@@ -239,8 +240,11 @@ export default function CreationSiteWebPage() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="py-20 md:py-28 bg-bg-secondary">
+      {/* Maintenance mensuelle — l'abonnement annoncé avant le devis */}
+      <MaintenanceMensuelle />
+
+      {/* FAQ — fond primaire : la maintenance au-dessus est en secondaire */}
+      <section className="py-20 md:py-28 bg-bg-primary">
         <div className="mx-auto max-w-4xl px-6 lg:px-8">
           <div className="text-center mb-16">
             <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
