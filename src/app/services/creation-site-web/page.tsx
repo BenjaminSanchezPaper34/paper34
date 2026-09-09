@@ -30,7 +30,7 @@ const PROCESS_STEPS = [
   {
     n: "05",
     title: "Maintenance & évolution",
-    text: "Maintenance optionnelle pour les mises à jour de sécurité, sauvegardes régulières et évolutions du site dans le temps.",
+    text: "Maintenance mensuelle : sécurité et sauvegardes, résultats Google et Bing lus chaque mois, fiches d'établissement tenues à jour, rapport avec trois décisions. Détaillée ci-dessous, chiffrée au devis.",
   },
 ];
 
@@ -119,7 +119,7 @@ export default function CreationSiteWebPage() {
 
       {/* Portfolio web — la preuve d'abord : on montre des images avant de
           parler méthode (même hiérarchie que la page réseaux sociaux). */}
-      <section id="realisations" className="py-20 md:py-28 bg-bg-primary scroll-mt-24">
+      <section id="realisations" className="py-20 md:py-28 bg-bg-secondary scroll-mt-24">
         {/* Conteneur élargi au-delà de 1536 px : sans ça, les 5 colonnes
             réduiraient chaque maquette à ~220 px et l'URL deviendrait illisible. */}
         <div className="mx-auto max-w-7xl 2xl:max-w-[1600px] px-6 lg:px-8">
@@ -143,7 +143,7 @@ export default function CreationSiteWebPage() {
       {/* Ancrage local — audit GSC 05/09/2026 : la page n'apparaissait
           qu'en page 2-3 sur « agence web agde » faute de nommer les villes
           et les clients d'ici. Villes servies + réalisations locales. */}
-      <section id="agde" className="py-20 md:py-28 bg-bg-secondary scroll-mt-24">
+      <section id="agde" className="py-20 md:py-28 bg-bg-primary scroll-mt-24">
         <div className="mx-auto max-w-6xl px-6 lg:px-8">
           <div className="text-center mb-14">
             <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">
