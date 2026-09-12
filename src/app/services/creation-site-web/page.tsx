@@ -47,7 +47,7 @@ const LOCAL_AREAS = [
   },
   {
     city: "Vias et Vias-Plage",
-    text: "Chiringuitos, guinguettes, campings et commerces de saison : très forte fréquentation estivale, clientèle qui découvre l'adresse sur Google Maps et Instagram. Le Chiringuito de Vias-Plage et Les Délices de Farinette sont deux sites livrés ici.",
+    text: "Chiringuitos, guinguettes, karting, campings et commerces de saison : très forte fréquentation estivale, clientèle qui découvre l'adresse sur Google Maps et Instagram. Le Chiringuito de Vias-Plage, Megakart et Les Délices de Farinette sont trois sites livrés ici.",
   },
   {
     city: "Sète",
@@ -64,6 +64,7 @@ const LOCAL_AREAS = [
 ];
 
 const LOCAL_PROJECTS = [
+  { name: "Megakart", city: "Vias-Plage", url: "https://megakart.fr" },
   { name: "Chiringuito", city: "Vias-Plage", url: "https://www.chiringuito-vias.fr" },
   { name: "La Guinguette", city: "Bessan", url: "https://www.guinguette-bessan.fr" },
   { name: "O Soleil", city: "Marseillan", url: "https://www.osoleil-marseillan.fr" },

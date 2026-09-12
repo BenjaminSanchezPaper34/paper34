@@ -15,6 +15,12 @@ export const WEB_PROJECTS: WebProject[] = [
     description: "Cabinet d'avocats à Béziers",
   },
   {
+    name: "Megakart",
+    url: "https://megakart.fr",
+    category: "Karting",
+    description: "Circuit de karting outdoor à Vias-Plage",
+  },
+  {
     name: "Chiringuito",
     url: "https://www.chiringuito-vias.fr",
     category: "Plage privée",
