@@ -37,7 +37,7 @@ const PROCESS_STEPS = [
 const LOCAL_CASES = [
   {
     city: "Agde et le Cap d'Agde",
-    text: "Infini Mouv, la salle de sport d'Agde : compte animé, contenus tournés en salle. Megakart, le karting du Cap : reportages photo des sessions pour leurs réseaux. Plages, loisirs et commerces du Cap : la saison se prépare au printemps.",
+    text: "Infini Mouv, la salle de sport d'Agde : compte animé, contenus tournés en salle. Plages, loisirs nautiques et commerces du Cap : la saison se prépare au printemps, les contenus se tournent en mai.",
   },
   {
     city: "Marseillan",
@@ -45,7 +45,7 @@ const LOCAL_CASES = [
   },
   {
     city: "Vias-Plage",
-    text: "Le Chiringuito de Vias-Plage : compte animé à la saison, contenus produits sur place, publication aux créneaux où les vacanciers regardent. Les Délices de Farinette : compte et site.",
+    text: "Le Chiringuito de Vias-Plage : compte animé à la saison, contenus produits sur place, publication aux créneaux où les vacanciers regardent. Megakart, le karting de Vias : reportages photo des sessions et campagne sponsorisée. Les Délices de Farinette : compte et site.",
   },
   {
     city: "Bessan",
