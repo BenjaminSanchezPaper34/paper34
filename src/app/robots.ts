@@ -26,6 +26,7 @@ const BLOCKED_BOTS = [
 const AI_BOTS = [
   "GPTBot",
   "OAI-SearchBot",
+  "OAI-AdsBot", // crawler de validation des annonces ChatGPT Ads (24/09/2026)
   "ChatGPT-User",
   "ClaudeBot",
   "Claude-Web",
