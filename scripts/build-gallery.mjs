@@ -88,7 +88,7 @@ const GALLERIES = [
       "\u2764\uFE0F N'h\u00e9sitez pas \u00e0 nous mentionner sur vos r\u00e9seaux \u2764\uFE0F\n\n" +
       "\u{1F305} Closing de la saison \u00b7 27 septembre 2026\n" +
       "\u{1F334} @chiringuitovias\n" +
-      "\u{1F4F8} @benjaminsanchez_paper34",
+      "\u{1F4F8} @benjaminsanchez_paper34 · @clementgautier.photo",
     exclude: [],
   },
   // Galeries pr\u00e9c\u00e9dentes \u2014 d\u00e9j\u00e0 construites et sur R2, NE PAS rebuild :
