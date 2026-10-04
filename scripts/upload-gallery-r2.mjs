@@ -15,7 +15,7 @@ import { readFileSync, writeFileSync, existsSync, rmSync } from "fs";
 import { join } from "path";
 import { requireR2, r2Client, putFile, deletePrefix } from "./r2.mjs";
 
-const SLUGS = ["midicapthau-en-mer"];
+const SLUGS = ["chiringuito-closing"];
 
 function ctOf(ext) {
   const e = ext.toLowerCase();
