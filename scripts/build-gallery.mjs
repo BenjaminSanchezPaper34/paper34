@@ -78,21 +78,21 @@ function fileNum(name) {
 // ─── Config des galeries à construire ──────────────────────────────
 const GALLERIES = [
   {
-    slug: "chiringuito-closing",
-    title: "Closing",
-    client: "Chiringuito Vias",
-    date: "2026-09-27",
-    src: "partage photos/CHIRINGUITO - VIAS/5-27I09I26-CLOSING",
+    slug: "megakart-course-enfants",
+    title: "Course enfants",
+    client: "Megakart",
+    date: "2026-10-11",
+    src: "partage photos/MEGAKART - VIAS/2-11I10I26-COURSEENFANTS",
     intro:
       "\u{1F44B} Tap sur une photo pour la t\u00e9l\u00e9charger\n" +
       "\u2764\uFE0F N'h\u00e9sitez pas \u00e0 nous mentionner sur vos r\u00e9seaux \u2764\uFE0F\n\n" +
-      "\u{1F305} Closing de la saison \u00b7 27 septembre 2026\n" +
-      "\u{1F334} @chiringuitovias\n" +
-      "\u{1F4F8} @benjaminsanchez_paper34 · @clementgautier.photo",
+      "\u{1F3CE}\uFE0F Course enfants \u00b7 11 octobre 2026 \u00b7 Vias-Plage\n" +
+      "\u{1F3C1} @karting_megakart\n" +
+      "\u{1F4F8} @benjaminsanchez_paper34",
     exclude: [],
   },
   // Galeries pr\u00e9c\u00e9dentes \u2014 d\u00e9j\u00e0 construites et sur R2, NE PAS rebuild :
-  // midicapthau-en-mer (02/09) \u00b7 megakart-lorik (28/08) \u00b7 scenes-doc-impromptu (23/08) \u00b7 guinguette-st-laurent (11/08)
+  // chiringuito-closing (27/09, + @clementgautier.photo) \u00b7 midicapthau-en-mer (02/09) \u00b7 megakart-lorik (28/08) \u00b7 scenes-doc-impromptu (23/08) \u00b7 guinguette-st-laurent (11/08)
   // actah-associes (09/07, cover 5 = A7V-5, + film-cabinet ajout\u00e9 \u00e0 la main)
   // aperol (24/07) \u00b7 reggaeton (11/07, cover 90)
   // coachella (21/06, exclude 7507647, cover 126) \u00b7 opening (06/06, cover 106)
