@@ -82,6 +82,7 @@ const GALLERIES = [
     title: "Bricocash",
     client: "Megakart",
     date: "2026-08-29",
+    cover: 19,
     src: "partage photos/MEGAKART - VIAS/3-29I08I26-BRICOCASH",
     intro:
       "\u{1F44B} Tap sur une photo pour la t\u00e9l\u00e9charger\n" +
