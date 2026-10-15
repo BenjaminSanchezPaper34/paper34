@@ -224,6 +224,8 @@ async function buildGallery(g) {
     ...(g.ctaTheme ? { ctaTheme: g.ctaTheme } : {}),
     ...(g.intro ? { intro: g.intro } : {}),
     ...(g.cover && photos[g.cover - 1] ? { cover: photos[g.cover - 1].id } : {}),
+    // Hors Google (mariage, mineurs reconnaissables) : noindex + absente du sitemap
+    ...(g.private ? { private: true } : {}),
     ...(excludedNames.length ? { excluded: excludedNames } : {}),
     count: photos.length,
     totalOriginalBytes: photos.reduce((s, p) => s + p.originalBytes, 0),
