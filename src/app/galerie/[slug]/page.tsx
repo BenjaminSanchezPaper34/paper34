@@ -63,7 +63,7 @@ function GalleryJsonLd({ gallery }: { gallery: Gallery }) {
     .map((p, i) => ({
       "@type": "ImageObject",
       contentUrl: assetUrl(gallery.slug, p.display),
-      thumbnailUrl: assetUrl(gallery.slug, p.thumb),
+      thumbnailUrl: assetUrl(gallery.slug, p.thumb ?? p.display),
       name: `${gallery.client} · ${gallery.title} — photo ${i + 1}`,
       width: p.width,
       height: p.height,
