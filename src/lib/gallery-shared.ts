@@ -37,6 +37,9 @@ export type Gallery = {
   totalOriginalBytes: number;
   /** Texte d'intro personnalisé (avec retours ligne et @mentions). Optionnel. */
   intro?: string;
+  /** true = galerie hors Google (mariage, mineurs reconnaissables…) :
+   *  page en noindex et absente du sitemap. Par défaut : indexée. */
+  private?: boolean;
   /** ID de la photo de couverture pour /galeries (sinon la première). */
   cover?: string;
   /** Thème du bloc d'accroche en fin de galerie ("mariage" | "entreprise").

@@ -8,12 +8,10 @@ import Reveal from "@/components/fx/Reveal";
 const SITE = "https://www.paper34.fr";
 
 export const metadata: Metadata = {
-  title: "Galeries",
+  title: "Galeries photo — reportages événements à Agde et Vias",
   description:
-    "Galeries photo des événements couverts par Paper34. Retrouvez et téléchargez vos photos.",
+    "Reportages photo Paper34 : soirées, karting, restaurants, entreprises à Agde, Vias, Bessan et Béziers. Toutes les galeries à voir et télécharger.",
   alternates: { canonical: `${SITE}/galeries` },
-  // Pages d'événements privées : accessibles par le menu mais non indexées
-  robots: { index: false, follow: false },
 };
 
 function formatDateFr(iso: string): string {

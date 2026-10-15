@@ -431,7 +431,7 @@ export default function ClientGallery({ gallery }: Props) {
             >
               <img
                 src={assetUrl(gallery.slug, p.thumb || p.display)}
-                alt={p.title || `${gallery.title} — photo ${i + 1}`}
+                alt={p.title || `${gallery.client} · ${gallery.title} — photo ${i + 1}`}
                 width={p.width}
                 height={p.height}
                 loading="lazy"
@@ -542,7 +542,7 @@ export default function ClientGallery({ gallery }: Props) {
                   ) : (
                     <img
                       src={assetUrl(gallery.slug, photos[idx].display)}
-                      alt={photos[idx].title || `${gallery.title} — photo ${idx + 1}`}
+                      alt={photos[idx].title || `${gallery.client} · ${gallery.title} — photo ${idx + 1}`}
                       className="w-full h-full object-contain select-none pointer-events-none [-webkit-touch-callout:none]"
                       draggable={false}
                     />

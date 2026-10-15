@@ -7,6 +7,7 @@ import {
   type Gallery,
 } from "@/lib/galleries";
 import ClientGallery from "@/components/gallery/ClientGallery";
+import { assetUrl } from "@/lib/gallery-shared";
 import GalleryIntro from "@/components/gallery/GalleryIntro";
 
 // Génère une page statique par galerie au build.
@@ -25,10 +26,76 @@ export async function generateMetadata({
   const { slug } = await params;
   const gallery = getGallery(slug);
   if (!gallery) return { title: "Galerie introuvable" };
+  const url = `${SITE}/galerie/${gallery.slug}`;
+  const cover = coverPhoto(gallery);
+  const date = formatDateFr(gallery.date);
+  const description = `Photos de ${gallery.title} chez ${gallery.client}, le ${date} : ${gallery.count} photos à voir et télécharger. Reportage Paper34, photographe à Agde.`.slice(0, 160);
   return {
-    title: `${gallery.title} — ${gallery.client}`,
-    robots: { index: false, follow: false },
+    title: `${gallery.client} · ${gallery.title} — photos du ${date}`,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: `${gallery.client} · ${gallery.title}`,
+      description,
+      url,
+      type: "website",
+      ...(cover ? { images: [{ url: assetUrl(gallery.slug, cover.display), width: cover.width, height: cover.height }] } : {}),
+    },
+    robots: gallery.private ? { index: false, follow: false } : { index: true, follow: true },
   };
+}
+
+const SITE = "https://www.paper34.fr";
+
+/** Photo de couverture (champ `cover`, sinon la première image). */
+function coverPhoto(g: Gallery) {
+  const imgs = g.photos.filter((p) => p.type !== "video");
+  return imgs.find((p) => p.id === g.cover) ?? imgs[0];
+}
+
+/** JSON-LD ImageGallery + fil d'Ariane : crédit et licence lus par Google Images. */
+function GalleryJsonLd({ gallery }: { gallery: Gallery }) {
+  const url = `${SITE}/galerie/${gallery.slug}`;
+  const creator = { "@type": "Person", name: "Benjamin Sanchez", url: SITE };
+  const images = gallery.photos
+    .filter((p) => p.type !== "video")
+    .slice(0, 60)
+    .map((p, i) => ({
+      "@type": "ImageObject",
+      contentUrl: assetUrl(gallery.slug, p.display),
+      thumbnailUrl: assetUrl(gallery.slug, p.thumb),
+      name: `${gallery.client} · ${gallery.title} — photo ${i + 1}`,
+      width: p.width,
+      height: p.height,
+      creator,
+      creditText: "Paper34",
+      copyrightNotice: "© Paper34 — Benjamin Sanchez",
+      license: `${SITE}/mentions-legales`,
+      acquireLicensePage: `${SITE}/contact`,
+    }));
+  const data = [
+    {
+      "@context": "https://schema.org",
+      "@type": "ImageGallery",
+      name: `${gallery.client} · ${gallery.title}`,
+      url,
+      datePublished: gallery.date,
+      about: gallery.client,
+      creator,
+      publisher: { "@type": "Organization", name: "PAPER34", url: SITE },
+      image: images,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Accueil", item: SITE },
+        { "@type": "ListItem", position: 2, name: "Galeries", item: `${SITE}/galeries` },
+        { "@type": "ListItem", position: 3, name: `${gallery.client} · ${gallery.title}`, item: url },
+      ],
+    },
+  ];
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
 }
 
 function formatDateFr(iso: string): string {
@@ -67,6 +134,7 @@ export default async function GaleriePage({
 
   return (
     <main className="min-h-screen bg-bg-primary text-text-primary">
+      {!gallery.private && <GalleryJsonLd gallery={gallery} />}
       {/* Hero (pt-24 : dégage la navbar fixe, qui porte désormais le logo) */}
       <header className="mx-auto max-w-7xl px-6 pt-24 pb-8 md:pt-28 md:pb-10">
         {/* Fil d'Ariane : retour explicite vers la liste des galeries */}
