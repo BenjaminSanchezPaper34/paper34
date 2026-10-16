@@ -87,7 +87,7 @@ const GALLERIES = [
     intro:
       "\u{1F44B} Tap sur une photo pour la t\u00e9l\u00e9charger\n" +
       "\u2764\uFE0F N'h\u00e9sitez pas \u00e0 nous mentionner sur vos r\u00e9seaux \u2764\uFE0F\n\n" +
-      "\u{1F3CE}\uFE0F Bricocash sur la piste \u00b7 29 septembre 2026 \u00b7 Vias-Plage\n" +
+      "\u{1F3CE}\uFE0F Bricocash sur la piste \u00b7 13 septembre 2026 \u00b7 Vias-Plage\n" +
       "\u{1F3C1} @karting_megakart\n" +
       "\u{1F4F8} @benjaminsanchez_paper34",
     exclude: [],
