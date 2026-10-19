@@ -38,7 +38,7 @@
 
   const renderItem = (it) => `
     <div class="item">
-      <h3 class="item__name">${esc(it.name)}</h3>
+      <h3 class="item__name notranslate" translate="no">${esc(it.name)}</h3>
       <span class="item__price">${fmtPrice(it.price)}</span>
       ${it.description ? `<p class="item__desc">${esc(it.description)}</p>` : ""}
     </div>`;
@@ -56,7 +56,7 @@
         ${s.note ? `<p class="formula__note">${esc(s.note)}</p>` : ""}
         <span class="formula__price">${fmtPrice(s.price)}</span>
         <div class="formula__group">
-          <p class="formula__starter">${esc(s.formula.starter)}</p>
+          <p class="formula__starter notranslate" translate="no">${esc(s.formula.starter)}</p>
         </div>
         <div class="formula__group">
           <ul class="formula__choices">
@@ -125,7 +125,7 @@
       ${(s.groups || []).map((g) => `
         <div class="drinks-group">
           <h3 class="drinks-group__title">${esc(g.title)}</h3>
-          ${g.subtitle ? `<p class="drinks-group__subtitle">${esc(g.subtitle)}</p>` : ""}
+          ${g.subtitle ? `<p class="drinks-group__subtitle notranslate" translate="no">${esc(g.subtitle)}</p>` : ""}
           ${(g.items || []).map(renderDrink).join("")}
         </div>`).join("")}
     </section>`;
