@@ -17,7 +17,7 @@
       "note": "Jusqu'à 11h00.",
       "items": [
         {"name": "Le salé", "description": "Saucisses grillées, tranches de lard grillées, œufs brouillés ou au plat, pain toasté, beurre, fruits de saison, boisson chaude, jus de fruit frais.", "price": "15,00€"},
-        {"name": "Le classique", "description": "Demie baguette, beurre, confitures, Nutella, viennoiseries, fruits de saison, boisson chaude, jus de fruit frais.", "price": "15,00€"}
+        {"name": "Le classique", "description": "Demi-baguette, beurre, confitures, Nutella, viennoiseries, fruits de saison, boisson chaude, jus de fruit frais.", "price": "15,00€"}
       ]
     },
     {
@@ -48,9 +48,9 @@
       "type": "list",
       "items": [
         {"name": "Moules marinières façon du Chef", "description": "Sauce légèrement crémée, oignons, persil, vin blanc.", "price": "19,50€"},
-        {"name": "Moules sétoises", "description": "Rouille, crème, persil, épices, croûtons.", "price": "19,50€"},
+        {"name": "Moules sétoises", "description": "[[Rouille]], crème, persil, épices, croûtons.", "price": "19,50€"},
         {"name": "Moules au curry rouge", "description": "Curry rouge, lait de coco, miel.", "price": "19,50€"},
-        {"name": "Moules Takamaka", "description": "Oignons, échalottes, huile de tournesol, combava, gingembre, ciboulette.", "price": "19,50€"},
+        {"name": "Moules Takamaka", "description": "Oignons, échalotes, huile de tournesol, combava, gingembre, ciboulette.", "price": "19,50€"},
         {"name": "Roquefort", "description": "Crème, Roquefort.", "price": "19,50€"}
       ]
     },
@@ -97,14 +97,14 @@
         {"name": "La Mozzarella", "description": "Mozzarella, jambon cru, huile d'olive basilic.", "price": "12,50€"},
         {"name": "La Castillane", "description": "Sauté de poulet cuisiné au paprika, oignons, chorizo, poivrons, concentré de tomate, ail et crème fraîche.", "price": "14,00€"},
         {"name": "La Ratatouille", "description": "Courgettes, aubergines, poivrons, oignons, ail, cuisinés aux herbes de Provence et sauce tomate, œuf.", "price": "13,00€"},
-        {"name": "La Texane", "description": "Bœuf mijoté, cheddar, pommes darphin, oignons.", "price": "16,00€"},
+        {"name": "La Texane", "description": "Bœuf mijoté, cheddar, [[pommes darphin]], oignons.", "price": "16,00€"},
         {"name": "La Castelleto", "description": "Mozzarella, jambon cru, salade verte, huile d'olive basilic, copeaux de Parmesan.", "price": "14,50€"},
         {"name": "L'Irlandaise", "description": "Saumon fumé, crème fraîche, ciboulette, citron, salade verte.", "price": "16,50€"},
         {"name": "La Tarentaise", "description": "Pommes de terre, lardons, Reblochon, oignons, crème fraîche.", "price": "14,50€"},
         {"name": "La Carbo", "description": "Lard, oignons, crème fraîche, œuf, Parmesan.", "price": "14,00€"},
         {"name": "L'Anglaise", "description": "Œuf, sauté de poulet, bacon, cheddar, sauce barbecue.", "price": "14,50€"},
         {"name": "La Bressoise", "description": "Œuf, poulet cuisiné aux champignons et vin blanc, persillade, emmental râpé.", "price": "14,50€"},
-        {"name": "La Sanaryenne", "description": "Poulpe en daube, salade verte, croûtons de rouille.", "price": "16,50€"}
+        {"name": "La Sanaryenne", "description": "Poulpe en daube, salade verte, croûtons de [[rouille]].", "price": "16,50€"}
       ],
       "addons": [
         {"name": "Accompagnement salade verte", "description": null, "price": "3,80€"},
@@ -145,7 +145,7 @@
         {"name": "L'Everest", "description": "Crème de marron Clément Faugier, chocolat maison fondu, noix, amandes grillées.", "price": "11,50€"},
         {"name": "La Suzon", "description": "Confit d'orange, Grand-Marnier cordon rouge 2cl.", "price": "10,90€"},
         {"name": "La Bounty", "description": "2 boules glace coco, chocolat maison fondu, noix de coco râpée.", "price": "10,70€"},
-        {"name": "La Banofee", "description": "Banane, caramel beurre salé, chantilly, brisures de palets bretons.", "price": "12,00€"},
+        {"name": "La Banoffee", "description": "Banane, caramel beurre salé, chantilly, brisures de palets bretons.", "price": "12,00€"},
         {"name": "Little boy", "description": "Chocolat maison fondu, 2 boules glace Nutella, copeaux de chocolat blanc, Praligrain.", "price": "12,00€"},
         {"name": "La Spéculoos", "description": "Pommes caramélisées, beurre, sucre, brisures de Spéculoos façon crumble, boule de glace vanille, topping caramel.", "price": "12,50€"},
         {"name": "La Ventoux", "description": "2 boules glace vanille, crème de marron Clément Faugier, Rhum des îles 2cl, chantilly.", "price": "12,50€"},
@@ -227,9 +227,9 @@
           "items": [
             {"name": "Café express Giovanni Pietrini", "price": "2,00€"},
             {"name": "Décaféiné", "price": "2,00€"},
-            {"name": "Noisette", "price": "2,00€"},
+            {"name": "Noisette", "no_translate": true, "price": "2,00€"},
             {"name": "Double café", "price": "3,80€"},
-            {"name": "Grand crème", "price": "3,80€"},
+            {"name": "Grand crème", "no_translate": true, "price": "3,80€"},
             {"name": "Chocolat", "price": "3,80€"},
             {"name": "Cappuccino", "price": "4,70€"},
             {"name": "Irish Coffee", "description": "Whisky 4cl, sirop de sucre de canne, café brûlant, chantilly.", "price": "12,50€"}
@@ -242,7 +242,7 @@
             {"name": "Thé noir Ceylan", "price": "3,90€"},
             {"name": "Thé vert menthe", "price": "3,90€"},
             {"name": "Thé vert jasmin", "price": "3,90€"},
-            {"name": "Tisane du berger", "price": "3,90€"},
+            {"name": "Tisane du berger", "no_translate": true, "price": "3,90€"},
             {"name": "Infusion tilleul", "price": "3,90€"}
           ]
         },
@@ -256,10 +256,10 @@
         {
           "title": "Bières pression",
           "items": [
-            {"name": "Fada blonde", "sizes": [{"label": "25cl", "price": "4,00€"}, {"label": "50cl", "price": "8,00€"}]},
+            {"name": "Fada blonde", "no_translate": true, "sizes": [{"label": "25cl", "price": "4,00€"}, {"label": "50cl", "price": "8,00€"}]},
             {"name": "Panaché", "sizes": [{"label": "25cl", "price": "4,00€"}, {"label": "50cl", "price": "8,00€"}]},
-            {"name": "Tango, Monaco", "sizes": [{"label": "25cl", "price": "4,20€"}, {"label": "50cl", "price": "8,40€"}]},
-            {"name": "Fada blanche", "sizes": [{"label": "25cl", "price": "4,20€"}, {"label": "50cl", "price": "8,40€"}]}
+            {"name": "Tango, Monaco", "no_translate": true, "sizes": [{"label": "25cl", "price": "4,20€"}, {"label": "50cl", "price": "8,40€"}]},
+            {"name": "Fada blanche", "no_translate": true, "sizes": [{"label": "25cl", "price": "4,20€"}, {"label": "50cl", "price": "8,40€"}]}
           ]
         },
         {
@@ -275,9 +275,9 @@
         {
           "title": "Cidres bretons Kérisac",
           "items": [
-            {"name": "La bolée 20cl", "price": "4,50€"},
-            {"name": "Le pichet 50cl", "price": "8,50€"},
-            {"name": "La bouteille 75cl", "price": "13,00€"}
+            {"name": "La bolée 20cl", "no_translate": true, "price": "4,50€"},
+            {"name": "Le pichet 50cl", "no_translate": true, "price": "8,50€"},
+            {"name": "La bouteille 75cl", "no_translate": true, "price": "13,00€"}
           ]
         },
         {
@@ -334,16 +334,16 @@
         {
           "title": "Cocktails maison",
           "items": [
-            {"name": "Apérol Spritz 25cl", "price": "10,50€"},
+            {"name": "Aperol Spritz 25cl", "price": "10,50€"},
             {"name": "Spritz passion 25cl", "price": "12,00€"},
             {"name": "Hugo Spritz 25cl", "price": "12,00€"},
             {"name": "Mojito (6cl d'alcool)", "price": "11,50€"},
             {"name": "Mojito passion", "price": "12,50€"},
-            {"name": "Caïpirinha (6cl d'alcool)", "price": "10,50€"},
+            {"name": "Caipirinha (6cl d'alcool)", "price": "10,50€"},
             {"name": "Tequila Sunrise (6cl d'alcool)", "price": "12,50€"},
             {"name": "Moscow Mule (6cl d'alcool)", "price": "12,50€"},
             {"name": "London Mule (6cl d'alcool)", "price": "12,50€"},
-            {"name": "Jamaïcan Mule (6cl d'alcool)", "price": "12,50€"},
+            {"name": "Jamaican Mule (6cl d'alcool)", "price": "12,50€"},
             {"name": "Pink Gin (6cl d'alcool)", "price": "12,50€"},
             {"name": "Maï Taï (6cl d'alcool)", "price": "12,50€"},
             {"name": "Gin Fizz (6cl d'alcool)", "price": "12,50€"}
@@ -352,7 +352,7 @@
         {
           "title": "Alcools",
           "items": [
-            {"name": "Jack Daniels 6cl", "price": "11,00€"},
+            {"name": "Jack Daniel's 6cl", "price": "11,00€"},
             {"name": "Whisky, Rhum, Vodka, Gin, Get 6cl", "price": "10,00€"},
             {"name": "Supplément soda", "price": "2,00€"}
           ]

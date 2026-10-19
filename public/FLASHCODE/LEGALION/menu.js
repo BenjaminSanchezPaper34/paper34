@@ -30,6 +30,13 @@
     }[c]));
 
   // "19,00€" → "19,00<sup>€</sup>"
+  // [[terme]] dans menu.json = terme protégé de Google Translate (ex: rouille, pommes darphin)
+  const rich = (s) =>
+    esc(s).replace(/\[\[(.+?)\]\]/g, '<span class="notranslate" translate="no">$1</span>');
+
+  // Nom de boisson protégé de la traduction si "no_translate": true (Noisette, Grand crème…)
+  const nt = (it) => (it.no_translate ? ' notranslate" translate="no' : "");
+
   const fmtPrice = (p) => {
     if (!p) return "";
     const m = String(p).match(/^(.*?)(\s?€)\s*$/);
@@ -40,7 +47,7 @@
     <div class="item">
       <h3 class="item__name notranslate" translate="no">${esc(it.name)}</h3>
       <span class="item__price">${fmtPrice(it.price)}</span>
-      ${it.description ? `<p class="item__desc">${esc(it.description)}</p>` : ""}
+      ${it.description ? `<p class="item__desc">${rich(it.description)}</p>` : ""}
     </div>`;
 
   const renderSubsection = (s) => `
@@ -107,15 +114,15 @@
         .join("");
       return `
         <div class="drink drink--multi">
-          <span class="drink__name">${esc(it.name)}</span>
+          <span class="drink__name${nt(it)}">${esc(it.name)}</span>
           <span class="drink__sizes">${sizes}</span>
         </div>`;
     }
     return `
       <div class="drink">
-        <span class="drink__name">${esc(it.name)}</span>
+        <span class="drink__name${nt(it)}">${esc(it.name)}</span>
         <span class="drink__price">${fmtPrice(it.price)}</span>
-        ${it.description ? `<p class="drink__desc">${esc(it.description)}</p>` : ""}
+        ${it.description ? `<p class="drink__desc">${rich(it.description)}</p>` : ""}
       </div>`;
   };
 
