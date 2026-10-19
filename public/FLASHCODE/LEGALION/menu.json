@@ -181,7 +181,7 @@
         {"name": "La Lune Noire", "description": "2 boules chocolat, 1 boule café, chocolat maison fondu, brownies, copeaux de chocolat, biscuit, nappage chocolat, chantilly.", "price": "12,00€"},
         {"name": "Le Désir du Roi", "description": "Profiteroles glace vanille, chocolat maison fondu, amandes grillées, chantilly, biscuit, nappage chocolat.", "price": "12,00€"},
         {"name": "L'Écureuil", "description": "2 boules café, 2 boules praliné, noisettes, nappage caramel, chantilly, biscuit, Pralins.", "price": "12,00€"},
-        {"name": "La Ruché", "description": "2 boules vanille, 1 boule framboise, miel, graines de pollen, framboises fraîches, amandes grillées.", "price": "12,00€"},
+        {"name": "La Ruche", "description": "2 boules vanille, 1 boule framboise, miel, graines de pollen, framboises fraîches, amandes grillées.", "price": "12,00€"},
         {"name": "L'Américaine", "description": "2 boules cookies, 1 boule vanille, noix de pécan, caramel fondu, cookie, biscuit, chantilly.", "price": "13,00€"},
         {"name": "Le Colonel", "description": "Sorbet citron, Vodka 6cl, biscuit.", "price": "14,00€"},
         {"name": "Le Galion", "description": "1 boule passion, 1 boule mangue, 1 boule coco, 1 boule fraise, 1 boule banane, oranges confites, chantilly, fruits de saison.", "price": "16,00€"},
