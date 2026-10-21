@@ -78,17 +78,16 @@ function fileNum(name) {
 // ─── Config des galeries à construire ──────────────────────────────
 const GALLERIES = [
   {
-    slug: "megakart-bricocash",
-    title: "Bricocash",
-    client: "Megakart",
-    date: "2026-09-13",
-    cover: 19,
-    src: "partage photos/MEGAKART - VIAS/3-29I08I26-BRICOCASH",
+    slug: "fabrikus-vias-court-en-rose",
+    title: "Vias court en rose",
+    client: "Fabrikus World",
+    date: "2026-10-18",
+    src: "partage photos/FABRIKUS WORLD - VIAS/2-18I10I26-COURSE",
     intro:
       "\u{1F44B} Tap sur une photo pour la t\u00e9l\u00e9charger\n" +
       "\u2764\uFE0F N'h\u00e9sitez pas \u00e0 nous mentionner sur vos r\u00e9seaux \u2764\uFE0F\n\n" +
-      "\u{1F3CE}\uFE0F Bricocash sur la piste \u00b7 13 septembre 2026 \u00b7 Vias-Plage\n" +
-      "\u{1F3C1} @karting_megakart\n" +
+      "\u{1F380} Vias court en rose \u00b7 18 octobre 2026 \u00b7 Fabrikus World\n" +
+      "\u{1F3A2} @fabrikusworldviasplage\n" +
       "\u{1F4F8} @benjaminsanchez_paper34",
     exclude: [],
   },
