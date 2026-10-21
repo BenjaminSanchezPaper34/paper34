@@ -87,7 +87,7 @@ const GALLERIES = [
       "\u{1F44B} Tap sur une photo pour la t\u00e9l\u00e9charger\n" +
       "\u2764\uFE0F N'h\u00e9sitez pas \u00e0 nous mentionner sur vos r\u00e9seaux \u2764\uFE0F\n\n" +
       "\u{1F380} Vias court en rose \u00b7 18 octobre 2026 \u00b7 Fabrikus World\n" +
-      "\u{1F3A2} @fabrikusworldviasplage\n" +
+      "\u{1F3A2} @fabrikusworld\n" +
       "\u{1F4F8} @benjaminsanchez_paper34",
     exclude: [],
   },

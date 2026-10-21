@@ -156,12 +156,6 @@ export const MANAGED_ACCOUNTS: ManagedAccount[] = [
     gradient: ["#10b981", "#047857"],
   },
   {
-    name: "Fabrikus World",
-    handle: "fabrikusworldviasplage",
-    category: "Parc événementiel",
-    gradient: ["#8b5cf6", "#5b21b6"],
-  },
-  {
     name: "Etienne Coffee & Shop",
     handle: "etienne_france",
     category: "Coffee shop",
