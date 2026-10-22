@@ -650,7 +650,7 @@ export default function ClientGallery({ gallery }: Props) {
                 {lightbox + 1} <span className="text-white/50">/ {photos.length}</span>
               </span>
               {suivre && (
-                <span className="pointer-events-auto flex items-center gap-1 rounded-full bg-white/15 backdrop-blur-sm pl-3.5 pr-1 py-1 text-sm text-white animate-[lightboxIn_0.4s_ease-out] mx-2 min-w-0">
+                <span className="pointer-events-auto flex items-center gap-1 rounded-full bg-gradient-to-r from-[#f58529] via-[#dd2a7b] to-[#8134af] pl-3 pr-1 py-1 text-sm text-white shadow-lg shadow-[#dd2a7b]/40 ring-1 ring-white/30 animate-[lightboxIn_0.4s_ease-out] mx-2 min-w-0">
                   <a
                     href={CONTACT_INFO.instagram}
                     target="_blank"
@@ -659,15 +659,17 @@ export default function ClientGallery({ gallery }: Props) {
                       mesure("instagram_suivre");
                       setSuivre(false);
                     }}
-                    className="truncate font-medium hover:underline underline-offset-4"
+                    className="flex items-center gap-2 truncate font-semibold"
                   >
+                    {/* Glyphe Instagram : couleurs de la marque Instagram, seule exception aux tokens du site */}
+                    <svg className="w-[18px] h-[18px] shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" /></svg>
                     Suivre sur Instagram
                   </a>
                   <button
                     type="button"
                     onClick={() => setSuivre(false)}
                     aria-label="Masquer l'invitation Instagram"
-                    className="w-8 h-8 shrink-0 rounded-full flex items-center justify-center text-white/70 hover:text-white"
+                    className="w-8 h-8 shrink-0 rounded-full flex items-center justify-center text-white/80 hover:text-white hover:bg-white/15"
                   >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
