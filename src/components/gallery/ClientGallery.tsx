@@ -39,6 +39,26 @@ export default function ClientGallery({ gallery }: Props) {
     } catch {}
     setInvite(true);
   }, [gallery.slug]);
+  /* ─── Invitation « Suivre sur Instagram » dans la visionneuse ───
+   * Petite pastille dans le bandeau du haut, entre le compteur et « Fermer » :
+   * n'occupe ni l'image, ni les flèches, ni le bouton d'enregistrement.
+   * Apparaît après 5 photos vues, se retire seule au bout de 10 s,
+   * une seule fois par session (toutes galeries). */
+  const [suivre, setSuivre] = useState(false);
+  const vues = useRef(0);
+  useEffect(() => {
+    if (lightbox === null) return;
+    vues.current += 1;
+    if (vues.current !== 5 || invite) return;
+    try {
+      if (sessionStorage.getItem("p34-suivre")) return;
+      sessionStorage.setItem("p34-suivre", "1");
+    } catch {}
+    setSuivre(true);
+    const t = setTimeout(() => setSuivre(false), 10000);
+    return () => clearTimeout(t);
+  }, [lightbox, invite]);
+
   const ouvrir = useCallback(
     (i: number) => {
       setLightbox(i);
@@ -629,6 +649,32 @@ export default function ClientGallery({ gallery }: Props) {
               <span className="text-sm font-medium tabular-nums tracking-wide">
                 {lightbox + 1} <span className="text-white/50">/ {photos.length}</span>
               </span>
+              {suivre && (
+                <span className="pointer-events-auto flex items-center gap-1 rounded-full bg-white/15 backdrop-blur-sm pl-3.5 pr-1 py-1 text-sm text-white animate-[lightboxIn_0.4s_ease-out] mx-2 min-w-0">
+                  <a
+                    href={CONTACT_INFO.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => {
+                      mesure("instagram_suivre");
+                      setSuivre(false);
+                    }}
+                    className="truncate font-medium hover:underline underline-offset-4"
+                  >
+                    Suivre sur Instagram
+                  </a>
+                  <button
+                    type="button"
+                    onClick={() => setSuivre(false)}
+                    aria-label="Masquer l'invitation Instagram"
+                    className="w-8 h-8 shrink-0 rounded-full flex items-center justify-center text-white/70 hover:text-white"
+                  >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </span>
+              )}
               <button
                 onClick={close}
                 className="pointer-events-auto w-10 h-10 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-sm text-white flex items-center justify-center transition-colors shrink-0"
