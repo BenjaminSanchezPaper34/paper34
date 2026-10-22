@@ -78,16 +78,16 @@ function fileNum(name) {
 // ─── Config des galeries à construire ──────────────────────────────
 const GALLERIES = [
   {
-    slug: "fabrikus-vias-court-en-rose",
-    title: "Vias court en rose",
-    client: "Fabrikus World",
+    slug: "megakart-100-tours",
+    title: "100 tours",
+    client: "Megakart",
     date: "2026-10-18",
-    src: "partage photos/FABRIKUS WORLD - VIAS/2-18I10I26-COURSE",
+    src: "partage photos/MEGAKART - VIAS/4-18I10I26-100TOURS",
     intro:
       "\u{1F44B} Tap sur une photo pour la t\u00e9l\u00e9charger\n" +
       "\u2764\uFE0F N'h\u00e9sitez pas \u00e0 nous mentionner sur vos r\u00e9seaux \u2764\uFE0F\n\n" +
-      "\u{1F380} Vias court en rose \u00b7 18 octobre 2026 \u00b7 Fabrikus World\n" +
-      "\u{1F3A2} @fabrikusworld\n" +
+      "\u{1F3CE}\uFE0F Les 100 tours \u00b7 18 octobre 2026 \u00b7 Vias-Plage\n" +
+      "\u{1F3C1} @karting_megakart\n" +
       "\u{1F4F8} @benjaminsanchez_paper34",
     exclude: [],
   },
