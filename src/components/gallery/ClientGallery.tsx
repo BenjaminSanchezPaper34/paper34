@@ -43,7 +43,7 @@ export default function ClientGallery({ gallery }: Props) {
    * Petite pastille dans le bandeau du haut, entre le compteur et « Fermer » :
    * n'occupe ni l'image, ni les flèches, ni le bouton d'enregistrement.
    * Apparaît après 5 photos vues, se retire seule au bout de 10 s,
-   * une seule fois par session (toutes galeries). */
+   * une fois par galerie et par session. */
   const [suivre, setSuivre] = useState(false);
   const vues = useRef(0);
   useEffect(() => {
@@ -51,13 +51,14 @@ export default function ClientGallery({ gallery }: Props) {
     vues.current += 1;
     if (vues.current !== 5 || invite) return;
     try {
-      if (sessionStorage.getItem("p34-suivre")) return;
-      sessionStorage.setItem("p34-suivre", "1");
+      const cle = `p34-suivre-${gallery.slug}`;
+      if (sessionStorage.getItem(cle)) return;
+      sessionStorage.setItem(cle, "1");
     } catch {}
     setSuivre(true);
     const t = setTimeout(() => setSuivre(false), 10000);
     return () => clearTimeout(t);
-  }, [lightbox, invite]);
+  }, [lightbox, invite, gallery.slug]);
 
   const ouvrir = useCallback(
     (i: number) => {
