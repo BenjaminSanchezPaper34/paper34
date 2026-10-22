@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, useCallback } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 /* ------------------------------------------------------------------
@@ -68,6 +69,12 @@ function purgerCookiesAnalytics() {
 export function ConsentProvider({ children }: { children: React.ReactNode }) {
   const [etat, setEtat] = useState<Etat>("inconnu");
   const [pret, setPret] = useState(false);
+  // Galeries photo : jamais de bandeau. Il recouvrait la visionneuse sur
+  // mobile et bloquait la navigation entre les photos. Sans réponse, Google
+  // Analytics ne se charge pas (conforme) ; la mesure des galeries passe par
+  // Vercel Analytics, sans cookie.
+  const pathname = usePathname();
+  const pageGalerie = pathname?.startsWith("/galerie") ?? false;
 
   useEffect(() => {
     let v: string | null = null;
@@ -114,7 +121,7 @@ export function ConsentProvider({ children }: { children: React.ReactNode }) {
     >
       {children}
 
-      {pret && etat === "inconnu" && (
+      {pret && etat === "inconnu" && !pageGalerie && (
         <div
           role="dialog"
           aria-live="polite"
