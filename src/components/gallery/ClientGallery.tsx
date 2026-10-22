@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Gallery } from "@/lib/gallery-shared";
 import { assetUrl, formatBytes } from "@/lib/gallery-shared";
+import { track } from "@vercel/analytics";
+import { CONTACT_INFO } from "@/lib/constants";
 
 type Props = { gallery: Gallery };
 
@@ -18,6 +20,32 @@ export default function ClientGallery({ gallery }: Props) {
   const [zipping, setZipping] = useState(false);
   const [zipProgress, setZipProgress] = useState(0);
   const [savingIndex, setSavingIndex] = useState<number | null>(null);
+  // Invitation Instagram : affichée une fois par galerie et par session,
+  // après le premier téléchargement réussi.
+  const [invite, setInvite] = useState(false);
+
+  /* ─── Mesure (Vercel Analytics, sans cookie) ───
+   * Les visites par galerie sont déjà comptées par Vercel (une URL par
+   * galerie) ; on mesure ici ce qu'il ne voit pas. 2 propriétés max. */
+  const mesure = useCallback(
+    (nom: string) => track(nom, { galerie: gallery.slug, client: gallery.client }),
+    [gallery.slug, gallery.client]
+  );
+  const apresTelechargement = useCallback(() => {
+    const cle = `p34-invite-${gallery.slug}`;
+    try {
+      if (sessionStorage.getItem(cle)) return;
+      sessionStorage.setItem(cle, "1");
+    } catch {}
+    setInvite(true);
+  }, [gallery.slug]);
+  const ouvrir = useCallback(
+    (i: number) => {
+      setLightbox(i);
+      mesure("photo_agrandie");
+    },
+    [mesure]
+  );
 
   // Carrousel lightbox : translation du rail en % (−100 = photo centrée)
   const [tx, setTx] = useState(-100);
@@ -61,6 +89,8 @@ export default function ClientGallery({ gallery }: Props) {
         if (nav.canShare && nav.canShare({ files: [file] })) {
           try {
             await nav.share({ files: [file] });
+            mesure("photo_telechargee");
+            apresTelechargement();
             return;
           } catch (err) {
             // Annulation utilisateur → on ne fait rien
@@ -78,6 +108,8 @@ export default function ClientGallery({ gallery }: Props) {
         a.click();
         a.remove();
         URL.revokeObjectURL(objUrl);
+        mesure("photo_telechargee");
+        apresTelechargement();
       } catch (e) {
         console.error(e);
         window.open(url, "_blank");
@@ -85,7 +117,7 @@ export default function ClientGallery({ gallery }: Props) {
         setSavingIndex(null);
       }
     },
-    [photos, gallery.slug]
+    [photos, gallery.slug, mesure, apresTelechargement]
   );
 
   /* ─── Téléchargement ZIP (sans compression) ─── */
@@ -116,6 +148,8 @@ export default function ClientGallery({ gallery }: Props) {
       a.download = `${gallery.client} - ${gallery.title}.zip`;
       document.body.appendChild(a);
       a.click();
+      mesure("zip_telecharge");
+      apresTelechargement();
       a.remove();
       URL.revokeObjectURL(url);
     } catch (e) {
@@ -311,7 +345,7 @@ export default function ClientGallery({ gallery }: Props) {
                   <div
                     key={p.id}
                     className="group relative aspect-video rounded-xl overflow-hidden bg-bg-card cursor-pointer [transform:translateZ(0)]"
-                    onClick={() => setLightbox(i)}
+                    onClick={() => ouvrir(i)}
                   >
                     <img
                       src={assetUrl(gallery.slug, p.thumb || p.display)}
@@ -349,7 +383,7 @@ export default function ClientGallery({ gallery }: Props) {
                     <div
                       key={p.id}
                       className="group relative row-span-2 rounded-xl overflow-hidden bg-bg-card cursor-pointer [transform:translateZ(0)]"
-                      onClick={() => setLightbox(i)}
+                      onClick={() => ouvrir(i)}
                     >
                       <img
                         src={assetUrl(gallery.slug, p.thumb || p.display)}
@@ -380,7 +414,7 @@ export default function ClientGallery({ gallery }: Props) {
                   <div
                     key={p.id}
                     className="group relative aspect-square rounded-xl overflow-hidden bg-bg-card cursor-pointer [transform:translateZ(0)]"
-                    onClick={() => setLightbox(i)}
+                    onClick={() => ouvrir(i)}
                   >
                     <img
                       src={assetUrl(gallery.slug, p.thumb || p.display)}
@@ -427,7 +461,7 @@ export default function ClientGallery({ gallery }: Props) {
                     : "col-span-2 aspect-video"
                   : "aspect-square"
               }`}
-              onClick={() => setLightbox(i)}
+              onClick={() => ouvrir(i)}
             >
               <img
                 src={assetUrl(gallery.slug, p.thumb || p.display)}
@@ -485,6 +519,38 @@ export default function ClientGallery({ gallery }: Props) {
         </div>
         )}
       </div>
+
+      {/* Invitation Instagram après téléchargement (une fois par galerie) */}
+      {invite && (
+        <div
+          role="status"
+          className="fixed left-1/2 -translate-x-1/2 z-[60] w-[min(92vw,440px)] rounded-2xl border border-border bg-bg-card/95 backdrop-blur px-5 py-4 shadow-2xl animate-[lightboxIn_0.3s_ease-out]"
+          style={{ bottom: "calc(16px + env(safe-area-inset-bottom, 0px))" }}
+        >
+          <p className="text-sm text-text-primary font-semibold mb-1">Photo enregistrée 📸</p>
+          <p className="text-sm text-text-secondary mb-3">
+            Vous la postez ? Identifiez @benjaminsanchez_paper34 en story, je la repartage.
+          </p>
+          <div className="flex items-center gap-2">
+            <a
+              href={CONTACT_INFO.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => mesure("instagram_clic")}
+              className="rounded-full bg-accent hover:bg-accent-hover px-4 py-2.5 text-sm font-semibold text-white transition-colors"
+            >
+              Voir le compte
+            </a>
+            <button
+              type="button"
+              onClick={() => setInvite(false)}
+              className="rounded-full px-4 py-2.5 text-sm text-text-tertiary hover:text-text-primary transition-colors"
+            >
+              Fermer
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Lightbox */}
       {lightbox !== null && (

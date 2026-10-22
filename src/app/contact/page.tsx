@@ -18,6 +18,12 @@ export default function ContactPage() {
   }, []);
 
   const [sending, setSending] = useState(false);
+  // Galerie d'origine (lien « Demander un devis » en fin de galerie)
+  const [galerie, setGalerie] = useState("");
+  useEffect(() => {
+    const g = new URLSearchParams(window.location.search).get("galerie");
+    if (g && /^[a-z0-9-]{1,80}$/.test(g)) setGalerie(g);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,9 +43,11 @@ export default function ContactPage() {
         const data = new FormData(form);
         track("devis_envoye", {
           service: String(data.get("service") || "non précisé"),
-          provenance: document.referrer
-            ? new URL(document.referrer).pathname
-            : "direct",
+          provenance: galerie
+            ? `galerie:${galerie}`
+            : document.referrer
+              ? new URL(document.referrer).pathname
+              : "direct",
         });
         setSubmitted(true);
       } else {
@@ -94,6 +102,7 @@ export default function ContactPage() {
                 onSubmit={handleSubmit}
                 className="rounded-3xl border border-border bg-bg-card p-8 md:p-10 space-y-6"
               >
+                {galerie && <input type="hidden" name="galerie" value={galerie} />}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium mb-2">

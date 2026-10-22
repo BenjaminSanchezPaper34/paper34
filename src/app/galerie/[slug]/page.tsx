@@ -98,6 +98,26 @@ function GalleryJsonLd({ gallery }: { gallery: Gallery }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }} />;
 }
 
+/** Accroche de fin de galerie selon le public qui la regarde.
+ *  `ctaTheme` du manifest prime ; sinon on déduit du client. */
+type Accroche = { titre: string; texte: string };
+function accroche(g: Gallery, isVideo: boolean): Accroche {
+  if (g.ctaTheme === "mariage")
+    return { titre: "Vous préparez un mariage ?", texte: "Je réalise le film de votre journée, de la cérémonie à la piste de danse. Racontez-moi votre projet, je m'occupe des images." };
+  if (g.ctaTheme === "entreprise")
+    return { titre: "Un film pour votre marque ?", texte: "Spots publicitaires, films d'entreprise, contenus pour vos réseaux : je mets votre activité en images, du tournage au montage." };
+  if (isVideo)
+    return { titre: "Un projet vidéo ?", texte: "Clips, événements, publicités : je filme et je monte vos projets, du tournage à la diffusion." };
+  const c = g.client.toLowerCase();
+  if (/chiringuito|guinguette|pampa|dix ?9|soleil|team c/.test(c))
+    return { titre: "Vous tenez un restaurant, une plage, un bar ?", texte: "Ces photos font vivre le compte Instagram et le site du lieu. Je fais la même chose pour le vôtre : soirées en photo, réseaux sociaux, et un site qui fait réserver." };
+  if (/megakart|fabrikus/.test(c))
+    return { titre: "Votre entreprise ou votre club prépare une sortie ?", texte: "Sorties d'équipe, compétitions, journées clients : je photographie l'événement et je livre la galerie le lendemain. Pour les lieux de loisirs, je fais aussi le site et les réseaux." };
+  if (/actah|cem|isolation|cabinet/.test(c))
+    return { titre: "Votre entreprise mérite mieux qu'une photo de banque d'images ?", texte: "Portraits d'équipe, film, site web : je construis une image professionnelle cohérente, des photos jusqu'au site." };
+  return { titre: "Un événement à couvrir ?", texte: "Soirées, ouvertures, mariages : je photographie et je filme vos événements, et j'accompagne aussi votre image au quotidien (identité, réseaux, site web)." };
+}
+
 function formatDateFr(iso: string): string {
   const d = new Date(iso);
   if (isNaN(d.getTime())) return iso;
@@ -239,22 +259,10 @@ export default async function GaleriePage({
             Paper34 · Studio graphique à Agde
           </p>
           <h2 className="text-2xl md:text-4xl font-bold tracking-[-1px] mb-4">
-            {gallery.ctaTheme === "mariage"
-              ? "Vous préparez un mariage ?"
-              : gallery.ctaTheme === "entreprise"
-                ? "Un film pour votre marque ?"
-                : isVideo
-                  ? "Un projet vidéo ?"
-                  : "Un événement à couvrir ?"}
+            {accroche(gallery, isVideo).titre}
           </h2>
           <p className="text-text-secondary max-w-2xl mx-auto mb-8">
-            {gallery.ctaTheme === "mariage"
-              ? "Paper34 réalise le film de votre journée, de la cérémonie à la piste de danse. Racontez-nous votre projet, on s'occupe des images."
-              : gallery.ctaTheme === "entreprise"
-                ? "Spots publicitaires, films d'entreprise, contenus pour vos réseaux : Paper34 met votre activité en images, du tournage au montage."
-                : isVideo
-                  ? "Clips, événements, publicités : Paper34 filme et monte vos projets, du tournage à la diffusion."
-                  : "Soirées, ouvertures, mariages : Paper34 photographie et filme vos événements, et accompagne aussi votre image au quotidien (identité, réseaux, site web)."}
+            {accroche(gallery, isVideo).texte}
           </p>
           {/* Lien éditorial vers l'offre prioritaire du studio (maillage
               interne vers la page création de site, audit GSC 05/09/2026). */}
@@ -269,8 +277,10 @@ export default async function GaleriePage({
             par Paper34.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            {/* La galerie d'origine suit la demande : champ caché du formulaire
+                et propriété de l'événement devis_envoye. */}
             <Link
-              href="/contact"
+              href={`/contact?galerie=${gallery.slug}`}
               className="rounded-full bg-accent hover:bg-accent-hover px-7 py-3 text-sm font-semibold text-white transition-colors"
             >
               Demander un devis
