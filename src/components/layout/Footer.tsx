@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { NAV_LINKS, CONTACT_INFO } from "@/lib/constants";
 import { LienGestionCookies } from "@/components/legal/Consent";
-import NewsletterForm from "@/components/layout/NewsletterForm";
 
 export default function Footer() {
   return (
@@ -25,9 +24,6 @@ export default function Footer() {
               </Link>
               . Votre communication globale au même endroit.
             </p>
-            <div className="mt-8 max-w-sm">
-              <NewsletterForm />
-            </div>
           </div>
 
           {/* Navigation */}

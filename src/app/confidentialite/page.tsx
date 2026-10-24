@@ -134,17 +134,6 @@ export default function ConfidentialitePage() {
             </p>
           </div>
 
-          <div id="newsletter" className="scroll-mt-28">
-            <h2 className="text-xl font-bold text-text-primary mb-3">Newsletter</h2>
-            <p>
-              Si vous vous inscrivez à la newsletter, votre adresse e-mail est utilisée uniquement
-              pour vous envoyer la newsletter de Paper34, sur la base de votre consentement. Elle est
-              confiée à un prestataire d&apos;envoi d&apos;e-mails qui agit pour mon compte, et
-              conservée jusqu&apos;à votre désinscription, possible en un clic dans chaque e-mail ou
-              sur simple demande à contact@paper34.fr. Elle n&apos;est jamais vendue ni cédée.
-            </p>
-          </div>
-
           <div>
             <h2 className="text-xl font-bold text-text-primary mb-3">Cookies</h2>
             <p>
