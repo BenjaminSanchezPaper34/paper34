@@ -156,17 +156,19 @@ export default function ServicesPage() {
             Toute votre communication, <span className="gradient-text">une seule mensualité.</span>
           </h2>
           <p className="text-text-secondary max-w-2xl mb-8 leading-relaxed">
-            Site tenu à jour, réseaux animés, contenu tourné sur place, newsletter, campagnes quand il
-            faut accélérer, et un rapport mensuel avec trois décisions concrètes. Le montant se fixe au
+            Site et fiche Google tenus à jour, réseaux animés, contenu tourné sur place, newsletter,
+            campagnes pilotées au jour le jour, et un rapport mensuel qui dit où aller chercher la
+            performance, avec trois décisions concrètes. Le montant se fixe au
             devis, selon votre rythme et votre saison.
           </p>
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 text-sm">
             {[
-              "Site et fiches Google tenus à jour",
+              "Site et fiche Google tenus à jour",
+              "Réponse aux avis Google",
               "Séances photo et vidéo sur place",
               "Réseaux sociaux animés",
               "Newsletter aux temps forts",
-              "Campagnes sponsorisées sur objectif",
+              "Campagnes pilotées pendant leur diffusion",
               "Rapport mensuel chiffré",
             ].map((x) => (
               <li key={x} className="flex items-center gap-3 text-text-secondary">

@@ -10,13 +10,13 @@ const TEMPS = [
   {
     n: "01",
     titre: "Être trouvé",
-    texte: "Un site rapide qui fait réserver, référencé sur Google, Maps et dans les réponses des IA.",
+    texte: "Un site rapide qui fait réserver, une fiche Google tenue à jour (horaires, photos, avis), et chaque mois un rapport qui me dit où aller chercher la performance.",
     liens: [{ label: "Sites web", href: "/services/creation-site-web" }],
   },
   {
     n: "02",
     titre: "Être vu",
-    texte: "Contenu tourné chez vous, réseaux animés toute l'année, campagnes Instagram, Facebook et Google quand il faut accélérer.",
+    texte: "Contenu tourné chez vous, réseaux animés toute l'année, et des campagnes Instagram, Facebook et Google suivies pendant toute leur diffusion pour dépenser là où ça rapporte.",
     liens: [
       { label: "Réseaux sociaux", href: "/services/reseaux-sociaux" },
       { label: "Campagnes", href: "/services/campagnes-sponsorisees" },

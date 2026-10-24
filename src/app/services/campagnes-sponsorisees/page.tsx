@@ -7,7 +7,7 @@ export default function CampagnesSponsoriseesPage() {
       eyebrow="Campagnes sponsorisées"
       titre="La publicité qui part"
       titreAccent="de vos vraies images."
-      chapo="Instagram, Facebook et Google : je crée les visuels sur place, je cible les gens qui peuvent vraiment venir chez vous, et je mesure ce que la campagne rapporte en appels, réservations et visites."
+      chapo="Instagram, Facebook et Google : je crée les visuels sur place, je cible les gens qui peuvent vraiment venir chez vous, puis je pilote la campagne pendant toute sa diffusion pour que chaque euro aille là où il rapporte en appels, réservations et visites."
       blocsTitre="Ce que je prends en charge"
       blocs={[
         { titre: "Instagram et Facebook", texte: "Campagnes de notoriété, d'événement ou de réservation, ciblées autour de chez vous et sur les vacanciers de passage." },
@@ -15,12 +15,12 @@ export default function CampagnesSponsoriseesPage() {
         { titre: "Visuels et vidéos", texte: "Les créations sont tournées chez vous : photos, reels, affiches animées. Une pub qui montre le vrai lieu convertit mieux qu'une image de banque." },
         { titre: "Ciblage local", texte: "Rayon autour du lieu, villes du littoral, centres d'intérêt, visiteurs de votre site et de vos réseaux : le budget va aux gens qui peuvent venir." },
         { titre: "Suivi de conversion", texte: "Appels, clics réservation, itinéraires, formulaires : chaque campagne est mesurée sur ce qui fait du chiffre, pas sur les likes." },
-        { titre: "Rapport et décisions", texte: "Chaque mois, ce qui a marché, ce qu'on arrête, ce qu'on teste, avec les chiffres. Le budget se déplace vers ce qui rapporte." },
+        { titre: "Pilotage pendant la diffusion", texte: "Je ne lance pas une campagne pour la laisser tourner : je lis les résultats tout au long de la diffusion et j'ajuste visuels, ciblage et répartition du budget pour dépenser là où ça rapporte. C'est ce que je fais pour Megakart, le karting de Vias." },
       ]}
       etapes={[
         { titre: "Objectif et budget", texte: "On fixe ce que la campagne doit produire (réservations, appels, inscriptions, notoriété d'un événement) et un budget publicitaire adapté à votre saison." },
         { titre: "Création sur place", texte: "Je photographie et je filme ce qui donne envie de venir, puis je décline les formats pour chaque réseau." },
-        { titre: "Lancement et réglages", texte: "Mise en ligne, ciblage, premiers jours suivis de près : on coupe ce qui ne marche pas, on renforce ce qui marche." },
+        { titre: "Lancement et pilotage", texte: "Mise en ligne, puis analyse continue de la diffusion : coût par résultat, visuels qui accrochent, publics qui réagissent. On coupe ce qui ne marche pas, on renforce ce qui marche, sans attendre la fin de la campagne." },
         { titre: "Mesure et bilan", texte: "Bilan chiffré à la fin de la campagne et recommandations pour la suivante. Si vous avez une newsletter, les nouveaux contacts y entrent directement." },
       ]}
       liens={[
