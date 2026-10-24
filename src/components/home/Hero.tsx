@@ -163,9 +163,9 @@ export default function Hero() {
           ref={subtitleRef}
           className="text-[clamp(15px,2.2vw,20px)] text-text-secondary max-w-xl mx-auto mb-10 opacity-0 translate-y-4"
         >
-          Sites web, applications et r&eacute;seaux sociaux, avec le design en plus.
+          Site, r&eacute;seaux, contenu, publicit&eacute;, newsletter, print&nbsp;: un seul partenaire pour toute votre communication.
           <br />
-          Le studio d&apos;Agde qui rend les restaurants et commerces du littoral visibles, de Google &agrave; ChatGPT.
+          Je rends les restaurants, commerces et loisirs du littoral visibles, de Google &agrave; ChatGPT.
         </p>
         <div
           ref={ctaRef}

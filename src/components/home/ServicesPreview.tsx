@@ -12,6 +12,8 @@ const DEDICATED_PAGES: Record<string, string> = {
   web: "/services/creation-site-web",
   apps: "/services/applications",
   "reseaux-sociaux": "/services/reseaux-sociaux",
+  campagnes: "/services/campagnes-sponsorisees",
+  emailing: "/services/newsletter-emailing",
   design: "/services/graphisme",
   print: "/services/graphisme",
   tenue: "/services/graphisme",

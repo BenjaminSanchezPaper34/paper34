@@ -120,6 +120,17 @@ export default function ServicesPage() {
                       </svg>
                     </Link>
                   )}
+                  {(service.id === "campagnes" || service.id === "emailing") && (
+                    <Link
+                      href={service.id === "campagnes" ? "/services/campagnes-sponsorisees" : "/services/newsletter-emailing"}
+                      className="inline-flex items-center gap-2 mt-6 text-sm font-semibold text-accent hover:text-accent-hover transition-colors"
+                    >
+                      En savoir plus
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  )}
                   {service.id === "reseaux-sociaux" && (
                     <Link
                       href="/services/reseaux-sociaux"
@@ -135,6 +146,38 @@ export default function ServicesPage() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Formule partenaire (24/10/2026) : la mensualité qui regroupe tout.
+            Aucun prix affiché : le montant se fixe au devis selon le rythme. */}
+        <div id="partenaire" className="scroll-mt-28 mt-20 rounded-3xl border border-accent/25 bg-gradient-to-br from-accent/12 via-accent/5 to-transparent p-8 md:p-12">
+          <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">Formule partenaire</p>
+          <h2 className="text-[clamp(26px,4vw,42px)] font-bold tracking-[-1.5px] leading-tight mb-4">
+            Toute votre communication, <span className="gradient-text">une seule mensualité.</span>
+          </h2>
+          <p className="text-text-secondary max-w-2xl mb-8 leading-relaxed">
+            Site tenu à jour, réseaux animés, contenu tourné sur place, newsletter, campagnes quand il
+            faut accélérer, et un rapport mensuel avec trois décisions concrètes. Le montant se fixe au
+            devis, selon votre rythme et votre saison.
+          </p>
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 text-sm">
+            {[
+              "Site et fiches Google tenus à jour",
+              "Séances photo et vidéo sur place",
+              "Réseaux sociaux animés",
+              "Newsletter aux temps forts",
+              "Campagnes sponsorisées sur objectif",
+              "Rapport mensuel chiffré",
+            ].map((x) => (
+              <li key={x} className="flex items-center gap-3 text-text-secondary">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent shrink-0" />
+                {x}
+              </li>
+            ))}
+          </ul>
+          <Link href="/contact" className="inline-flex rounded-full bg-accent px-8 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow hover:scale-[1.02]">
+            En parler
+          </Link>
         </div>
 
         {/* CTA */}

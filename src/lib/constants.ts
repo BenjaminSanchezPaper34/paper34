@@ -7,9 +7,9 @@ export const NAV_LINKS = [
 ] as const;
 
 export const SERVICES = [
-  // Ordre = priorité commerciale (05/09/2026) : d'abord ce qui fait du
-  // chiffre à forte marge (web, applications, réseaux sociaux) ; print,
-  // illustrations et objets en fin de liste.
+  // Ordre = offre « partenaire complet » (24/10/2026) : site, réseaux et
+  // contenu, campagnes sponsorisées, emailing, puis applications, identité,
+  // vidéo, photo ; print, illustrations et objets en fin de liste.
   {
     id: "web",
     title: "Cr\u00e9ation de sites web",
@@ -26,21 +26,6 @@ export const SERVICES = [
     ],
   },
   {
-    id: "apps",
-    title: "D\u00e9veloppement d'applications",
-    description:
-      "Applications web et mobiles sur-mesure : r\u00e9servation, fid\u00e9lit\u00e9, outils internes, tableaux de bord. Con\u00e7ues, d\u00e9velopp\u00e9es et maintenues par le studio, avec le design en plus.",
-    icon: "/images/services/phone-paper34.svg",
-    features: [
-      "Applications web (PWA)",
-      "Apps iOS & Android",
-      "Outils m\u00e9tier & back-office",
-      "Tableaux de bord connect\u00e9s",
-      "R\u00e9servation & fid\u00e9lit\u00e9",
-      "H\u00e9bergement & maintenance",
-    ],
-  },
-  {
     id: "reseaux-sociaux",
     title: "Gestion des r\u00e9seaux sociaux",
     description:
@@ -53,6 +38,51 @@ export const SERVICES = [
       "Publicit\u00e9 sponsoris\u00e9e (Ads)",
       "Reportings & statistiques",
       "Formation & accompagnement",
+    ],
+  },
+  {
+    id: "campagnes",
+    title: "Campagnes sponsoris\u00e9es",
+    description:
+      "Publicit\u00e9 Instagram, Facebook et Google Ads avec des visuels tourn\u00e9s chez vous, un ciblage local et des r\u00e9sultats mesur\u00e9s en appels, r\u00e9servations et visites.",
+    icon: "/images/services/video-paper34.svg",
+    features: [
+      "Instagram & Facebook",
+      "Google Ads & Google Maps",
+      "Visuels et vid\u00e9os sur place",
+      "Ciblage local",
+      "Suivi des conversions",
+      "Rapport mensuel chiffr\u00e9",
+    ],
+  },
+  {
+    id: "emailing",
+    title: "Newsletter & emailing",
+    description:
+      "Inscription int\u00e9gr\u00e9e \u00e0 votre site, liste de clients conforme RGPD et campagnes con\u00e7ues avec vos propres photos, pour faire revenir vos clients sans repayer de publicit\u00e9.",
+    icon: "/images/services/print-paper34.svg",
+    features: [
+      "Formulaire d'inscription sur le site",
+      "QR codes sur vos supports imprim\u00e9s",
+      "Mise en page \u00e0 votre charte",
+      "Calendrier des temps forts",
+      "Conformit\u00e9 RGPD",
+      "Bilan de chaque envoi",
+    ],
+  },
+  {
+    id: "apps",
+    title: "D\u00e9veloppement d'applications",
+    description:
+      "Applications web et mobiles sur-mesure : r\u00e9servation, fid\u00e9lit\u00e9, outils internes, tableaux de bord. Con\u00e7ues, d\u00e9velopp\u00e9es et maintenues par le studio, avec le design en plus.",
+    icon: "/images/services/phone-paper34.svg",
+    features: [
+      "Applications web (PWA)",
+      "Apps iOS & Android",
+      "Outils m\u00e9tier & back-office",
+      "Tableaux de bord connect\u00e9s",
+      "R\u00e9servation & fid\u00e9lit\u00e9",
+      "H\u00e9bergement & maintenance",
     ],
   },
   {
