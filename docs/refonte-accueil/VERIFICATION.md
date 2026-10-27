@@ -36,3 +36,10 @@ Benjamin juge d'abord le rythme, le hero et « Démarrer un projet » sur son t�
 `vercel curl --yes` dans la copie non liée a créé automatiquement un projet annexe `paper34-refonte-accueil`. Ce projet créé pendant la passe a été supprimé aussitôt ; la copie est maintenant liée au projet existant `paper34`. Aucun déploiement de production n'a été lancé. Les aperçus de la branche passent par l'intégration GitHub/Vercel existante.
 
 Dernière passe clavier : les liens de chapitres de la navigation utilisent des ancres HTML natives, pour éviter l'ajout successif de fragments par le routeur lors de passages entre chapitres. Retour logo et changement de chapitre revérifiés après correction.
+
+
+## V2 — isoler la navigation, 27/10/2026
+
+À la demande de Benjamin, l'accueil ne présente plus de noms, citations, photos, captures, publications ni film clients. Douze emplacements indiquent le contenu attendu et son format, sans faux lien ni commande de lecture. Les pages secondaires sont conservées. Suppression de la séquence épinglée pour faciliter le parcours.
+
+Validation de cette passe : lint (0 erreur, 28 avertissements historiques), build et TypeScript réussis ; contrôle DOM du build de production : 12 blocs réservés, aucun nom client, aucune image/vidéo/citation dans le main, aucun bloc réservé focusable et aucun pin. Navigation desktop vers les expertises, ouverture clavier par Entrée, menu mobile 360 × 640 et lien Réalisations vérifiés ; aucun débordement horizontal ni erreur console observé. Les scores Lighthouse de V1 ne sont pas présentés comme une mesure de V2.

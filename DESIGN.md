@@ -99,3 +99,10 @@ Références retenues, observées via Mobbin (27/10) :
 - [Aino contact](https://mobbin.com/sites/sections/1083cf3c-a197-4ee7-9632-e9bfe0d4e416) : coordonnées immédiatement accessibles → passage à l'action → email et téléphone sans détour.
 
 Les candidates et la limite de la porte d'empreinte sont consignées dans `docs/refonte-accueil/CONCEPTION.md`. La DA ne change pas ; l'accord demandé ensuite porte sur le résultat du prototype et le libellé CTA.
+
+
+### Itération navigation — demande de Benjamin, 27/10/2026
+
+« retire les référence client pour qu'on se concentre uniquement sur l'efficacité de la navigation, prévoit des bloc pour les futures ressources »
+
+Cette demande remplace, sur l'accueil de cette itération, l'emploi de médias et preuves clients : noms, photographies, captures, film, publications et témoignages sont remplacés par des blocs explicitement réservés. Les blocs indiquent la nature et le format de la future ressource ; ils ne sont pas cliquables et ne simulent pas une réalisation. Les ancres de chapitres et CTA réels restent actifs. Aucun scroll épinglé : la page sert maintenant à évaluer la lisibilité du parcours. Palette, Inter et footer inchangés. Les anciennes routes et leurs contenus restent disponibles.

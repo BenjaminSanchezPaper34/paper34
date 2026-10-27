@@ -1,20 +1,8 @@
-import Image from "next/image";
 import Link from "next/link";
-import { CONTACT_INFO, TESTIMONIALS } from "@/lib/constants";
-import { WEB_PROJECTS, getScreenshotUrl } from "@/lib/web-projects";
-import { MANAGED_ACCOUNTS } from "@/lib/instagram-accounts";
+import { CONTACT_INFO } from "@/lib/constants";
 import AccueilMotion from "./AccueilMotion";
 import styles from "./accueil.module.css";
 
-const R2 = "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev";
-const MEDIA = {
-  chiringuito: `${R2}/galeries/chiringuito-opening/display/A7V-96.jpg`,
-  photo: `${R2}/galeries/chiringuito-opening/display/A7V-113.jpg`,
-  kart: `${R2}/galeries/megakart-100-tours/display/A7502148-DxO_DeepPRIME%20XD3%20-%20HDR.jpg`,
-  film: `${R2}/galeries/actah-associes/thumb/film-cabinet.jpg`,
-  video: `${R2}/galeries/actah-associes/video/film-cabinet.mp4`,
-};
-const social = MANAGED_ACCOUNTS[0].feed![0];
 const expertises = [
   { title: "Identité & design", text: "Une identité qui vous ressemble, reconnaissable sur chaque support.", services: ["Identité visuelle", "Direction artistique", "Illustration", "Supports imprimés", "Tenues & objets"], href: "/services/graphisme", action: "Découvrir le design" },
   { title: "Photo & vidéo", text: "Vos lieux, vos équipes et vos produits. Le contenu se crée chez vous.", services: ["Reportage photo", "Films promotionnels", "Reels & formats courts", "Communication événementielle"], href: "/galeries", action: "Explorer les reportages" },
@@ -31,44 +19,51 @@ function ProjectLink({ href, children, primary = false }: { href: string; childr
 function SectionHeading({ label, title, children }: { label: string; title: string; children?: React.ReactNode }) {
   return <div className={styles.sectionHeading}><p className={styles.label}>{label}</p><h2>{title}</h2>{children}</div>;
 }
-function Project({ image, alt, name, description, href, large = false }: { image: string; alt: string; name: string; description: string; href: string; large?: boolean }) {
-  return <Link href={href} className={`${styles.project} ${large ? styles.projectLarge : ""}`}>
-    <div className={styles.projectImage} data-image-reveal><Image src={image} alt={alt} fill sizes={large ? "(max-width: 767px) 100vw, 64vw" : "(max-width: 767px) 100vw, 36vw"} /><span className={styles.projectArrow}><Arrow diagonal /></span></div>
-    <div className={styles.caption}><h3>{name}</h3><p>{description}</p></div>
-  </Link>;
+/** Emplacement éditorial explicite, non interactif tant que la ressource manque. */
+function ResourceSlot({ label, format = "Visuel", className = "" }: { label: string; format?: string; className?: string }) {
+  return <div className={`${styles.resourceSlot} ${className}`} aria-label={`Emplacement réservé : ${label}`}>
+    <span className={styles.resourceStatus}>Ressource à venir</span>
+    <div className={styles.resourceLabel}><span className={styles.resourceMark} aria-hidden="true" /><span>{label}</span></div>
+    <span className={styles.resourceFormat}>{format}</span>
+  </div>;
+}
+function ProjectSlot({ title, description, format, large = false }: { title: string; description: string; format: string; large?: boolean }) {
+  return <figure className={`${styles.project} ${large ? styles.projectLarge : ""}`}>
+    <ResourceSlot className={styles.projectImage} label={title} format={format} />
+    <figcaption className={styles.caption}><h3>{title}</h3><p>{description}</p></figcaption>
+  </figure>;
 }
 
 export default function Accueil() {
-  const reviews = [TESTIMONIALS.find(t => t.name === "Guinguette Bessan")!, TESTIMONIALS.find(t => t.name === "Languedoc Débarras")!];
   return <AccueilMotion><div className={styles.home} id="accueil">
     <a className={styles.skip} href="#realisations">Passer aux réalisations</a>
     <section className={styles.hero} aria-labelledby="home-title">
       <div className={styles.heroMeta}><span>Paper34 · Communication globale</span><span>Agde & au-delà</span></div>
       <h1 id="home-title"><span data-title-line>Toute votre<br className={styles.mobileBreak} /> communication.</span><span data-title-line>Un seul partenaire<span className={styles.blue}>.</span></span></h1>
       <div className={styles.heroBottom}><p>De la première idée au quotidien de votre marque.<br />Je crée, je coordonne, je vous accompagne.</p><ProjectLink href="/contact" primary>Démarrer un projet</ProjectLink></div>
-      <div className={styles.heroStrip} aria-label="Un aperçu des réalisations"><div><Image src={MEDIA.chiringuito} alt="Reportage de la soirée d’ouverture du Chiringuito à Vias" fill loading="eager" fetchPriority="high" sizes="(max-width: 767px) 63vw, 49vw" /></div><div><Image src={getScreenshotUrl("Actah & Associés")} alt="Site internet du cabinet Actah & Associés" fill sizes="(max-width: 767px) 37vw, 30vw" /></div><div><Image src={MEDIA.kart} alt="Photographie de course sur le circuit Megakart" fill sizes="22vw" /></div></div>
-      <div className={styles.stripCaption}><span>Du terrain à l’écran. Une même exigence.</span><a href="#realisations">Découvrir le travail <Arrow /></a></div>
+      <div className={styles.heroStrip} aria-label="Emplacements des futurs visuels"><ResourceSlot label="Photographie" format="Image" /><ResourceSlot label="Projet web" format="Capture" /><ResourceSlot label="Film" format="Vidéo" /></div>
+      <div className={styles.stripCaption}><span>Les futurs visuels prendront place ici.</span><a href="#realisations">Explorer les réalisations <Arrow /></a></div>
     </section>
 
     <section id="realisations" className={`${styles.section} ${styles.work}`} aria-labelledby="work-title">
       <div className={styles.workIntro}><div><p className={styles.label}>Sélection de réalisations</p><h2 id="work-title">Des univers différents.<br /><span className={styles.muted}>Le même engagement.</span></h2></div><ProjectLink href="/portfolio">Tout le portfolio</ProjectLink></div>
       <div className={styles.projectGrid}>
-        <Project image={MEDIA.chiringuito} alt="Bon Entendeur aux platines face au public du Chiringuito" name="Chiringuito" description="Photographie · Événementiel / Vias" href="/galerie/chiringuito-opening" large />
-        <Project image={getScreenshotUrl("Actah & Associés")} alt="Accueil du site Actah & Associés, cabinet d’avocats" name="Actah & Associés" description="Site internet / Béziers" href={WEB_PROJECTS[0].url} />
-        <Project image={MEDIA.kart} alt="Un pilote en piste au Megakart" name="Megakart" description="Reportage photo / Vias-Plage" href="/galerie/megakart-100-tours" />
-        <div className={styles.film}><div className={styles.filmPlayer}><video controls playsInline preload="none" poster={MEDIA.film} aria-label="Le film du cabinet Actah & Associés"><source src={MEDIA.video} type="video/mp4" /><a href={MEDIA.video}>Voir le film du cabinet</a></video></div><div className={styles.caption}><h3>Une équipe, en mouvement.</h3><p>Actah & Associés · Film du cabinet · 44 s</p></div></div>
+        <ProjectSlot title="Reportage photo" description="Sélection et légende à ajouter" format="Photographie" large />
+        <ProjectSlot title="Projet web" description="Capture et présentation à ajouter" format="Site internet" />
+        <ProjectSlot title="Identité visuelle" description="Supports et contexte à ajouter" format="Design" />
+        <ProjectSlot title="Film de présentation" description="Vidéo et résumé à ajouter" format="Vidéo" />
       </div>
     </section>
 
     <section id="accompagnement" className={`${styles.section} ${styles.partnership}`} aria-labelledby="partner-title">
       <div className={styles.partnerIntro}><p className={styles.label}>L’accompagnement global</p><h2 id="partner-title">Tout se répond.<br /><span className={styles.muted}>Enfin.</span></h2><p>Votre site ne vit pas seul. Vos réseaux non plus. Je relie vos images, vos messages et vos supports pour construire une communication cohérente, dans la durée.</p></div>
-      <div className={styles.channelStage} data-channel-stage>
-        <div className={styles.stageHeading}><h3>Un lieu. Une direction.<br />Plusieurs points de contact.</h3><p>Chiringuito Vias<br /><span className={styles.muted}>Photographie, réseaux sociaux & site web</span></p></div>
-        <div className={styles.channelRail}><span className={styles.channelLine} data-channel-line aria-hidden="true" />
-          <figure className={styles.channel} data-channel><div className={styles.channelPhoto}><Image src={MEDIA.photo} alt="Portrait d’un DJ photographié au Chiringuito" fill sizes="(max-width: 767px) 100vw, 30vw" /></div><figcaption><span>Créer la matière</span><p>Des images prises sur place.</p></figcaption></figure>
-          <figure className={`${styles.channel} ${styles.channelSocial}`} data-channel><a href={social.post} aria-label="Voir la publication réelle du Chiringuito sur Instagram"><Image src={social.img} alt="Publication du Chiringuito : une membre de l’équipe en service" fill sizes="(max-width: 767px) 100vw, 26vw" /></a><figcaption><span>Faire vivre la marque</span><p>Des contenus pour vos réseaux.</p></figcaption></figure>
-          <figure className={`${styles.channel} ${styles.channelWeb}`} data-channel><a href={WEB_PROJECTS.find(p => p.name === "Chiringuito")!.url} aria-label="Découvrir le site du Chiringuito"><Image src={getScreenshotUrl("Chiringuito")} alt="Capture réelle du site Chiringuito Vias-Plage" fill sizes="(max-width: 767px) 100vw, 35vw" /></a><figcaption><span>Donner une destination</span><p>Un site dans la continuité.</p></figcaption></figure>
-        </div><p className={styles.stageFoot}>Une direction commune, du premier visuel au prochain rendez-vous.</p>
+      <div className={styles.channelStage}>
+        <div className={styles.stageHeading}><h3>Une direction commune.<br />Plusieurs points de contact.</h3><p className={styles.muted}>Un futur cas d’accompagnement<br />sera présenté dans ces emplacements.</p></div>
+        <div className={styles.channelRail}>
+          <figure className={styles.channel}><ResourceSlot className={styles.channelPhoto} label="Contenu source" format="Photo / vidéo" /><figcaption><span>Créer la matière</span><p>Le point de départ visuel.</p></figcaption></figure>
+          <figure className={`${styles.channel} ${styles.channelSocial}`}><ResourceSlot label="Déclinaison sociale" format="Publication" /><figcaption><span>Faire vivre la marque</span><p>Le contenu adapté aux réseaux.</p></figcaption></figure>
+          <figure className={`${styles.channel} ${styles.channelWeb}`}><ResourceSlot label="Déclinaison web" format="Capture" /><figcaption><span>Donner une destination</span><p>Le prolongement sur le site.</p></figcaption></figure>
+        </div>
       </div>
       <div className={styles.partnerFoot}><p>Un besoin précis ? Bien sûr.<br /><span className={styles.muted}>Un partenaire pour la suite ? C’est aussi le métier.</span></p><ProjectLink href="/contact">Démarrer un projet</ProjectLink></div>
     </section>
@@ -84,7 +79,7 @@ export default function Accueil() {
       ["On garde le fil.", "Mises à jour, nouveaux contenus, temps forts et campagnes. Votre communication avance avec votre entreprise."],
     ].map(([title, text]) => <li key={title}><h3>{title}</h3><p>{text}</p></li>)}</ol></section>
 
-    <section className={`${styles.section} ${styles.trust}`} aria-label="Références et témoignages"><SectionHeading label="La confiance se construit" title="Et se retrouve dans leurs mots." /><div className={styles.reviews}>{reviews.map(review => <figure key={review.name}><blockquote>« {review.text} »</blockquote><figcaption>{review.name}<span>Client Paper34</span></figcaption></figure>)}</div><div className={styles.clientNames} aria-label="Quelques références clients">{["Chiringuito", "Megakart", "Actah & Associés", "La Guinguette", "Les Délices de Farinette", "Infini Mouv"].map(name => <span key={name}>{name}</span>)}</div></section>
+    <section className={`${styles.section} ${styles.trust}`} aria-label="Emplacements des futures preuves"><SectionHeading label="Espace réservé" title="Les preuves viendront compléter le parcours." /><div className={styles.proofSlots}><ResourceSlot label="Retour d’expérience" format="Témoignage à sélectionner" /><ResourceSlot label="Cas d’accompagnement" format="Ressources à réunir" /></div></section>
 
     <section id="contact" className={`${styles.section} ${styles.contact}`} aria-labelledby="contact-title"><p className={styles.label}>La suite commence par un échange</p><h2 id="contact-title">Votre communication.<br /><span className={styles.muted}>On en parle ?</span></h2><div className={styles.contactBottom}><div><p>Un lancement, une nouvelle direction,<br />ou l’envie de mieux communiquer au quotidien.</p><div className={styles.contactLinks}><a href={`mailto:${CONTACT_INFO.email}`}>{CONTACT_INFO.email}</a><a href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}>{CONTACT_INFO.phone}</a></div></div><ProjectLink href="/contact" primary>Démarrer un projet</ProjectLink></div><p className={styles.colophon}>Benjamin Sanchez · Paper34 · Agde</p></section>
   </div></AccueilMotion>;
