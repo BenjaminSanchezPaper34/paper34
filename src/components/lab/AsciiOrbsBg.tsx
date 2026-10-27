@@ -81,7 +81,7 @@ export default function AsciiOrbsBg() {
             const theta = (j / lonSteps) * Math.PI * 2; // 0..2PI
             // Coords 3D unitaires
             let x = sinPhi * Math.cos(theta);
-            let y = cosPhi;
+            const y = cosPhi;
             let z = sinPhi * Math.sin(theta);
             // Rotation autour de l'axe Y
             const xr = x * cosA + z * sinA;

@@ -146,11 +146,6 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
 
   const lightboxItem = lightboxIndex !== null ? visible[lightboxIndex] : null;
 
-  // Reset visible count when filter changes
-  useEffect(() => {
-    setVisibleCount(ITEMS_PER_PAGE);
-  }, [filter]);
-
   // Infinite scroll : charge 15 de plus quand on approche du bas
   useEffect(() => {
     const el = loadMoreRef.current;
@@ -278,7 +273,7 @@ export default function PortfolioGrid({ items }: { items: PortfolioItem[] }) {
             {PORTFOLIO_CATEGORIES.map((cat) => (
               <button
                 key={cat}
-                onClick={() => setFilter(cat)}
+                onClick={() => { setFilter(cat); setVisibleCount(ITEMS_PER_PAGE); }}
                 className={`rounded-full px-5 py-2 text-sm font-medium transition-all duration-300 ${
                   filter === cat
                     ? "bg-accent text-white"

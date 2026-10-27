@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, useCallback } from "react";
+import { createContext, useContext, useEffect, useState, useCallback, useSyncExternalStore } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
@@ -66,9 +66,24 @@ function purgerCookiesAnalytics() {
   });
 }
 
+// La lecture du stockage est un snapshot externe : React conserve le snapshot
+// serveur pendant l'hydratation, puis applique le choix mémorisé sans effet de reset.
+const subscribeHydration = () => () => {};
+const clientReady = () => true;
+const serverReady = () => false;
+const serverConsent = (): Etat => "inconnu";
+function storedConsent(): Etat {
+  try {
+    const value = localStorage.getItem(KEY);
+    return value === "granted" || value === "denied" ? value : "inconnu";
+  } catch { return "inconnu"; }
+}
+
 export function ConsentProvider({ children }: { children: React.ReactNode }) {
-  const [etat, setEtat] = useState<Etat>("inconnu");
-  const [pret, setPret] = useState(false);
+  const stored = useSyncExternalStore(subscribeHydration, storedConsent, serverConsent);
+  const [choice, setEtat] = useState<Etat | null>(null);
+  const etat = choice ?? stored;
+  const pret = useSyncExternalStore(subscribeHydration, clientReady, serverReady);
   // Galeries photo : jamais de bandeau. Il recouvrait la visionneuse sur
   // mobile et bloquait la navigation entre les photos. Sans réponse, Google
   // Analytics ne se charge pas (conforme) ; la mesure des galeries passe par
@@ -77,18 +92,8 @@ export function ConsentProvider({ children }: { children: React.ReactNode }) {
   const pageGalerie = pathname?.startsWith("/galerie") ?? false;
 
   useEffect(() => {
-    let v: string | null = null;
-    try {
-      v = localStorage.getItem(KEY);
-    } catch {}
-    if (v === "granted") {
-      setEtat("granted");
-      chargerAnalytics();
-    } else if (v === "denied") {
-      setEtat("denied");
-    }
-    setPret(true);
-  }, []);
+    if (etat === "granted") chargerAnalytics();
+  }, [etat]);
 
   const enregistrer = useCallback((v: "granted" | "denied") => {
     setEtat(v);
