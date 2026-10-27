@@ -33,9 +33,9 @@ export default function AccueilMotion({ children }: { children: React.ReactNode 
           trigger: stage, start: "top 90px", end: "+=105%", pin: true,
           scrub: MOTION.scrub, invalidateOnRefresh: true,
         } });
-        timeline.from(panels[0], { xPercent: 12, rotation: -4, ease: "power2.inOut" }, 0)
-          .from(panels[1], { yPercent: 18, ease: "power2.inOut" }, 0)
-          .from(panels[2], { xPercent: -12, rotation: 4, ease: "power2.inOut" }, 0)
+        timeline.from(panels[0], { xPercent: 4, rotation: -2, ease: "power2.inOut" }, 0)
+          .from(panels[1], { yPercent: 8, ease: "power2.inOut" }, 0)
+          .from(panels[2], { xPercent: -4, rotation: 2, ease: "power2.inOut" }, 0)
           .from("[data-channel-line]", { scaleX: 0, transformOrigin: "left", ease: "power2.inOut" }, 0);
       });
     }, root);
