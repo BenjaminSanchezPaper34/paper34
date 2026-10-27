@@ -111,3 +111,8 @@ Cette demande remplace, sur l'accueil de cette itération, l'emploi de médias e
 ### Itération parcours et ton — 27/10/2026
 
 Demande de Benjamin : comprendre rapidement l'accompagnement, rejoindre facilement « Démarrer un projet », parler sobrement, sans punchline, directement et avec douceur. Le premier écran explique le métier à la première personne. Ordre : présentation, accompagnement (ponctuel ou régulier), prestations, emplacements de réalisations, méthode, contact. Le header de l'accueil reste visible au scroll ; sur mobile, une seconde ligne présente l'ancre Accompagnement et le CTA. Les futurs médias sont conservés dans des blocs dépliables, sans remplissage visuel en amont de l'explication. Pas de pin, d'animation d'entrée du texte ni de grand slogan. Titres réduits, corps 16 px ; safe areas et ancres décalées sous l'en-tête. Police et palette inchangées.
+
+
+### Services en points et accompagnement durable — 27/10/2026
+
+Benjamin souhaite voir les services comme des éléments concrets, présentés en points. Le hero liste six objets de communication, en blocs de texte non interactifs : logo et identité, photographies, vidéos, site, réseaux sociaux, imprimés. Ce regroupement explicite remplace la phrase énumérative ; ce ne sont pas des cartes de prestations génériques avec icônes et promesses. Les quatre familles restent conservées et leurs listes dépliées reprennent ce principe de points délimités. L'accompagnement met uniquement en avant la continuité, la cohérence et l'ajustement à partir des retours ; aucun résultat chiffré ni garantie. Le besoin ponctuel est mentionné plus tard, discrètement dans la méthode. Le CTA mobile permanent, les ressources réservées et la sobriété du ton sont conservés.

@@ -39,14 +39,15 @@ export default function Accueil() {
     <section className={styles.hero} aria-labelledby="home-title">
       <p className={styles.heroMeta}>Benjamin Sanchez · Paper34 · Agde</p>
       <h1 id="home-title">Je vous accompagne dans votre communication.</h1>
-      <p className={styles.heroDescription}>Je crée votre identité visuelle et votre site internet. Je réalise vos photos et vos vidéos, et je m’occupe de vos réseaux sociaux et de vos supports imprimés.</p>
+      <p className={styles.heroDescription}>Je conçois et réalise les supports de votre communication :</p>
+      <ul className={styles.serviceObjects} aria-label="Les services proposés">{["Logo & identité", "Photographies", "Vidéos", "Site internet", "Réseaux sociaux", "Supports imprimés"].map(service => <li key={service}>{service}</li>)}</ul>
       <div className={styles.heroActions}><ProjectLink href="/contact" primary>Démarrer un projet</ProjectLink><a className={styles.textLink} href="#accompagnement">Comprendre l’accompagnement <Arrow /></a></div>
     </section>
 
 
     <section id="accompagnement" className={`${styles.section} ${styles.partnership}`} aria-labelledby="partner-title">
-      <div className={styles.partnerIntro}><div><p className={styles.label}>L’accompagnement</p><h2 id="partner-title">Un projet ponctuel ou un suivi régulier.</h2></div><p>Je prends en charge la création et le suivi de votre communication. Nous définissons ensemble les priorités et les supports utiles à votre activité.</p></div>
-      <dl className={styles.supportOptions}><div><dt>Pour un projet précis</dt><dd>Un logo, un reportage photo, un site internet ou un support imprimé. Je vous accompagne de la préparation à la livraison.</dd></div><div><dt>Pour un suivi régulier</dt><dd>Je prépare vos contenus, mets à jour vos supports et organise vos actions de communication au fil de l’année.</dd></div></dl>
+      <div className={styles.partnerIntro}><div><p className={styles.label}>L’accompagnement</p><h2 id="partner-title">Un accompagnement dans la durée.</h2></div><p>Je prends le temps de connaître votre activité, puis je crée et fais évoluer vos supports. Nous suivons les retours de vos actions pour améliorer votre communication au fil du temps.</p></div>
+      <dl className={styles.supportOptions}><div><dt>Des supports cohérents</dt><dd>Votre site, vos publications et vos documents reprennent la même identité.</dd></div><div><dt>Des contenus à jour</dt><dd>Je renouvelle vos images et vos publications au rythme de votre activité.</dd></div><div><dt>Des actions suivies</dt><dd>Nous regardons ce qui fonctionne et ajustons les prochaines actions.</dd></div></dl>
       <div className={styles.partnerFoot}><ProjectLink href="/contact" primary>Démarrer un projet</ProjectLink><a className={styles.textLink} href="#expertises">Voir les prestations <Arrow /></a></div>
       <details className={styles.reservedDetails}><summary>Emplacements du futur cas d’accompagnement <span aria-hidden="true">+</span></summary><div className={styles.channelRail}>
         <ResourceSlot label="Photos et vidéos" format="Contenus à sélectionner" />
@@ -70,10 +71,10 @@ export default function Accueil() {
       </div><div className={styles.proofSlots}><ResourceSlot label="Retour d’expérience" format="Témoignage à sélectionner" /><ResourceSlot label="Cas d’accompagnement" format="Ressources à réunir" /></div></details>
     </section>
 
-    <section id="a-propos" className={`${styles.section} ${styles.method}`} aria-labelledby="method-title"><div><p className={styles.label}>À propos</p><h2 id="method-title">Comment nous travaillons.</h2><p className={styles.methodIntro}>Je suis Benjamin Sanchez, graphiste, photographe et développeur web à Agde. Vous échangez directement avec moi pour la préparation, la réalisation et le suivi de votre projet.</p><a className={styles.textLink} href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}>M’appeler <Arrow diagonal /></a></div><ol className={styles.steps}>{[
+    <section id="a-propos" className={`${styles.section} ${styles.method}`} aria-labelledby="method-title"><div><p className={styles.label}>À propos</p><h2 id="method-title">Comment nous travaillons.</h2><p className={styles.methodIntro}>Je suis Benjamin Sanchez, graphiste, photographe et développeur web à Agde. Vous échangez directement avec moi pour la préparation, la réalisation et le suivi de votre projet.</p><p className={styles.oneOffNote}>Un besoin ponctuel reste possible, par exemple pour un logo, des photos ou un site.</p><a className={styles.textLink} href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}>M’appeler <Arrow diagonal /></a></div><ol className={styles.steps}>{[
       ["Nous définissons vos besoins.", "Nous discutons de votre activité et de vos priorités pour définir le contenu, le budget et le calendrier."],
       ["Je réalise vos supports.", "Je vous présente les propositions et nous les ajustons ensemble avant leur mise en ligne ou leur fabrication."],
-      ["Je vous accompagne dans le suivi.", "Si vous le souhaitez, je m’occupe ensuite des mises à jour, des nouveaux contenus et des prochaines actions."],
+      ["Je fais évoluer votre communication.", "Je m’occupe des mises à jour, des nouveaux contenus et du suivi des actions. Nous ajustons les priorités ensemble."],
     ].map(([title, text]) => <li key={title}><h3>{title}</h3><p>{text}</p></li>)}</ol></section>
 
 

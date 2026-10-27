@@ -56,3 +56,12 @@ Demande de Benjamin : navigation surtout mobile, accès simple à « Démarrer u
 - Destination /contact : intro cohérente, options « Accompagnement global » et « À définir ensemble », champs 16 px, autocomplete nom/email/téléphone. Aucun envoi réel.
 
 Validation : lint sans erreur (28 avertissements historiques), build et TypeScript réussis, diff sans erreurs d'espacement. Navigation contrôlée en navigateur à 360 × 640 et 1440 × 1000. À 360 px : CTA d'en-tête visible, CTA du hero entièrement avant 521 px, aucun débordement horizontal ; après clic Accompagnement, titre sous le header (bas du header 126 px, titre à 247 px). Menu vers Prestations, ouverture par Entrée et Échap avec retour de focus testés. Accès /contact depuis le CTA mobile testé ; hauteur des champs >=47 px, police 16 px. Pas de test physique iPhone et pas de nouvel audit Lighthouse ; les scores V1 ne mesurent pas cette version.
+
+
+## V4 — services en points, accompagnement durable, 27/10/2026
+
+Le texte énumératif du hero devient une liste de six services, chacun dans un bloc sobre avec un point : logo et identité, photographies, vidéos, site internet, réseaux sociaux, supports imprimés. Les quatre familles restent conservées ; leurs listes dépliées reprennent des points encadrés. Les blocs du hero sont du contenu, sans faux lien.
+
+Le premier chapitre ne compare plus ponctuel et régulier : il expose le suivi dans la durée, la cohérence des supports, l'actualisation des contenus et les ajustements à partir des retours. La possibilité ponctuelle est mentionnée uniquement plus tard, dans la méthode. La description de partage est alignée, sans promesse de résultats garantis.
+
+Lint (0 erreur, 28 avertissements historiques), build, TypeScript et diff vérifiés. Vue desktop 1440 × 1000 et mobile 360 × 640 contrôlées ; six éléments de liste, pas de débordement horizontal, ouverture clavier d'une famille testée. CTA permanent conservé. Les ressources réservées et l'absence de références clients restent inchangées. Pas de test iPhone physique ni de nouveau Lighthouse.
