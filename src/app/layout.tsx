@@ -1,3 +1,4 @@
+import LaboBadge from "@/components/labo/LaboBadge"; // LABO — ne pas reprendre dans main
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
@@ -84,12 +85,13 @@ export const metadata: Metadata = {
       "Sites web, identité visuelle, réseaux sociaux, photo et vidéo : le studio des commerces d'Agde et du littoral.",
     images: ["https://www.paper34.fr/og-image.jpg"],
   },
+  // LABO — site d'essai : jamais indexé (ne pas reprendre dans main)
   robots: {
-    index: true,
-    follow: true,
+    index: false,
+    follow: false,
     googleBot: {
-      index: true,
-      follow: true,
+      index: false,
+      follow: false,
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
@@ -118,6 +120,7 @@ export default function RootLayout({
       </head>
       <body className={`grain font-[family-name:var(--font-inter),sans-serif]`}>
         <JsonLd />
+        <LaboBadge />
         <ConsentProvider>
         <LenisProvider>
           <Navbar />

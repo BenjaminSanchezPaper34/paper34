@@ -35,25 +35,9 @@ const AI_BOTS = [
   "Applebot-Extended",
 ];
 
+// LABO — site d'essai : tout est interdit aux robots (ne pas reprendre dans main).
+// Les listes ci-dessus restent pour mémoire, inutilisées sur cette branche.
+void BLOCKED_BOTS; void AI_BOTS;
 export default function robots(): MetadataRoute.Robots {
-  return {
-    rules: [
-      ...BLOCKED_BOTS.map((userAgent) => ({
-        userAgent,
-        disallow: "/",
-      })),
-      ...AI_BOTS.map((userAgent) => ({
-        userAgent,
-        allow: "/",
-      })),
-      // Audit GSC du 05/09/2026 : plus aucun Disallow sur /_next/ — Google
-      // doit pouvoir charger les CSS/JS de /_next/static pour rendre les
-      // pages ; les bloquer lui faisait évaluer une page dégradée.
-      {
-        userAgent: "*",
-        allow: "/",
-      },
-    ],
-    sitemap: "https://www.paper34.fr/sitemap.xml",
-  };
+  return { rules: [{ userAgent: "*", disallow: "/" }] };
 }
