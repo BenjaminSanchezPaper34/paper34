@@ -72,10 +72,12 @@ export default function Navbar() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" onClick={() => setMobileOpen(false)} className="flex min-h-11 items-center gap-3 group ml-16">
+          <Link href={pathname === "/" ? "/#accueil" : "/"} onClick={() => setMobileOpen(false)} className="flex min-h-11 items-center gap-3 group ml-16">
             <img
               src="/images/logo-paper34.svg"
               alt="PAPER34"
+              width={154}
+              height={28}
               className="h-7 transition-opacity group-hover:opacity-80"
             />
           </Link>

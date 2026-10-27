@@ -11,7 +11,7 @@ const MEDIA = {
   chiringuito: `${R2}/galeries/chiringuito-opening/display/A7V-96.jpg`,
   photo: `${R2}/galeries/chiringuito-opening/display/A7V-113.jpg`,
   kart: `${R2}/galeries/megakart-100-tours/display/A7502148-DxO_DeepPRIME%20XD3%20-%20HDR.jpg`,
-  film: `${R2}/galeries/actah-associes/display/film-cabinet.jpg`,
+  film: `${R2}/galeries/actah-associes/thumb/film-cabinet.jpg`,
   video: `${R2}/galeries/actah-associes/video/film-cabinet.mp4`,
 };
 const social = MANAGED_ACCOUNTS[0].feed![0];
@@ -46,7 +46,7 @@ export default function Accueil() {
       <div className={styles.heroMeta}><span>Paper34 · Communication globale</span><span>Agde & au-delà</span></div>
       <h1 id="home-title"><span data-title-line>Toute votre<br className={styles.mobileBreak} /> communication.</span><span data-title-line>Un seul partenaire<span className={styles.blue}>.</span></span></h1>
       <div className={styles.heroBottom}><p>De la première idée au quotidien de votre marque.<br />Je crée, je coordonne, je vous accompagne.</p><ProjectLink href="/contact" primary>Démarrer un projet</ProjectLink></div>
-      <div className={styles.heroStrip} aria-label="Un aperçu des réalisations"><div><Image src={MEDIA.chiringuito} alt="Reportage de la soirée d’ouverture du Chiringuito à Vias" fill preload sizes="(max-width: 767px) 63vw, 49vw" /></div><div><Image src={getScreenshotUrl("Actah & Associés")} alt="Site internet du cabinet Actah & Associés" fill sizes="(max-width: 767px) 37vw, 30vw" /></div><div><Image src={MEDIA.kart} alt="Photographie de course sur le circuit Megakart" fill sizes="22vw" /></div></div>
+      <div className={styles.heroStrip} aria-label="Un aperçu des réalisations"><div><Image src={MEDIA.chiringuito} alt="Reportage de la soirée d’ouverture du Chiringuito à Vias" fill loading="eager" fetchPriority="high" sizes="(max-width: 767px) 63vw, 49vw" /></div><div><Image src={getScreenshotUrl("Actah & Associés")} alt="Site internet du cabinet Actah & Associés" fill sizes="(max-width: 767px) 37vw, 30vw" /></div><div><Image src={MEDIA.kart} alt="Photographie de course sur le circuit Megakart" fill sizes="22vw" /></div></div>
       <div className={styles.stripCaption}><span>Du terrain à l’écran. Une même exigence.</span><a href="#realisations">Découvrir le travail <Arrow /></a></div>
     </section>
 
