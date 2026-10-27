@@ -71,3 +71,31 @@ Règle : une seule couleur — le bleu. Toute la richesse visuelle vient de la l
 
 ---
 *Rétro-formalisé par Claude le 30/08/2026 — à valider par Benjamin.*
+
+
+## 0. Accueil prototype — 27/10/2026
+
+Cadrage de l'itération explicitement demandée dans `docs/REFONTE-ACCUEIL.md` ; hypothèses de public reprises du cadrage services, pas de nouvelle identité à valider avant cet essai.
+- Person : dirigeant de commerce, restaurant, loisirs ou entreprise locale ; mobile en premier.
+- Pain : plusieurs prestataires, des supports déconnectés, du temps perdu à coordonner.
+- Promise : « Toute votre communication. Un seul partenaire. »
+- Sensation proposée : assurance, curiosité, proximité.
+- Action proposée pour validation sur le prototype : « Démarrer un projet ».
+- Phrase test : c'est le site où les images, les publications et le site d'un client se réunissent sous une même direction.
+
+Grammaire : éditorial en chapitres. Page de titre monumentale alignée à gauche, médias légendés hors texte, doubles pages asymétriques, index fin des chapitres et colophon de contact. Pas de hero vidéo en fond, pas de boutons magnétiques, pas de cartes d'expertises identiques. Le catalogue perd car il vendrait les métiers séparément ; le récit filmé perd car il laisserait trop peu de place aux preuves ; l'outil d'abord perd car aucun configurateur réel n'est demandé.
+
+Geste : trois supports réels du Chiringuito se déploient autour d'une ligne commune au scroll. Un seul pin, sur bureau à pointeur fin et hauteur suffisante. Sur mobile et en mouvement réduit : supports empilés, sans pin. Il s'agit d'un rapprochement de réalisations, pas d'une affirmation de séance commune. Les textes ne bougent jamais dans cette séquence.
+
+Courbe : promesse (assurance / échelle typographique), réalisations (curiosité / images grandes), accompagnement (compréhension / déploiement, pic unique), expertises (clarté / index), méthode (proximité / paroles directes), confiance (rassurance / avis existants), contact (décision / colophon).
+
+Palette et fonte inchangées : Inter auto-hébergée, noir absolu / levé, bleu #0071e3 seul accent. Noir pur justifié par l'écran de projection (§1). Aucun dégradé typographique, nouveau glow ni animation infinie. Durées et rayons centralisés dans les tokens de l'itération. Corps 16 px, légendes 14 px. Footer et signature conservés.
+
+Références retenues, observées via Mobbin (27/10) :
+- [Fiasco](https://mobbin.com/sites/sections/b1072dab-8faa-4336-8cdf-980edf4d3213) : nom monumental isolé → hiérarchie immédiate → poids du titre, sans reprendre sa palette.
+- [Instrument](https://mobbin.com/sites/sections/05811dd7-a07a-41ae-9fa7-192b8eede1b1) : images de tailles différentes et légendes séparées → diversité sans bruit → sélection asymétrique.
+- [Mother Design](https://mobbin.com/sites/sections/83653e9e-1c8a-4dbb-b9e2-103d731e662f) : liste typographique sans cartes → étendue lisible → quatre familles d'expertises.
+- [Aino](https://mobbin.com/sites/sections/0553efc5-ac3a-4b83-9105-c0a16d2ce221) : images séparées du discours et texte concret → relation humaine → méthode en colonne.
+- [Aino contact](https://mobbin.com/sites/sections/1083cf3c-a197-4ee7-9632-e9bfe0d4e416) : coordonnées immédiatement accessibles → passage à l'action → email et téléphone sans détour.
+
+Les candidates et la limite de la porte d'empreinte sont consignées dans `docs/refonte-accueil/CONCEPTION.md`. La DA ne change pas ; l'accord demandé ensuite porte sur le résultat du prototype et le libellé CTA.

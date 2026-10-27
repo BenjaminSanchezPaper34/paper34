@@ -135,3 +135,6 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+nav:focus-within { transform: translateY(0); }
