@@ -34,3 +34,5 @@ Benjamin juge d'abord le rythme, le hero et « Démarrer un projet » sur son t�
 
 ## Incident de vérification résolu
 `vercel curl --yes` dans la copie non liée a créé automatiquement un projet annexe `paper34-refonte-accueil`. Ce projet créé pendant la passe a été supprimé aussitôt ; la copie est maintenant liée au projet existant `paper34`. Aucun déploiement de production n'a été lancé. Les aperçus de la branche passent par l'intégration GitHub/Vercel existante.
+
+Dernière passe clavier : les liens de chapitres de la navigation utilisent des ancres HTML natives, pour éviter l'ajout successif de fragments par le routeur lors de passages entre chapitres. Retour logo et changement de chapitre revérifiés après correction.

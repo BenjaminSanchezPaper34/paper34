@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV_LINKS } from "@/lib/constants";
 
@@ -41,11 +40,11 @@ export default function Navbar() {
     return null;
 
   const links = pathname === "/" ? [
-    { label: "Accueil", href: "/#accueil" },
-    { label: "Accompagnement", href: "/#accompagnement" },
-    { label: "Expertises", href: "/#expertises" },
-    { label: "Réalisations", href: "/#realisations" },
-    { label: "À propos", href: "/#a-propos" },
+    { label: "Accueil", href: "#accueil" },
+    { label: "Accompagnement", href: "#accompagnement" },
+    { label: "Expertises", href: "#expertises" },
+    { label: "Réalisations", href: "#realisations" },
+    { label: "À propos", href: "#a-propos" },
   ] : NAV_LINKS;
 
   return (
@@ -72,7 +71,7 @@ export default function Navbar() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href={pathname === "/" ? "/#accueil" : "/"} onClick={() => setMobileOpen(false)} className="flex min-h-11 items-center gap-3 group ml-16">
+          <a href={pathname === "/" ? "#accueil" : "/"} onClick={() => setMobileOpen(false)} className="flex min-h-11 items-center gap-3 group ml-16">
             <img
               src="/images/logo-paper34.svg"
               alt="PAPER34"
@@ -80,12 +79,12 @@ export default function Navbar() {
               height={28}
               className="h-7 transition-opacity group-hover:opacity-80"
             />
-          </Link>
+          </a>
 
           {/* Desktop links */}
           <div className="hidden lg:flex items-center gap-6">
             {links.map((link) => (
-              <Link
+              <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
@@ -101,16 +100,16 @@ export default function Navbar() {
                     pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
                   }`}
                 />
-              </Link>
+              </a>
             ))}
-            <Link
+            <a
               href="/contact"
               className={`min-h-11 inline-flex items-center ml-2 rounded-full bg-accent px-5 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow ${
                 pathname === "/contact" ? "ring-2 ring-accent/50" : ""
               }`}
             >
               Contact
-            </Link>
+            </a>
           </div>
 
           {/* Mobile hamburger */}
@@ -150,7 +149,7 @@ export default function Navbar() {
       >
         <div className="bg-bg-primary/95 backdrop-blur-2xl border-t border-border px-6 py-6 flex flex-col gap-4">
           {links.map((link) => (
-            <Link
+            <a
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
@@ -161,15 +160,15 @@ export default function Navbar() {
               }`}
             >
               {link.label}
-            </Link>
+            </a>
           ))}
-          <Link
+          <a
             href="/contact"
             onClick={() => setMobileOpen(false)}
             className="mt-2 rounded-full bg-accent px-5 py-3 text-center text-sm font-semibold text-white transition-all duration-300 hover:bg-accent-hover hover:shadow-lg hover:shadow-accent-glow"
           >
             Contact
-          </Link>
+          </a>
         </div>
       </div>}
     </nav>
