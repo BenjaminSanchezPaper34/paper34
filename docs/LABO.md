@@ -27,5 +27,5 @@ Créé depuis la conversation « apprentissage » (`TRAVAUX/2026/PAPER34 - AGDE/
 | 27/10/2026 | `labo` | Création du Labo | prêt |
 | 27/10/2026 | `labo` | Ouverture via le sélecteur de branches (fin du dossier `site-labo`) | fait |
 | 27/10/2026 | `proto/services` | Cadrage de la section services (Claude Code) | cadrage, attend Benjamin |
-| 27/10/2026 | `proto/refonte-accueil` | Refonte de l'accueil, brief `docs/REFONTE-ACCUEIL.md` (Codex) | Codex : V1 développée, vérifiée et poussée ; V2 : accueil sans références clients, blocs réservés ; navigation vérifiée |
+| 27/10/2026 | `proto/refonte-accueil` | Refonte de l'accueil, brief `docs/REFONTE-ACCUEIL.md` (Codex) | Codex : V1 développée, vérifiée et poussée ; V3 : accompagnement en premier, ton sobre, CTA mobile permanent ; vérifié et poussé |
 | 27/10/2026 | `labo` | Environnement Codex : `AGENTS.md` commun, skills dans `.agents/skills/` | fait |

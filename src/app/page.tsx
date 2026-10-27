@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Accueil from "@/components/home/Accueil";
 
-const title = "Communication globale à Agde — Toute votre communication. Un seul partenaire.";
-const description = "Paper34, Benjamin Sanchez à Agde : identité, photo, vidéo, sites web et réseaux sociaux. Un seul partenaire pour votre communication, dans la durée.";
+const title = "Communication à Agde — Graphisme, photo, vidéo et web";
+const description = "Benjamin Sanchez, Paper34 à Agde : identité visuelle, photo, vidéo, sites internet et réseaux sociaux. Un projet ponctuel ou un accompagnement régulier.";
 export const metadata: Metadata = {
   title,
   description,

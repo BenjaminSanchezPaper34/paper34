@@ -1,13 +1,12 @@
 import Link from "next/link";
 import { CONTACT_INFO } from "@/lib/constants";
-import AccueilMotion from "./AccueilMotion";
 import styles from "./accueil.module.css";
 
 const expertises = [
-  { title: "Identité & design", text: "Une identité qui vous ressemble, reconnaissable sur chaque support.", services: ["Identité visuelle", "Direction artistique", "Illustration", "Supports imprimés", "Tenues & objets"], href: "/services/graphisme", action: "Découvrir le design" },
-  { title: "Photo & vidéo", text: "Vos lieux, vos équipes et vos produits. Le contenu se crée chez vous.", services: ["Reportage photo", "Films promotionnels", "Reels & formats courts", "Communication événementielle"], href: "/galeries", action: "Explorer les reportages" },
-  { title: "Web & digital", text: "Un site pour vous trouver. Des outils pour simplifier votre quotidien.", services: ["Sites vitrines & e-commerce", "Référencement", "Applications", "Maintenance"], href: "/services/creation-site-web", action: "Découvrir le web" },
-  { title: "Communication & visibilité", text: "Garder le lien avec vos clients, de la première découverte à la prochaine visite.", services: ["Réseaux sociaux", "Campagnes publicitaires", "Emailing", "Fiche Google"], href: "/services/reseaux-sociaux", action: "Découvrir l’accompagnement" },
+  { title: "Identité & design", summary: "Logos, chartes graphiques et supports imprimés.", text: "Je crée votre logo, votre charte graphique et vos supports de communication.", services: ["Identité visuelle", "Direction artistique", "Illustration", "Supports imprimés", "Tenues & objets"], href: "/services/graphisme", action: "Découvrir le design" },
+  { title: "Photo & vidéo", summary: "Reportages, films et contenus pour vos réseaux.", text: "Je réalise des photos et des vidéos de votre activité, de vos équipes et de vos produits.", services: ["Reportage photo", "Films promotionnels", "Reels & formats courts", "Communication événementielle"], href: "/galeries", action: "Explorer les reportages" },
+  { title: "Web & digital", summary: "Sites internet, applications et maintenance.", text: "Je conçois et entretiens votre site internet. Je développe aussi des applications adaptées à votre activité.", services: ["Sites vitrines & e-commerce", "Référencement", "Applications", "Maintenance"], href: "/services/creation-site-web", action: "Découvrir le web" },
+  { title: "Communication & visibilité", summary: "Réseaux sociaux, campagnes publicitaires et emailing.", text: "Je prépare vos contenus, vos publications et vos campagnes de communication.", services: ["Réseaux sociaux", "Campagnes publicitaires", "Emailing", "Fiche Google"], href: "/services/reseaux-sociaux", action: "Voir les réseaux sociaux" },
 ];
 
 export function Arrow({ diagonal = false }: { diagonal?: boolean }) {
@@ -23,64 +22,62 @@ function SectionHeading({ label, title, children }: { label: string; title: stri
 function ResourceSlot({ label, format = "Visuel", className = "" }: { label: string; format?: string; className?: string }) {
   return <div className={`${styles.resourceSlot} ${className}`} aria-label={`Emplacement réservé : ${label}`}>
     <span className={styles.resourceStatus}>Ressource à venir</span>
-    <div className={styles.resourceLabel}><span className={styles.resourceMark} aria-hidden="true" /><span>{label}</span></div>
+    <div className={styles.resourceLabel}><span>{label}</span></div>
     <span className={styles.resourceFormat}>{format}</span>
   </div>;
 }
-function ProjectSlot({ title, description, format, large = false }: { title: string; description: string; format: string; large?: boolean }) {
-  return <figure className={`${styles.project} ${large ? styles.projectLarge : ""}`}>
+function ProjectSlot({ title, description, format }: { title: string; description: string; format: string }) {
+  return <figure className={styles.project}>
     <ResourceSlot className={styles.projectImage} label={title} format={format} />
     <figcaption className={styles.caption}><h3>{title}</h3><p>{description}</p></figcaption>
   </figure>;
 }
 
 export default function Accueil() {
-  return <AccueilMotion><div className={styles.home} id="accueil">
-    <a className={styles.skip} href="#realisations">Passer aux réalisations</a>
+  return <div className={styles.home} id="accueil">
+    <a className={styles.skip} href="#accompagnement">Passer à l’accompagnement</a>
     <section className={styles.hero} aria-labelledby="home-title">
-      <div className={styles.heroMeta}><span>Paper34 · Communication globale</span><span>Agde & au-delà</span></div>
-      <h1 id="home-title"><span data-title-line>Toute votre<br className={styles.mobileBreak} /> communication.</span><span data-title-line>Un seul partenaire<span className={styles.blue}>.</span></span></h1>
-      <div className={styles.heroBottom}><p>De la première idée au quotidien de votre marque.<br />Je crée, je coordonne, je vous accompagne.</p><ProjectLink href="/contact" primary>Démarrer un projet</ProjectLink></div>
-      <div className={styles.heroStrip} aria-label="Emplacements des futurs visuels"><ResourceSlot label="Photographie" format="Image" /><ResourceSlot label="Projet web" format="Capture" /><ResourceSlot label="Film" format="Vidéo" /></div>
-      <div className={styles.stripCaption}><span>Les futurs visuels prendront place ici.</span><a href="#realisations">Explorer les réalisations <Arrow /></a></div>
+      <p className={styles.heroMeta}>Benjamin Sanchez · Paper34 · Agde</p>
+      <h1 id="home-title">Je vous accompagne dans votre communication.</h1>
+      <p className={styles.heroDescription}>Je crée votre identité visuelle et votre site internet. Je réalise vos photos et vos vidéos, et je m’occupe de vos réseaux sociaux et de vos supports imprimés.</p>
+      <div className={styles.heroActions}><ProjectLink href="/contact" primary>Démarrer un projet</ProjectLink><a className={styles.textLink} href="#accompagnement">Comprendre l’accompagnement <Arrow /></a></div>
     </section>
 
-    <section id="realisations" className={`${styles.section} ${styles.work}`} aria-labelledby="work-title">
-      <div className={styles.workIntro}><div><p className={styles.label}>Sélection de réalisations</p><h2 id="work-title">Des univers différents.<br /><span className={styles.muted}>Le même engagement.</span></h2></div><ProjectLink href="/portfolio">Tout le portfolio</ProjectLink></div>
-      <div className={styles.projectGrid}>
-        <ProjectSlot title="Reportage photo" description="Sélection et légende à ajouter" format="Photographie" large />
-        <ProjectSlot title="Projet web" description="Capture et présentation à ajouter" format="Site internet" />
-        <ProjectSlot title="Identité visuelle" description="Supports et contexte à ajouter" format="Design" />
-        <ProjectSlot title="Film de présentation" description="Vidéo et résumé à ajouter" format="Vidéo" />
-      </div>
-    </section>
 
     <section id="accompagnement" className={`${styles.section} ${styles.partnership}`} aria-labelledby="partner-title">
-      <div className={styles.partnerIntro}><p className={styles.label}>L’accompagnement global</p><h2 id="partner-title">Tout se répond.<br /><span className={styles.muted}>Enfin.</span></h2><p>Votre site ne vit pas seul. Vos réseaux non plus. Je relie vos images, vos messages et vos supports pour construire une communication cohérente, dans la durée.</p></div>
-      <div className={styles.channelStage}>
-        <div className={styles.stageHeading}><h3>Une direction commune.<br />Plusieurs points de contact.</h3><p className={styles.muted}>Un futur cas d’accompagnement<br />sera présenté dans ces emplacements.</p></div>
-        <div className={styles.channelRail}>
-          <figure className={styles.channel}><ResourceSlot className={styles.channelPhoto} label="Contenu source" format="Photo / vidéo" /><figcaption><span>Créer la matière</span><p>Le point de départ visuel.</p></figcaption></figure>
-          <figure className={`${styles.channel} ${styles.channelSocial}`}><ResourceSlot label="Déclinaison sociale" format="Publication" /><figcaption><span>Faire vivre la marque</span><p>Le contenu adapté aux réseaux.</p></figcaption></figure>
-          <figure className={`${styles.channel} ${styles.channelWeb}`}><ResourceSlot label="Déclinaison web" format="Capture" /><figcaption><span>Donner une destination</span><p>Le prolongement sur le site.</p></figcaption></figure>
-        </div>
-      </div>
-      <div className={styles.partnerFoot}><p>Un besoin précis ? Bien sûr.<br /><span className={styles.muted}>Un partenaire pour la suite ? C’est aussi le métier.</span></p><ProjectLink href="/contact">Démarrer un projet</ProjectLink></div>
+      <div className={styles.partnerIntro}><div><p className={styles.label}>L’accompagnement</p><h2 id="partner-title">Un projet ponctuel ou un suivi régulier.</h2></div><p>Je prends en charge la création et le suivi de votre communication. Nous définissons ensemble les priorités et les supports utiles à votre activité.</p></div>
+      <dl className={styles.supportOptions}><div><dt>Pour un projet précis</dt><dd>Un logo, un reportage photo, un site internet ou un support imprimé. Je vous accompagne de la préparation à la livraison.</dd></div><div><dt>Pour un suivi régulier</dt><dd>Je prépare vos contenus, mets à jour vos supports et organise vos actions de communication au fil de l’année.</dd></div></dl>
+      <div className={styles.partnerFoot}><ProjectLink href="/contact" primary>Démarrer un projet</ProjectLink><a className={styles.textLink} href="#expertises">Voir les prestations <Arrow /></a></div>
+      <details className={styles.reservedDetails}><summary>Emplacements du futur cas d’accompagnement <span aria-hidden="true">+</span></summary><div className={styles.channelRail}>
+        <ResourceSlot label="Photos et vidéos" format="Contenus à sélectionner" />
+        <ResourceSlot label="Publication sur les réseaux" format="Exemple à ajouter" />
+        <ResourceSlot label="Site internet" format="Capture à ajouter" />
+      </div></details>
     </section>
 
     <section id="expertises" className={`${styles.section} ${styles.expertise}`} aria-label="Les quatre familles d’expertises">
-      <SectionHeading label="Les expertises" title="Une vision d’ensemble. Les bons savoir-faire." />
-      <div className={styles.expertiseList}>{expertises.map((item) => <details key={item.title} className={styles.expertiseRow}><summary><h3>{item.title}</h3><span className={styles.plus} aria-hidden="true">+</span></summary><div className={styles.expertiseContent}><p>{item.text}</p><ul>{item.services.map(service => <li key={service}>{service}</li>)}</ul><ProjectLink href={item.href}>{item.action}</ProjectLink></div></details>)}</div>
+      <SectionHeading label="Les prestations" title="Ce que je réalise pour vous." />
+      <div className={styles.expertiseList}>{expertises.map((item) => <details key={item.title} className={styles.expertiseRow}><summary><div><h3>{item.title}</h3><p>{item.summary}</p></div><span className={styles.plus} aria-hidden="true">+</span></summary><div className={styles.expertiseContent}><p>{item.text}</p><ul>{item.services.map(service => <li key={service}>{service}</li>)}</ul><ProjectLink href={item.href}>{item.action}</ProjectLink></div></details>)}</div>
     </section>
 
-    <section id="a-propos" className={`${styles.section} ${styles.method}`} aria-labelledby="method-title"><div><p className={styles.label}>La méthode & la relation</p><h2 id="method-title">Une personne.<br />Toute l’histoire.</h2><p className={styles.methodIntro}>Je suis Benjamin Sanchez.<br />Votre interlocuteur du premier échange aux projets qui suivent.</p><a className={styles.textLink} href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}>Échanger de vive voix <Arrow diagonal /></a></div><ol className={styles.steps}>{[
-      ["On pose les bonnes questions.", "Votre activité, vos clients, vos priorités. On définit ce qui mérite votre temps et votre budget."],
-      ["Je crée et je coordonne.", "Identité, images, site, supports : les décisions se prennent ensemble, la réalisation reste cohérente."],
-      ["On garde le fil.", "Mises à jour, nouveaux contenus, temps forts et campagnes. Votre communication avance avec votre entreprise."],
+    <section id="realisations" className={`${styles.section} ${styles.work}`} aria-labelledby="work-title">
+      <div className={styles.workIntro}><div><p className={styles.label}>Les réalisations</p><h2 id="work-title">Quelques exemples de mon travail.</h2><p className={styles.sectionNote}>Les contenus seront ajoutés dans les emplacements ci-dessous.</p></div><ProjectLink href="/portfolio">Voir le portfolio</ProjectLink></div>
+      <details className={styles.reservedDetails}><summary>Voir les emplacements prévus <span aria-hidden="true">+</span></summary><div className={styles.projectGrid}>
+        <ProjectSlot title="Reportage photo" description="Sélection et légende à ajouter" format="Photographie" />
+        <ProjectSlot title="Projet web" description="Capture et présentation à ajouter" format="Site internet" />
+        <ProjectSlot title="Identité visuelle" description="Supports et contexte à ajouter" format="Design" />
+        <ProjectSlot title="Film de présentation" description="Vidéo et résumé à ajouter" format="Vidéo" />
+      </div><div className={styles.proofSlots}><ResourceSlot label="Retour d’expérience" format="Témoignage à sélectionner" /><ResourceSlot label="Cas d’accompagnement" format="Ressources à réunir" /></div></details>
+    </section>
+
+    <section id="a-propos" className={`${styles.section} ${styles.method}`} aria-labelledby="method-title"><div><p className={styles.label}>À propos</p><h2 id="method-title">Comment nous travaillons.</h2><p className={styles.methodIntro}>Je suis Benjamin Sanchez, graphiste, photographe et développeur web à Agde. Vous échangez directement avec moi pour la préparation, la réalisation et le suivi de votre projet.</p><a className={styles.textLink} href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}>M’appeler <Arrow diagonal /></a></div><ol className={styles.steps}>{[
+      ["Nous définissons vos besoins.", "Nous discutons de votre activité et de vos priorités pour définir le contenu, le budget et le calendrier."],
+      ["Je réalise vos supports.", "Je vous présente les propositions et nous les ajustons ensemble avant leur mise en ligne ou leur fabrication."],
+      ["Je vous accompagne dans le suivi.", "Si vous le souhaitez, je m’occupe ensuite des mises à jour, des nouveaux contenus et des prochaines actions."],
     ].map(([title, text]) => <li key={title}><h3>{title}</h3><p>{text}</p></li>)}</ol></section>
 
-    <section className={`${styles.section} ${styles.trust}`} aria-label="Emplacements des futures preuves"><SectionHeading label="Espace réservé" title="Les preuves viendront compléter le parcours." /><div className={styles.proofSlots}><ResourceSlot label="Retour d’expérience" format="Témoignage à sélectionner" /><ResourceSlot label="Cas d’accompagnement" format="Ressources à réunir" /></div></section>
 
-    <section id="contact" className={`${styles.section} ${styles.contact}`} aria-labelledby="contact-title"><p className={styles.label}>La suite commence par un échange</p><h2 id="contact-title">Votre communication.<br /><span className={styles.muted}>On en parle ?</span></h2><div className={styles.contactBottom}><div><p>Un lancement, une nouvelle direction,<br />ou l’envie de mieux communiquer au quotidien.</p><div className={styles.contactLinks}><a href={`mailto:${CONTACT_INFO.email}`}>{CONTACT_INFO.email}</a><a href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}>{CONTACT_INFO.phone}</a></div></div><ProjectLink href="/contact" primary>Démarrer un projet</ProjectLink></div><p className={styles.colophon}>Benjamin Sanchez · Paper34 · Agde</p></section>
-  </div></AccueilMotion>;
+
+    <section id="contact" className={`${styles.section} ${styles.contact}`} aria-labelledby="contact-title"><p className={styles.label}>Contact</p><h2 id="contact-title">Parlons de votre projet.</h2><div className={styles.contactBottom}><div><p>Décrivez-moi votre activité et ce dont vous avez besoin. Nous prendrons le temps d’en discuter.</p><div className={styles.contactLinks}><a href={`mailto:${CONTACT_INFO.email}`}>{CONTACT_INFO.email}</a><a href={`tel:${CONTACT_INFO.phone.replace(/\s/g, "")}`}>{CONTACT_INFO.phone}</a></div></div><ProjectLink href="/contact" primary>Démarrer un projet</ProjectLink></div><p className={styles.colophon}>Benjamin Sanchez · Paper34 · Agde</p></section>
+  </div>;
 }

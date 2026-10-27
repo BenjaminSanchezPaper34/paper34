@@ -43,3 +43,16 @@ Dernière passe clavier : les liens de chapitres de la navigation utilisent des 
 À la demande de Benjamin, l'accueil ne présente plus de noms, citations, photos, captures, publications ni film clients. Douze emplacements indiquent le contenu attendu et son format, sans faux lien ni commande de lecture. Les pages secondaires sont conservées. Suppression de la séquence épinglée pour faciliter le parcours.
 
 Validation de cette passe : lint (0 erreur, 28 avertissements historiques), build et TypeScript réussis ; contrôle DOM du build de production : 12 blocs réservés, aucun nom client, aucune image/vidéo/citation dans le main, aucun bloc réservé focusable et aucun pin. Navigation desktop vers les expertises, ouverture clavier par Entrée, menu mobile 360 × 640 et lien Réalisations vérifiés ; aucun débordement horizontal ni erreur console observé. Les scores Lighthouse de V1 ne sont pas présentés comme une mesure de V2.
+
+
+## V3 — comprendre l’accompagnement et rejoindre le contact, 27/10/2026
+
+Demande de Benjamin : navigation surtout mobile, accès simple à « Démarrer un projet », ton sobre, direct et doux, sans punchline.
+
+- Premier écran réécrit à la première personne avec les réalisations concrètes ; suppression de l'ancien slogan et de l'animation du hero. Métadonnées alignées.
+- Ordre : présentation → accompagnement → prestations → réalisations → méthode → contact. Le message distingue projet ponctuel et suivi régulier.
+- Navigation de l'accueil dédiée : toujours visible, quatre chapitres, CTA explicite. Sur mobile : accès Accompagnement et Démarrer un projet hors du menu. Menu en texte, fermeture sur choix, Échap et sortie du focus ; cibles >=44 px, safe areas et ancres sous le header. Les autres routes conservent leur navigation.
+- Descriptions des quatre familles de prestations visibles même repliées. Les neuf emplacements de futures ressources sont conservés, derrière deux volets natifs fermés, pour éviter des écrans vides dans le parcours. Aucun contenu client ajouté.
+- Destination /contact : intro cohérente, options « Accompagnement global » et « À définir ensemble », champs 16 px, autocomplete nom/email/téléphone. Aucun envoi réel.
+
+Validation : lint sans erreur (28 avertissements historiques), build et TypeScript réussis, diff sans erreurs d'espacement. Navigation contrôlée en navigateur à 360 × 640 et 1440 × 1000. À 360 px : CTA d'en-tête visible, CTA du hero entièrement avant 521 px, aucun débordement horizontal ; après clic Accompagnement, titre sous le header (bas du header 126 px, titre à 247 px). Menu vers Prestations, ouverture par Entrée et Échap avec retour de focus testés. Accès /contact depuis le CTA mobile testé ; hauteur des champs >=47 px, police 16 px. Pas de test physique iPhone et pas de nouvel audit Lighthouse ; les scores V1 ne mesurent pas cette version.

@@ -74,8 +74,8 @@ export default function ContactPage() {
             </LineReveal>
           </h1>
           <p className="text-lg text-text-secondary max-w-xl mx-auto">
-            N&apos;hésitez pas à me contacter pour discuter de vos besoins.
-            Je vous répondrai dans les plus brefs délais.
+            Décrivez-moi votre activité et ce dont vous avez besoin.
+            Nous prendrons le temps d’en discuter.
           </p>
         </div>
       </section>
@@ -92,9 +92,9 @@ export default function ContactPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h2 className="text-2xl font-bold mb-3">Message <span className="gradient-text">envoyé !</span></h2>
+                <h2 className="text-2xl font-bold mb-3">Message envoyé</h2>
                 <p className="text-text-secondary">
-                  Merci pour votre message. Je vous recontacte très vite.
+                  Merci pour votre message. Je reviendrai vers vous pour en discuter.
                 </p>
               </div>
             ) : (
@@ -111,9 +111,10 @@ export default function ContactPage() {
                     <input
                       id="name"
                       name="name"
+                      autoComplete="name"
                       type="text"
                       required
-                      className="w-full rounded-xl border border-border bg-bg-secondary px-4 py-3 text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+                      className="w-full rounded-xl border border-border bg-bg-secondary px-4 py-3 text-base text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
                       placeholder="Votre nom"
                     />
                   </div>
@@ -124,9 +125,10 @@ export default function ContactPage() {
                     <input
                       id="email"
                       name="email"
+                      autoComplete="email"
                       type="email"
                       required
-                      className="w-full rounded-xl border border-border bg-bg-secondary px-4 py-3 text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+                      className="w-full rounded-xl border border-border bg-bg-secondary px-4 py-3 text-base text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
                       placeholder="votre@email.fr"
                     />
                   </div>
@@ -135,13 +137,14 @@ export default function ContactPage() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium mb-2">
-                      Telephone
+                      Téléphone
                     </label>
                     <input
                       id="phone"
                       name="phone"
+                      autoComplete="tel"
                       type="tel"
-                      className="w-full rounded-xl border border-border bg-bg-secondary px-4 py-3 text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+                      className="w-full rounded-xl border border-border bg-bg-secondary px-4 py-3 text-base text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
                       placeholder="06 00 00 00 00"
                     />
                   </div>
@@ -152,9 +155,10 @@ export default function ContactPage() {
                     <select
                       id="service"
                       name="service"
-                      className="w-full rounded-xl border border-border bg-bg-secondary px-4 py-3 text-sm text-text-primary focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+                      className="w-full rounded-xl border border-border bg-bg-secondary px-4 py-3 text-base text-text-primary focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
                     >
-                      <option value="">Sélectionnez...</option>
+                      <option value="">À définir ensemble</option>
+                      <option value="accompagnement-global">Accompagnement global</option>
                       {SERVICES.map((s) => (
                         <option key={s.id} value={s.id}>
                           {s.title}
@@ -174,7 +178,7 @@ export default function ContactPage() {
                     name="message"
                     rows={5}
                     required
-                    className="w-full rounded-xl border border-border bg-bg-secondary px-4 py-3 text-sm text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"
+                    className="w-full rounded-xl border border-border bg-bg-secondary px-4 py-3 text-base text-text-primary placeholder:text-text-tertiary focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors resize-none"
                     placeholder="Décrivez votre projet..."
                   />
                 </div>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import HomeNavigation from "@/components/home/HomeNavigation";
 import { NAV_LINKS } from "@/lib/constants";
 
 export default function Navbar() {
@@ -24,6 +25,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   useEffect(() => {
+    if (pathname === "/") return;
     let last = 0;
     const onScroll = () => {
       const y = window.scrollY;
@@ -33,19 +35,15 @@ export default function Navbar() {
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [pathname]);
 
   // Pas de navbar sur les pages immersives (lab, proposition Vias).
   if (pathname?.startsWith("/lab") || pathname?.startsWith("/vias"))
     return null;
 
-  const links = pathname === "/" ? [
-    { label: "Accueil", href: "#accueil" },
-    { label: "Accompagnement", href: "#accompagnement" },
-    { label: "Expertises", href: "#expertises" },
-    { label: "Réalisations", href: "#realisations" },
-    { label: "À propos", href: "#a-propos" },
-  ] : NAV_LINKS;
+  if (pathname === "/") return <HomeNavigation />;
+
+  const links = NAV_LINKS;
 
   return (
     <nav

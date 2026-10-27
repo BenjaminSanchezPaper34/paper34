@@ -106,3 +106,8 @@ Les candidates et la limite de la porte d'empreinte sont consignées dans `docs/
 « retire les référence client pour qu'on se concentre uniquement sur l'efficacité de la navigation, prévoit des bloc pour les futures ressources »
 
 Cette demande remplace, sur l'accueil de cette itération, l'emploi de médias et preuves clients : noms, photographies, captures, film, publications et témoignages sont remplacés par des blocs explicitement réservés. Les blocs indiquent la nature et le format de la future ressource ; ils ne sont pas cliquables et ne simulent pas une réalisation. Les ancres de chapitres et CTA réels restent actifs. Aucun scroll épinglé : la page sert maintenant à évaluer la lisibilité du parcours. Palette, Inter et footer inchangés. Les anciennes routes et leurs contenus restent disponibles.
+
+
+### Itération parcours et ton — 27/10/2026
+
+Demande de Benjamin : comprendre rapidement l'accompagnement, rejoindre facilement « Démarrer un projet », parler sobrement, sans punchline, directement et avec douceur. Le premier écran explique le métier à la première personne. Ordre : présentation, accompagnement (ponctuel ou régulier), prestations, emplacements de réalisations, méthode, contact. Le header de l'accueil reste visible au scroll ; sur mobile, une seconde ligne présente l'ancre Accompagnement et le CTA. Les futurs médias sont conservés dans des blocs dépliables, sans remplissage visuel en amont de l'explication. Pas de pin, d'animation d'entrée du texte ni de grand slogan. Titres réduits, corps 16 px ; safe areas et ancres décalées sous l'en-tête. Police et palette inchangées.
