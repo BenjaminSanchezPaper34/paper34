@@ -29,3 +29,4 @@ Créé depuis la conversation « apprentissage » (`TRAVAUX/2026/PAPER34 - AGDE/
 | 27/10/2026 | `proto/services` | Cadrage de la section services (Claude Code) | cadrage, attend Benjamin |
 | 27/10/2026 | `proto/refonte-accueil` | Refonte de l'accueil, brief `docs/REFONTE-ACCUEIL.md` (Codex) | Codex : V1 développée, vérifiée et poussée ; V4 : services en points, accompagnement durable mis en avant ; vérifié et poussé |
 | 27/10/2026 | `labo` | Environnement Codex : `AGENTS.md` commun, skills dans `.agents/skills/` | fait |
+| 27/10/2026 | `proto/refonte-accueil-v2` | Reprise de la v1 Codex : hero image (Higgsfield), convergence des supports (pin), réalisations visibles, jauge de méthode (Claude Code) | à juger par Benjamin |

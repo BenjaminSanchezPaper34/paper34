@@ -116,3 +116,16 @@ Demande de Benjamin : comprendre rapidement l'accompagnement, rejoindre facileme
 ### Services en points et accompagnement durable — 27/10/2026
 
 Benjamin souhaite voir les services comme des éléments concrets, présentés en points. Le hero liste six objets de communication, en blocs de texte non interactifs : logo et identité, photographies, vidéos, site, réseaux sociaux, imprimés. Ce regroupement explicite remplace la phrase énumérative ; ce ne sont pas des cartes de prestations génériques avec icônes et promesses. Les quatre familles restent conservées et leurs listes dépliées reprennent ce principe de points délimités. L'accompagnement met uniquement en avant la continuité, la cohérence et l'ajustement à partir des retours ; aucun résultat chiffré ni garantie. Le besoin ponctuel est mentionné plus tard, discrètement dans la méthode. Le CTA mobile permanent, les ressources réservées et la sobriété du ton sont conservés.
+
+
+### Itération v2 « mise en scène » — Claude Code, 27/10/2026 (branche `proto/refonte-accueil-v2`)
+
+Demande de Benjamin : reprendre le travail de Codex et appliquer la veille (Mobbin, Higgsfield, scroll). **Textes, ordre, CTA et absence de références clients de la v1 conservés à l'identique** ; seule la mise en scène change.
+- **Hero = un élément fort** (veille Viktor Oddy / ScrollCraft) : une feuille de papier qui ondule dans le noir, liseré bleu `#0071e3` — visuel généré (Higgsfield `gpt_image_2_5`, préambule de style unique ci-dessous). **Décor de studio, jamais présenté comme une réalisation.** Image masquée côté texte (pas de voile plein cadre), titre en deux lignes au bureau, recomposition au téléphone (image en haut, titre sous la ligne de flottaison évitée). Au scroll : la feuille s'éloigne et tourne, le texte s'efface plus vite.
+- **Geste signature et pic unique (seul pin)** : dans « L'accompagnement », les six supports du hero se rejoignent au scroll dans un noyau bleu « Un seul interlocuteur », puis les trois engagements apparaissent. La promesse est montrée, pas dite. Au doigt, sous 1024 px ou en mouvement réduit : couronne statique autour du noyau, sans pin.
+- **Prestations** : index typographique numéroté (Mother Design), lignes fermées en gris, ouverte en blanc ; listes à filets, plus de pastilles.
+- **Réalisations** : les emplacements sont **visibles** dans une composition asymétrique au format des futurs médias (3:2, 4:5, 16:10, 1:1), au lieu d'être repliés : on juge la mise en page avant d'avoir les ressources.
+- **Méthode** : jauge de traits fins avec tête lumineuse (veille Finary, règle graduée de l'essai « index gradué ») qui se remplit au fil des trois étapes ; scrub sans pin.
+- Écart §12 justifié : la jauge graduée est une séquence qui *est* l'information (trois étapes dans l'ordre). Aucun mot en dégradé, aucune animation permanente.
+- Préambule photo : « cinematic studio still life, pure black void, single subject, light is the material: one thin electric-blue rim light (#0071e3) grazing from the right plus a very soft neutral key, shallow depth of field, macro 100mm, subtle 35mm grain, no text, no people ; negative space on the left for typography ».
+- Palette et Inter inchangées. À arbitrer par Benjamin : garder ce visuel ou le remplacer par une vraie photo de studio ; libellé du noyau.
