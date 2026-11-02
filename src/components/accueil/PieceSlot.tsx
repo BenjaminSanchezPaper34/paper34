@@ -9,12 +9,12 @@ import styles from "./accueil.module.css";
  * le numéro reste visible pour savoir quoi remplacer ; la pièce attendue est décrite
  * dans la liste « Pièces à fournir ». Sans illustration, le cadre décrit la pièce.
  */
-export default function PieceSlot({ id, legend, className = "", priority = false }: { id: string; legend?: string; className?: string; priority?: boolean }) {
+export default function PieceSlot({ id, legend, className = "", priority = false, ratio }: { id: string; legend?: string; className?: string; priority?: boolean; /** Format imposé par la mise en page (sinon celui de la pièce) */ ratio?: string }) {
   const p = piece(id);
   const m = p.media;
   return (
     <figure className={`${styles.piece} ${className}`}>
-      <div className={m ? styles.mediaFrame : styles.pieceFrame} style={{ aspectRatio: p.ratio }}>
+      <div className={m ? styles.mediaFrame : styles.pieceFrame} style={{ aspectRatio: ratio ?? p.ratio }}>
         {m?.type === "image" && <img className={styles.mediaFill} src={m.src} alt={m.credit} loading={priority ? "eager" : "lazy"} decoding="async" />}
         {m?.type === "video" && <LoopVideo src={m.src} poster={m.poster} label={m.credit} />}
         {m ? (

@@ -24,6 +24,14 @@ Chaque emplacement P1 à P12 est rempli par une vraie photo ou vidéo de Benjami
 - Viktor Oddy (01/11) : un seul monde visuel, d'où des illustrations toutes issues des tournages de Benjamin (aucune image générée).
 - ScrollCraft / paper34-webdesign : pas de grille de cartes identiques, pas de tout-centré, faits réels uniquement.
 
+## Grammaire « galerie légendée » (choisie par Benjamin le 02/11)
+- La page est un **index de réalisations**. Règle : le même schéma de légende pour chaque objet (n°, client, lieu, **ce que j'ai fait**). Cette légende est le geste signature : elle montre l'étendue du travail sans catalogue de services.
+- Composition : hero (promesse + film), index en lignes fines (aperçu de l'image au survol, souris seulement), doubles pages alternées par client (grande image, étiquettes, chronologie « comment la collaboration a grandi » pour les 3 cas), portes d'entrée, Benjamin, mot final géant « Parlons-en. ».
+- Écart assumé à la grammaire catalogue : la promesse reste en titre du hero (décision de Benjamin).
+- Références Mobbin : Nite Riot et Waka Waka (index en lignes, même schéma par objet), A24 (titres empilés), MOUTHWASH (code court sous chaque visuel).
+- Boucle image (Viktor Oddy) : deux maquettes générées avec Higgsfield, la B retenue (index + doubles pages + chronologie verticale), puis code calé dessus. Les maquettes contiennent des images et un nom inventés : jamais publiées.
+- Données : `src/components/accueil/clients.ts` (faits tirés des dossiers et galeries uniquement).
+
 ## Reste à faire
 - Remplir les pièces P1 à P12 (liste en bas de l'accueil Labo).
 - Accord écrit de Megakart, O Soleil et du Chiringuito ; vérifier les faits (« environ 2 000 personnes », orthographe O Soleil / Au Soleil).
