@@ -61,7 +61,7 @@ export default function Accueil() {
     <div className={styles.home}>
       {/* 1. Hero : confirmer la qualité des images */}
       <section className={styles.hero} aria-labelledby="accueil-titre">
-        <div className={styles.heroMedia}><PieceSlot id="P1" /></div>
+        <div className={styles.heroMedia}><PieceSlot id="P1" legend="" priority /></div>
         <div className={styles.heroText}>
           <p className={styles.kicker}>Benjamin Sanchez · Paper34 · Agde</p>
           <h1 id="accueil-titre">Des images qui donnent envie de venir.</h1>
@@ -77,12 +77,12 @@ export default function Accueil() {
           <p>Ces images tournent sur les réseaux de mes clients. C’est souvent comme ça qu’on me trouve.</p>
         </div>
         <div className={styles.wall}>
-          <PieceSlot id="P2" legend="Le Chiringuito, Vias" className={styles.wallA} />
-          <PieceSlot id="P3" legend="Megakart, Vias-Plage" className={styles.wallB} />
-          <PieceSlot id="P4" legend="Restaurant (à choisir)" className={styles.wallC} />
-          <PieceSlot id="P5" legend="La Guinguette, Saint-Laurent" className={styles.wallD} />
-          <PieceSlot id="P6" legend="Fabrikus World, Vias" className={styles.wallE} />
-          <PieceSlot id="P7" legend="Midi Cap Thau, en mer" className={styles.wallF} />
+          <PieceSlot id="P2" className={styles.wallA} />
+          <PieceSlot id="P3" className={styles.wallB} />
+          <PieceSlot id="P4" className={styles.wallC} />
+          <PieceSlot id="P5" className={styles.wallD} />
+          <PieceSlot id="P6" className={styles.wallE} />
+          <PieceSlot id="P7" className={styles.wallF} />
         </div>
         <Link className={styles.textLink} href="/galeries">Voir toutes les galeries</Link>
       </section>

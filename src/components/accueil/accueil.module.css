@@ -2,7 +2,7 @@
    Mobile d'abord ; la structure prime, les emplacements décrivent les pièces attendues. */
 .home {
   --gutter: clamp(1.25rem, 5vw, 5rem);
-  --space: clamp(4rem, 9vw, 8rem);
+  --space: clamp(4.5rem, 11vw, 10rem);
   --radius: 1rem;
   --pill: 999px;
   --hair: 1px solid var(--color-border-hover);
@@ -11,7 +11,7 @@
   padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px)); /* place de la barre mobile */
 }
 .home h1, .home h2, .home h3 { text-wrap: balance; }
-.home h2 { font-size: clamp(1.875rem, 4vw, 3.25rem); line-height: 1.08; letter-spacing: -.035em; font-weight: 600; }
+.home h2 { font-size: clamp(2.125rem, 5.2vw, 4.25rem); line-height: 1.08; letter-spacing: -.035em; font-weight: 600; }
 .home p { line-height: 1.65; }
 .home a:focus-visible { outline: 2px solid var(--color-accent-hover); outline-offset: 4px; }
 .section { padding: var(--space) var(--gutter); }
@@ -41,6 +41,13 @@
 .pieceSujet { color: var(--color-text-primary); font-size: 1rem; }
 .pieceSource { font-size: .875rem; }
 .piece figcaption { padding-top: .625rem; font-size: .9375rem; }
+
+/* Illustrations provisoires (Labo) : le média remplit le cadre, le numéro reste visible */
+.mediaFrame { position: relative; overflow: hidden; border-radius: var(--radius); background: var(--color-bg-card); }
+.mediaFill { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.videoWrap { position: absolute; inset: 0; }
+.videoToggle { position: absolute; right: .75rem; bottom: .75rem; min-height: 44px; padding: .5rem 1rem; border-radius: var(--pill); background: color-mix(in srgb, var(--color-bg-primary) 60%, transparent); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: var(--hair); font-size: .875rem; cursor: pointer; }
+.pieceBadge { position: absolute; left: .75rem; top: .75rem; padding: .25rem .5rem; border-radius: var(--pill); background: var(--color-accent); color: var(--color-text-primary); font-size: .875rem; font-weight: 600; }
 
 /* 1. Hero */
 .hero { display: grid; gap: 2rem; padding: calc(5.5rem + env(safe-area-inset-top, 0px)) var(--gutter) var(--space); }
@@ -110,4 +117,6 @@
   .bar { display: none; }
   .home { padding-bottom: 0; }
 }
+/* Au téléphone, la barre fixe porte déjà les trois canaux : pas de doublon dans le hero */
+@media (max-width: 1023px) { .heroText .actions { display: none; } }
 @media (prefers-reduced-motion: reduce) { .actionPrimary, .actionSecondary, .porte { transition: none; } }

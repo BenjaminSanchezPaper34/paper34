@@ -17,21 +17,26 @@ export type Piece = {
   source: string;
   /** Section de la page */
   section: string;
+  /** Illustration provisoire (Labo) : vraie photo ou vidéo de Benjamin, en attendant la pièce choisie */
+  media?: { type: "image" | "video"; src: string; poster?: string; credit: string };
 };
 
+const R2 = "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev";
+const g = (path: string) => `${R2}/galeries/${path}`;
+
 export const PIECES: Piece[] = [
-  { id: "P1", section: "Hero", kind: "Film", sujet: "8 à 10 s de tes tournages enchaînés (Chiringuito, Megakart, Guinguette…), sans son, en boucle", ratio: "16 / 9", format: "16:9 ordinateur + 4:5 téléphone, MP4 léger + image d'affiche", source: "Rushs des galeries d'événements, teaser 12 h Megakart, motion du site Megakart" },
-  { id: "P2", section: "Déjà vues", kind: "Photo", sujet: "Une soirée au Chiringuito, foule et lumière", ratio: "4 / 5", format: "4:5", source: "Galeries chiringuito-opening, -coachella, -closing" },
-  { id: "P3", section: "Déjà vues", kind: "Vidéo", sujet: "Megakart en course, un reel qui a tourné", ratio: "9 / 16", format: "9:16, 6 à 10 s, sans son", source: "Teaser 12 h, reels Instagram Megakart" },
-  { id: "P4", section: "Déjà vues", kind: "Photo", sujet: "Un plat ou une salle de restaurant", ratio: "1 / 1", format: "1:1", source: "O Soleil, Le Dix9, La Bohème (selon accord)" },
-  { id: "P5", section: "Déjà vues", kind: "Photo", sujet: "Une scène de la Guinguette", ratio: "3 / 2", format: "3:2", source: "Galerie guinguette-st-laurent" },
-  { id: "P6", section: "Déjà vues", kind: "Photo", sujet: "Fabrikus World, une attraction en action", ratio: "4 / 5", format: "4:5", source: "Galeries fabrikus-world, fabrikus-vias-court-en-rose" },
-  { id: "P7", section: "Déjà vues", kind: "Photo", sujet: "Une sortie en mer, Midi Cap Thau", ratio: "3 / 2", format: "3:2", source: "Galerie midicapthau-en-mer" },
-  { id: "P8", section: "Cas Megakart", kind: "Planche", sujet: "Une course déclinée : visuel, post, événement Facebook, page d'inscription, e-mail", ratio: "16 / 10", format: "16:10, captures réelles côte à côte", source: "Dossier MEGAKART (VISUELS, ADS, web)" },
-  { id: "P9", section: "Cas O Soleil", kind: "Capture", sujet: "Le site sur téléphone, à côté de la fiche Google", ratio: "4 / 5", format: "4:5", source: "osoleil-marseillan.fr + fiche Google" },
-  { id: "P10", section: "Cas Chiringuito", kind: "Planche", sujet: "Les supports d'une soirée : menu, billetterie, éventail, post, photo", ratio: "3 / 2", format: "3:2, photo à plat ou montage", source: "Dossier CHIRINGUITO (MENUCOACHELLA, BILLETTERIE, EVENTAIL, MOCKUP)" },
-  { id: "P11", section: "Benjamin", kind: "Portrait", sujet: "Toi au travail : en shooting, pendant un événement ou avec un client", ratio: "4 / 5", format: "4:5", source: "À faire prendre par un tiers lors d'un tournage" },
-  { id: "P12", section: "Benjamin", kind: "Témoignage", sujet: "Un client filmé chez lui, 20 s : pourquoi il travaille avec toi", ratio: "4 / 5", format: "4:5, sous-titré, sans son par défaut", source: "À tourner (Megakart ou Chiringuito)" },
+  { id: "P1", section: "Hero", kind: "Film", sujet: "8 à 10 s de tes tournages enchaînés (Chiringuito, Megakart, Guinguette…), sans son, en boucle", ratio: "16 / 9", format: "16:9 ordinateur + 4:5 téléphone, MP4 léger + image d'affiche", source: "Rushs des galeries d'événements, teaser 12 h Megakart, motion du site Megakart", media: { type: "video", src: `${R2}/site/hero-home.mp4`, poster: g("chiringuito-opening/display/A7V-113.jpg"), credit: "Vidéo du hero actuel de paper34.fr" } },
+  { id: "P2", section: "Déjà vues", kind: "Photo", sujet: "Une soirée au Chiringuito, foule et lumière", ratio: "4 / 5", format: "4:5", source: "Galeries chiringuito-opening, -coachella, -closing", media: { type: "image", src: g("chiringuito-coachella/display/A7507758-DxO_DeepPRIME%20XD3.jpg"), credit: "Le Chiringuito, soirée Coachella" } },
+  { id: "P3", section: "Déjà vues", kind: "Vidéo", sujet: "Megakart en course, un reel qui a tourné", ratio: "9 / 16", format: "9:16, 6 à 10 s, sans son", source: "Teaser 12 h, reels Instagram Megakart", media: { type: "video", src: g("guinguette-st-laurent/video/reel-st-laurent.mp4"), poster: g("guinguette-st-laurent/display/reel-st-laurent.jpg"), credit: "La Guinguette, reel de la Saint-Laurent" } },
+  { id: "P4", section: "Déjà vues", kind: "Photo", sujet: "Un plat ou une salle de restaurant", ratio: "1 / 1", format: "1:1", source: "O Soleil, Le Dix9, La Bohème (selon accord)", media: { type: "image", src: g("chiringuito-reggaeton/display/A7V-90.jpg"), credit: "Le Chiringuito, soirée reggaeton" } },
+  { id: "P5", section: "Déjà vues", kind: "Photo", sujet: "Une scène de la Guinguette", ratio: "3 / 2", format: "3:2", source: "Galerie guinguette-st-laurent", media: { type: "image", src: g("megakart-bricocash/display/A7V19%20-%20HDR.jpg"), credit: "Megakart, course Bricocash" } },
+  { id: "P6", section: "Déjà vues", kind: "Photo", sujet: "Fabrikus World, une attraction en action", ratio: "4 / 5", format: "4:5", source: "Galeries fabrikus-world, fabrikus-vias-court-en-rose", media: { type: "image", src: g("fabrikus-world/display/affiche-2m2.jpg"), credit: "Fabrikus World, affiche 2 m²" } },
+  { id: "P7", section: "Déjà vues", kind: "Photo", sujet: "Une sortie en mer, Midi Cap Thau", ratio: "3 / 2", format: "3:2", source: "Galerie midicapthau-en-mer", media: { type: "image", src: g("midicapthau-en-mer/display/A7V-1.jpg"), credit: "Midi Cap Thau, en mer" } },
+  { id: "P8", section: "Cas Megakart", kind: "Planche", sujet: "Une course déclinée : visuel, post, événement Facebook, page d'inscription, e-mail", ratio: "16 / 10", format: "16:10, captures réelles côte à côte", source: "Dossier MEGAKART (VISUELS, ADS, web)", media: { type: "image", src: `${R2}/site/realisations/megakart.jpg`, credit: "Megakart, capture du site" } },
+  { id: "P9", section: "Cas O Soleil", kind: "Capture", sujet: "Le site sur téléphone, à côté de la fiche Google", ratio: "4 / 5", format: "4:5", source: "osoleil-marseillan.fr + fiche Google", media: { type: "image", src: `${R2}/site/realisations/o-soleil.jpg`, credit: "O Soleil, capture du site" } },
+  { id: "P10", section: "Cas Chiringuito", kind: "Planche", sujet: "Les supports d'une soirée : menu, billetterie, éventail, post, photo", ratio: "3 / 2", format: "3:2, photo à plat ou montage", source: "Dossier CHIRINGUITO (MENUCOACHELLA, BILLETTERIE, EVENTAIL, MOCKUP)", media: { type: "image", src: g("chiringuito-opening/display/A7V-113.jpg"), credit: "Le Chiringuito, Opening" } },
+  { id: "P11", section: "Benjamin", kind: "Portrait", sujet: "Toi au travail : en shooting, pendant un événement ou avec un client", ratio: "4 / 5", format: "4:5", source: "À faire prendre par un tiers lors d'un tournage", media: { type: "image", src: g("chiringuito-closing/display/A7V1.jpg"), credit: "Illustration : en attendant ton portrait" } },
+  { id: "P12", section: "Benjamin", kind: "Témoignage", sujet: "Un client filmé chez lui, 20 s : pourquoi il travaille avec toi", ratio: "4 / 5", format: "4:5, sous-titré, sans son par défaut", source: "À tourner (Megakart ou Chiringuito)", media: { type: "video", src: g("actah-associes/video/film-cabinet.mp4"), poster: g("actah-associes/display/film-cabinet.jpg"), credit: "Illustration : film du cabinet Actah, en attendant un témoignage" } },
 ];
 
 export const piece = (id: string) => {

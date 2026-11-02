@@ -16,6 +16,14 @@ Source unique pour Claude Code comme pour Codex. Les briefs précédents (`docs/
 - **Pas de section épinglée** tant que les cas sont vides : ce sont eux qui la recevront.
 - DA du `DESIGN.md` (noir, bleu seul, Inter), mobile d'abord, noindex du Labo.
 
+## Illustrations provisoires (02/11, demande de Benjamin)
+Chaque emplacement P1 à P12 est rempli par une vraie photo ou vidéo de Benjamin tirée des galeries et des captures de sites (R2), avec son numéro en pastille bleue. Ce ne sont pas des choix définitifs : la pièce attendue reste décrite dans `pieces.ts` et dans la liste en bas de page.
+
+## Apprentissages appliqués (section VEILLE / savoir-faire)
+- realfood.gov / america.gov (29/10) : une idée par section, titres plus grands, plus de vide ; grand média à coins arrondis avec bouton lecture/pause ; barre d'action collante en bas sur téléphone.
+- Viktor Oddy (01/11) : un seul monde visuel, d'où des illustrations toutes issues des tournages de Benjamin (aucune image générée).
+- ScrollCraft / paper34-webdesign : pas de grille de cartes identiques, pas de tout-centré, faits réels uniquement.
+
 ## Reste à faire
 - Remplir les pièces P1 à P12 (liste en bas de l'accueil Labo).
 - Accord écrit de Megakart, O Soleil et du Chiringuito ; vérifier les faits (« environ 2 000 personnes », orthographe O Soleil / Au Soleil).
