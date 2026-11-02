@@ -22,6 +22,17 @@ grammaire change ce que la page est.** Un site qui ne change que de couleurs est
 Paper34, le risque concret : deux restaurants voisins avec le même squelette (hero photo plein écran,
 sections alternées, galerie, avis, carte, footer).
 
+## 0 bis. Relire la veille avant de concevoir
+
+Avant tout cadrage, toute référence ou toute refonte (même une seule section) : relire les entrées
+**web, design, motion et image** de `~/.claude/savoir-faire.md` et du tableau de
+`TRAVAUX/2026/PAPER34 - AGDE/VEILLE/VEILLE.md`, en priorité les plus récentes, ainsi que
+`VEILLE/recommandations/` si un fichier vise le site concerné. Benjamin y consigne en continu ce qu'il
+apprend pour améliorer ses sites. Retenir ce qui s'applique au projet, le citer en une ligne dans le
+rapport (« apprentissages appliqués ») et dans le DESIGN.md quand ça oriente un choix. Ce qui ne
+s'applique pas n'est pas mentionné. Cause : le 02/11/2026, l'accueil Labo de paper34.fr a d'abord été
+conçu sans relire la veille, que Benjamin a dû signaler.
+
 ## 1. Cadrage — avant toute référence
 
 1. **Message** : remplir le §0 du DESIGN.md (Person · Pain · Promise). La Promise devient le titre du
@@ -201,6 +212,7 @@ justifiés par écrit dans le DESIGN.md du site** (quelle intention, pourquoi ic
 
 ## 13. Process
 
+0. Relire la veille (§0 bis) : apprentissages applicables notés.
 1. Cadrage (§1) → §0 du DESIGN.md ; phrase test.
 2. Références par section (§2) → retenues au DESIGN.md.
 3. Grammaire (§3) + courbe d'émotion et pic (§6) + geste signature (§4).
