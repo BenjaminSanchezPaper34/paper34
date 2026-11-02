@@ -29,3 +29,4 @@ Créé depuis la conversation « apprentissage » (`TRAVAUX/2026/PAPER34 - AGDE/
 | 27/10/2026 | `proto/services` | Cadrage de la section services (Claude Code) | cadrage, attend Benjamin |
 | 27/10/2026 | `proto/refonte-accueil` | Refonte de l'accueil, brief `docs/REFONTE-ACCUEIL.md` (Codex) | brief prêt |
 | 27/10/2026 | `labo` | Environnement Codex : `AGENTS.md` commun, skills dans `.agents/skills/` | fait |
+| 02/11/2026 | `labo` | Accueil v3 : stratégie « qui vous a fait ce travail ? », emplacements de pièces (`docs/ACCUEIL-V3.md`), construit directement sur `labo` à la demande de Benjamin | à remplir |

@@ -1,0 +1,113 @@
+/* Accueil v3 (Labo, 02/11/2026). DA du DESIGN.md : noir, bleu seul, Inter.
+   Mobile d'abord ; la structure prime, les emplacements décrivent les pièces attendues. */
+.home {
+  --gutter: clamp(1.25rem, 5vw, 5rem);
+  --space: clamp(4rem, 9vw, 8rem);
+  --radius: 1rem;
+  --pill: 999px;
+  --hair: 1px solid var(--color-border-hover);
+  --fast: 200ms;
+  background: var(--color-bg-primary);
+  padding-bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px)); /* place de la barre mobile */
+}
+.home h1, .home h2, .home h3 { text-wrap: balance; }
+.home h2 { font-size: clamp(1.875rem, 4vw, 3.25rem); line-height: 1.08; letter-spacing: -.035em; font-weight: 600; }
+.home p { line-height: 1.65; }
+.home a:focus-visible { outline: 2px solid var(--color-accent-hover); outline-offset: 4px; }
+.section { padding: var(--space) var(--gutter); }
+.alt { background: var(--color-bg-secondary); }
+.head { max-width: 46rem; margin-bottom: clamp(2rem, 4vw, 3rem); }
+.head p { margin-top: 1rem; font-size: 1.0625rem; color: var(--color-text-secondary); }
+.textLink { display: inline-flex; align-items: center; min-height: 44px; margin-top: 2rem; border-bottom: var(--hair); }
+
+/* Actions de contact : tous les canaux, l'appel d'abord */
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin-top: 2rem; }
+.actionPrimary, .actionSecondary { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: .75rem 1.5rem; border-radius: var(--pill); font-size: 1rem; font-weight: 500; transition: background var(--fast), border-color var(--fast); }
+.actionPrimary { background: var(--color-accent); color: var(--color-text-primary); }
+.actionPrimary:hover { background: var(--color-accent-hover); }
+.actionSecondary { border: var(--hair); }
+.actionSecondary:hover { border-color: var(--color-text-secondary); }
+.actionText { display: inline-flex; align-items: center; min-height: 44px; margin-left: .5rem; color: var(--color-text-secondary); border-bottom: var(--hair); }
+
+/* Barre fixe au téléphone : appeler, WhatsApp, écrire */
+.bar { position: fixed; z-index: 40; inset: auto 0 0; padding: .75rem var(--gutter) calc(.75rem + env(safe-area-inset-bottom, 0px)); background: linear-gradient(to top, var(--color-bg-primary) 70%, transparent); }
+.barActions { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: .5rem; }
+.barActions > a { padding-inline: .5rem; }
+
+/* Emplacement d'une pièce à fournir */
+.piece { margin: 0; min-width: 0; }
+.pieceFrame { display: flex; flex-direction: column; justify-content: space-between; gap: .75rem; padding: 1rem; border: 1px dashed var(--color-border-hover); border-radius: var(--radius); background: var(--color-bg-card); color: var(--color-text-secondary); font-size: .875rem; line-height: 1.45; overflow: hidden; }
+.pieceTop b { color: var(--color-accent); font-weight: 700; margin-right: .25rem; }
+.pieceSujet { color: var(--color-text-primary); font-size: 1rem; }
+.pieceSource { font-size: .875rem; }
+.piece figcaption { padding-top: .625rem; font-size: .9375rem; }
+
+/* 1. Hero */
+.hero { display: grid; gap: 2rem; padding: calc(5.5rem + env(safe-area-inset-top, 0px)) var(--gutter) var(--space); }
+.kicker { font-size: .875rem; color: var(--color-text-secondary); margin-bottom: 1.25rem; }
+.hero h1 { font-size: clamp(2.5rem, 6vw, 5.25rem); line-height: 1; letter-spacing: -.05em; font-weight: 600; max-width: 14ch; }
+.lead { margin-top: 1.5rem; max-width: 40rem; font-size: 1.125rem; color: var(--color-text-secondary); }
+
+/* 2. Mur des images déjà vues : composition asymétrique */
+.wall { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; align-items: start; }
+.wallA, .wallD, .wallF { grid-column: 1 / -1; }
+
+/* 3. Portes d'entrée */
+.portes { border-top: var(--hair); }
+.porte { display: grid; gap: .5rem; padding: 1.5rem 0; border-bottom: var(--hair); transition: padding var(--fast); }
+.porteTitre { font-size: clamp(1.375rem, 2.6vw, 2rem); letter-spacing: -.03em; line-height: 1.2; font-weight: 550; }
+.porteTexte { color: var(--color-text-secondary); max-width: 48ch; }
+.porteLien { color: var(--color-accent); font-size: 1rem; }
+.porte:hover .porteTitre { color: var(--color-accent); }
+.aussi { margin-top: 2rem; color: var(--color-text-secondary); }
+.aussi a { color: var(--color-text-primary); border-bottom: var(--hair); }
+
+/* 4. Cas : une relation qui grandit */
+.casList { display: grid; gap: clamp(3rem, 6vw, 5rem); }
+.cas { display: grid; gap: 1.25rem; padding-top: 2rem; border-top: var(--hair); }
+.cas h3 { font-size: clamp(1.75rem, 3.4vw, 2.75rem); letter-spacing: -.04em; line-height: 1.05; font-weight: 600; }
+.casLieu { color: var(--color-text-secondary); margin-top: .25rem; }
+.etapes { counter-reset: etape; display: grid; gap: .75rem; }
+.etapes li { counter-increment: etape; position: relative; padding-left: 2.25rem; max-width: 52ch; }
+.etapes li::before { content: counter(etape); position: absolute; left: 0; top: .1rem; width: 1.5rem; height: 1.5rem; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--color-accent); color: var(--color-accent); font-size: .875rem; }
+.aujourdhui { max-width: 52ch; padding: 1rem 1.25rem; border-left: 2px solid var(--color-accent); background: var(--color-bg-card); }
+.note { font-size: .875rem; color: var(--color-text-tertiary); }
+
+/* 5. Benjamin */
+.bio { display: grid; gap: 2rem; align-items: start; }
+.bio h2 + p { margin-top: 1.25rem; }
+.bio p { color: var(--color-text-secondary); max-width: 52ch; }
+.bio p + p { margin-top: 1rem; }
+
+/* 6. Contact */
+.contact { padding: var(--space) var(--gutter); background: var(--color-bg-card); }
+.contact h2 { font-size: clamp(2.25rem, 5.5vw, 4.5rem); letter-spacing: -.05em; line-height: 1; }
+.contact > p { margin-top: 1rem; color: var(--color-text-secondary); }
+
+/* LABO : liste des pièces à fournir */
+.labo { padding: 3rem var(--gutter); border-top: 2px solid var(--color-accent); background: var(--color-bg-secondary); }
+.labo h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+.labo ol { display: grid; gap: .625rem; font-size: .9375rem; color: var(--color-text-secondary); max-width: 62rem; }
+.labo b { color: var(--color-text-primary); }
+
+@media (min-width: 768px) {
+  .wall { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .wallA { grid-column: 1 / span 2; }
+  .wallB { grid-column: 3 / span 2; }
+  .wallC { grid-column: 5 / span 2; margin-top: 4rem; }
+  .wallD { grid-column: 1 / span 3; }
+  .wallE { grid-column: 4 / span 2; }
+  .wallF { grid-column: 2 / span 4; }
+  .cas { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(2rem, 4vw, 4rem); }
+  .cas > header, .cas > .etapes, .cas > .aujourdhui, .cas > .note { grid-column: 1; }
+  .cas > .piece { grid-column: 2; grid-row: 1 / span 4; }
+  .bio { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr) minmax(0, .8fr); }
+}
+@media (min-width: 1024px) {
+  .hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; min-height: 100svh; padding-top: 7rem; }
+  .heroMedia { order: 2; }
+  .portes { display: grid; grid-template-columns: 1fr 1fr; column-gap: 3rem; }
+  .bar { display: none; }
+  .home { padding-bottom: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .actionPrimary, .actionSecondary, .porte { transition: none; } }

@@ -1,21 +1,17 @@
-import Hero from "@/components/home/Hero";
-import ServicesPreview from "@/components/home/ServicesPreview";
-import PartenaireComplet from "@/components/home/PartenaireComplet";
-import Stats from "@/components/home/Stats";
-import SocialProofMosaic from "@/components/home/SocialProofMosaic";
-import Testimonials from "@/components/home/Testimonials";
-import CTASection from "@/components/home/CTASection";
+import type { Metadata } from "next";
+import Accueil from "@/components/accueil/Accueil";
+
+// LABO : accueil v3 (02/11/2026). L'ancien accueil (components/home) reste intact pour comparaison.
+const title = "Benjamin Sanchez, photographe, vidéaste et graphiste à Agde | Paper34";
+const description = "Des images qui donnent envie de venir : photo, vidéo, réseaux sociaux, sites et supports pour les établissements d'Agde et de l'Hérault.";
+
+export const metadata: Metadata = {
+  title: { absolute: title },
+  description,
+  openGraph: { title, description },
+  twitter: { title, description },
+};
 
 export default function HomePage() {
-  return (
-    <>
-      <Hero />
-      <PartenaireComplet />
-      <ServicesPreview />
-      <Stats />
-      <SocialProofMosaic />
-      <Testimonials />
-      <CTASection />
-    </>
-  );
+  return <Accueil />;
 }
