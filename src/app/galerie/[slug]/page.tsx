@@ -31,7 +31,7 @@ export async function generateMetadata({
   const date = formatDateFr(gallery.date);
   const description = `Photos de ${gallery.title} chez ${gallery.client}, le ${date} : ${gallery.count} photos à voir et télécharger. Reportage Paper34, photographe à Agde.`.slice(0, 160);
   return {
-    title: `${gallery.client} · ${gallery.title} — photos du ${date}`,
+    title: `${gallery.client} · ${gallery.title} — ${gallery.photos.length > 0 && gallery.photos.every((p) => p.type === "video") ? "films" : "photos"} du ${date}`,
     description,
     alternates: { canonical: url },
     openGraph: {
