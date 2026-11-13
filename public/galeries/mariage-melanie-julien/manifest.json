@@ -1,0 +1,45 @@
+{
+  "slug": "mariage-melanie-julien",
+  "title": "Mélanie & Julien",
+  "client": "Mariage à Vias",
+  "date": "2026-09-26",
+  "ctaTheme": "mariage",
+  "intro": "🤍 Le mariage de Mélanie & Julien, à Vias.\n🎞️ Deux films : la mairie et l'église, puis le domaine.\n🎥 @benjaminsanchez_paper34",
+  "cover": "domaine",
+  "count": 2,
+  "totalOriginalBytes": 177472657,
+  "storage": "r2",
+  "private": true,
+  "photos": [
+    {
+      "id": "mairie-eglise",
+      "type": "video",
+      "title": "La mairie & l'église",
+      "duration": "4 min",
+      "thumb": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/mariage-melanie-julien/thumb/mairie-eglise.jpg",
+      "display": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/mariage-melanie-julien/display/mairie-eglise.jpg",
+      "video": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/mariage-melanie-julien/video/mairie-eglise.mp4",
+      "original": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/mariage-melanie-julien/video/mairie-eglise.mp4",
+      "downloadName": "Mariage-Melanie-Julien-Mairie-Eglise.mp4",
+      "width": 1920,
+      "height": 816,
+      "originalBytes": 107127859,
+      "originalExt": "mp4"
+    },
+    {
+      "id": "domaine",
+      "type": "video",
+      "title": "Le domaine",
+      "duration": "2 min 45",
+      "thumb": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/mariage-melanie-julien/thumb/domaine.jpg",
+      "display": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/mariage-melanie-julien/display/domaine.jpg",
+      "video": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/mariage-melanie-julien/video/domaine.mp4",
+      "original": "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/galeries/mariage-melanie-julien/video/domaine.mp4",
+      "downloadName": "Mariage-Melanie-Julien-Domaine.mp4",
+      "width": 1920,
+      "height": 816,
+      "originalBytes": 70344798,
+      "originalExt": "mp4"
+    }
+  ]
+}
