@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getGallerySlugs, getGallery } from "@/lib/galleries";
 import { assetUrl } from "@/lib/gallery-shared";
+import { getAppSlugs } from "@/lib/apps";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.paper34.fr";
@@ -90,6 +91,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.7,
     },
+    // Apps conçues par Paper34 : page de présentation, assistance, confidentialité
+    ...getAppSlugs().flatMap((slug) =>
+      ["", "/assistance", "/confidentialite"].map((path) => ({
+        url: `${baseUrl}/apps/${slug}${path}`,
+        lastModified: new Date(),
+        changeFrequency: "monthly" as const,
+        priority: path === "" ? 0.6 : 0.3,
+      })),
+    ),
     // Galeries publiques (hors `private`) + leurs images pour Google Images
     ...getGallerySlugs()
       .map((slug) => getGallery(slug))

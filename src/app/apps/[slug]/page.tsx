@@ -1,0 +1,153 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { getApp, getAppSlugs } from "@/lib/apps";
+
+const SITE = "https://www.paper34.fr";
+
+// Une page statique par app du registre ; un slug inconnu donne une 404 propre.
+export function generateStaticParams() {
+  return getAppSlugs().map((slug) => ({ slug }));
+}
+export const dynamicParams = false;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const app = getApp(slug);
+  if (!app) return { title: "App introuvable" };
+  const url = `${SITE}/apps/${app.slug}`;
+  const description = `${app.name} : ${app.intro}`.slice(0, 158);
+  return {
+    title: `${app.name} : ${app.tagline}`,
+    description,
+    alternates: { canonical: url },
+    openGraph: { title: app.name, description, url, type: "website", images: [{ url: app.icon }] },
+  };
+}
+
+export default async function AppPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const app = getApp(slug);
+  if (!app) notFound();
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    name: app.name,
+    description: app.intro,
+    operatingSystem: "iOS, iPadOS, watchOS",
+    applicationCategory: "GameApplication",
+    image: `${SITE}${app.icon}`,
+    url: `${SITE}/apps/${app.slug}`,
+    author: { "@type": "Person", name: "Benjamin Sanchez", url: SITE },
+    offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+  };
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
+      <section className="pt-32 pb-16 md:pt-40 md:pb-20 bg-bg-primary">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+          <img
+            src={app.icon}
+            alt={`Icône de ${app.name}`}
+            width={112}
+            height={112}
+            className="h-28 w-28 rounded-[22%] glow mb-8"
+          />
+          <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">{app.kind}</p>
+          <h1 className="text-[clamp(40px,8vw,80px)] font-bold tracking-[-2px] leading-[1.05] mb-4">
+            {app.name}
+          </h1>
+          <p className="text-[clamp(20px,3vw,28px)] font-semibold tracking-[-0.5px] gradient-text mb-6">
+            {app.tagline}
+          </p>
+          <p className="text-text-secondary leading-relaxed max-w-2xl mb-8">{app.intro}</p>
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            {app.storeUrl ? (
+              <a
+                href={app.storeUrl}
+                className="inline-flex min-h-11 items-center rounded-full bg-accent px-7 py-3 text-base font-semibold text-white hover:bg-accent-hover transition-colors"
+              >
+                Télécharger sur l&apos;App Store
+              </a>
+            ) : (
+              <span className="inline-flex min-h-11 items-center rounded-full border border-border px-7 py-3 text-base font-semibold text-text-primary">
+                Bientôt sur l&apos;App Store
+              </span>
+            )}
+            <p className="text-sm text-text-secondary">
+              {app.platforms}. {app.price}.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="pb-20 md:pb-28 bg-bg-primary" aria-label="Captures d'écran">
+        <div className="mx-auto max-w-5xl">
+          <ul className="flex gap-4 overflow-x-auto snap-x snap-mandatory px-6 lg:px-8 pb-4 md:grid md:grid-cols-4 md:gap-6 md:overflow-visible">
+            {app.screenshots.map((s) => (
+              <li key={s.src} className="snap-center shrink-0 w-[62vw] max-w-[280px] md:w-auto md:max-w-none">
+                <img
+                  src={s.src}
+                  alt={s.alt}
+                  width={s.width}
+                  height={s.height}
+                  loading="lazy"
+                  className="w-full h-auto rounded-2xl border border-border"
+                />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="py-24 md:py-32 bg-bg-secondary">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+          <h2 className="text-[clamp(28px,5vw,44px)] font-bold tracking-[-1px] leading-tight mb-12">
+            Ce qu&apos;il y a dedans
+          </h2>
+          <dl className="grid grid-cols-1 gap-x-12 gap-y-10 md:grid-cols-2">
+            {app.features.map((f) => (
+              <div key={f.title}>
+                <dt className="text-xl font-bold text-text-primary mb-2">{f.title}</dt>
+                <dd className="text-text-secondary leading-relaxed">{f.text}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
+
+      <section className="py-24 md:py-32 bg-bg-primary">
+        <div className="mx-auto max-w-3xl px-6 lg:px-8">
+          <h2 className="text-[clamp(28px,5vw,44px)] font-bold tracking-[-1px] leading-tight mb-8">
+            {app.commitments.title}
+          </h2>
+          <ul className="space-y-4 text-text-secondary leading-relaxed mb-12">
+            {app.commitments.points.map((p) => (
+              <li key={p} className="border-l border-accent pl-5">
+                {p}
+              </li>
+            ))}
+          </ul>
+          <nav aria-label={`Aide et confidentialité de ${app.name}`} className="flex flex-wrap gap-x-8 gap-y-2">
+            <Link href={`/apps/${app.slug}/assistance`} className="inline-flex min-h-11 items-center text-accent hover:underline">
+              Assistance
+            </Link>
+            <Link
+              href={`/apps/${app.slug}/confidentialite`}
+              className="inline-flex min-h-11 items-center text-accent hover:underline"
+            >
+              Politique de confidentialité
+            </Link>
+          </nav>
+        </div>
+      </section>
+    </>
+  );
+}
