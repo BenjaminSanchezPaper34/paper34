@@ -5,7 +5,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV_LINKS } from "@/lib/constants";
 
-export default function Navbar() {
+type NavApp = { slug: string; name: string; icon: string };
+
+/** Une entrée du menu est active sur sa page et, pour une rubrique, sur ses sous-pages. */
+function isActive(pathname: string | null, href: string) {
+  return pathname === href || (href !== "/" && !!pathname?.startsWith(`${href}/`));
+}
+
+export default function Navbar({ apps = [] }: { apps?: NavApp[] }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   // Navbar intelligente : masquée en descente, revient en remontée.
   // Passé 80px, le fond gradient laisse place à un verre dépoli.
@@ -66,22 +73,36 @@ export default function Navbar() {
           {/* Desktop links */}
           <div className="hidden md:flex items-center gap-8">
             {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-sm font-medium transition-colors duration-300 relative group ${
-                  pathname === link.href
-                    ? "text-text-primary"
-                    : "text-text-secondary hover:text-text-primary"
-                }`}
-              >
-                {link.label}
-                <span
-                  className={`absolute -bottom-1 left-0 h-px bg-accent transition-all duration-300 ${
-                    pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+              <span key={link.href} className="flex items-center gap-2.5">
+                <Link
+                  href={link.href}
+                  className={`text-sm font-medium transition-colors duration-300 relative group ${
+                    isActive(pathname, link.href)
+                      ? "text-text-primary"
+                      : "text-text-secondary hover:text-text-primary"
                   }`}
-                />
-              </Link>
+                >
+                  {link.label}
+                  <span
+                    className={`absolute -bottom-1 left-0 h-px bg-accent transition-all duration-300 ${
+                      isActive(pathname, link.href) ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  />
+                </Link>
+                {/* Rubrique Apps : l'icône de chaque app mène droit à sa page. */}
+                {link.href === "/apps" &&
+                  apps.map((app) => (
+                    <Link
+                      key={app.slug}
+                      href={`/apps/${app.slug}`}
+                      aria-label={app.name}
+                      title={app.name}
+                      className="transition-opacity hover:opacity-80"
+                    >
+                      <img src={app.icon} alt="" width={28} height={28} className="h-7 w-7 rounded-[22%]" />
+                    </Link>
+                  ))}
+              </span>
             ))}
             <Link
               href="/contact"
@@ -121,22 +142,34 @@ export default function Navbar() {
       {/* Mobile menu */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-500 ${
-          mobileOpen ? "max-h-96" : "max-h-0"
+          mobileOpen ? "max-h-[36rem]" : "max-h-0"
         }`}
       >
         <div className="bg-bg-primary/95 backdrop-blur-2xl border-t border-border px-6 py-6 flex flex-col gap-4">
           {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`text-lg font-medium transition-colors ${
-                pathname === link.href
-                  ? "text-accent"
-                  : "text-text-secondary hover:text-text-primary"
-              }`}
-            >
-              {link.label}
-            </Link>
+            <div key={link.href} className="flex flex-col gap-1">
+              <Link
+                href={link.href}
+                className={`text-lg font-medium transition-colors ${
+                  isActive(pathname, link.href)
+                    ? "text-accent"
+                    : "text-text-secondary hover:text-text-primary"
+                }`}
+              >
+                {link.label}
+              </Link>
+              {link.href === "/apps" &&
+                apps.map((app) => (
+                  <Link
+                    key={app.slug}
+                    href={`/apps/${app.slug}`}
+                    className="flex min-h-11 items-center gap-3 text-base text-text-secondary hover:text-text-primary transition-colors"
+                  >
+                    <img src={app.icon} alt="" width={32} height={32} className="h-8 w-8 rounded-[22%]" />
+                    {app.name}
+                  </Link>
+                ))}
+            </div>
           ))}
           <Link
             href="/contact"

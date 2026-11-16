@@ -91,6 +91,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 0.7,
     },
+    {
+      url: `${baseUrl}/apps`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
     // Apps conçues par Paper34 : page de présentation, assistance, confidentialité
     ...getAppSlugs().flatMap((slug) =>
       ["", "/assistance", "/confidentialite"].map((path) => ({
