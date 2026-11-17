@@ -52,7 +52,9 @@ montre), exportés en 880 px de haut.
      600 x 1300 sans son (`ffmpeg -an -vf scale=600:1300 -crf 25 -movflags +faststart`), déposée sur R2 sous
      `apps/<slug>/apercu.mp4`, et une affiche `public/apps/<slug>/apercu-affiche.webp`.
    - `offerPrice` (app payante, prix pour les données structurées, ex. `"2.99"`) et `screenshotShape: "watch"`
-     pour des captures natives d'Apple Watch (coins de montre au lieu de ceux de l'iPhone).
+     pour des captures d'Apple Watch sans cadre. Préférer les captures dans l'appareil : cadres officiels d'Apple
+     dans `APP/JaugeAI Créations/02 Identité et icônes/bezels/` (Watch Ultra 600 x 960, capture 422 x 514
+     collée en (89, 223)), puis `screenshotsLayout: "devices"`. Exemple : WatchRoad.
    - `showcase` et `cover` : la phrase et le visuel de la carte « Références » de `/apps`.
    - `storeUrl` : vide tant que l'app n'est pas publiée (la page affiche « Bientôt sur l'App Store »).
 4. Vérifier : `npm run build`, `npx eslint src/lib/apps.ts`, puis le rendu en mobile et en bureau

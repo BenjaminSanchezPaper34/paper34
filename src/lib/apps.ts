@@ -54,8 +54,8 @@ export type AppInfo = {
 };
 
 const CAPTURE = { width: 598, height: 1300 };
-/** Capture native d'Apple Watch Ultra (422 x 514). */
-const WATCH_CAPTURE = { width: 422, height: 514 };
+/** Capture d'Apple Watch Ultra placée dans le cadre officiel d'Apple (600 x 960). */
+const WATCH_FRAMED = { width: 600, height: 960 };
 
 export const APPS: AppInfo[] = [
   {
@@ -254,16 +254,16 @@ export const APPS: AppInfo[] = [
     category: "GameApplication",
     showcase:
       "Un vrai jeu en 3D sur l'écran de la montre : quatre zones qui ont chacune leur lumière, la conduite à la Digital Crown et des parties de trois minutes taillées pour le poignet. Payé une fois, sans publicité ni donnée collectée.",
-    cover: { src: "/apps/watchroad/capture-1-portes.webp", width: 422, height: 514 },
+    cover: { src: "/apps/watchroad/montre-1-portes.webp", width: 600, height: 960 },
     price: "2,99 €, sans achat intégré ni publicité",
     offerPrice: "2.99",
-    screenshotShape: "watch",
+    screenshotsLayout: "devices",
     icon: "/apps/watchroad/icone.webp",
     screenshots: [
-      { src: "/apps/watchroad/capture-1-portes.webp", alt: "Deux zombies accrochés au pick-up, avant deux portes de bonus : réparation ou munitions", ...WATCH_CAPTURE },
-      { src: "/apps/watchroad/capture-2-crepuscule.webp", alt: "La route du désert au crépuscule, un zombie sur le flanc du pick-up", ...WATCH_CAPTURE },
-      { src: "/apps/watchroad/capture-3-ville.webp", alt: "Le camion dans la rue étroite de la ville en ruine, près d'un bus renversé", ...WATCH_CAPTURE },
-      { src: "/apps/watchroad/capture-4-arrivee.webp", alt: "L'écran d'arrivée : score, médaille et bonus de coque", ...WATCH_CAPTURE },
+      { src: "/apps/watchroad/montre-1-portes.webp", alt: "Deux zombies accrochés au pick-up, avant deux portes de bonus : réparation ou munitions", ...WATCH_FRAMED },
+      { src: "/apps/watchroad/montre-2-crepuscule.webp", alt: "La route du désert au crépuscule, un zombie sur le flanc du pick-up", ...WATCH_FRAMED },
+      { src: "/apps/watchroad/montre-3-ville.webp", alt: "Le camion dans la rue étroite de la ville en ruine, près d'un bus renversé", ...WATCH_FRAMED },
+      { src: "/apps/watchroad/montre-4-arrivee.webp", alt: "L'écran d'arrivée : score, médaille et bonus de coque", ...WATCH_FRAMED },
     ],
     features: [
       {
