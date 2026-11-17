@@ -23,6 +23,15 @@ Tout part du registre `src/lib/apps.ts`. Une entrée génère, sans autre code :
 
 L'app apparaît aussi seule dans la page `/apps`, dans le menu (rubrique « Apps ») et dans le sitemap.
 
+## Une app qui a déjà son propre site
+
+Si l'app a son site avec ses pages d'aide et de confidentialité (déjà déclarées chez Apple ou chez le
+vendeur), on ne les recopie pas : l'entrée porte `external` (site, assistance, confidentialité) et la page
+paper34.fr renvoie vers elles. Seule `/apps/<slug>` est alors générée. Exemple : JaugeAI.
+Autres champs utiles dans ce cas : `macDownloadUrl` (app Mac hors Mac App Store, second bouton),
+`screenshotsLayout: "devices"` pour des visuels déjà encadrés de formats différents (Mac, iPhone,
+montre), exportés en 880 px de haut.
+
 ## Étapes pour une nouvelle app
 
 1. Partir de `main` : `git fetch origin main` puis une branche `feat/app-<slug>`. Ne pas travailler dans un
@@ -38,7 +47,7 @@ L'app apparaît aussi seule dans la page `/apps`, dans le menu (rubrique « Apps
    - `privacy` : doit dire exactement ce que fait l'app. La reprendre du fichier de confidentialité tenu
      dans le dépôt de l'app, et la garder identique à l'étiquette de confidentialité de l'App Store.
    - `support` : comment jouer ou utiliser, achats et restauration, remboursement (Apple), progression.
-   - `devices` : les appareils affichés avec leur pictogramme sous le bouton App Store (`iphone`, `ipad`, `watch`).
+   - `devices` : les appareils affichés avec leur pictogramme sous le bouton App Store (`mac`, `iphone`, `ipad`, `watch`).
    - `preview` (facultatif) : la vidéo d'aperçu de l'App Store, placée avant les captures. Version web en
      600 x 1300 sans son (`ffmpeg -an -vf scale=600:1300 -crf 25 -movflags +faststart`), déposée sur R2 sous
      `apps/<slug>/apercu.mp4`, et une affiche `public/apps/<slug>/apercu-affiche.webp`.
@@ -77,3 +86,4 @@ Non vérifié / à décider : …
 | App        | Pages en ligne | URL dans App Store Connect | Lien App Store |
 | ---------- | -------------- | -------------------------- | -------------- |
 | Puppy Drop | 2026-11-16     | 2026-11-16                 | à la sortie    |
+| JaugeAI    | (site propre)  | jaugeai.com                | 2026-11-17     |

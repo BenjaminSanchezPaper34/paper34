@@ -1,14 +1,15 @@
 /**
  * Registre des apps conçues par Paper34.
- * Une entrée ici = trois pages générées : /apps/<slug>, /apps/<slug>/confidentialite et
- * /apps/<slug>/assistance (les deux dernières sont les URL demandées par l'App Store).
+ * Une entrée ici = la page /apps/<slug>, plus /apps/<slug>/confidentialite et /apps/<slug>/assistance
+ * (les URL demandées par l'App Store) quand l'app n'a pas son propre site. Une app qui a déjà son site
+ * (`external`) garde ses pages d'aide et de confidentialité chez elle : la page renvoie vers elles.
  * Pour ajouter une app : une entrée ci-dessous et ses images dans public/apps/<slug>/.
  */
 
 export type AppSection = { title: string; text: string };
 
 /** Appareils affichés avec leur pictogramme sous le bouton App Store. */
-export type AppDevice = "iphone" | "ipad" | "watch";
+export type AppDevice = "mac" | "iphone" | "ipad" | "watch";
 
 export type AppInfo = {
   slug: string;
@@ -20,18 +21,28 @@ export type AppInfo = {
   intro: string;
   platforms: string;
   devices: AppDevice[];
+  /** Catégorie schema.org (données structurées). */
+  category: "GameApplication" | "UtilitiesApplication";
   /** Lien App Store une fois l'app publiée ; sans lien, la page indique « Bientôt ». */
   storeUrl?: string;
+  /** App Mac distribuée hors Mac App Store : lien de téléchargement, en second bouton. */
+  macDownloadUrl?: string;
+  /** Site propre de l'app : ses pages d'aide et de confidentialité y restent (URL déjà déclarées). */
+  external?: { site: string; support: string; privacy: string };
   price: string;
   icon: string;
   /** Vidéo d'aperçu (celle de la fiche App Store), placée avant les captures. Format 600 x 1300. */
   preview?: { src: string; poster: string };
   screenshots: { src: string; alt: string; width: number; height: number }[];
+  /** « phone » : captures iPhone de même format, en grille. « devices » : visuels déjà encadrés
+   * (Mac, iPhone, montre) de formats différents, alignés sur une même hauteur. */
+  screenshotsLayout?: "phone" | "devices";
   features: AppSection[];
   /** Encadré de réassurance (familles, données, achats…). */
   commitments: { title: string; points: string[] };
-  privacy: { updated: string; intro: string; sections: AppSection[] };
-  support: { intro: string; questions: AppSection[] };
+  /** Pages hébergées ici (obligatoires sans `external`). */
+  privacy?: { updated: string; intro: string; sections: AppSection[] };
+  support?: { intro: string; questions: AppSection[] };
 };
 
 const CAPTURE = { width: 598, height: 1300 };
@@ -46,6 +57,7 @@ export const APPS: AppInfo[] = [
       "Fais tomber des chiots dans le panier : quand deux chiens identiques se touchent, ils fusionnent en une race plus grande. Du petit Chihuahua au Dogue allemand, fais grandir ta meute et remplis ton carnet.",
     platforms: "iPhone, iPad et Apple Watch",
     devices: ["iphone", "ipad", "watch"],
+    category: "GameApplication",
     storeUrl: "https://apps.apple.com/app/id6827112736",
     price: "Gratuit, avec un achat unique facultatif",
     icon: "/apps/puppy-drop/icone.webp",
@@ -156,6 +168,64 @@ export const APPS: AppInfo[] = [
       ],
     },
   },
+  {
+    slug: "jaugeai",
+    name: "JaugeAI",
+    kind: "App Mac, iPhone et Apple Watch",
+    tagline: "Toutes vos IA, au poignet. Gratuitement.",
+    intro:
+      "JaugeAI réunit les limites d'usage de Claude, ChatGPT et Gemini au même endroit. Le Mac fait le relevé, l'iPhone et l'Apple Watch l'affichent, et l'app prévient avant le blocage.",
+    platforms: "Mac, iPhone et Apple Watch",
+    devices: ["mac", "iphone", "watch"],
+    category: "UtilitiesApplication",
+    storeUrl: "https://apps.apple.com/app/id6814973861?ct=paper34",
+    macDownloadUrl: "https://jaugeai.com/fr/telecharger",
+    external: {
+      site: "https://jaugeai.com/fr",
+      support: "https://jaugeai.com/fr/support",
+      privacy: "https://jaugeai.com/fr/privacy",
+    },
+    price: "Gratuit. JaugeAI Pro : 9,99 € en achat unique, valable sur tous vos appareils",
+    icon: "/apps/jaugeai/icone.webp",
+    screenshotsLayout: "devices",
+    screenshots: [
+      { src: "/apps/jaugeai/capture-1-mac.webp", alt: "Le tableau de bord de JaugeAI sur un MacBook : historique et limites de ChatGPT", width: 1338, height: 880 },
+      { src: "/apps/jaugeai/capture-2-iphone.webp", alt: "JaugeAI sur iPhone : la session Claude à 61 % et la prévision « Pleine vers 17 h 11 »", width: 431, height: 880 },
+      { src: "/apps/jaugeai/capture-3-widgets.webp", alt: "Les widgets JaugeAI sur l'écran d'accueil de l'iPhone", width: 431, height: 880 },
+      { src: "/apps/jaugeai/capture-4-watch.webp", alt: "JaugeAI sur Apple Watch : les anneaux de session et de semaine de Claude", width: 550, height: 880 },
+    ],
+    features: [
+      {
+        title: "Voir",
+        text: "Vos limites dans la barre des menus, l'encoche, les widgets, sur l'iPhone et l'Apple Watch.",
+      },
+      {
+        title: "Anticiper",
+        text: "Une prévision à votre rythme (« Pleine vers 12 h 24 »), des alertes avant le blocage et la Dynamic Island.",
+      },
+      {
+        title: "Comprendre",
+        text: "La valeur de votre forfait au tarif de l'API, l'historique et des conseils chiffrés.",
+      },
+      {
+        title: "Demander",
+        text: "Siri, ChatGPT ou Claude à la voix, et vos agents de code prévenus avant une longue demande.",
+      },
+      {
+        title: "Tous vos services",
+        text: "Claude, ChatGPT et Gemini sur tous vos appareils, Grok sur le Mac.",
+      },
+    ],
+    commitments: {
+      title: "Lecture seule, sur votre Mac",
+      points: [
+        "Pour Claude, JaugeAI lit par défaut la ligne d'état de Claude Code, sans jeton. Un mode complet, en option, lit la session en lecture seule.",
+        "Seuls les résultats (pourcentages, estimations, noms de projets) passent par votre iCloud privé. Aucun serveur entre vos appareils.",
+        "L'usage des apps de chat (claude.ai, ChatGPT, Gemini) n'est pas suivi.",
+        "Logiciel indépendant, non affilié à Anthropic, OpenAI ou Google.",
+      ],
+    },
+  },
 ];
 
 export function getApp(slug: string): AppInfo | undefined {
@@ -164,4 +234,9 @@ export function getApp(slug: string): AppInfo | undefined {
 
 export function getAppSlugs(): string[] {
   return APPS.map((a) => a.slug);
+}
+
+/** Apps dont l'assistance et la confidentialité sont hébergées sur paper34.fr. */
+export function getHostedDocSlugs(): string[] {
+  return APPS.filter((a) => !a.external && a.privacy && a.support).map((a) => a.slug);
 }

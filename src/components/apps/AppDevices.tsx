@@ -5,6 +5,15 @@ import type { AppDevice } from "@/lib/apps";
  * un pictogramme au trait et le nom de l'appareil. Les tracés héritent de la couleur du texte.
  */
 const DEVICES: Record<AppDevice, { label: string; icon: React.ReactNode }> = {
+  mac: {
+    label: "Mac",
+    icon: (
+      <>
+        <rect x="4" y="4.5" width="16" height="11" rx="1.6" />
+        <path d="M2 18.5h20l-1.2 1.5H3.2z" />
+      </>
+    ),
+  },
   iphone: {
     label: "iPhone",
     icon: (

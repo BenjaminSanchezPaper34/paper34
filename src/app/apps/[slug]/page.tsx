@@ -41,8 +41,10 @@ export default async function AppPage({ params }: { params: Promise<{ slug: stri
     "@type": "MobileApplication",
     name: app.name,
     description: app.intro,
-    operatingSystem: "iOS, iPadOS, watchOS",
-    applicationCategory: "GameApplication",
+    operatingSystem: app.devices
+      .map((d) => ({ mac: "macOS", iphone: "iOS", ipad: "iPadOS", watch: "watchOS" })[d])
+      .join(", "),
+    applicationCategory: app.category,
     image: `${SITE}${app.icon}`,
     url: `${SITE}/apps/${app.slug}`,
     author: { "@type": "Person", name: "Benjamin Sanchez", url: SITE },
@@ -91,6 +93,14 @@ export default async function AppPage({ params }: { params: Promise<{ slug: stri
                 Bientôt sur l&apos;App Store
               </span>
             )}
+            {app.macDownloadUrl && (
+              <a
+                href={app.macDownloadUrl}
+                className="inline-flex h-12 items-center rounded-[9px] border border-border-hover px-5 text-base font-semibold text-text-primary hover:bg-bg-card transition-colors"
+              >
+                Télécharger pour Mac
+              </a>
+            )}
             <p className="text-sm text-text-secondary">{app.price}.</p>
           </div>
           <div className="mt-8">
@@ -99,36 +109,56 @@ export default async function AppPage({ params }: { params: Promise<{ slug: stri
         </div>
       </section>
 
-      <section className="pb-20 md:pb-28 bg-bg-primary" aria-label="Captures d'écran">
-        <div className="mx-auto max-w-5xl">
-          <ul className={`flex gap-4 overflow-x-auto snap-x snap-mandatory px-6 lg:px-8 pb-4 md:grid md:gap-6 md:overflow-visible ${
-              app.preview ? "md:grid-cols-5" : "md:grid-cols-4"
-            }`}>
-            {app.preview && (
-              <li className="snap-center shrink-0 w-[62vw] max-w-[280px] md:w-auto md:max-w-none">
-                <AppPreviewVideo
-                  src={app.preview.src}
-                  poster={app.preview.poster}
-                  label={`Aperçu vidéo de ${app.name}`}
-                  className="w-full h-auto rounded-[13.5%/6.2%] bg-bg-card"
-                />
-              </li>
-            )}
+      {app.screenshotsLayout === "devices" ? (
+        <section className="pb-20 md:pb-28 bg-bg-primary" aria-label="Captures d'écran">
+          {/* Visuels déjà encadrés (Mac, iPhone, montre) : même hauteur, largeur libre, défilement latéral. */}
+          <ul className="mx-auto flex max-w-6xl gap-6 overflow-x-auto snap-x snap-mandatory px-6 lg:px-8 pb-4 md:gap-10">
             {app.screenshots.map((s) => (
-              <li key={s.src} className="snap-center shrink-0 w-[62vw] max-w-[280px] md:w-auto md:max-w-none">
+              <li key={s.src} className="snap-center shrink-0">
                 <img
                   src={s.src}
                   alt={s.alt}
                   width={s.width}
                   height={s.height}
                   loading="lazy"
-                  className="w-full h-auto rounded-[13.5%/6.2%]"
+                  className="h-[340px] w-auto max-w-none md:h-[440px]"
                 />
               </li>
             ))}
           </ul>
-        </div>
-      </section>
+        </section>
+      ) : (
+        <section className="pb-20 md:pb-28 bg-bg-primary" aria-label="Captures d'écran">
+          <div className="mx-auto max-w-5xl">
+            <ul className={`flex gap-4 overflow-x-auto snap-x snap-mandatory px-6 lg:px-8 pb-4 md:grid md:gap-6 md:overflow-visible ${
+                app.preview ? "md:grid-cols-5" : "md:grid-cols-4"
+              }`}>
+              {app.preview && (
+                <li className="snap-center shrink-0 w-[62vw] max-w-[280px] md:w-auto md:max-w-none">
+                  <AppPreviewVideo
+                    src={app.preview.src}
+                    poster={app.preview.poster}
+                    label={`Aperçu vidéo de ${app.name}`}
+                    className="w-full h-auto rounded-[13.5%/6.2%] bg-bg-card"
+                  />
+                </li>
+              )}
+              {app.screenshots.map((s) => (
+                <li key={s.src} className="snap-center shrink-0 w-[62vw] max-w-[280px] md:w-auto md:max-w-none">
+                  <img
+                    src={s.src}
+                    alt={s.alt}
+                    width={s.width}
+                    height={s.height}
+                    loading="lazy"
+                    className="w-full h-auto rounded-[13.5%/6.2%]"
+                  />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       <section className="py-24 md:py-32 bg-bg-secondary">
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
@@ -159,15 +189,31 @@ export default async function AppPage({ params }: { params: Promise<{ slug: stri
             ))}
           </ul>
           <nav aria-label={`Aide et confidentialité de ${app.name}`} className="flex flex-wrap gap-x-8 gap-y-2">
-            <Link href={`/apps/${app.slug}/assistance`} className="inline-flex min-h-11 items-center text-accent hover:underline">
-              Assistance
-            </Link>
-            <Link
-              href={`/apps/${app.slug}/confidentialite`}
-              className="inline-flex min-h-11 items-center text-accent hover:underline"
-            >
-              Politique de confidentialité
-            </Link>
+            {app.external ? (
+              <>
+                <a href={app.external.site} className="inline-flex min-h-11 items-center text-accent hover:underline">
+                  Site de {app.name}
+                </a>
+                <a href={app.external.support} className="inline-flex min-h-11 items-center text-accent hover:underline">
+                  Assistance
+                </a>
+                <a href={app.external.privacy} className="inline-flex min-h-11 items-center text-accent hover:underline">
+                  Politique de confidentialité
+                </a>
+              </>
+            ) : (
+              <>
+                <Link href={`/apps/${app.slug}/assistance`} className="inline-flex min-h-11 items-center text-accent hover:underline">
+                  Assistance
+                </Link>
+                <Link
+                  href={`/apps/${app.slug}/confidentialite`}
+                  className="inline-flex min-h-11 items-center text-accent hover:underline"
+                >
+                  Politique de confidentialité
+                </Link>
+              </>
+            )}
           </nav>
         </div>
       </section>

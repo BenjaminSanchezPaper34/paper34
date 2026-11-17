@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AppDocPage from "@/components/apps/AppDocPage";
-import { getApp, getAppSlugs } from "@/lib/apps";
+import { getApp, getHostedDocSlugs } from "@/lib/apps";
 
 export function generateStaticParams() {
-  return getAppSlugs().map((slug) => ({ slug }));
+  return getHostedDocSlugs().map((slug) => ({ slug }));
 }
 export const dynamicParams = false;
 
@@ -18,7 +18,7 @@ export async function generateMetadata({
   if (!app) return { title: "App introuvable" };
   return {
     title: `Politique de confidentialité de ${app.name}`,
-    description: app.privacy.intro.slice(0, 158),
+    description: (app.privacy?.intro ?? "").slice(0, 158),
     alternates: { canonical: `https://www.paper34.fr/apps/${app.slug}/confidentialite` },
   };
 }
@@ -26,7 +26,7 @@ export async function generateMetadata({
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const app = getApp(slug);
-  if (!app) notFound();
+  if (!app || !app.privacy) notFound();
   return (
     <AppDocPage
       app={app}
