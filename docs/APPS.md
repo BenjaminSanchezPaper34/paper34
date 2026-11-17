@@ -75,3 +75,4 @@ Non vérifié / à décider : …
 | App        | Pages en ligne | URL dans App Store Connect | Lien App Store |
 | ---------- | -------------- | -------------------------- | -------------- |
 | Puppy Drop | 2026-11-16     | 2026-11-16                 | à la sortie    |
+| WatchRoad  | après fusion   | après fusion               | à la sortie    |

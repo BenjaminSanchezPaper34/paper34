@@ -41,12 +41,14 @@ export default async function AppPage({ params }: { params: Promise<{ slug: stri
     "@type": "MobileApplication",
     name: app.name,
     description: app.intro,
-    operatingSystem: "iOS, iPadOS, watchOS",
+    operatingSystem: app.devices
+      .map((d) => ({ iphone: "iOS", ipad: "iPadOS", watch: "watchOS" })[d])
+      .join(", "),
     applicationCategory: "GameApplication",
     image: `${SITE}${app.icon}`,
     url: `${SITE}/apps/${app.slug}`,
     author: { "@type": "Person", name: "Benjamin Sanchez", url: SITE },
-    offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+    offers: { "@type": "Offer", price: app.offerPrice ?? "0", priceCurrency: "EUR" },
   };
 
   return (
@@ -114,7 +116,9 @@ export default async function AppPage({ params }: { params: Promise<{ slug: stri
                   width={s.width}
                   height={s.height}
                   loading="lazy"
-                  className="w-full h-auto rounded-[13.5%/6.2%]"
+                  className={`w-full h-auto ${
+                    app.screenshotShape === "watch" ? "rounded-[20%/16%]" : "rounded-[13.5%/6.2%]"
+                  }`}
                 />
               </li>
             ))}
