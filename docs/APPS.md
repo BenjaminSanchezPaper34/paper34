@@ -48,7 +48,9 @@ L'app apparaît aussi seule dans la page `/apps`, dans le menu (rubrique « Apps
 5. Ouvrir la PR vers `main` avec la fiche de passage ci-dessous. Ne pas fusionner.
 6. Après la mise en ligne : saisir les trois URL dans App Store Connect (version : URL de l'assistance et URL
    marketing ; Confidentialité de l'app : URL de la politique).
-7. À la sortie de l'app : renseigner `storeUrl` par une petite PR.
+7. À la sortie de l'app : renseigner `storeUrl` par une petite PR. La page affiche alors le badge officiel
+   d'Apple « Télécharger dans l'App Store » (`public/apps/badge-app-store-fr.svg`, tiré de
+   toolbox.marketingtools.apple.com), à utiliser tel quel.
 
 ## Fiche de passage (à coller dans la PR)
 

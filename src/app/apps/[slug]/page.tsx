@@ -72,11 +72,19 @@ export default async function AppPage({ params }: { params: Promise<{ slug: stri
           <p className="text-text-secondary leading-relaxed max-w-2xl mb-8">{app.intro}</p>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
             {app.storeUrl ? (
+              /* Badge officiel d'Apple (fr), à utiliser tel quel : ni recoloré ni déformé. */
               <a
                 href={app.storeUrl}
-                className="inline-flex min-h-11 items-center rounded-full bg-accent px-7 py-3 text-base font-semibold text-white hover:bg-accent-hover transition-colors"
+                className="inline-flex transition-opacity hover:opacity-85"
+                aria-label={`Télécharger ${app.name} dans l'App Store`}
               >
-                Télécharger sur l&apos;App Store
+                <img
+                  src="/apps/badge-app-store-fr.svg"
+                  alt="Télécharger dans l'App Store"
+                  width={152}
+                  height={48}
+                  className="h-12 w-auto"
+                />
               </a>
             ) : (
               <span className="inline-flex min-h-11 items-center rounded-full border border-border px-7 py-3 text-base font-semibold text-text-primary">
