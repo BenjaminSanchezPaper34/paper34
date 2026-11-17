@@ -5,7 +5,7 @@ import { APPS } from "@/lib/apps";
 export const metadata: Metadata = {
   title: "Apps conçues par Paper34",
   description:
-    "Les applications iPhone, iPad et Apple Watch conçues et développées par Paper34, studio graphique à Agde : présentation, assistance et confidentialité.",
+    "Les applications iPhone, iPad et Apple Watch conçues et développées par Paper34 à Agde : présentation, assistance et confidentialité.",
   alternates: { canonical: "https://www.paper34.fr/apps" },
 };
 
@@ -15,10 +15,10 @@ export default function AppsPage() {
       <div className="mx-auto max-w-5xl px-6 lg:px-8">
         <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">Apps</p>
         <h1 className="text-[clamp(36px,7vw,64px)] font-bold tracking-[-2px] leading-tight mb-6">
-          Conçues et développées <span className="gradient-text">ici</span>
+          Conçues et développées <span className="gradient-text">de A à Z</span>
         </h1>
         <p className="text-text-secondary leading-relaxed max-w-2xl mb-14">
-          Du premier croquis à l&apos;App Store : design, illustrations et code sortent du même studio.
+          Du premier croquis à l&apos;App Store, je m&apos;occupe de tout : le design, les illustrations et le code.
           Chaque app a sa page, avec son assistance et sa politique de confidentialité.
         </p>
 
