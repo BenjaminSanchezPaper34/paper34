@@ -46,6 +46,7 @@ export const APPS: AppInfo[] = [
       "Fais tomber des chiots dans le panier : quand deux chiens identiques se touchent, ils fusionnent en une race plus grande. Du petit Chihuahua au Dogue allemand, fais grandir ta meute et remplis ton carnet.",
     platforms: "iPhone, iPad et Apple Watch",
     devices: ["iphone", "ipad", "watch"],
+    storeUrl: "https://apps.apple.com/app/id6827112736",
     price: "Gratuit, avec un achat unique facultatif",
     icon: "/apps/puppy-drop/icone.webp",
     preview: {
