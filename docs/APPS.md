@@ -51,6 +51,9 @@ montre), exportés en 880 px de haut.
    - `preview` (facultatif) : la vidéo d'aperçu de l'App Store, placée avant les captures. Version web en
      600 x 1300 sans son (`ffmpeg -an -vf scale=600:1300 -crf 25 -movflags +faststart`), déposée sur R2 sous
      `apps/<slug>/apercu.mp4`, et une affiche `public/apps/<slug>/apercu-affiche.webp`.
+   - `offerPrice` (app payante, prix pour les données structurées, ex. `"2.99"`) et `screenshotShape: "watch"`
+     pour des captures natives d'Apple Watch (coins de montre au lieu de ceux de l'iPhone).
+   - `showcase` et `cover` : la phrase et le visuel de la carte « Références » de `/apps`.
    - `storeUrl` : vide tant que l'app n'est pas publiée (la page affiche « Bientôt sur l'App Store »).
 4. Vérifier : `npm run build`, `npx eslint src/lib/apps.ts`, puis le rendu en mobile et en bureau
    (`npx next start`), menu mobile ouvert.
@@ -86,4 +89,5 @@ Non vérifié / à décider : …
 | App        | Pages en ligne | URL dans App Store Connect | Lien App Store |
 | ---------- | -------------- | -------------------------- | -------------- |
 | Puppy Drop | 2026-11-16     | 2026-11-16                 | à la sortie    |
+| WatchRoad  | 2026-11-17     | 2026-11-17                 | à la sortie    |
 | JaugeAI    | (site propre)  | jaugeai.com                | 2026-11-17     |

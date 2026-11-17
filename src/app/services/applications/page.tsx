@@ -55,11 +55,11 @@ const CAS_USAGE = [
 const FAQ = [
   {
     q: "Pouvez-vous publier mon application sur l'App Store ?",
-    a: "Oui, je m'occupe de tout le parcours : compte développeur, fiche App Store (textes, captures, vidéo d'aperçu), pages d'assistance et de confidentialité exigées par Apple, envoi en revue et corrections demandées. Puppy Drop et JaugeAI sont passées par là.",
+    a: "Oui, je m'occupe de tout le parcours : compte développeur, fiche App Store (textes, captures, vidéo d'aperçu), pages d'assistance et de confidentialité exigées par Apple, envoi en revue et corrections demandées. Puppy Drop, JaugeAI et WatchRoad sont passées par là.",
   },
   {
     q: "iPhone, iPad, Apple Watch ou Mac ?",
-    a: "Une même app peut vivre sur plusieurs appareils : JaugeAI relève les données sur le Mac et les affiche sur l'iPhone et l'Apple Watch, Puppy Drop se joue sur iPhone, iPad et Apple Watch. On part de l'usage réel pour choisir où l'app doit être.",
+    a: "Une même app peut vivre sur plusieurs appareils : JaugeAI relève les données sur le Mac et les affiche sur l'iPhone et l'Apple Watch, Puppy Drop se joue sur iPhone, iPad et Apple Watch, WatchRoad uniquement au poignet. On part de l'usage réel pour choisir où l'app doit être.",
   },
   {
     q: "Application mobile ou application web ?",

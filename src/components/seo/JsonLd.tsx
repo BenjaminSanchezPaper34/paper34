@@ -113,7 +113,7 @@ export default function JsonLd() {
           name: "Cr\u00e9ation d'applications iPhone, Apple Watch, Mac et web",
           serviceType: "D\u00e9veloppement d'applications",
           url: "https://www.paper34.fr/services/applications",
-          description: "Applications sur mesure, de la maquette \u00e0 la publication sur l'App Store. R\u00e9alisations : Puppy Drop (jeu iPhone, iPad, Apple Watch) et JaugeAI (Mac, iPhone, Apple Watch).",
+          description: "Applications sur mesure, de la maquette \u00e0 la publication sur l'App Store. R\u00e9alisations : Puppy Drop (jeu iPhone, iPad, Apple Watch) JaugeAI (Mac, iPhone, Apple Watch) et WatchRoad (jeu Apple Watch).",
           areaServed: { "@type": "Country", name: "France" },
         },
       },

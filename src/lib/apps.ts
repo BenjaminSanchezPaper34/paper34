@@ -34,6 +34,10 @@ export type AppInfo = {
   /** Site propre de l'app : ses pages d'aide et de confidentialité y restent (URL déjà déclarées). */
   external?: { site: string; support: string; privacy: string };
   price: string;
+  /** Prix en euros pour les données structurées (« 0 » par défaut, app gratuite). */
+  offerPrice?: string;
+  /** Forme des captures en grille : écran d'iPhone (par défaut) ou d'Apple Watch. */
+  screenshotShape?: "phone" | "watch";
   icon: string;
   /** Vidéo d'aperçu (celle de la fiche App Store), placée avant les captures. Format 600 x 1300. */
   preview?: { src: string; poster: string };
@@ -50,6 +54,8 @@ export type AppInfo = {
 };
 
 const CAPTURE = { width: 598, height: 1300 };
+/** Capture native d'Apple Watch Ultra (422 x 514). */
+const WATCH_CAPTURE = { width: 422, height: 514 };
 
 export const APPS: AppInfo[] = [
   {
@@ -233,6 +239,114 @@ export const APPS: AppInfo[] = [
         "Seuls les résultats (pourcentages, estimations, noms de projets) passent par votre iCloud privé. Aucun serveur entre vos appareils.",
         "L'usage des apps de chat (claude.ai, ChatGPT, Gemini) n'est pas suivi.",
         "Logiciel indépendant, non affilié à Anthropic, OpenAI ou Google.",
+      ],
+    },
+  },
+  {
+    slug: "watchroad",
+    name: "WatchRoad",
+    kind: "Jeu Apple Watch",
+    tagline: "Trois minutes de route, des zombies sur le capot.",
+    intro:
+      "Un pick-up, une route du désert et des zombies qui sautent sur la carrosserie. Pour t'en débarrasser, frôle les épaves du bon côté ou tire au doigt. Un vrai jeu en 3D, pensé pour l'écran de la montre et des parties de trois minutes.",
+    platforms: "Apple Watch",
+    devices: ["watch"],
+    category: "GameApplication",
+    showcase:
+      "Un vrai jeu en 3D sur l'écran de la montre : quatre zones qui ont chacune leur lumière, la conduite à la Digital Crown et des parties de trois minutes taillées pour le poignet. Payé une fois, sans publicité ni donnée collectée.",
+    cover: { src: "/apps/watchroad/capture-1-portes.webp", width: 422, height: 514 },
+    price: "2,99 €, sans achat intégré ni publicité",
+    offerPrice: "2.99",
+    screenshotShape: "watch",
+    icon: "/apps/watchroad/icone.webp",
+    screenshots: [
+      { src: "/apps/watchroad/capture-1-portes.webp", alt: "Deux zombies accrochés au pick-up, avant deux portes de bonus : réparation ou munitions", ...WATCH_CAPTURE },
+      { src: "/apps/watchroad/capture-2-crepuscule.webp", alt: "La route du désert au crépuscule, un zombie sur le flanc du pick-up", ...WATCH_CAPTURE },
+      { src: "/apps/watchroad/capture-3-ville.webp", alt: "Le camion dans la rue étroite de la ville en ruine, près d'un bus renversé", ...WATCH_CAPTURE },
+      { src: "/apps/watchroad/capture-4-arrivee.webp", alt: "L'écran d'arrivée : score, médaille et bonus de coque", ...WATCH_CAPTURE },
+    ],
+    features: [
+      {
+        title: "Une partie, trois minutes",
+        text: "Six secteurs, puis la ligne d'arrivée. Le score grimpe à chaque secteur, jusqu'au double. Une fois arrivé, tu peux continuer sans fin.",
+      },
+      {
+        title: "Frôle, tire, choisis",
+        text: "Rase une épave pour arracher le zombie de ce côté, ou tire d'un tap. À chaque fin de secteur, deux portes : passe à gauche ou à droite pour choisir ta réparation, tes munitions ou ton boost.",
+      },
+      {
+        title: "Couronne ou doigt",
+        text: "On conduit à la Digital Crown ou en glissant le doigt, au choix. Chaque commande suffit seule.",
+      },
+      {
+        title: "Quatre véhicules, quatre armes",
+        text: "Pick-up, buggy, camion et moto ; pistolet, fusil à pompe, harpon et lance-flammes. Ils se débloquent en montant en grade, de Recrue à Légende.",
+      },
+      {
+        title: "Quatre zones",
+        text: "Le désert, le crépuscule, la tempête de sable et la ville en ruine, chacune avec sa lumière. La tempête pousse la voiture, la ville resserre la route.",
+      },
+      {
+        title: "Un défi par jour",
+        text: "Le même parcours pour tous les essais de la journée, accessible depuis le cadran de la montre.",
+      },
+    ],
+    commitments: {
+      title: "Payé une fois, c'est tout",
+      points: [
+        "Aucun achat intégré, aucune publicité, aucun abonnement.",
+        "Aucune donnée collectée. Pas de compte, pas de connexion.",
+        "Tout se passe sur la montre : le jeu marche hors ligne, sans iPhone à côté.",
+        "Sang, son, vibrations et animations se règlent dans le jeu.",
+      ],
+    },
+    privacy: {
+      updated: "17 novembre 2026",
+      intro:
+        "WatchRoad est un jeu pour Apple Watch édité par Benjamin Sanchez (Paper34). Il ne collecte, ne transmet et ne vend aucune donnée personnelle.",
+      sections: [
+        {
+          title: "Aucune donnée collectée",
+          text: "Le jeu ne contient ni publicité, ni outil de mesure d'audience, ni pistage, ni connexion à un serveur. Il n'y a pas de compte WatchRoad à créer.",
+        },
+        {
+          title: "Ce qui reste sur la montre",
+          text: "Les records, le grade, les réglages et un court historique des parties (date, durée, score) sont enregistrés uniquement sur la montre. Ils ne sont ni envoyés, ni synchronisés : je n'y ai pas accès.",
+        },
+        {
+          title: "Achat",
+          text: "Le jeu s'achète une fois sur l'App Store. Le paiement est entièrement traité par Apple : je ne reçois ni nom, ni adresse, ni moyen de paiement. Il n'y a aucun achat dans le jeu.",
+        },
+        {
+          title: "Effacer ses données",
+          text: "Dans la pause, Réglages, « Réinitialiser les records » efface les records et le grade. Supprimer l'app de la montre efface toutes ses données.",
+        },
+      ],
+    },
+    support: {
+      intro:
+        "Une question ou un souci avec WatchRoad ? Écrivez-moi : je réponds en français, en général sous quelques jours.",
+      questions: [
+        {
+          title: "Comment jouer ?",
+          text: "Tourne la Digital Crown ou glisse le doigt pour changer de voie. Quand un zombie s'accroche, frôle une épave de son côté pour l'arracher, ou touche l'écran pour lui tirer dessus. Le boost se lance avec le bouton éclair, en bas à droite.",
+        },
+        {
+          title: "Comment débloquer les véhicules et les armes ?",
+          text: "Chaque partie rapporte de l'expérience. En montant en grade, de Recrue à Légende, s'ouvrent de nouveaux véhicules, armes, zones et ennemis. On les choisit dans la pause.",
+        },
+        {
+          title: "Le jeu ralentit ou la montre chauffe",
+          text: "Fermez les autres apps ouvertes, puis relancez le jeu. Si le souci persiste, écrivez-moi en indiquant le modèle de votre montre.",
+        },
+        {
+          title: "Obtenir un remboursement",
+          text: "L'achat est géré par Apple : la demande se fait sur reportaproblem.apple.com, avec le compte Apple qui a payé.",
+        },
+        {
+          title: "Effacer la progression",
+          text: "Dans la pause, Réglages : « Réinitialiser les records ».",
+        },
       ],
     },
   },

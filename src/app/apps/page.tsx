@@ -8,7 +8,7 @@ const SITE = "https://www.paper34.fr";
 export const metadata: Metadata = {
   title: "Apps iPhone, Apple Watch et Mac conçues par Paper34",
   description:
-    "Je dessine et développe des applications iPhone, Apple Watch et Mac, de la première esquisse à l'App Store. Références : Puppy Drop, JaugeAI.",
+    "Je dessine et développe des applications iPhone, Apple Watch et Mac, de la première esquisse à l'App Store. Références : Puppy Drop, JaugeAI, WatchRoad.",
   alternates: { canonical: `${SITE}/apps` },
   openGraph: {
     title: "Apps conçues par Paper34",
@@ -103,7 +103,7 @@ export default function AppsPage() {
             Références
           </h2>
           <p className="text-text-secondary max-w-2xl mb-14">
-            Deux apps, deux univers opposés. Elles sont à moi : c&apos;est
+            Trois apps, trois univers qui ne se ressemblent pas. Elles sont à moi : c&apos;est
             la meilleure façon de vous montrer ce que je ferais pour la vôtre.
           </p>
 
@@ -142,7 +142,11 @@ export default function AppsPage() {
                       height={app.cover.height}
                       loading="lazy"
                       className={`max-h-full w-auto max-w-full object-contain ${
-                        app.cover.height > app.cover.width ? "rounded-[13.5%/6.2%]" : ""
+                        app.screenshotShape === "watch"
+                          ? "rounded-[20%/16%]"
+                          : app.cover.height > app.cover.width
+                            ? "rounded-[13.5%/6.2%]"
+                            : ""
                       }`}
                     />
                   </div>
