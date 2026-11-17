@@ -1,11 +1,12 @@
 import Link from "next/link";
 import JsonLdBreadcrumb from "@/components/seo/JsonLdBreadcrumb";
+import { APPS } from "@/lib/apps";
 
 /**
- * Page du pôle développement d'applications — même approche que
+ * Page du pôle développement d'applications : même approche que
  * /services/graphisme : des scénarios concrets par besoin plutôt qu'une
- * liste de technologies. Aucune réalisation inventée : les projets en
- * cours viendront alimenter la page à leur livraison.
+ * liste de technologies. Les réalisations viennent du registre des apps
+ * (src/lib/apps.ts) : une app publiée apparaît ici sans autre code.
  */
 
 const CAS_USAGE = [
@@ -53,24 +54,32 @@ const CAS_USAGE = [
 
 const FAQ = [
   {
+    q: "Pouvez-vous publier mon application sur l'App Store ?",
+    a: "Oui, je m'occupe de tout le parcours : compte développeur, fiche App Store (textes, captures, vidéo d'aperçu), pages d'assistance et de confidentialité exigées par Apple, envoi en revue et corrections demandées. Puppy Drop et JaugeAI sont passées par là.",
+  },
+  {
+    q: "iPhone, iPad, Apple Watch ou Mac ?",
+    a: "Une même app peut vivre sur plusieurs appareils : JaugeAI relève les données sur le Mac et les affiche sur l'iPhone et l'Apple Watch, Puppy Drop se joue sur iPhone, iPad et Apple Watch. On part de l'usage réel pour choisir où l'app doit être.",
+  },
+  {
     q: "Application mobile ou application web ?",
-    a: "Les deux existent, et le choix dépend de l'usage. Une application web (PWA) s'installe depuis le navigateur, fonctionne sur tous les téléphones et se met à jour instantanément — idéale pour démarrer vite. Une application native iOS/Android se télécharge sur les stores et va plus loin (notifications riches, hors-ligne). On choisit ensemble selon votre besoin réel, pas selon la mode.",
+    a: "Le choix dépend de l'usage. Une application web (PWA) s'installe depuis le navigateur, fonctionne sur tous les téléphones et se met à jour instantanément : idéale pour démarrer vite. Une application native se télécharge sur les stores et va plus loin (notifications riches, hors-ligne, Apple Watch, widgets). On choisit ensemble selon votre besoin réel.",
   },
   {
     q: "Combien coûte une application ?",
-    a: "Tout dépend du périmètre : un outil interne simple et une plateforme de réservation complète ne représentent pas le même travail. Chaque projet démarre par un cadrage gratuit qui aboutit à un devis précis, sans surprise. Le fonctionnement par étapes permet aussi de commencer par l'essentiel et d'enrichir ensuite.",
+    a: "Tout dépend du périmètre : un outil interne simple et une plateforme de réservation complète ne représentent pas le même travail. Chaque projet démarre par un cadrage gratuit qui aboutit à un devis précis. Le fonctionnement par étapes permet aussi de commencer par l'essentiel et d'enrichir ensuite.",
   },
   {
     q: "Pourquoi confier une application à un studio graphique ?",
-    a: "Parce qu'une application réussie, c'est autant du design que du code. Chez Paper34, l'identité visuelle, l'interface et le développement sortent des mêmes mains : votre application est belle, cohérente avec votre marque, et fonctionnelle — sans coordination entre trois prestataires.",
+    a: "Parce qu'une application réussie, c'est autant du design que du code. Je fais l'identité visuelle, l'interface, les illustrations et le développement : votre application est belle, cohérente avec votre marque et fonctionnelle, sans coordination entre trois prestataires.",
   },
   {
     q: "Qui s'occupe de l'application après la mise en ligne ?",
-    a: "Le studio. Hébergement, sauvegardes, mises à jour de sécurité et évolutions : un contrat de maintenance optionnel vous garantit une application qui reste rapide et à jour, avec un seul interlocuteur.",
+    a: "Moi. Mises à jour pour les nouvelles versions d'iOS, corrections, évolutions et suivi des avis : un contrat de maintenance optionnel garde votre application à jour, avec un seul interlocuteur.",
   },
   {
     q: "Travaillez-vous avec des entreprises hors de l'Hérault ?",
-    a: "Oui. Le studio est basé à Agde avec une antenne à Marseille, et le développement d'applications se mène très bien à distance : cadrage en visio, démonstrations régulières en ligne, mise en production accompagnée — partout en France.",
+    a: "Oui. Le développement d'applications se mène très bien à distance : cadrage en visio, versions de test sur votre téléphone tout au long du projet, mise en ligne accompagnée, partout en France.",
   },
 ] as const;
 
@@ -79,7 +88,7 @@ export default function ApplicationsPage() {
     "@context": "https://schema.org",
     "@type": "Service",
     name: "Développement d'applications",
-    serviceType: "Développement d'applications web et mobiles sur-mesure",
+    serviceType: "Création d'applications iPhone, iPad, Apple Watch, Mac et web",
     provider: {
       "@type": "LocalBusiness",
       name: "PAPER34",
@@ -95,7 +104,7 @@ export default function ApplicationsPage() {
     },
     areaServed: { "@type": "Country", name: "France" },
     description:
-      "Applications web (PWA) et mobiles iOS/Android sur-mesure : réservation, fidélité, outils métier, tableaux de bord. Design et développement intégrés au sein du studio.",
+      "Applications sur mesure pour iPhone, iPad, Apple Watch, Mac et le web : réservation, fidélité, outils métier, jeux. Design, développement et publication sur l'App Store par la même personne.",
   };
 
   const faqSchema = {
@@ -137,9 +146,10 @@ export default function ApplicationsPage() {
             <span className="gradient-text">travaille pour vous.</span>
           </h1>
           <p className="text-lg text-text-secondary max-w-2xl mx-auto mb-8">
-            Réservation, fidélité, outils internes, tableaux de bord :
-            des applications web et mobiles sur-mesure, conçues et développées
-            par le studio — avec le design en plus.
+            Réservation, fidélité, outils internes, jeux : je conçois et je
+            développe des applications pour iPhone, iPad, Apple Watch, Mac et
+            le web, jusqu&apos;à leur publication sur l&apos;App Store. Avec le
+            design en plus.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -149,12 +159,50 @@ export default function ApplicationsPage() {
               Parler de mon projet
             </Link>
             <a
-              href="#usages"
+              href="#realisations"
               className="rounded-full border border-border px-8 py-3.5 text-sm font-semibold text-text-primary transition-all duration-300 hover:bg-white/5 hover:border-border-hover"
             >
-              Voir les cas d&apos;usage
+              Voir mes apps publiées
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* Réalisations : les apps publiées, tirées du registre */}
+      <section id="realisations" className="pb-20 md:pb-28 bg-bg-primary scroll-mt-24">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+          <h2 className="text-[clamp(24px,4vw,36px)] font-bold tracking-[-1px] mb-8 text-center">
+            Mes apps <span className="gradient-text">publiées</span>
+          </h2>
+          <ul className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {APPS.map((app) => (
+              <li key={app.slug}>
+                <Link
+                  href={`/apps/${app.slug}`}
+                  className="flex h-full items-start gap-5 rounded-2xl border border-border bg-bg-card p-6 transition-colors hover:border-border-hover hover:bg-bg-card-hover"
+                >
+                  <img
+                    src={app.icon}
+                    alt={`Icône de ${app.name}`}
+                    width={72}
+                    height={72}
+                    loading="lazy"
+                    className="h-[72px] w-[72px] shrink-0 rounded-[22%]"
+                  />
+                  <div>
+                    <h3 className="text-xl font-bold text-text-primary mb-1">{app.name}</h3>
+                    <p className="text-text-primary mb-2">{app.tagline}</p>
+                    <p className="text-sm text-text-secondary">{app.kind}</p>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 text-center">
+            <Link href="/apps" className="inline-flex min-h-11 items-center text-accent hover:underline">
+              Toutes les apps conçues par Paper34
+            </Link>
+          </p>
         </div>
       </section>
 
@@ -221,7 +269,7 @@ export default function ApplicationsPage() {
               {
                 n: "01",
                 title: "Cadrage",
-                text: "On définit ensemble ce que l'application doit faire — et surtout ce qu'elle ne doit pas faire. Périmètre clair, devis gratuit, calendrier réaliste.",
+                text: "On définit ensemble ce que l'application doit faire, et surtout ce qu'elle ne doit pas faire. Périmètre clair, devis gratuit, calendrier réaliste.",
               },
               {
                 n: "02",
@@ -231,7 +279,7 @@ export default function ApplicationsPage() {
               {
                 n: "03",
                 title: "Développement",
-                text: "Le studio construit l'application avec des technologies modernes et éprouvées, en vous montrant l'avancée à chaque étape — pas d'effet tunnel.",
+                text: "Je construis l'application avec des technologies éprouvées et vous l'installez sur votre téléphone à chaque étape : pas d'effet tunnel.",
               },
               {
                 n: "04",
@@ -333,7 +381,7 @@ export default function ApplicationsPage() {
             <span className="gradient-text">en tête&nbsp;?</span>
           </h2>
           <p className="text-lg text-text-secondary mb-10">
-            Racontez-moi le besoin — cadrage et devis gratuits.
+            Racontez-moi le besoin : cadrage et devis gratuits.
           </p>
           <Link
             href="/contact"

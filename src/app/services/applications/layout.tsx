@@ -1,11 +1,16 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Développement d'applications",
+  title: "Création d'application iPhone, Apple Watch, Mac et web",
   description:
-    "Développement d'applications web et mobiles sur-mesure : réservation, fidélité, outils métier, tableaux de bord. Design et développement au même endroit — studio basé à Agde et Marseille, intervention partout en France.",
+    "Création d'applications iPhone, iPad, Apple Watch, Mac et web, de la maquette à la publication sur l'App Store. Design et code au même endroit, à Agde.",
   keywords: [
     // National
+    "création application iPhone",
+    "développeur iOS freelance",
+    "publication App Store",
+    "application Apple Watch",
+    "application Mac",
     "développement application sur mesure",
     "création application mobile",
     "développement application web",
@@ -16,6 +21,7 @@ export const metadata: Metadata = {
     "tableau de bord sur mesure",
     "développeur application freelance",
     // Local
+    "création application Agde",
     "développement application Hérault",
     "création application Montpellier",
     "développeur application Béziers",
@@ -29,9 +35,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     images: ["/og-image.jpg"],
-    title: "Développement d'applications | PAPER34",
+    title: "Création d'applications iPhone, Apple Watch, Mac et web | PAPER34",
     description:
-      "Applications web et mobiles sur-mesure, avec le design en plus : réservation, fidélité, outils métier, tableaux de bord.",
+      "De la maquette à l'App Store : je conçois et développe des applications sur mesure, avec le design en plus. Deux apps déjà publiées.",
     url: "https://www.paper34.fr/services/applications",
   },
 };

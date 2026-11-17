@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getApp, getAppSlugs } from "@/lib/apps";
 import AppDevices from "@/components/apps/AppDevices";
 import AppPreviewVideo from "@/components/apps/AppPreviewVideo";
+import JsonLdBreadcrumb from "@/components/seo/JsonLdBreadcrumb";
 
 const SITE = "https://www.paper34.fr";
 
@@ -38,7 +39,7 @@ export default async function AppPage({ params }: { params: Promise<{ slug: stri
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "MobileApplication",
+    "@type": "SoftwareApplication",
     name: app.name,
     description: app.intro,
     operatingSystem: app.devices
@@ -46,14 +47,27 @@ export default async function AppPage({ params }: { params: Promise<{ slug: stri
       .join(", "),
     applicationCategory: app.category,
     image: `${SITE}${app.icon}`,
+    screenshot: app.screenshots.map((s) => `${SITE}${s.src}`),
     url: `${SITE}/apps/${app.slug}`,
+    ...(app.storeUrl ? { installUrl: app.storeUrl } : {}),
+    ...(app.macDownloadUrl ? { downloadUrl: app.macDownloadUrl } : {}),
+    ...(app.external ? { sameAs: [app.external.site] } : {}),
+    inLanguage: "fr",
     author: { "@type": "Person", name: "Benjamin Sanchez", url: SITE },
+    publisher: { "@type": "Organization", name: "PAPER34", url: SITE },
     offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
   };
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLdBreadcrumb
+        items={[
+          { name: "Accueil", url: SITE },
+          { name: "Apps", url: `${SITE}/apps` },
+          { name: app.name, url: `${SITE}/apps/${app.slug}` },
+        ]}
+      />
 
       <section className="pt-32 pb-16 md:pt-40 md:pb-20 bg-bg-primary">
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
@@ -220,6 +234,21 @@ export default async function AppPage({ params }: { params: Promise<{ slug: stri
               </>
             )}
           </nav>
+        </div>
+      </section>
+
+      <section className="py-20 md:py-24 bg-bg-secondary">
+        <div className="mx-auto max-w-3xl px-6 lg:px-8 text-center">
+          <p className="text-text-secondary leading-relaxed mb-6">
+            {app.name} est conçue, dessinée et développée par Paper34, à Agde. Je crée aussi des
+            applications sur mesure pour les entreprises, de la maquette à l&apos;App Store.
+          </p>
+          <Link
+            href="/services/applications"
+            className="inline-flex min-h-11 items-center rounded-full border border-border px-6 py-3 text-sm font-semibold text-text-primary transition-colors hover:bg-white/5 hover:border-border-hover"
+          >
+            Créer votre application
+          </Link>
         </div>
       </section>
     </>

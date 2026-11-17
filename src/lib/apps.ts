@@ -21,6 +21,10 @@ export type AppInfo = {
   intro: string;
   platforms: string;
   devices: AppDevice[];
+  /** Ce que l'app montre du savoir-faire, pour la page /apps (référence pour les clients). */
+  showcase: string;
+  /** Visuel de la carte sur /apps (une des captures). */
+  cover: { src: string; width: number; height: number };
   /** Catégorie schema.org (données structurées). */
   category: "GameApplication" | "UtilitiesApplication";
   /** Lien App Store une fois l'app publiée ; sans lien, la page indique « Bientôt ». */
@@ -58,6 +62,9 @@ export const APPS: AppInfo[] = [
     platforms: "iPhone, iPad et Apple Watch",
     devices: ["iphone", "ipad", "watch"],
     category: "GameApplication",
+    showcase:
+      "Un univers entièrement illustré : 36 races de chiens dessinées, un carnet à remplir, des animations qui donnent envie de rejouer. Un jeu pour les familles, sans publicité, sur l'iPhone, l'iPad et l'Apple Watch.",
+    cover: { src: "/apps/puppy-drop/capture-2-decouverte.webp", width: 598, height: 1300 },
     storeUrl: "https://apps.apple.com/app/id6827112736",
     price: "Gratuit, avec un achat unique facultatif",
     icon: "/apps/puppy-drop/icone.webp",
@@ -178,6 +185,9 @@ export const APPS: AppInfo[] = [
     platforms: "Mac, iPhone et Apple Watch",
     devices: ["mac", "iphone", "watch"],
     category: "UtilitiesApplication",
+    showcase:
+      "Un outil sobre, en aplats noirs et blancs : le Mac relève les données, l'iPhone et l'Apple Watch les rendent lisibles d'un coup d'œil. Widgets, Dynamic Island, Siri et une vente directe en plus de l'App Store.",
+    cover: { src: "/apps/jaugeai/capture-1-mac.webp", width: 1338, height: 880 },
     storeUrl: "https://apps.apple.com/app/id6814973861?ct=paper34",
     macDownloadUrl: "https://jaugeai.com/fr/telecharger",
     external: {
