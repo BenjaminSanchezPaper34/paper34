@@ -111,17 +111,22 @@ export default async function AppPage({ params }: { params: Promise<{ slug: stri
 
       {app.screenshotsLayout === "devices" ? (
         <section className="pb-20 md:pb-28 bg-bg-primary" aria-label="Captures d'écran">
-          {/* Visuels déjà encadrés (Mac, iPhone, montre) : même hauteur, largeur libre, défilement latéral. */}
-          <ul className="mx-auto flex max-w-6xl gap-6 overflow-x-auto snap-x snap-mandatory px-6 lg:px-8 pb-4 md:gap-10">
+          {/* Visuels déjà encadrés (Mac, iPhone, montre) : même hauteur. Mobile : défilement latéral.
+              Bureau : chaque visuel prend une largeur proportionnelle à son format, la rangée tient sur la page. */}
+          <ul className="mx-auto flex max-w-6xl items-end gap-6 overflow-x-auto snap-x snap-mandatory px-6 lg:px-8 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:gap-8 md:overflow-visible">
             {app.screenshots.map((s) => (
-              <li key={s.src} className="snap-center shrink-0">
+              <li
+                key={s.src}
+                className="snap-center shrink-0 md:shrink md:min-w-0"
+                style={{ flexGrow: s.width / s.height, flexBasis: 0 }}
+              >
                 <img
                   src={s.src}
                   alt={s.alt}
                   width={s.width}
                   height={s.height}
                   loading="lazy"
-                  className="h-[340px] w-auto max-w-none md:h-[440px]"
+                  className="h-[340px] w-auto max-w-none md:h-auto md:w-full md:max-w-full"
                 />
               </li>
             ))}
