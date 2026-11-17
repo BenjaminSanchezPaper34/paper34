@@ -71,7 +71,7 @@ export default function Navbar({ apps = [] }: { apps?: NavApp[] }) {
           </Link>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-8">
             {NAV_LINKS.map((link) => (
               <span key={link.href} className="flex items-center gap-2.5">
                 <Link
@@ -97,9 +97,9 @@ export default function Navbar({ apps = [] }: { apps?: NavApp[] }) {
                       href={`/apps/${app.slug}`}
                       aria-label={app.name}
                       title={app.name}
-                      className="transition-opacity hover:opacity-80"
+                      className="shrink-0 transition-opacity hover:opacity-80"
                     >
-                      <img src={app.icon} alt="" width={28} height={28} className="h-7 w-7 rounded-[22%]" />
+                      <img src={app.icon} alt="" width={28} height={28} className="h-7 w-7 max-w-none rounded-[22%]" />
                     </Link>
                   ))}
               </span>
@@ -117,7 +117,7 @@ export default function Navbar({ apps = [] }: { apps?: NavApp[] }) {
           {/* Mobile hamburger */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden flex flex-col gap-1.5 p-2"
+            className="lg:hidden flex flex-col gap-1.5 p-2"
             aria-label="Menu"
           >
             <span
@@ -141,7 +141,7 @@ export default function Navbar({ apps = [] }: { apps?: NavApp[] }) {
 
       {/* Mobile menu */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-500 ${
+        className={`lg:hidden overflow-hidden transition-all duration-500 ${
           mobileOpen ? "max-h-[36rem]" : "max-h-0"
         }`}
       >
