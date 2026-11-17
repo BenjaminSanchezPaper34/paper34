@@ -39,6 +39,9 @@ L'app apparaît aussi seule dans la page `/apps`, dans le menu (rubrique « Apps
      dans le dépôt de l'app, et la garder identique à l'étiquette de confidentialité de l'App Store.
    - `support` : comment jouer ou utiliser, achats et restauration, remboursement (Apple), progression.
    - `devices` : les appareils affichés avec leur pictogramme sous le bouton App Store (`iphone`, `ipad`, `watch`).
+   - `preview` (facultatif) : la vidéo d'aperçu de l'App Store, placée avant les captures. Version web en
+     600 x 1300 sans son (`ffmpeg -an -vf scale=600:1300 -crf 25 -movflags +faststart`), déposée sur R2 sous
+     `apps/<slug>/apercu.mp4`, et une affiche `public/apps/<slug>/apercu-affiche.webp`.
    - `storeUrl` : vide tant que l'app n'est pas publiée (la page affiche « Bientôt sur l'App Store »).
 4. Vérifier : `npm run build`, `npx eslint src/lib/apps.ts`, puis le rendu en mobile et en bureau
    (`npx next start`), menu mobile ouvert.

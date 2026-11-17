@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getApp, getAppSlugs } from "@/lib/apps";
 import AppDevices from "@/components/apps/AppDevices";
+import AppPreviewVideo from "@/components/apps/AppPreviewVideo";
 
 const SITE = "https://www.paper34.fr";
 
@@ -92,7 +93,19 @@ export default async function AppPage({ params }: { params: Promise<{ slug: stri
 
       <section className="pb-20 md:pb-28 bg-bg-primary" aria-label="Captures d'écran">
         <div className="mx-auto max-w-5xl">
-          <ul className="flex gap-4 overflow-x-auto snap-x snap-mandatory px-6 lg:px-8 pb-4 md:grid md:grid-cols-4 md:gap-6 md:overflow-visible">
+          <ul className={`flex gap-4 overflow-x-auto snap-x snap-mandatory px-6 lg:px-8 pb-4 md:grid md:gap-6 md:overflow-visible ${
+              app.preview ? "md:grid-cols-5" : "md:grid-cols-4"
+            }`}>
+            {app.preview && (
+              <li className="snap-center shrink-0 w-[62vw] max-w-[280px] md:w-auto md:max-w-none">
+                <AppPreviewVideo
+                  src={app.preview.src}
+                  poster={app.preview.poster}
+                  label={`Aperçu vidéo de ${app.name}`}
+                  className="w-full h-auto rounded-[13.5%/6.2%] bg-bg-card"
+                />
+              </li>
+            )}
             {app.screenshots.map((s) => (
               <li key={s.src} className="snap-center shrink-0 w-[62vw] max-w-[280px] md:w-auto md:max-w-none">
                 <img

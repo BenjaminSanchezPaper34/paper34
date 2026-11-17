@@ -24,6 +24,8 @@ export type AppInfo = {
   storeUrl?: string;
   price: string;
   icon: string;
+  /** Vidéo d'aperçu (celle de la fiche App Store), placée avant les captures. Format 600 x 1300. */
+  preview?: { src: string; poster: string };
   screenshots: { src: string; alt: string; width: number; height: number }[];
   features: AppSection[];
   /** Encadré de réassurance (familles, données, achats…). */
@@ -46,6 +48,10 @@ export const APPS: AppInfo[] = [
     devices: ["iphone", "ipad", "watch"],
     price: "Gratuit, avec un achat unique facultatif",
     icon: "/apps/puppy-drop/icone.webp",
+    preview: {
+      src: "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/apps/puppy-drop/apercu.mp4",
+      poster: "/apps/puppy-drop/apercu-affiche.webp",
+    },
     screenshots: [
       { src: "/apps/puppy-drop/capture-1-jeu.webp", alt: "Une partie de Puppy Drop : des chiots empilés dans le panier", ...CAPTURE },
       { src: "/apps/puppy-drop/capture-2-decouverte.webp", alt: "Nouvelle race découverte : le Caniche", ...CAPTURE },
