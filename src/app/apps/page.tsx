@@ -103,7 +103,7 @@ export default function AppsPage() {
             Références
           </h2>
           <p className="text-text-secondary max-w-2xl mb-14">
-            Deux apps publiées sur l&apos;App Store, deux univers opposés. Elles sont à moi : c&apos;est
+            Deux apps, deux univers opposés. Elles sont à moi : c&apos;est
             la meilleure façon de vous montrer ce que je ferais pour la vôtre.
           </p>
 

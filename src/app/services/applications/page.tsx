@@ -162,17 +162,17 @@ export default function ApplicationsPage() {
               href="#realisations"
               className="rounded-full border border-border px-8 py-3.5 text-sm font-semibold text-text-primary transition-all duration-300 hover:bg-white/5 hover:border-border-hover"
             >
-              Voir mes apps publiées
+              Voir mes apps
             </a>
           </div>
         </div>
       </section>
 
-      {/* Réalisations : les apps publiées, tirées du registre */}
+      {/* Réalisations : les apps du registre */}
       <section id="realisations" className="pb-20 md:pb-28 bg-bg-primary scroll-mt-24">
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
           <h2 className="text-[clamp(24px,4vw,36px)] font-bold tracking-[-1px] mb-8 text-center">
-            Mes apps <span className="gradient-text">publiées</span>
+            Mes apps, <span className="gradient-text">pour exemple</span>
           </h2>
           <ul className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {APPS.map((app) => (

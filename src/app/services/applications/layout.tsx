@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
     title: "Création d'applications iPhone, Apple Watch, Mac et web | PAPER34",
     description:
-      "De la maquette à l'App Store : je conçois et développe des applications sur mesure, avec le design en plus. Deux apps déjà publiées.",
+      "De la maquette à l'App Store : je conçois et développe des applications sur mesure, avec le design en plus. Puppy Drop et JaugeAI en exemple.",
     url: "https://www.paper34.fr/services/applications",
   },
 };
