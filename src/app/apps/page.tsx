@@ -15,7 +15,7 @@ export default function AppsPage() {
       <div className="mx-auto max-w-5xl px-6 lg:px-8">
         <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">Apps</p>
         <h1 className="text-[clamp(36px,7vw,64px)] font-bold tracking-[-2px] leading-tight mb-6">
-          Conçues et développées <span className="gradient-text">de A à Z</span>
+          Conçues et développées <span className="gradient-text whitespace-nowrap">de A à Z</span>
         </h1>
         <p className="text-text-secondary leading-relaxed max-w-2xl mb-14">
           Du premier croquis à l&apos;App Store, je m&apos;occupe de tout : le design, les illustrations et le code.
