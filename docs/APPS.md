@@ -21,7 +21,7 @@ Tout part du registre `src/lib/apps.ts`. Une entrée génère, sans autre code :
 | `/apps/<slug>/assistance`       | Questions fréquentes et contact (URL de l'assistance)   |
 | `/apps/<slug>/confidentialite`  | Politique de confidentialité (URL demandée par Apple)   |
 
-L'app apparaît aussi seule dans la page `/apps`, dans le menu (icône) et dans le sitemap.
+L'app apparaît aussi seule dans la page `/apps`, dans le menu (rubrique « Apps ») et dans le sitemap.
 
 ## Étapes pour une nouvelle app
 
@@ -38,6 +38,7 @@ L'app apparaît aussi seule dans la page `/apps`, dans le menu (icône) et dans 
    - `privacy` : doit dire exactement ce que fait l'app. La reprendre du fichier de confidentialité tenu
      dans le dépôt de l'app, et la garder identique à l'étiquette de confidentialité de l'App Store.
    - `support` : comment jouer ou utiliser, achats et restauration, remboursement (Apple), progression.
+   - `devices` : les appareils affichés avec leur pictogramme sous le bouton App Store (`iphone`, `ipad`, `watch`).
    - `storeUrl` : vide tant que l'app n'est pas publiée (la page affiche « Bientôt sur l'App Store »).
 4. Vérifier : `npm run build`, `npx eslint src/lib/apps.ts`, puis le rendu en mobile et en bureau
    (`npx next start`), menu mobile ouvert.
@@ -65,7 +66,6 @@ Non vérifié / à décider : …
 - Charte du site inchangée (DESIGN.md) : pas de nouvelle couleur ni de nouvelle police pour une app.
 - La page de confidentialité d'une app pour enfants ne doit rien promettre de plus que l'app : la relire à
   chaque version qui touche aux données, aux achats ou à un service tiers.
-- Au-delà de trois ou quatre apps, remplacer les icônes en ligne du menu par un sous-menu.
 
 ## État
 

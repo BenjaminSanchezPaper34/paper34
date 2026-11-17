@@ -5,7 +5,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ConsentProvider } from "@/components/legal/Consent";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
-import { APPS } from "@/lib/apps";
 import Footer from "@/components/layout/Footer";
 import FooterGate from "@/components/layout/FooterGate";
 import LenisProvider from "@/components/layout/LenisProvider";
@@ -121,7 +120,7 @@ export default function RootLayout({
         <JsonLd />
         <ConsentProvider>
         <LenisProvider>
-          <Navbar apps={APPS.map(({ slug, name, icon }) => ({ slug, name, icon }))} />
+          <Navbar />
           <main>{children}</main>
           <FooterGate>
             <Footer />

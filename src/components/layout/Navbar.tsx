@@ -5,14 +5,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV_LINKS } from "@/lib/constants";
 
-type NavApp = { slug: string; name: string; icon: string };
-
 /** Une entrée du menu est active sur sa page et, pour une rubrique, sur ses sous-pages. */
 function isActive(pathname: string | null, href: string) {
   return pathname === href || (href !== "/" && !!pathname?.startsWith(`${href}/`));
 }
 
-export default function Navbar({ apps = [] }: { apps?: NavApp[] }) {
+export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   // Navbar intelligente : masquée en descente, revient en remontée.
   // Passé 80px, le fond gradient laisse place à un verre dépoli.
@@ -89,19 +87,6 @@ export default function Navbar({ apps = [] }: { apps?: NavApp[] }) {
                     }`}
                   />
                 </Link>
-                {/* Rubrique Apps : l'icône de chaque app mène droit à sa page. */}
-                {link.href === "/apps" &&
-                  apps.map((app) => (
-                    <Link
-                      key={app.slug}
-                      href={`/apps/${app.slug}`}
-                      aria-label={app.name}
-                      title={app.name}
-                      className="shrink-0 transition-opacity hover:opacity-80"
-                    >
-                      <img src={app.icon} alt="" width={28} height={28} className="h-7 w-7 max-w-none rounded-[22%]" />
-                    </Link>
-                  ))}
               </span>
             ))}
             <Link
@@ -158,17 +143,6 @@ export default function Navbar({ apps = [] }: { apps?: NavApp[] }) {
               >
                 {link.label}
               </Link>
-              {link.href === "/apps" &&
-                apps.map((app) => (
-                  <Link
-                    key={app.slug}
-                    href={`/apps/${app.slug}`}
-                    className="flex min-h-11 items-center gap-3 text-base text-text-secondary hover:text-text-primary transition-colors"
-                  >
-                    <img src={app.icon} alt="" width={32} height={32} className="h-8 w-8 rounded-[22%]" />
-                    {app.name}
-                  </Link>
-                ))}
             </div>
           ))}
           <Link

@@ -7,6 +7,9 @@
 
 export type AppSection = { title: string; text: string };
 
+/** Appareils affichés avec leur pictogramme sous le bouton App Store. */
+export type AppDevice = "iphone" | "ipad" | "watch";
+
 export type AppInfo = {
   slug: string;
   name: string;
@@ -16,6 +19,7 @@ export type AppInfo = {
   tagline: string;
   intro: string;
   platforms: string;
+  devices: AppDevice[];
   /** Lien App Store une fois l'app publiée ; sans lien, la page indique « Bientôt ». */
   storeUrl?: string;
   price: string;
@@ -39,6 +43,7 @@ export const APPS: AppInfo[] = [
     intro:
       "Fais tomber des chiots dans le panier : quand deux chiens identiques se touchent, ils fusionnent en une race plus grande. Du petit Chihuahua au Dogue allemand, fais grandir ta meute et remplis ton carnet.",
     platforms: "iPhone, iPad et Apple Watch",
+    devices: ["iphone", "ipad", "watch"],
     price: "Gratuit, avec un achat unique facultatif",
     icon: "/apps/puppy-drop/icone.webp",
     screenshots: [

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getApp, getAppSlugs } from "@/lib/apps";
+import AppDevices from "@/components/apps/AppDevices";
 
 const SITE = "https://www.paper34.fr";
 
@@ -81,9 +82,10 @@ export default async function AppPage({ params }: { params: Promise<{ slug: stri
                 Bientôt sur l&apos;App Store
               </span>
             )}
-            <p className="text-sm text-text-secondary">
-              {app.platforms}. {app.price}.
-            </p>
+            <p className="text-sm text-text-secondary">{app.price}.</p>
+          </div>
+          <div className="mt-8">
+            <AppDevices devices={app.devices} />
           </div>
         </div>
       </section>
@@ -99,7 +101,7 @@ export default async function AppPage({ params }: { params: Promise<{ slug: stri
                   width={s.width}
                   height={s.height}
                   loading="lazy"
-                  className="w-full h-auto rounded-2xl border border-border"
+                  className="w-full h-auto rounded-[13.5%/6.2%]"
                 />
               </li>
             ))}
