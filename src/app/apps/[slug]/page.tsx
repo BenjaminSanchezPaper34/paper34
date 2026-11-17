@@ -128,6 +128,21 @@ export default async function AppPage({ params }: { params: Promise<{ slug: stri
           {/* Visuels déjà encadrés (Mac, iPhone, montre) : même hauteur. Mobile : défilement latéral.
               Bureau : chaque visuel prend une largeur proportionnelle à son format, la rangée tient sur la page. */}
           <ul className="mx-auto flex max-w-6xl items-end gap-6 overflow-x-auto snap-x snap-mandatory px-6 lg:px-8 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:gap-8 md:overflow-visible">
+            {app.preview && (
+              <li
+                className="snap-center shrink-0 md:shrink md:min-w-0"
+                style={{ flexGrow: (app.preview.width ?? 600) / (app.preview.height ?? 1300), flexBasis: 0 }}
+              >
+                <AppPreviewVideo
+                  src={app.preview.src}
+                  poster={app.preview.poster}
+                  label={`Aperçu vidéo de ${app.name}`}
+                  width={app.preview.width}
+                  height={app.preview.height}
+                  className="h-[340px] w-auto max-w-none rounded-3xl bg-black md:h-auto md:w-full md:max-w-full"
+                />
+              </li>
+            )}
             {app.screenshots.map((s) => (
               <li
                 key={s.src}

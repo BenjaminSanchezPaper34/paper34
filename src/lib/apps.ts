@@ -39,8 +39,8 @@ export type AppInfo = {
   /** Forme des captures en grille : écran d'iPhone (par défaut) ou d'Apple Watch. */
   screenshotShape?: "phone" | "watch";
   icon: string;
-  /** Vidéo d'aperçu (celle de la fiche App Store), placée avant les captures. Format 600 x 1300. */
-  preview?: { src: string; poster: string };
+  /** Vidéo d'aperçu, placée avant les captures. 600 x 1300 par défaut (aperçu App Store d'iPhone). */
+  preview?: { src: string; poster: string; width?: number; height?: number };
   screenshots: { src: string; alt: string; width: number; height: number }[];
   /** « phone » : captures iPhone de même format, en grille. « devices » : visuels déjà encadrés
    * (Mac, iPhone, montre) de formats différents, alignés sur une même hauteur. */
@@ -259,6 +259,12 @@ export const APPS: AppInfo[] = [
     offerPrice: "2.99",
     screenshotsLayout: "devices",
     icon: "/apps/watchroad/icone.webp",
+    preview: {
+      src: "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/apps/watchroad/apercu.mp4",
+      poster: "/apps/watchroad/apercu-affiche.webp",
+      width: 720,
+      height: 900,
+    },
     screenshots: [
       { src: "/apps/watchroad/montre-1-portes.webp", alt: "Deux zombies accrochés au pick-up, avant deux portes de bonus : réparation ou munitions", ...WATCH_FRAMED },
       { src: "/apps/watchroad/montre-2-crepuscule.webp", alt: "La route du désert au crépuscule, un zombie sur le flanc du pick-up", ...WATCH_FRAMED },

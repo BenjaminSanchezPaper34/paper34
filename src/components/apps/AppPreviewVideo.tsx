@@ -12,11 +12,15 @@ export default function AppPreviewVideo({
   poster,
   label,
   className,
+  width = 600,
+  height = 1300,
 }: {
   src: string;
   poster: string;
   label: string;
   className?: string;
+  width?: number;
+  height?: number;
 }) {
   const ref = useRef<HTMLVideoElement>(null);
 
@@ -40,8 +44,8 @@ export default function AppPreviewVideo({
       loop
       playsInline
       preload="metadata"
-      width={600}
-      height={1300}
+      width={width}
+      height={height}
       className={className}
     />
   );
