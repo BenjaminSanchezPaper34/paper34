@@ -76,7 +76,7 @@ export const APPS: AppInfo[] = [
     storeUrl: "https://apps.apple.com/app/id6827112736",
     price: "Gratuit, avec un achat unique facultatif",
     icon: "/apps/puppy-drop/icone.webp",
-    ogImage: "/apps/puppy-drop/partage.png",
+    ogImage: "/apps/puppy-drop/partage.jpg",
     preview: {
       src: "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/apps/puppy-drop/apercu.mp4",
       poster: "/apps/puppy-drop/apercu-affiche.webp",

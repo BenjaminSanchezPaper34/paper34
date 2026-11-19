@@ -16,8 +16,8 @@ SF = "/System/Library/Fonts/SFNS.ttf"  # SF Pro (police système d'Apple), varia
 
 APPS = [
     # slug, nom, promesse, appareils, visuel, arrondi du visuel (rx, ry en fraction) ou None
-    ("puppy-drop", "Puppy Drop", "Fusionne des chiots,\ndécouvre 36 races.", "iPhone · iPad · Apple Watch",
-     "apps/puppy-drop/capture-1-jeu.webp", (0.135, 0.062)),
+    # Puppy Drop : image dessinée par sa conversation de communication (public/apps/puppy-drop/partage.jpg),
+    # validée par Benjamin le 19/11/2026. Ne pas la régénérer ici.
     ("jaugeai", "JaugeAI", "Toutes vos IA,\nau poignet. Gratuitement.", "Mac · iPhone · Apple Watch",
      "apps/jaugeai/capture-2-iphone.webp", None),
     ("watchroad", "WatchRoad", "Trois minutes de route,\ndes zombies sur le capot.", "Apple Watch",
