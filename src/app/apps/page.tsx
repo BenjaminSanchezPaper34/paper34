@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { APPS } from "@/lib/apps";
 import JsonLdBreadcrumb from "@/components/seo/JsonLdBreadcrumb";
+import AppsReferences from "@/components/apps/AppsReferences";
 
 const SITE = "https://www.paper34.fr";
 
@@ -107,53 +108,20 @@ export default function AppsPage() {
             la meilleure façon de vous montrer ce que je ferais pour la vôtre.
           </p>
 
-          <ul className="space-y-8">
-            {APPS.map((app) => (
-              <li key={app.slug}>
-                <Link
-                  href={`/apps/${app.slug}`}
-                  className="group grid grid-cols-1 items-center gap-8 overflow-hidden rounded-3xl border border-border bg-bg-card p-6 transition-colors hover:border-border-hover md:grid-cols-[1fr_1.1fr] md:gap-12 md:p-10"
-                >
-                  <div>
-                    <div className="flex items-center gap-4 mb-6">
-                      <img
-                        src={app.icon}
-                        alt={`Icône de ${app.name}`}
-                        width={64}
-                        height={64}
-                        className="h-16 w-16 shrink-0 rounded-[22%]"
-                      />
-                      <div>
-                        <h3 className="text-2xl font-bold text-text-primary">{app.name}</h3>
-                        <p className="text-sm text-text-secondary">{app.kind}</p>
-                      </div>
-                    </div>
-                    <p className="text-lg font-semibold text-text-primary mb-3">{app.tagline}</p>
-                    <p className="text-text-secondary leading-relaxed mb-6">{app.showcase}</p>
-                    <span className="inline-flex min-h-11 items-center text-accent group-hover:underline">
-                      Découvrir {app.name}
-                    </span>
-                  </div>
-                  <div className="flex h-72 items-center justify-center md:h-96">
-                    <img
-                      src={app.cover.src}
-                      alt=""
-                      width={app.cover.width}
-                      height={app.cover.height}
-                      loading="lazy"
-                      className={`max-h-full w-auto max-w-full object-contain ${
-                        app.screenshotShape === "watch"
-                          ? "rounded-[20%/16%]"
-                          : app.cover.height > app.cover.width
-                            ? "rounded-[13.5%/6.2%]"
-                            : ""
-                      }`}
-                    />
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <AppsReferences
+            apps={APPS.map((a) => ({
+              slug: a.slug,
+              name: a.name,
+              kind: a.kind,
+              icon: a.icon,
+              tagline: a.tagline,
+              showcase: a.showcase,
+              cover: a.cover,
+              category: a.category,
+              framed: a.screenshotsLayout === "devices",
+              watch: a.screenshotShape === "watch",
+            }))}
+          />
         </div>
       </section>
 
