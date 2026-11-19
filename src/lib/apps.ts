@@ -26,7 +26,7 @@ export type AppInfo = {
   /** Visuel de la carte sur /apps (une des captures). */
   cover: { src: string; width: number; height: number };
   /** Catégorie schema.org (données structurées). */
-  category: "GameApplication" | "UtilitiesApplication";
+  category: "GameApplication" | "UtilitiesApplication" | "LifestyleApplication";
   /** Lien App Store une fois l'app publiée ; sans lien, la page indique « Bientôt ». */
   storeUrl?: string;
   /** App Mac distribuée hors Mac App Store : lien de téléchargement, en second bouton. */
@@ -358,6 +358,70 @@ export const APPS: AppInfo[] = [
           title: "Effacer la progression",
           text: "Dans la pause, Réglages : « Réinitialiser les records ».",
         },
+      ],
+    },
+  },
+  {
+    slug: "ensemble",
+    name: "Ensemble",
+    kind: "App iPhone et iPad, avec widgets",
+    tagline: "Le nombre de jours que vous passez ensemble, en grand.",
+    intro:
+      "Ensemble compte les jours depuis votre premier jour. Un grand chiffre, une ligne, la date. Rien d'autre. Pour un couple, deux amies, une grand-mère et son petit-fils, ou un bébé qui vient d'arriver : chacun son chiffre, sans compte à créer et sans publicité.",
+    platforms: "iPhone et iPad",
+    devices: ["iphone", "ipad"],
+    category: "LifestyleApplication",
+    showcase:
+      "Une app Apple native menée de bout en bout : l'interface où le chiffre est le héros, les widgets de l'écran d'accueil et de l'écran verrouillé, le partage à deux par iCloud sans serveur, les achats intégrés, et un site qui se met à jour depuis le code de l'app.",
+    cover: { src: "/apps/ensemble/iphone-1-compteur.webp", width: 431, height: 880 },
+    external: {
+      site: "https://ensembledays.app/",
+      support: "https://ensembledays.app/assistance/",
+      privacy: "https://ensembledays.app/confidentialite/",
+    },
+    price: "Gratuit. Ensemble Pro : 1,99 € par mois, 9,99 € par an ou 19,99 € à vie",
+    icon: "/apps/ensemble/icone.webp",
+    ogImage: "/apps/ensemble/partage.jpg",
+    screenshotsLayout: "devices",
+    screenshots: [
+      { src: "/apps/ensemble/iphone-1-compteur.webp", alt: "L'accueil d'Ensemble : 1 249 jours ensemble, en grand, et la ligne de vie", width: 431, height: 880 },
+      { src: "/apps/ensemble/iphone-2-widgets.webp", alt: "Les widgets d'Ensemble : petit, StandBy, moyen et grand", width: 431, height: 880 },
+      { src: "/apps/ensemble/iphone-3-ecran-verrouille.webp", alt: "Les widgets de l'écran verrouillé et l'activité en direct du jour J", width: 431, height: 880 },
+      { src: "/apps/ensemble/iphone-4-cadeau.webp", alt: "La carte cadeau d'Ensemble, à ouvrir le 14 février", width: 431, height: 880 },
+    ],
+    features: [
+      {
+        title: "Partout",
+        text: "Widgets petit, moyen et grand sur l'écran d'accueil, cercle, rectangle et ligne sur l'écran verrouillé, StandBy sur la table de nuit. Le widget est gratuit, sans publicité.",
+      },
+      {
+        title: "À deux",
+        text: "Avec Pro, le même compteur sur vos deux iPhone, par iCloud, sans compte à créer.",
+      },
+      {
+        title: "La carte cadeau",
+        text: "L'invitation part par Messages comme une carte, et le chiffre se dévoile le jour que vous choisissez, le 14 février par exemple.",
+      },
+      {
+        title: "Votre ligne de vie",
+        text: "La rencontre, le premier restaurant, l'emménagement, le mariage, un enfant, les voyages. Chaque moment avec son « il y a 847 jours » ; une date à venir compte à rebours.",
+      },
+      {
+        title: "Les jours qui comptent",
+        text: "100 jours, 500 jours, 1 000 jours, chaque anniversaire. Une notification le matin même, jamais plus.",
+      },
+      {
+        title: "Vos couleurs",
+        text: "Huit thèmes, ou votre photo. Le chiffre reste lisible, toujours.",
+      },
+    ],
+    commitments: {
+      title: "Vos dates restent chez vous",
+      points: [
+        "Aucune donnée collectée. Vos dates et votre photo restent sur votre iPhone et dans votre iCloud, chez Apple.",
+        "Aucun serveur, aucun compte, aucun traceur, aucune publicité, aucune demande de note insistante.",
+        "La photo passe par le sélecteur d'Apple : l'app n'accède pas à votre photothèque.",
+        "Un seul achat pour deux : le Pro de celui qui partage s'applique au compteur partagé.",
       ],
     },
   },

@@ -8,7 +8,7 @@ const SITE = "https://www.paper34.fr";
 export const metadata: Metadata = {
   title: "Apps iPhone, Apple Watch et Mac conçues par Paper34",
   description:
-    "Je dessine et développe des applications iPhone, Apple Watch et Mac, de la première esquisse à l'App Store. Références : Puppy Drop, JaugeAI, WatchRoad.",
+    "Je dessine et développe des applications iPhone, Apple Watch et Mac, de la première esquisse à l'App Store. Références : Puppy Drop, JaugeAI, WatchRoad, Ensemble.",
   alternates: { canonical: `${SITE}/apps` },
   openGraph: {
     title: "Apps conçues par Paper34",
@@ -103,7 +103,7 @@ export default function AppsPage() {
             Références
           </h2>
           <p className="text-text-secondary max-w-2xl mb-14">
-            Trois apps, trois univers qui ne se ressemblent pas. Elles sont à moi : c&apos;est
+            Quatre apps, quatre univers qui ne se ressemblent pas. Elles sont à moi : c&apos;est
             la meilleure façon de vous montrer ce que je ferais pour la vôtre.
           </p>
 

@@ -95,4 +95,5 @@ Non vérifié / à décider : …
 | ---------- | -------------- | -------------------------- | -------------- |
 | Puppy Drop | 2026-11-16     | 2026-11-16                 | à la sortie    |
 | WatchRoad  | 2026-11-17     | 2026-11-17                 | à la sortie    |
+| Ensemble   | (site propre)  | ensembledays.app           | à la sortie    |
 | JaugeAI    | (site propre)  | jaugeai.com                | 2026-11-17     |
