@@ -56,6 +56,9 @@ montre), exportés en 880 px de haut.
      dans `APP/JaugeAI Créations/02 Identité et icônes/bezels/` (Watch Ultra 600 x 960, capture 422 x 514
      collée en (89, 223)), puis `screenshotsLayout: "devices"`. Exemple : WatchRoad.
    - `showcase` et `cover` : la phrase et le visuel de la carte « Références » de `/apps`.
+   - `ogImage` : **image de partage 1200 x 630 obligatoire** (`public/apps/<slug>/partage.png`). La générer avec
+     `python3 scripts/og-apps.py` après y avoir ajouté l'app (icône, nom, promesse, appareils, visuel dans son
+     appareil), ou fournir une image dessinée par la conversation de l'app.
    - `storeUrl` : vide tant que l'app n'est pas publiée (la page affiche « Bientôt sur l'App Store »).
 4. Vérifier : `npm run build`, `npx eslint src/lib/apps.ts`, puis le rendu en mobile et en bureau
    (`npx next start`), menu mobile ouvert.

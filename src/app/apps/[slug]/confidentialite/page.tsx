@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AppDocPage from "@/components/apps/AppDocPage";
-import { getApp, getHostedDocSlugs } from "@/lib/apps";
+import { appOgImages, getApp, getHostedDocSlugs } from "@/lib/apps";
 
 export function generateStaticParams() {
   return getHostedDocSlugs().map((slug) => ({ slug }));
@@ -20,6 +20,7 @@ export async function generateMetadata({
     title: `Politique de confidentialité de ${app.name}`,
     description: (app.privacy?.intro ?? "").slice(0, 158),
     alternates: { canonical: `https://www.paper34.fr/apps/${app.slug}/confidentialite` },
+    openGraph: { images: appOgImages(app) },
   };
 }
 

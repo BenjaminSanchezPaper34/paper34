@@ -39,6 +39,8 @@ export type AppInfo = {
   /** Forme des captures en grille : écran d'iPhone (par défaut) ou d'Apple Watch. */
   screenshotShape?: "phone" | "watch";
   icon: string;
+  /** Image de partage 1200 x 630 (aperçu des liens dans les messages et réseaux). Sans elle : l'icône. */
+  ogImage?: string;
   /** Vidéo d'aperçu, placée avant les captures. 600 x 1300 par défaut (aperçu App Store d'iPhone). */
   preview?: { src: string; poster: string; width?: number; height?: number };
   screenshots: { src: string; alt: string; width: number; height: number }[];
@@ -74,6 +76,7 @@ export const APPS: AppInfo[] = [
     storeUrl: "https://apps.apple.com/app/id6827112736",
     price: "Gratuit, avec un achat unique facultatif",
     icon: "/apps/puppy-drop/icone.webp",
+    ogImage: "/apps/puppy-drop/partage.png",
     preview: {
       src: "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/apps/puppy-drop/apercu.mp4",
       poster: "/apps/puppy-drop/apercu-affiche.webp",
@@ -203,6 +206,7 @@ export const APPS: AppInfo[] = [
     },
     price: "Gratuit. JaugeAI Pro : 9,99 € en achat unique, valable sur tous vos appareils",
     icon: "/apps/jaugeai/icone.webp",
+    ogImage: "/apps/jaugeai/partage.png",
     screenshotsLayout: "devices",
     screenshots: [
       { src: "/apps/jaugeai/capture-1-mac.webp", alt: "Le tableau de bord de JaugeAI sur un MacBook : historique et limites de ChatGPT", width: 1338, height: 880 },
@@ -259,6 +263,7 @@ export const APPS: AppInfo[] = [
     offerPrice: "2.99",
     screenshotsLayout: "devices",
     icon: "/apps/watchroad/icone.webp",
+    ogImage: "/apps/watchroad/partage.png",
     preview: {
       src: "https://pub-054d5e4ec36144bea38e07a1452fe2b0.r2.dev/apps/watchroad/apercu.mp4",
       poster: "/apps/watchroad/apercu-affiche.webp",
@@ -367,6 +372,13 @@ export function getAppSlugs(): string[] {
 }
 
 /** Apps dont l'assistance et la confidentialité sont hébergées sur paper34.fr. */
+/** Image de partage d'une app (1200 x 630), ou son icône à défaut. */
+export function appOgImages(app: AppInfo) {
+  return app.ogImage
+    ? [{ url: app.ogImage, width: 1200, height: 630, alt: `${app.name} : ${app.tagline}` }]
+    : [{ url: app.icon }];
+}
+
 export function getHostedDocSlugs(): string[] {
   return APPS.filter((a) => !a.external && a.privacy && a.support).map((a) => a.slug);
 }

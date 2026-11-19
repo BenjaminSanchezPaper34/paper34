@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getApp, getAppSlugs } from "@/lib/apps";
+import { appOgImages, getApp, getAppSlugs } from "@/lib/apps";
 import AppDevices from "@/components/apps/AppDevices";
 import AppPreviewVideo from "@/components/apps/AppPreviewVideo";
 import JsonLdBreadcrumb from "@/components/seo/JsonLdBreadcrumb";
@@ -28,7 +28,8 @@ export async function generateMetadata({
     title: `${app.name} : ${app.tagline}`,
     description,
     alternates: { canonical: url },
-    openGraph: { title: app.name, description, url, type: "website", images: [{ url: app.icon }] },
+    openGraph: { title: app.name, description, url, type: "website", images: appOgImages(app) },
+    twitter: { card: app.ogImage ? "summary_large_image" : "summary", title: app.name, description, images: appOgImages(app).map((i) => i.url) },
   };
 }
 
