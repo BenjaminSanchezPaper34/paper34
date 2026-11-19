@@ -21,6 +21,7 @@ export async function generateMetadata({
     description: `Aide et questions fréquentes sur ${app.name} : jouer, achat, restauration, progression. Contact par e-mail.`,
     alternates: { canonical: `https://www.paper34.fr/apps/${app.slug}/assistance` },
     openGraph: { images: appOgImages(app) },
+    twitter: { card: app.ogImage ? "summary_large_image" : "summary", images: appOgImages(app).map((i) => i.url) },
   };
 }
 

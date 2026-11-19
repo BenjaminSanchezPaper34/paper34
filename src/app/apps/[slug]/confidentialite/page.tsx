@@ -21,6 +21,7 @@ export async function generateMetadata({
     description: (app.privacy?.intro ?? "").slice(0, 158),
     alternates: { canonical: `https://www.paper34.fr/apps/${app.slug}/confidentialite` },
     openGraph: { images: appOgImages(app) },
+    twitter: { card: app.ogImage ? "summary_large_image" : "summary", images: appOgImages(app).map((i) => i.url) },
   };
 }
 
