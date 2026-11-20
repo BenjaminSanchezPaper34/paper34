@@ -135,3 +135,7 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Essai typo Allo : arrondi réglable (0 net, 50 par défaut de la police, 100 rond). */
+:root { --rond: 30; }
+html { font-optical-sizing: auto; font-variation-settings: "ROND" var(--rond); }

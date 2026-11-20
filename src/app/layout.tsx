@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { ConsentProvider } from "@/components/legal/Consent";
@@ -10,9 +10,12 @@ import FooterGate from "@/components/layout/FooterGate";
 import LenisProvider from "@/components/layout/LenisProvider";
 import JsonLd from "@/components/seo/JsonLd";
 
-const inter = Inter({
+// Essai typo (branche proto/typo-allo) : Allo, dérivée d'Inter, licence OFL (fonts/Allo-OFL.txt).
+// Auto-hébergée. L'arrondi (axe ROND, 0 à 100) se règle par --rond, essai : ?rond=0|30|60.
+const inter = localFont({
+  src: "./fonts/AlloVariable.woff2",
   variable: "--font-inter",
-  subsets: ["latin"],
+  weight: "100 900",
   display: "swap",
 });
 
@@ -115,6 +118,12 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="theme-color" content="#000000" />
+        {/* Essai : ?rond=0|30|60 choisit l'arrondi d'Allo pour comparer. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var r=new URLSearchParams(location.search).get("rond");if(r!==null&&/^\\d{1,3}$/.test(r))document.documentElement.style.setProperty("--rond",r)})()`,
+          }}
+        />
       </head>
       <body className={`grain font-[family-name:var(--font-inter),sans-serif]`}>
         <JsonLd />
