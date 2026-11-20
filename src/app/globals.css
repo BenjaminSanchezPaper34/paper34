@@ -136,6 +136,5 @@ body {
   }
 }
 
-/* Essai typo Allo : arrondi réglable (0 net, 50 par défaut de la police, 100 rond). */
-:root { --rond: 30; }
-html { font-optical-sizing: auto; font-variation-settings: "ROND" var(--rond); }
+/* Allo : arrondi des fins de traits (axe ROND, 0 net à 100 rond). 20 retenu par Benjamin le 20/11/2026. */
+html { font-optical-sizing: auto; font-variation-settings: "ROND" 20; }
