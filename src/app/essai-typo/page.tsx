@@ -25,11 +25,13 @@ export default function EssaiTypo() {
             >
               <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-6">ROND {r}</p>
               <h1 className="text-[clamp(32px,4vw,52px)] font-bold leading-[1] tracking-[-2px] mb-5">
-                Du contenu qui fait venir les clients.
+                Du contenu <br />
+                <span className="gradient-text">qui se remarque.</span>
               </h1>
               <p className="text-lg text-text-secondary leading-relaxed mb-8">
                 Site, réseaux, contenu, publicité, newsletter, print : un seul partenaire pour toute votre
-                communication.
+                communication. Je rends les restaurants, commerces et loisirs du littoral visibles, de Google à
+                ChatGPT.
               </p>
               <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-3">Un seul partenaire</p>
               <h2 className="text-[clamp(26px,3vw,36px)] font-bold tracking-[-1.5px] leading-tight mb-4">
