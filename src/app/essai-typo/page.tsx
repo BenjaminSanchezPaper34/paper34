@@ -24,6 +24,10 @@ export default function EssaiTypo() {
               className="rounded-3xl border border-border bg-bg-card p-6 md:p-8"
             >
               <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-6">ROND {r}</p>
+              {/* Grand spécimen : c'est là que l'arrondi des fins de traits se voit. */}
+              <p className="text-[clamp(72px,9vw,128px)] font-black leading-none tracking-[-3px] mb-8 text-text-primary">
+                Aa 34
+              </p>
               <h1 className="text-[clamp(32px,4vw,52px)] font-bold leading-[1] tracking-[-2px] mb-5">
                 Du contenu <br />
                 <span className="gradient-text">qui se remarque.</span>
