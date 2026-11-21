@@ -5,8 +5,16 @@
       "schedule": "0 9 1,15 * *"
     }
   ],
-  "rewrites": [
-    { "source": "/FLASHCODE/LEGALION", "destination": "/FLASHCODE/LEGALION/index.html" },
-    { "source": "/FLASHCODE/LEGALION/", "destination": "/FLASHCODE/LEGALION/index.html" }
+  "redirects": [
+    {
+      "source": "/FLASHCODE/LEGALION",
+      "destination": "https://legalion-sanary.fr/",
+      "permanent": true
+    },
+    {
+      "source": "/FLASHCODE/LEGALION/:path*",
+      "destination": "https://legalion-sanary.fr/:path*",
+      "permanent": true
+    }
   ]
 }
