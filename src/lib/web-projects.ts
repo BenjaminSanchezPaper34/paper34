@@ -91,8 +91,8 @@ export const WEB_PROJECTS: WebProject[] = [
     device: "phone",
     tour: [
       { label: "Choisissez votre langue", y: 55, x: 21 },
-      { label: "Parcourez les catégories", y: 64.6, x: 7, gesture: "swipe-x" },
-      { label: "Faites défiler la carte", y: 85, x: 7, gesture: "swipe-y" },
+      { label: "Parcourez les catégories", y: 64.6, x: 5, gesture: "swipe-x" },
+      { label: "Faites défiler la carte", y: 85, x: 5, gesture: "swipe-y" },
     ],
   },
 ];
