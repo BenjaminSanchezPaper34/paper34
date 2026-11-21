@@ -50,16 +50,14 @@ export default function PhoneMockup({ project }: { project: WebProject }) {
     >
       {/* Zone de même proportion que l'ordinateur (16/10 + barre de titre), téléphone centré */}
       <div className="flex aspect-[16/12.4] items-center justify-center">
-        <div className="relative h-full aspect-[9/19.5] rounded-[1.6rem] border border-white/25 bg-bg-primary p-[3px] shadow-2xl shadow-black/40 ring-1 ring-inset ring-white/10 transition-all duration-500 group-hover:scale-[1.03] group-hover:border-white/40 group-hover:shadow-accent-glow">
-          <div className="relative h-full w-full overflow-hidden rounded-[1.4rem] bg-bg-secondary">
+        <div className="relative h-full aspect-[9/19.5] rounded-[16%/7.4%] border border-white/25 bg-bg-primary p-[3px] shadow-2xl shadow-black/40 ring-1 ring-inset ring-white/10 transition-all duration-500 group-hover:scale-[1.03] group-hover:border-white/40 group-hover:shadow-accent-glow">
+          <div className="relative h-full w-full overflow-hidden rounded-[14%/6.5%] bg-bg-secondary">
             <img
               src={screenshot}
               alt={`Aperçu de ${project.name} sur téléphone`}
               loading="lazy"
               className="absolute inset-0 h-full w-full object-cover object-top"
             />
-            {/* Île dynamique */}
-            <span className="absolute left-1/2 top-1.5 h-3 w-12 -translate-x-1/2 rounded-full bg-bg-primary" />
           </div>
         </div>
       </div>
@@ -90,14 +88,13 @@ export default function PhoneMockup({ project }: { project: WebProject }) {
       >
         <div onClick={(e) => e.stopPropagation()} className="flex flex-col items-center gap-4">
           {/* iPhone : écran 390 x 844, réduit pour tenir dans la hauteur de la fenêtre */}
-          <div className="phone-pop-device rounded-[3.3rem] border border-white/35 bg-bg-primary p-[7px] shadow-[0_0_80px_-10px] shadow-accent-glow ring-1 ring-inset ring-white/10 [width:min(404px,calc((100dvh-9rem)*404/858))]">
-            <div className="relative aspect-[390/844] w-full overflow-hidden rounded-[2.85rem] bg-bg-secondary">
+          <div className="phone-pop-device rounded-[14.5%/6.8%] border border-white/35 bg-bg-primary p-[7px] shadow-[0_0_80px_-10px] shadow-accent-glow ring-1 ring-inset ring-white/10 [width:min(404px,calc((100dvh-9rem)*404/858))]">
+            <div className="relative aspect-[390/844] w-full overflow-hidden rounded-[13%/6%] bg-bg-secondary">
               <iframe
                 src={project.url}
                 title={`${project.name}, version mobile`}
                 className="absolute inset-0 h-full w-full border-0"
               />
-              <span className="pointer-events-none absolute left-1/2 top-2.5 h-7 w-28 -translate-x-1/2 rounded-full bg-bg-primary" />
             </div>
           </div>
           <div className="flex items-center gap-3">
