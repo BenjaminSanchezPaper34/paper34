@@ -7,10 +7,11 @@ export type WebProject = {
   device?: "phone";
   /**
    * Petit tuto montré à côté du téléphone, sur ordinateur, quand le site s'ouvre en surimpression.
-   * y : hauteur visée dans l'écran (en % de sa hauteur, capture à 390 x 844). Le site étant d'un autre
+   * y : hauteur visée (en % de la hauteur de l'écran), x : où la flèche s'arrête, sur l'élément visé
+   * (en % de la largeur), mesurés sur le site affiché à 387 x 838. Le site étant d'un autre
    * domaine, les repères sont fixes : à recaler si sa mise en page change beaucoup.
    */
-  tour?: { label: string; y: number; gesture?: "swipe-x" | "swipe-y" }[];
+  tour?: { label: string; y: number; x: number; gesture?: "swipe-x" | "swipe-y" }[];
 };
 
 // Liste \u00e0 enrichir au fur et \u00e0 mesure que tu me donnes les URLs.
@@ -89,9 +90,9 @@ export const WEB_PROJECTS: WebProject[] = [
     description: "Menu à consulter sur smartphone via QR code, brasserie à Sanary-sur-Mer",
     device: "phone",
     tour: [
-      { label: "Choisissez votre langue", y: 54.6 },
-      { label: "Parcourez les catégories", y: 64.7, gesture: "swipe-x" },
-      { label: "Faites défiler la carte", y: 84, gesture: "swipe-y" },
+      { label: "Choisissez votre langue", y: 55, x: 21 },
+      { label: "Parcourez les catégories", y: 64.6, x: 7, gesture: "swipe-x" },
+      { label: "Faites défiler la carte", y: 85, x: 7, gesture: "swipe-y" },
     ],
   },
 ];

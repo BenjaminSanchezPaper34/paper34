@@ -118,18 +118,24 @@ export default function PhoneMockup({ project }: { project: WebProject }) {
               {project.tour.map((step, i) => (
                 <li
                   key={step.label}
-                  className="phone-tour-step absolute right-full flex -translate-y-1/2 items-center"
-                  style={{ top: `${step.y}%`, animationDelay: `${0.6 + i * 1.1}s` }}
+                  // La flèche part de 3,5 rem à gauche du téléphone et s'arrête sur l'élément visé (x %).
+                  className="phone-tour-step absolute flex -translate-y-1/2 items-center"
+                  style={{
+                    top: `${step.y}%`,
+                    left: "-3.5rem",
+                    width: `calc(3.5rem + ${step.x}%)`,
+                    animationDelay: `${0.6 + i * 1.1}s`,
+                  }}
                 >
-                  <span className="mr-3 whitespace-nowrap rounded-full border border-white/20 bg-bg-card/80 px-4 py-2 text-sm font-medium text-text-primary backdrop-blur-sm">
+                  <span className="absolute right-full mr-3 whitespace-nowrap rounded-full border border-white/20 bg-bg-card/80 px-4 py-2 text-sm font-medium text-text-primary backdrop-blur-sm">
                     <span className="mr-2 text-accent">{i + 1}</span>
                     {step.label}
                   </span>
-                  <span className="h-px w-14 bg-gradient-to-r from-white/10 to-accent" />
-                  <span className="h-2 w-2 -translate-x-0.5 rounded-full bg-accent shadow-[0_0_12px] shadow-accent-glow" />
+                  <span className="h-px flex-1 bg-gradient-to-r from-white/10 to-accent" />
+                  <span className="h-2.5 w-2.5 shrink-0 rounded-full border-2 border-accent bg-bg-primary shadow-[0_0_12px] shadow-accent-glow" />
                   {step.gesture && (
                     <span
-                      className={`phone-tour-hand absolute left-[calc(100%+10rem)] text-2xl drop-shadow-lg ${
+                      className={`phone-tour-hand absolute left-[calc(100%+6rem)] text-2xl drop-shadow-lg ${
                         step.gesture === "swipe-x" ? "phone-tour-hand-x" : "phone-tour-hand-y"
                       }`}
                       style={{ animationDelay: `${0.9 + i * 1.1}s` }}
