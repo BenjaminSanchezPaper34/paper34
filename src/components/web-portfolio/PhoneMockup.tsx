@@ -18,7 +18,7 @@ export default function PhoneMockup({ project }: { project: WebProject }) {
       aria-label={`Voir le site ${project.name}`}
     >
       {/* Zone de même proportion que l'ordinateur (16/10 + barre de titre), téléphone centré */}
-      <div className="flex aspect-[16/11] items-center justify-center">
+      <div className="flex aspect-[16/12.4] items-center justify-center">
         <div className="relative h-full aspect-[9/19.5] rounded-[1.6rem] border-[5px] border-bg-card-hover bg-bg-card p-[3px] shadow-2xl shadow-black/40 transition-all duration-500 group-hover:scale-[1.03] group-hover:shadow-accent-glow">
           <div className="relative h-full w-full overflow-hidden rounded-[1.25rem] bg-bg-secondary">
             <img
