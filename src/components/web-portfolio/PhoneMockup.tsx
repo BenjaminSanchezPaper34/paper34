@@ -86,6 +86,17 @@ export default function PhoneMockup({ project }: { project: WebProject }) {
         onClick={() => setOpen(false)}
         className="phone-pop fixed inset-0 z-[100] flex items-center justify-center bg-bg-primary/45 backdrop-blur-2xl backdrop-saturate-150"
       >
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          autoFocus
+          aria-label="Fermer"
+          className="absolute right-6 top-6 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/25 text-text-primary transition-colors hover:border-white/50 hover:bg-white/10"
+        >
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
         <div onClick={(e) => e.stopPropagation()} className="flex flex-col items-center gap-4">
           {/* iPhone : écran 390 x 844, réduit pour tenir dans la hauteur de la fenêtre */}
           <div className="phone-pop-device rounded-[14.5%/6.8%] border border-white/35 bg-bg-primary p-[7px] shadow-[0_0_80px_-10px] shadow-accent-glow ring-1 ring-inset ring-white/10 [width:min(404px,calc((100dvh-9rem)*404/858))]">
@@ -93,30 +104,18 @@ export default function PhoneMockup({ project }: { project: WebProject }) {
               <iframe
                 src={project.url}
                 title={`${project.name}, version mobile`}
-                // Le site est d'un autre domaine : sa barre de défilement ne se masque pas en CSS.
-                // L'iframe déborde de 16 px à droite et l'écran (overflow-hidden) la coupe.
-                className="absolute inset-y-0 left-0 h-full w-[calc(100%+16px)] max-w-none border-0"
+                className="absolute inset-0 h-full w-full border-0"
               />
             </div>
           </div>
-          <div className="flex items-center gap-3">
-            <a
-              href={project.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-11 items-center rounded-full border border-border px-5 text-sm font-semibold text-text-primary transition-colors hover:border-border-hover hover:bg-white/5"
-            >
-              Ouvrir le site
-            </a>
-            <button
-              type="button"
-              onClick={() => setOpen(false)}
-              autoFocus
-              className="inline-flex min-h-11 items-center rounded-full bg-accent px-5 text-sm font-semibold text-white transition-colors hover:bg-accent-hover"
-            >
-              Fermer
-            </button>
-          </div>
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-11 items-center rounded-full bg-accent px-6 text-sm font-semibold text-white transition-colors hover:bg-accent-hover"
+          >
+            Ouvrir le site
+          </a>
         </div>
       </div>,
       document.body,
