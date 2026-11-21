@@ -147,18 +147,12 @@ html { font-optical-sizing: auto; font-variation-settings: "ROND" 20; }
 @media (prefers-reduced-motion: reduce) { .phone-pop, .phone-pop-device { animation: none; } }
 
 /* Tuto de navigation à côté du téléphone (PhoneMockup) : étapes qui apparaissent l'une après
-   l'autre, main qui mime le geste, puis tout s'efface après un tour (environ 7 s). */
+   l'autre, puis tout s'efface après un tour (environ 7 s). */
 @keyframes phone-tour-step { from { opacity: 0; transform: translate(-8px, -50%); } to { opacity: 1; transform: translate(0, -50%); } }
 @keyframes phone-tour-out { to { opacity: 0; } }
-@keyframes phone-tour-hand-x { 0%, 100% { transform: translateX(0); opacity: 0; } 15% { opacity: 1; } 50% { transform: translateX(-90px); opacity: 1; } 70% { opacity: 0; } }
-@keyframes phone-tour-hand-y { 0%, 100% { transform: translateY(0); opacity: 0; } 15% { opacity: 1; } 50% { transform: translateY(-70px); opacity: 1; } 70% { opacity: 0; } }
 .phone-tour { animation: phone-tour-out 0.6s ease-in 7s both; }
 .phone-tour-step { opacity: 0; animation: phone-tour-step 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
-.phone-tour-hand { opacity: 0; animation-duration: 1.6s; animation-timing-function: ease-in-out; animation-iteration-count: 2; animation-fill-mode: both; }
-.phone-tour-hand-x { animation-name: phone-tour-hand-x; }
-.phone-tour-hand-y { animation-name: phone-tour-hand-y; }
 @media (prefers-reduced-motion: reduce) {
   .phone-tour, .phone-tour-step { animation: none; opacity: 1; }
   .phone-tour-step { transform: translateY(-50%); }
-  .phone-tour-hand { display: none; }
 }

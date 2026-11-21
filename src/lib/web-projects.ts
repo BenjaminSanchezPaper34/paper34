@@ -11,7 +11,7 @@ export type WebProject = {
    * (en % de la largeur), mesurés sur le site affiché à 387 x 838. Le site étant d'un autre
    * domaine, les repères sont fixes : à recaler si sa mise en page change beaucoup.
    */
-  tour?: { label: string; y: number; x: number; gesture?: "swipe-x" | "swipe-y" }[];
+  tour?: { label: string; y: number; x: number }[];
 };
 
 // Liste \u00e0 enrichir au fur et \u00e0 mesure que tu me donnes les URLs.
@@ -91,8 +91,8 @@ export const WEB_PROJECTS: WebProject[] = [
     device: "phone",
     tour: [
       { label: "Choisissez votre langue", y: 55, x: 21 },
-      { label: "Parcourez les catégories", y: 64.6, x: 5, gesture: "swipe-x" },
-      { label: "Faites défiler la carte", y: 85, x: 5, gesture: "swipe-y" },
+      { label: "Parcourez les catégories", y: 64.6, x: 5 },
+      { label: "Faites défiler la carte", y: 85, x: 5 },
     ],
   },
 ];

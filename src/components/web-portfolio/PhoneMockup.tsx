@@ -133,17 +133,6 @@ export default function PhoneMockup({ project }: { project: WebProject }) {
                   </span>
                   <span className="h-px flex-1 bg-gradient-to-r from-white/30 to-accent" />
                   <span className="h-2.5 w-2.5 shrink-0 rounded-full border-2 border-accent bg-bg-primary shadow-[0_0_12px] shadow-accent-glow" />
-                  {step.gesture && (
-                    <span
-                      className={`phone-tour-hand absolute left-[calc(100%+6rem)] text-2xl drop-shadow-lg ${
-                        step.gesture === "swipe-x" ? "phone-tour-hand-x" : "phone-tour-hand-y"
-                      }`}
-                      style={{ animationDelay: `${0.9 + i * 1.1}s` }}
-                      aria-hidden="true"
-                    >
-                      👆
-                    </span>
-                  )}
                 </li>
               ))}
             </ol>
