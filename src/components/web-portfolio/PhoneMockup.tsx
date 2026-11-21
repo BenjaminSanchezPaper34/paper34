@@ -93,7 +93,9 @@ export default function PhoneMockup({ project }: { project: WebProject }) {
               <iframe
                 src={project.url}
                 title={`${project.name}, version mobile`}
-                className="absolute inset-0 h-full w-full border-0"
+                // Le site est d'un autre domaine : sa barre de défilement ne se masque pas en CSS.
+                // L'iframe déborde de 16 px à droite et l'écran (overflow-hidden) la coupe.
+                className="absolute inset-y-0 left-0 h-full w-[calc(100%+16px)] max-w-none border-0"
               />
             </div>
           </div>
