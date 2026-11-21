@@ -20,6 +20,7 @@
 - [Gestion des réseaux sociaux](https://www.paper34.fr/services/reseaux-sociaux) : stratégie éditoriale, création de contenu photo/vidéo, animation de communauté, publicité sponsorisée Meta et TikTok.
 - [Campagnes sponsorisées](https://www.paper34.fr/services/campagnes-sponsorisees) : publicité Instagram, Facebook et Google Ads avec visuels tournés sur place, ciblage local, pilotage continu pendant la diffusion (ajustement des visuels, du ciblage et du budget, comme pour le karting Megakart à Vias), suivi des appels, réservations et formulaires.
 - [Newsletter & emailing](https://www.paper34.fr/services/newsletter-emailing) : formulaire d'inscription intégré au site, collecte par QR code sur les supports imprimés, campagnes à la charte du client, conformité RGPD, bilan de chaque envoi.
+- [Menu digital & QR code](https://www.paper34.fr/services/menu-digital) : carte de restaurant en ligne ouverte par QR code, pensée pour le téléphone, multilingue, mise à jour en un instant sans réimprimer (le QR code pointe vers une adresse fixe), à l'identité du restaurant, sans appli ni PDF. Référence : la carte du Galion à Sanary-sur-Mer (legalion-sanary.fr, six langues).
 - [Formule partenaire](https://www.paper34.fr/services#partenaire) : mensualité regroupant site et fiche Google tenus à jour (horaires, photos, réponse aux avis), réseaux, contenu, newsletter, campagnes pilotées et rapport mensuel qui oriente les optimisations du site (montant fixé au devis).
 - [Vidéos promotionnelles](https://www.paper34.fr/services) : films promotionnels, motion design, montage vidéo.
 - [Photographie](https://www.paper34.fr/services) : reportage événementiel, portrait, packshot produit, photo corporate. Galeries de livraison en ligne pour les clients.
@@ -45,6 +46,7 @@
 - [Gestion des réseaux sociaux](https://www.paper34.fr/services/reseaux-sociaux)
 - [Campagnes sponsorisées](https://www.paper34.fr/services/campagnes-sponsorisees)
 - [Newsletter & emailing](https://www.paper34.fr/services/newsletter-emailing)
+- [Menu digital & QR code](https://www.paper34.fr/services/menu-digital)
 - [Portfolio](https://www.paper34.fr/portfolio)
 - [Galeries clients](https://www.paper34.fr/galeries) : galeries photo d'événements et films (mariages, campagnes publicitaires)
 - [Contact](https://www.paper34.fr/contact)

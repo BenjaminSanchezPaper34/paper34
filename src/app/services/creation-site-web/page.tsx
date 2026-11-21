@@ -138,6 +138,13 @@ export default function CreationSiteWebPage() {
           </div>
 
           <WebPortfolioGrid projects={[...WEB_PROJECTS]} />
+          <p className="mt-10 text-center text-sm text-text-secondary">
+            Restaurant ou brasserie ? La carte peut aussi s&apos;ouvrir par QR code : 
+            <Link href="/services/menu-digital" className="text-accent hover:underline">
+              menu digital et carte QR code
+            </Link>
+            .
+          </p>
         </div>
       </section>
 

@@ -119,6 +119,17 @@ export default function JsonLd() {
       },
       {
         "@type": "Offer",
+        url: "https://www.paper34.fr/services/menu-digital",
+        itemOffered: {
+          "@type": "Service",
+          name: "Menu digital et carte QR code pour restaurant",
+          serviceType: "Carte de restaurant en ligne",
+          url: "https://www.paper34.fr/services/menu-digital",
+          description: "Carte en ligne ouverte par QR code, lisible sur t\u00e9l\u00e9phone, multilingue et mise \u00e0 jour sans r\u00e9imprimer.",
+        },
+      },
+      {
+        "@type": "Offer",
         itemOffered: {
           "@type": "Service",
           name: "Identit\u00e9 visuelle",

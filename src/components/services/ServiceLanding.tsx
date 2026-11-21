@@ -26,6 +26,8 @@ export type ServiceLandingProps = {
   faq: Faq[];
   ctaTitre: string;
   ctaTexte: string;
+  /** Démonstration facultative placée sous l'en-tête (ex. une réalisation à essayer). */
+  demo?: React.ReactNode;
 };
 
 const SITE = "https://www.paper34.fr";
@@ -78,6 +80,12 @@ export default function ServiceLanding(p: ServiceLandingProps) {
           </Link>
         </div>
       </section>
+
+      {p.demo && (
+        <section className="pb-20 md:pb-28 bg-bg-primary">
+          <div className="mx-auto max-w-5xl px-6 lg:px-8">{p.demo}</div>
+        </section>
+      )}
 
       {/* Ce que je fais */}
       <section className="py-20 md:py-28 bg-bg-secondary">
