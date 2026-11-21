@@ -19,6 +19,13 @@ export default function PhoneMockup({ project }: { project: WebProject }) {
   const [open, setOpen] = useState(false);
   // Le tuto s'efface dès que le visiteur entre dans le site (la fenêtre perd le focus au profit de l'iframe).
   const [tourDone, setTourDone] = useState(false);
+  // Change à chaque « Revoir le tuto » : la liste est recréée, ses animations repartent de zéro.
+  const [tourRun, setTourRun] = useState(0);
+
+  function replayTour() {
+    setTourDone(false);
+    setTourRun((n) => n + 1);
+  }
 
   function onClick(e: React.MouseEvent<HTMLAnchorElement>) {
     const desktop = window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches;
@@ -107,7 +114,7 @@ export default function PhoneMockup({ project }: { project: WebProject }) {
           {/* iPhone : écran 390 x 844, réduit pour tenir dans la hauteur de la fenêtre */}
           <div className="relative">
           {project.tour && !tourDone && (
-            <ol aria-label="Comment naviguer" className="phone-tour pointer-events-none absolute inset-0">
+            <ol key={tourRun} aria-label="Comment naviguer" className="phone-tour pointer-events-none absolute inset-0">
               {project.tour.map((step, i) => (
                 <li
                   key={step.label}
@@ -145,14 +152,29 @@ export default function PhoneMockup({ project }: { project: WebProject }) {
             </div>
           </div>
           </div>
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-11 items-center rounded-full bg-accent px-6 text-sm font-semibold text-white transition-colors hover:bg-accent-hover"
-          >
-            Ouvrir le site
-          </a>
+          <div className="flex items-center gap-3">
+            {project.tour && (
+              <button
+                type="button"
+                onClick={replayTour}
+                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/25 px-5 text-sm font-semibold text-text-primary transition-colors hover:border-white/50 hover:bg-white/10"
+              >
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M3 12a9 9 0 1 0 3-6.7" />
+                  <path d="M3 4v4.5h4.5" />
+                </svg>
+                Revoir le tuto
+              </button>
+            )}
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center rounded-full bg-accent px-6 text-sm font-semibold text-white transition-colors hover:bg-accent-hover"
+            >
+              Ouvrir le site
+            </a>
+          </div>
         </div>
       </div>,
       document.body,
