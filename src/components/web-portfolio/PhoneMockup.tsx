@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import { getScreenshotUrl, type WebProject } from "@/lib/web-projects";
 
 /**
@@ -5,15 +8,42 @@ import { getScreenshotUrl, type WebProject } from "@/lib/web-projects";
  * la capture, prise à 390 px de large, s'affiche dans un téléphone plutôt que dans un
  * ordinateur, où elle ne serait qu'une colonne étroite. Même légende que LaptopMockup.
  * Le téléphone occupe la même hauteur que l'ordinateur voisin pour garder la rangée alignée.
+ *
+ * Au clic sur ordinateur (pointeur fin, écran large) : le vrai site s'ouvre en direct dans un
+ * iPhone en surimpression, à taille mobile. Sur téléphone : le lien ouvre le vrai site.
+ * Le lien reste un <a href> normal (suivi par Google).
  */
 export default function PhoneMockup({ project }: { project: WebProject }) {
   const screenshot = getScreenshotUrl(project.name);
+  const [open, setOpen] = useState(false);
+
+  function onClick(e: React.MouseEvent<HTMLAnchorElement>) {
+    const desktop = window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches;
+    if (!desktop || e.metaKey || e.ctrlKey || e.shiftKey) return; // mobile ou nouvel onglet voulu
+    e.preventDefault();
+    setOpen(true);
+  }
+
+  // Échap ferme, la page derrière ne défile plus pendant l'ouverture.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("keydown", onKey);
+    const prev = document.documentElement.style.overflow;
+    document.documentElement.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.documentElement.style.overflow = prev;
+    };
+  }, [open]);
 
   return (
+    <>
     <a
       href={project.url}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={onClick}
       className="group block"
       aria-label={`Voir le site ${project.name}`}
     >
@@ -46,5 +76,49 @@ export default function PhoneMockup({ project }: { project: WebProject }) {
         )}
       </div>
     </a>
+
+    {open && (
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${project.name} sur téléphone`}
+        data-lenis-prevent
+        onClick={() => setOpen(false)}
+        className="fixed inset-0 z-[100] flex items-center justify-center bg-bg-primary/80 backdrop-blur-md"
+      >
+        <div onClick={(e) => e.stopPropagation()} className="flex flex-col items-center gap-4">
+          {/* iPhone : écran 390 x 844, réduit pour tenir dans la hauteur de la fenêtre */}
+          <div className="rounded-[3.4rem] border-[12px] border-bg-card-hover bg-bg-card-hover shadow-2xl shadow-black/60 [width:min(414px,calc((100dvh-9rem)*414/868))]">
+            <div className="relative aspect-[390/844] w-full overflow-hidden rounded-[2.7rem] bg-bg-secondary">
+              <iframe
+                src={project.url}
+                title={`${project.name}, version mobile`}
+                className="absolute inset-0 h-full w-full border-0"
+              />
+              <span className="pointer-events-none absolute left-1/2 top-2.5 h-7 w-28 -translate-x-1/2 rounded-full bg-bg-primary" />
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center rounded-full border border-border px-5 text-sm font-semibold text-text-primary transition-colors hover:border-border-hover hover:bg-white/5"
+            >
+              Ouvrir le site
+            </a>
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              autoFocus
+              className="inline-flex min-h-11 items-center rounded-full bg-accent px-5 text-sm font-semibold text-white transition-colors hover:bg-accent-hover"
+            >
+              Fermer
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
+    </>
   );
 }
