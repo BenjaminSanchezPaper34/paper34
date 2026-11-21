@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { getScreenshotUrl, type WebProject } from "@/lib/web-projects";
 
 /**
@@ -77,7 +78,8 @@ export default function PhoneMockup({ project }: { project: WebProject }) {
       </div>
     </a>
 
-    {open && (
+    {/* Rendue dans <body> : la grille animée (transform) piégerait sinon le position: fixed. */}
+    {open && createPortal(
       <div
         role="dialog"
         aria-modal="true"
@@ -117,7 +119,8 @@ export default function PhoneMockup({ project }: { project: WebProject }) {
             </button>
           </div>
         </div>
-      </div>
+      </div>,
+      document.body,
     )}
     </>
   );
