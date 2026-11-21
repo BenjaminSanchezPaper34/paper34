@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/animations";
 import LaptopMockup from "./LaptopMockup";
+import PhoneMockup from "./PhoneMockup";
 import type { WebProject } from "@/lib/web-projects";
 
 export default function WebPortfolioGrid({ projects }: { projects: WebProject[] }) {
@@ -48,7 +49,7 @@ export default function WebPortfolioGrid({ projects }: { projects: WebProject[] 
           key={project.url}
           className="web-mockup w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.334rem)] xl:w-[calc(25%-1.5rem)] 2xl:w-[calc(20%-1.2rem)]"
         >
-          <LaptopMockup project={project} />
+          {project.device === "phone" ? <PhoneMockup project={project} /> : <LaptopMockup project={project} />}
         </div>
       ))}
     </div>

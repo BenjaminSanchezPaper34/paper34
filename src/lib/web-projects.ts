@@ -3,6 +3,8 @@ export type WebProject = {
   url: string;
   category: string;
   description?: string;
+  /** Site pensé pour le téléphone (carte digitale, appli web) : affiché dans un téléphone. */
+  device?: "phone";
 };
 
 // Liste \u00e0 enrichir au fur et \u00e0 mesure que tu me donnes les URLs.
@@ -73,6 +75,13 @@ export const WEB_PROJECTS: WebProject[] = [
     url: "https://languedocisolation.com/index.html",
     category: "Rénovation énergétique",
     description: "Isolation thermique RGE à Béziers",
+  },
+  {
+    name: "Le Galion",
+    url: "https://legalion-sanary.fr",
+    category: "Carte digitale",
+    description: "Menu à consulter sur smartphone via QR code, brasserie à Sanary-sur-Mer",
+    device: "phone",
   },
 ];
 
