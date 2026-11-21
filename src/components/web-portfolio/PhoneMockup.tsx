@@ -114,7 +114,7 @@ export default function PhoneMockup({ project }: { project: WebProject }) {
           {/* iPhone : écran 390 x 844, réduit pour tenir dans la hauteur de la fenêtre */}
           <div className="relative">
           {project.tour && !tourDone && (
-            <ol key={tourRun} aria-label="Comment naviguer" className="phone-tour pointer-events-none absolute inset-0">
+            <ol key={tourRun} aria-label="Comment naviguer" className="phone-tour pointer-events-none absolute inset-0 z-10">
               {project.tour.map((step, i) => (
                 <li
                   key={step.label}
@@ -131,7 +131,7 @@ export default function PhoneMockup({ project }: { project: WebProject }) {
                     <span className="mr-2 text-accent">{i + 1}</span>
                     {step.label}
                   </span>
-                  <span className="h-px flex-1 bg-gradient-to-r from-white/10 to-accent" />
+                  <span className="h-px flex-1 bg-gradient-to-r from-white/30 to-accent" />
                   <span className="h-2.5 w-2.5 shrink-0 rounded-full border-2 border-accent bg-bg-primary shadow-[0_0_12px] shadow-accent-glow" />
                   {step.gesture && (
                     <span
