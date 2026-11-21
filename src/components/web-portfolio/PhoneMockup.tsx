@@ -17,11 +17,14 @@ import { getScreenshotUrl, type WebProject } from "@/lib/web-projects";
 export default function PhoneMockup({ project }: { project: WebProject }) {
   const screenshot = getScreenshotUrl(project.name);
   const [open, setOpen] = useState(false);
+  // Le tuto s'efface dès que le visiteur entre dans le site (la fenêtre perd le focus au profit de l'iframe).
+  const [tourDone, setTourDone] = useState(false);
 
   function onClick(e: React.MouseEvent<HTMLAnchorElement>) {
     const desktop = window.matchMedia("(min-width: 1024px) and (pointer: fine)").matches;
     if (!desktop || e.metaKey || e.ctrlKey || e.shiftKey) return; // mobile ou nouvel onglet voulu
     e.preventDefault();
+    setTourDone(false);
     setOpen(true);
   }
 
@@ -29,11 +32,14 @@ export default function PhoneMockup({ project }: { project: WebProject }) {
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onBlur = () => setTourDone(true);
     document.addEventListener("keydown", onKey);
+    window.addEventListener("blur", onBlur);
     const prev = document.documentElement.style.overflow;
     document.documentElement.style.overflow = "hidden";
     return () => {
       document.removeEventListener("keydown", onKey);
+      window.removeEventListener("blur", onBlur);
       document.documentElement.style.overflow = prev;
     };
   }, [open]);
@@ -99,6 +105,36 @@ export default function PhoneMockup({ project }: { project: WebProject }) {
         </button>
         <div onClick={(e) => e.stopPropagation()} className="flex flex-col items-center gap-4">
           {/* iPhone : écran 390 x 844, réduit pour tenir dans la hauteur de la fenêtre */}
+          <div className="relative">
+          {project.tour && !tourDone && (
+            <ol aria-label="Comment naviguer" className="phone-tour pointer-events-none absolute inset-0">
+              {project.tour.map((step, i) => (
+                <li
+                  key={step.label}
+                  className="phone-tour-step absolute right-full flex -translate-y-1/2 items-center"
+                  style={{ top: `${step.y}%`, animationDelay: `${0.6 + i * 1.1}s` }}
+                >
+                  <span className="mr-3 whitespace-nowrap rounded-full border border-white/20 bg-bg-card/80 px-4 py-2 text-sm font-medium text-text-primary backdrop-blur-sm">
+                    <span className="mr-2 text-accent">{i + 1}</span>
+                    {step.label}
+                  </span>
+                  <span className="h-px w-14 bg-gradient-to-r from-white/10 to-accent" />
+                  <span className="h-2 w-2 -translate-x-0.5 rounded-full bg-accent shadow-[0_0_12px] shadow-accent-glow" />
+                  {step.gesture && (
+                    <span
+                      className={`phone-tour-hand absolute left-[calc(100%+10rem)] text-2xl drop-shadow-lg ${
+                        step.gesture === "swipe-x" ? "phone-tour-hand-x" : "phone-tour-hand-y"
+                      }`}
+                      style={{ animationDelay: `${0.9 + i * 1.1}s` }}
+                      aria-hidden="true"
+                    >
+                      👆
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ol>
+          )}
           <div className="phone-pop-device rounded-[14.5%/6.8%] border border-white/35 bg-bg-primary p-[7px] shadow-[0_0_80px_-10px] shadow-accent-glow ring-1 ring-inset ring-white/10 [width:min(404px,calc((100dvh-9rem)*404/858))]">
             <div className="relative aspect-[390/844] w-full overflow-hidden rounded-[13%/6%] bg-bg-secondary">
               <iframe
@@ -107,6 +143,7 @@ export default function PhoneMockup({ project }: { project: WebProject }) {
                 className="absolute inset-0 h-full w-full border-0"
               />
             </div>
+          </div>
           </div>
           <a
             href={project.url}

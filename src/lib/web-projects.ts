@@ -5,6 +5,12 @@ export type WebProject = {
   description?: string;
   /** Site pensé pour le téléphone (carte digitale, appli web) : affiché dans un téléphone. */
   device?: "phone";
+  /**
+   * Petit tuto montré à côté du téléphone, sur ordinateur, quand le site s'ouvre en surimpression.
+   * y : hauteur visée dans l'écran (en % de sa hauteur, capture à 390 x 844). Le site étant d'un autre
+   * domaine, les repères sont fixes : à recaler si sa mise en page change beaucoup.
+   */
+  tour?: { label: string; y: number; gesture?: "swipe-x" | "swipe-y" }[];
 };
 
 // Liste \u00e0 enrichir au fur et \u00e0 mesure que tu me donnes les URLs.
@@ -82,6 +88,11 @@ export const WEB_PROJECTS: WebProject[] = [
     category: "Carte digitale",
     description: "Menu à consulter sur smartphone via QR code, brasserie à Sanary-sur-Mer",
     device: "phone",
+    tour: [
+      { label: "Choisissez votre langue", y: 54.6 },
+      { label: "Parcourez les catégories", y: 64.7, gesture: "swipe-x" },
+      { label: "Faites défiler la carte", y: 84, gesture: "swipe-y" },
+    ],
   },
 ];
 
