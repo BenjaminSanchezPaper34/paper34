@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#000000">
+
+  <!-- Pas d'indexation : carte interne, accès via QR code uniquement -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+
+  <!-- Base href : les rewrites Vercel servent ce fichier sous /FLASHCODE/LEGALION
+       (sans trailing slash après le 308 par défaut de Next.js).
+       Sans <base>, les chemins relatifs résoudraient au mauvais endroit. -->
+  <base href="/FLASHCODE/LEGALION/">
+
+  <title>Le Galion · Carte</title>
+
+  <!-- Préchargement des polices custom pour éviter le FOIT -->
+  <link rel="preload" href="fonts/foco-webfont.woff" as="font" type="font/woff" crossorigin>
+  <link rel="preload" href="fonts/rift_soft_bold-webfont.woff" as="font" type="font/woff" crossorigin>
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header class="hero">
+    <!-- Lien Facebook : URL injectée par menu.js depuis menu.json -->
+    <a id="facebook-link" class="hero__facebook" href="#" target="_blank" rel="noopener" aria-label="Facebook Le Galion" hidden>
+      <img src="images/facebook-legalion.svg" alt="">
+    </a>
+
+    <div class="hero__visual">
+      <img class="hero__boat" src="images/bateau-galion.png" alt="" aria-hidden="true">
+      <img class="hero__logo" src="images/logo-legalion.svg" alt="Le Galion · Brasserie · Crêperie · Glacier">
+    </div>
+
+    <!-- Sélecteur de langue maison, pilote Google Translate en coulisse -->
+    <div class="hero__lang">
+      <div class="lang-switcher" role="group" aria-label="Langue">
+        <button type="button" class="lang-switcher__btn is-active" data-lang="fr" aria-pressed="true">FR</button>
+        <button type="button" class="lang-switcher__btn" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" class="lang-switcher__btn" data-lang="es" aria-pressed="false">ES</button>
+        <button type="button" class="lang-switcher__btn" data-lang="de" aria-pressed="false">DE</button>
+        <button type="button" class="lang-switcher__btn" data-lang="it" aria-pressed="false">IT</button>
+        <button type="button" class="lang-switcher__btn" data-lang="nl" aria-pressed="false">NL</button>
+      </div>
+      <!-- Widget Google Translate caché, on intercepte son <select> via JS -->
+      <div id="google_translate_element" aria-hidden="true"></div>
+    </div>
+  </header>
+
+  <!-- Navigation par section : chips horizontaux, sticky au scroll -->
+  <nav id="section-nav" class="section-nav" aria-label="Sections de la carte" hidden></nav>
+
+  <!-- Contenu de la carte injecté par menu.js depuis menu.json -->
+  <main id="menu" aria-live="polite">
+    <p class="loading">Chargement de la carte…</p>
+  </main>
+
+  <!-- Bouton boissons + footer (injectés par menu.js également) -->
+  <div id="tail"></div>
+
+  <script src="menu.js" defer></script>
+
+  <!-- Google Translate (chargé en async, UI cachée, on pilote le <select> nous-même) -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'fr',
+        includedLanguages: 'en,es,de,it,nl,fr',
+        // VERTICAL produit un <select> que nos chips pilotent.
+        // SIMPLE/HORIZONTAL ne créent pas de <select> exploitable.
+        layout: google.translate.TranslateElement.InlineLayout.VERTICAL,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+
+  <!-- Sélecteur de langue : déclenche le <select> Google caché -->
+  <script>
+    (function () {
+      const buttons = document.querySelectorAll('.lang-switcher__btn');
+
+      // Restaure la langue active depuis le cookie googtrans (ex: "/fr/en")
+      const cookieMatch = document.cookie.match(/googtrans=\/(?:auto|fr)\/([a-zA-Z-]+)/);
+      const initialLang = cookieMatch ? cookieMatch[1] : 'fr';
+      buttons.forEach((b) => {
+        const on = b.dataset.lang === initialLang;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+
+      function applyLang(lang) {
+        // Cherche le <select> injecté par Google Translate (peut être en cours de chargement)
+        const select = document.querySelector('select.goog-te-combo');
+        if (!select) {
+          // Réessaye dès que possible
+          return setTimeout(() => applyLang(lang), 200);
+        }
+        // En français (langue d'origine), Google attend une valeur vide
+        select.value = lang === 'fr' ? '' : lang;
+        select.dispatchEvent(new Event('change'));
+      }
+
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const lang = btn.dataset.lang;
+          buttons.forEach((b) => {
+            const on = b === btn;
+            b.classList.toggle('is-active', on);
+            b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          });
+          applyLang(lang);
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
