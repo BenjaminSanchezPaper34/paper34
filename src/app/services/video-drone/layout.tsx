@@ -15,6 +15,8 @@ export const metadata: Metadata = {
     "film drone camping",
     "vidéo drone immobilier",
     "drone FPV Agde",
+    "drone Grau d'Agde",
+    "vidéo drone entreprise",
     "Paper34",
   ],
   alternates: { canonical: "https://www.paper34.fr/services/video-drone" },

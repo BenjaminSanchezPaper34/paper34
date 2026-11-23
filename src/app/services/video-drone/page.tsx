@@ -8,7 +8,7 @@ export default function VideoDronePage() {
       eyebrow="Vidéo & photo par drone"
       titre="Votre lieu,"
       titreAccent="vu du ciel."
-      chapo="Une plage au lever du soleil, un camping entre pins et mer, une piste de karting en pleine course : je filme et je photographie votre lieu par drone, puis je monte des images prêtes pour le site, les réseaux et la publicité."
+      chapo="Une plage au lever du soleil, l'embouchure du Grau d'Agde, une piste de karting en pleine course : je filme et je photographie votre lieu par drone, puis je monte des images prêtes pour le site, les réseaux et la publicité."
       blocsTitre="Ce que je filme"
       blocs={[
         { titre: "Deux façons de voler", texte: "Des plans larges et stables en très haute définition, et des plans immersifs en vol rapproché (FPV) qui traversent le lieu comme si on y entrait." },
@@ -16,6 +16,7 @@ export default function VideoDronePage() {
         { titre: "Campings et hébergements", texte: "L'emplacement, la piscine, la distance à la plage : le drone montre en dix secondes ce qu'une brochure met une page à expliquer." },
         { titre: "Loisirs et événements", texte: "Karting, parcs, festivals, soirées : des plans en mouvement qui donnent l'échelle et l'énergie du lieu." },
         { titre: "Immobilier et chantiers", texte: "Une villa et son environnement, un terrain, l'avancement d'un chantier mois après mois." },
+        { titre: "Entreprises et cabinets", texte: "Des images de votre territoire pour le site, les vœux, les présentations et les réseaux : l'embouchure de l'Hérault au Grau d'Agde, le port, la ville vue d'en haut." },
         { titre: "Mariages", texte: "Le domaine, le cortège, la sortie de cérémonie : des plans larges qui complètent le film de la journée." },
         { titre: "Photo aérienne", texte: "Des vues fixes en haute définition pour le site, la fiche Google, les affiches et les dépliants." },
       ]}
