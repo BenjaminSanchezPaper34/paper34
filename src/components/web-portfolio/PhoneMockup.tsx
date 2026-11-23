@@ -140,6 +140,9 @@ export default function PhoneMockup({ project }: { project: WebProject }) {
           <div className="phone-pop-device rounded-[14.5%/6.8%] border border-white/35 bg-bg-primary p-[7px] shadow-[0_0_80px_-10px] shadow-accent-glow ring-1 ring-inset ring-white/10 [width:min(404px,calc((100dvh-9rem)*404/858))]">
             <div className="relative aspect-[390/844] w-full overflow-hidden rounded-[13%/6%] bg-bg-secondary">
               <iframe
+                // Le site est d'un autre domaine : on ne voit pas son défilement. Dès que la souris
+                // arrive sur la carte (pour défiler ou cliquer), le tuto s'efface pour ne pas pointer à côté.
+                onMouseEnter={() => setTourDone(true)}
                 src={project.url}
                 title={`${project.name}, version mobile`}
                 className="absolute inset-0 h-full w-full border-0"

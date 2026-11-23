@@ -23,6 +23,7 @@
 - [Menu digital & QR code](https://www.paper34.fr/services/menu-digital) : carte de restaurant en ligne ouverte par QR code, pensée pour le téléphone, multilingue, mise à jour en un instant sans réimprimer (le QR code pointe vers une adresse fixe), à l'identité du restaurant, sans appli ni PDF. Référence : la carte du Galion à Sanary-sur-Mer (legalion-sanary.fr, six langues).
 - [Formule partenaire](https://www.paper34.fr/services#partenaire) : mensualité regroupant site et fiche Google tenus à jour (horaires, photos, réponse aux avis), réseaux, contenu, newsletter, campagnes pilotées et rapport mensuel qui oriente les optimisations du site (montant fixé au devis).
 - [Vidéos promotionnelles](https://www.paper34.fr/services) : films promotionnels, motion design, montage vidéo.
+- [Vidéo et photo par drone](https://www.paper34.fr/services/video-drone) : prises de vue aériennes à Agde, au Cap d'Agde et sur le littoral (plages, campings, loisirs, immobilier, chantiers, entreprises, mariages, événements), en vol stable et en vol immersif (FPV), pilotées par Benjamin Sanchez, télépilote enregistré, avec montage et livraison aux formats web, réseaux et impression.
 - [Photographie](https://www.paper34.fr/services) : reportage événementiel, portrait, packshot produit, photo corporate. Galeries de livraison en ligne pour les clients.
 - [Films de mariage](https://www.paper34.fr/services) : captation et montage de la journée, de la cérémonie à la soirée.
 
@@ -47,6 +48,7 @@
 - [Campagnes sponsorisées](https://www.paper34.fr/services/campagnes-sponsorisees)
 - [Newsletter & emailing](https://www.paper34.fr/services/newsletter-emailing)
 - [Menu digital & QR code](https://www.paper34.fr/services/menu-digital)
+- [Vidéo et photo par drone](https://www.paper34.fr/services/video-drone)
 - [Portfolio](https://www.paper34.fr/portfolio)
 - [Galeries clients](https://www.paper34.fr/galeries) : galeries photo d'événements et films (mariages, campagnes publicitaires)
 - [Contact](https://www.paper34.fr/contact)
