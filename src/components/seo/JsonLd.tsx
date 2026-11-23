@@ -149,8 +149,9 @@ export default function JsonLd() {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Vid\u00e9os promotionnelles",
-          description: "Films promotionnels, motion design, montage vid\u00e9o",
+          name: "Vid\u00e9os promotionnelles et prises de vue par drone",
+          description: "Films promotionnels, vid\u00e9o et photo a\u00e9rienne par drone \u00e0 Agde et au Cap d'Agde, motion design, montage vid\u00e9o",
+          url: "https://www.paper34.fr/services/video-drone",
         },
       },
       {

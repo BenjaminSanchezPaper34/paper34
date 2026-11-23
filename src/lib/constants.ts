@@ -106,6 +106,7 @@ export const SERVICES = [
       "Production vid\u00e9o cr\u00e9ative pour mettre en valeur votre activit\u00e9 et capter l\u2019attention.",
     icon: "/images/services/video-paper34.svg",
     features: [
+      "Vid\u00e9o et photo par drone",
       "Films promotionnels",
       "Motion design",
       "Montage & post-prod",
