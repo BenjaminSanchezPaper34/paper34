@@ -262,6 +262,7 @@ export const APPS: AppInfo[] = [
     price: "2,99 €, sans achat intégré ni publicité",
     offerPrice: "2.99",
     screenshotsLayout: "devices",
+    storeUrl: "https://apps.apple.com/app/id6825074160",
     icon: "/apps/watchroad/icone.webp",
     ogImage: "/apps/watchroad/partage.png",
     preview: {
