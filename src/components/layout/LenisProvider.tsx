@@ -21,16 +21,27 @@ export default function LenisProvider({ children }: { children: React.ReactNode 
     });
     lenisRef.current = lenis;
 
+    let rafId = 0;
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
     return () => {
+      cancelAnimationFrame(rafId);
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, [disabled]);
+
+  // Changement de page : Lenis garde sa position de défilement et la nouvelle page s'ouvrait
+  // en bas (ex. carte cliquée en bas de /apps). On remonte en haut, sauf si l'adresse vise une ancre.
+  useEffect(() => {
+    if (window.location.hash) return;
+    if (lenisRef.current) lenisRef.current.scrollTo(0, { immediate: true, force: true });
+    else window.scrollTo(0, 0);
+  }, [pathname]);
 
   return <>{children}</>;
 }
