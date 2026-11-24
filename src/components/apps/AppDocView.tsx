@@ -80,19 +80,19 @@ export default function AppDocView({ app, page }: { app: DocApp; page: "support"
       style={{ ["--app-color" as string]: app.color, ["--app-on-color" as string]: app.onColor }}
     >
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-4 mb-10">
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-10">
           <nav aria-label={app.name} className="flex gap-1 rounded-full border border-border p-1">
             <Link
               href={supportHref}
               aria-current={page === "support" ? "page" : undefined}
-              className={`inline-flex min-h-11 items-center rounded-full px-4 text-sm font-semibold transition-colors ${page === "support" ? "bg-bg-card-hover text-text-primary" : "text-text-secondary hover:text-text-primary"}`}
+              className={`inline-flex min-h-11 items-center rounded-full px-3.5 text-sm font-semibold transition-colors ${page === "support" ? "bg-bg-card-hover text-text-primary" : "text-text-secondary hover:text-text-primary"}`}
             >
               {t.support}
             </Link>
             <Link
               href={privacyHref}
               aria-current={page === "privacy" ? "page" : undefined}
-              className={`inline-flex min-h-11 items-center rounded-full px-4 text-sm font-semibold transition-colors ${page === "privacy" ? "bg-bg-card-hover text-text-primary" : "text-text-secondary hover:text-text-primary"}`}
+              className={`inline-flex min-h-11 items-center rounded-full px-3.5 text-sm font-semibold transition-colors ${page === "privacy" ? "bg-bg-card-hover text-text-primary" : "text-text-secondary hover:text-text-primary"}`}
             >
               {t.privacy}
             </Link>
@@ -105,7 +105,7 @@ export default function AppDocView({ app, page }: { app: DocApp; page: "support"
                 lang={l}
                 onClick={() => choose(l)}
                 aria-pressed={lang === l}
-                className={`min-h-11 min-w-11 rounded-full px-3 text-sm font-semibold uppercase transition-colors ${lang === l ? "bg-bg-card-hover text-text-primary" : "text-text-secondary hover:text-text-primary"}`}
+                className={`min-h-11 min-w-11 rounded-full px-2 text-sm font-semibold uppercase transition-colors ${lang === l ? "bg-bg-card-hover text-text-primary" : "text-text-secondary hover:text-text-primary"}`}
               >
                 {l}
               </button>
