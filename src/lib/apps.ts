@@ -1,7 +1,7 @@
 /**
  * Registre des apps conçues par Paper34.
- * Une entrée ici = la page /apps/<slug>, plus /apps/<slug>/confidentialite et /apps/<slug>/assistance
- * (les URL demandées par l'App Store) quand l'app n'a pas son propre site. Une app qui a déjà son site
+ * Une entrée ici = la page de présentation /apps/<slug>. L'assistance et la confidentialité des applis sans site
+ * (URL demandées par l'App Store) sont dans lib/app-docs.ts. Une app qui a déjà son site
  * (`external`) garde ses pages d'aide et de confidentialité chez elle : la page renvoie vers elles.
  * Pour ajouter une app : une entrée ci-dessous et ses images dans public/apps/<slug>/.
  */
@@ -50,9 +50,6 @@ export type AppInfo = {
   features: AppSection[];
   /** Encadré de réassurance (familles, données, achats…). */
   commitments: { title: string; points: string[] };
-  /** Pages hébergées ici (obligatoires sans `external`). */
-  privacy?: { updated: string; intro: string; sections: AppSection[] };
-  support?: { intro: string; questions: AppSection[] };
 };
 
 const CAPTURE = { width: 598, height: 1300 };
@@ -120,67 +117,6 @@ export const APPS: AppInfo[] = [
         "Aucune donnée collectée. Pas de compte à créer.",
         "Un seul achat possible, protégé par un contrôle parental. Les os ne s'achètent jamais.",
         "Un espace parents : pause conseillée après 10 ou 20 minutes, Game Center facultatif.",
-      ],
-    },
-    privacy: {
-      updated: "16 novembre 2026",
-      intro:
-        "Puppy Drop est un jeu pour toute la famille, édité par Benjamin Sanchez (Paper34). Il ne collecte, ne transmet et ne vend aucune donnée personnelle.",
-      sections: [
-        {
-          title: "Aucune donnée collectée",
-          text: "L'app ne contient ni publicité, ni outil de mesure d'audience, ni pistage, ni messagerie, ni lien vers l'extérieur. Il n'y a pas de compte Puppy Drop à créer.",
-        },
-        {
-          title: "Achat « Version complète »",
-          text: "Le jeu est gratuit et propose un seul achat facultatif, protégé par un contrôle parental. Le paiement est entièrement traité par Apple (App Store) : nous ne recevons ni nom, ni adresse, ni moyen de paiement. L'app demande seulement à l'App Store si l'achat a été fait sur ce compte Apple ou partagé par la famille.",
-        },
-        {
-          title: "Progression sur l'appareil et dans iCloud",
-          text: "Le record, les races découvertes, les os gagnés et les décors choisis sont enregistrés sur l'appareil et, si iCloud est activé, dans l'espace iCloud du compte Apple de l'appareil, pour retrouver la même progression sur les autres appareils de ce compte. Ces informations restent chez Apple, dans ce compte : nous n'y avons pas accès.",
-        },
-        {
-          title: "Game Center (facultatif)",
-          text: "Game Center est désactivé par défaut. Un adulte peut l'activer dans l'espace parents, protégé par une question. Le jeu envoie alors à Game Center, le service d'Apple, le record et le nombre de races découvertes pour les classements et les succès. Ces informations sont traitées par Apple selon sa propre politique de confidentialité : nous n'y avons pas accès.",
-        },
-        {
-          title: "Enfants",
-          text: "Le jeu est conçu pour les enfants et respecte les règles de la catégorie Enfants de l'App Store : aucune donnée n'est collectée, et les réglages de partage sont réservés aux parents.",
-        },
-        {
-          title: "Effacer ses données",
-          text: "Dans l'espace parents, « Réinitialiser record et carnet » efface le record et le carnet. Supprimer l'app efface les données de l'appareil. Les données iCloud se suppriment dans Réglages, votre nom, iCloud, Gérer le stockage.",
-        },
-      ],
-    },
-    support: {
-      intro:
-        "Une question ou un souci avec Puppy Drop ? Écrivez-moi : je réponds en français, en général sous quelques jours.",
-      questions: [
-        {
-          title: "Comment jouer ?",
-          text: "Glisse le doigt pour viser, lâche pour faire tomber le chiot. Deux chiens identiques qui se touchent fusionnent en une race plus grande. Penche le téléphone pour faire rouler les chiens.",
-        },
-        {
-          title: "Qu'apporte la Version complète ?",
-          text: "Le jeu gratuit contient toutes les meutes et toutes les races : les meutes s'enchaînent au fil de la partie. La Version complète, en achat unique, permet de choisir sa meute au début de chaque partie. Elle se partage avec la famille (partage familial d'Apple).",
-        },
-        {
-          title: "J'ai acheté la Version complète et elle n'apparaît plus",
-          text: "Ouvrez la pause, puis Réglages, Espace parents, « Restaurer mes achats », avec le compte Apple qui a fait l'achat ou un membre du partage familial.",
-        },
-        {
-          title: "Obtenir un remboursement",
-          text: "Les achats sont gérés par Apple : la demande se fait sur reportaproblem.apple.com, avec le compte Apple qui a payé.",
-        },
-        {
-          title: "Ma progression n'est pas sur mon autre appareil",
-          text: "La progression suit iCloud : vérifiez que les deux appareils utilisent le même compte Apple et qu'iCloud est activé.",
-        },
-        {
-          title: "Effacer la progression",
-          text: "Dans l'espace parents : « Réinitialiser record et carnet ».",
-        },
       ],
     },
   },
@@ -312,55 +248,6 @@ export const APPS: AppInfo[] = [
         "Sang, son, vibrations et animations se règlent dans le jeu.",
       ],
     },
-    privacy: {
-      updated: "17 novembre 2026",
-      intro:
-        "WatchRoad est un jeu pour Apple Watch édité par Benjamin Sanchez (Paper34). Il ne collecte, ne transmet et ne vend aucune donnée personnelle.",
-      sections: [
-        {
-          title: "Aucune donnée collectée",
-          text: "Le jeu ne contient ni publicité, ni outil de mesure d'audience, ni pistage, ni connexion à un serveur. Il n'y a pas de compte WatchRoad à créer.",
-        },
-        {
-          title: "Ce qui reste sur la montre",
-          text: "Les records, le grade, les réglages et un court historique des parties (date, durée, score) sont enregistrés uniquement sur la montre. Ils ne sont ni envoyés, ni synchronisés : je n'y ai pas accès.",
-        },
-        {
-          title: "Achat",
-          text: "Le jeu s'achète une fois sur l'App Store. Le paiement est entièrement traité par Apple : je ne reçois ni nom, ni adresse, ni moyen de paiement. Il n'y a aucun achat dans le jeu.",
-        },
-        {
-          title: "Effacer ses données",
-          text: "Dans la pause, Réglages, « Réinitialiser les records » efface les records et le grade. Supprimer l'app de la montre efface toutes ses données.",
-        },
-      ],
-    },
-    support: {
-      intro:
-        "Une question ou un souci avec WatchRoad ? Écrivez-moi : je réponds en français, en général sous quelques jours.",
-      questions: [
-        {
-          title: "Comment jouer ?",
-          text: "Tourne la Digital Crown ou glisse le doigt pour changer de voie. Quand un zombie s'accroche, frôle une épave de son côté pour l'arracher, ou touche l'écran pour lui tirer dessus. Le boost se lance avec le bouton éclair, en bas à droite.",
-        },
-        {
-          title: "Comment débloquer les véhicules et les armes ?",
-          text: "Chaque partie rapporte de l'expérience. En montant en grade, de Recrue à Légende, s'ouvrent de nouveaux véhicules, armes, zones et ennemis. On les choisit dans la pause.",
-        },
-        {
-          title: "Le jeu ralentit ou la montre chauffe",
-          text: "Fermez les autres apps ouvertes, puis relancez le jeu. Si le souci persiste, écrivez-moi en indiquant le modèle de votre montre.",
-        },
-        {
-          title: "Obtenir un remboursement",
-          text: "L'achat est géré par Apple : la demande se fait sur reportaproblem.apple.com, avec le compte Apple qui a payé.",
-        },
-        {
-          title: "Effacer la progression",
-          text: "Dans la pause, Réglages : « Réinitialiser les records ».",
-        },
-      ],
-    },
   },
   {
     slug: "ensemble",
@@ -436,7 +323,6 @@ export function getAppSlugs(): string[] {
   return APPS.map((a) => a.slug);
 }
 
-/** Apps dont l'assistance et la confidentialité sont hébergées sur paper34.fr. */
 /** Image de partage d'une app (1200 x 630), ou son icône à défaut. */
 export function appOgImages(app: AppInfo) {
   return app.ogImage
@@ -444,6 +330,3 @@ export function appOgImages(app: AppInfo) {
     : [{ url: app.icon }];
 }
 
-export function getHostedDocSlugs(): string[] {
-  return APPS.filter((a) => !a.external && a.privacy && a.support).map((a) => a.slug);
-}

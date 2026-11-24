@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
 import { getGallerySlugs, getGallery } from "@/lib/galleries";
 import { assetUrl } from "@/lib/gallery-shared";
-import { getAppSlugs, getHostedDocSlugs } from "@/lib/apps";
+import { getAppSlugs } from "@/lib/apps";
+import { getIndexedDocSlugs } from "@/lib/app-docs";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.paper34.fr";
@@ -111,7 +112,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     // Apps conçues par Paper34 : page de présentation, assistance, confidentialité
     ...getAppSlugs().flatMap((slug) =>
-      (getHostedDocSlugs().includes(slug) ? ["", "/assistance", "/confidentialite"] : [""]).map((path) => ({
+      (getIndexedDocSlugs().includes(slug) ? ["", "/assistance", "/confidentialite"] : [""]).map((path) => ({
         url: `${baseUrl}/apps/${slug}${path}`,
         lastModified: new Date(),
         changeFrequency: "monthly" as const,

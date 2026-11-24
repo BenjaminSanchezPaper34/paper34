@@ -1,44 +1,33 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import AppDocPage from "@/components/apps/AppDocPage";
-import { appOgImages, getApp, getHostedDocSlugs } from "@/lib/apps";
+import AppDocView from "@/components/apps/AppDocView";
+import { getDocApp, getDocSlugs } from "@/lib/app-docs";
+import { appOgImages, getApp } from "@/lib/apps";
 
 export function generateStaticParams() {
-  return getHostedDocSlugs().map((slug) => ({ slug }));
+  return getDocSlugs().map((slug) => ({ slug }));
 }
 export const dynamicParams = false;
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const app = getApp(slug);
+  const app = getDocApp(slug);
   if (!app) return { title: "App introuvable" };
+  const showcase = getApp(slug);
+  const images = showcase ? appOgImages(showcase) : [{ url: app.icon }];
   return {
     title: `Politique de confidentialité de ${app.name}`,
-    description: (app.privacy?.intro ?? "").slice(0, 158),
+    description: app.privacy.fr.intro.slice(0, 158),
     alternates: { canonical: `https://www.paper34.fr/apps/${app.slug}/confidentialite` },
-    openGraph: { images: appOgImages(app) },
-    twitter: { card: app.ogImage ? "summary_large_image" : "summary", images: appOgImages(app).map((i) => i.url) },
+    robots: app.noindex ? { index: false, follow: false } : undefined,
+    openGraph: { images },
+    twitter: { card: showcase?.ogImage ? "summary_large_image" : "summary", images: images.map((i) => i.url) },
   };
 }
 
 export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const app = getApp(slug);
-  if (!app || !app.privacy) notFound();
-  return (
-    <AppDocPage
-      app={app}
-      kicker="Vos données"
-      title="Politique de"
-      accent="confidentialité"
-      intro={app.privacy.intro}
-      sections={app.privacy.sections}
-      note={`Dernière mise à jour : ${app.privacy.updated}.`}
-      other={{ href: `/apps/${app.slug}/assistance`, label: `Assistance de ${app.name}` }}
-    />
-  );
+  const app = getDocApp(slug);
+  if (!app) notFound();
+  return <AppDocView app={app} page="privacy" />;
 }
